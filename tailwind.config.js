@@ -58,14 +58,26 @@ module.exports = {
         container: '#F9DFDC',
         card: '#DC2726',
         hovered: '#9E221C',
-        disabled: '#DA7A7A'
+        disabled: '#DA7A7A',
+        avatar: '#DC2726'
       },
       success: {
         text: '#376A20',
         container: '#DDFDE7',
         card: '#1EA249',
         hovered: '#2A501A',
-        disabled: '#94E2AE'
+        disabled: '#94E2AE',
+        avatar: '#4BDD80'
+      },
+      warning: {
+        text: '#895314',
+        container: '#FFF8C3',
+        avatar: '#F57C00'
+      },
+      info: {
+        text: '#1F41AE',
+        container: '#DAEAFF',
+        avatar: '#42ACFF'
       },
       badge: {
         default: {
@@ -176,6 +188,7 @@ module.exports = {
     extend: {
       padding: {
         '4px': '4px',
+        '6px': '6px',
         '8px': '8px',
         '10px': '10px',
         '12px': '12px',
@@ -185,6 +198,7 @@ module.exports = {
         '20px': '20px',
         '22px': '22px',
         '24px': '24px',
+        '32px': '32px',
         '48px': '48px'
       },
       height: {
@@ -192,7 +206,24 @@ module.exports = {
         '30px': '30px',
         '40px': '40px',
         '45px': '45px',
-        '50px': '50px'
+        '50px': '50px',
+        '60px': '60px',
+        '70px': '70px',
+        '80px': '80px',
+        '90px': '90px',
+        '100px': '100px'
+      },
+      width: {
+        '24px': '24px',
+        '30px': '30px',
+        '40px': '40px',
+        '45px': '45px',
+        '50px': '50px',
+        '60px': '60px',
+        '70px': '70px',
+        '80px': '80px',
+        '90px': '90px',
+        '100px': '100px'
       }
     }
   },
