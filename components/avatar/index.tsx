@@ -23,7 +23,7 @@ const AvatarSizes = {
   xl: 80
 }
 
-const Avatar: React.FC<AvatarProps> = (props) => {
+export const Avatar: React.FC<AvatarProps> = (props) => {
   const { type, src, size, circular, state, initials } = props
 
   const renderAvatar = () => {
@@ -112,5 +112,3 @@ const Avatar: React.FC<AvatarProps> = (props) => {
 
   return renderAvatar()
 }
-
-export { Avatar }

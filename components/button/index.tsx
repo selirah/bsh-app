@@ -15,7 +15,7 @@ interface ButtonProps {
   size?: ButtonSize
 }
 
-const Button: React.FC<ButtonProps> = (props) => {
+export const Button: React.FC<ButtonProps> = (props) => {
   const { onClick, children, block, color, outline, pill, disabled, size } = props
   const [mounted, setMounted] = useState(false)
   const [rippling, setRippling] = useState(false)
@@ -46,7 +46,7 @@ const Button: React.FC<ButtonProps> = (props) => {
   return (
     <button
       className={classnames(
-        'relative overflow-hidden px-[24px] py-[10px] font-lato transition duration-300 delay-150 hover:delay-150 text-center',
+        'relative overflow-hidden px-[24px] py-[10px] font-lato common-transition text-center',
         {
           'w-full': block,
           rounded: !pill,
@@ -94,5 +94,3 @@ const Button: React.FC<ButtonProps> = (props) => {
     </button>
   )
 }
-
-export { Button }

@@ -15,7 +15,7 @@ interface AlertProps {
   children: ReactNode
 }
 
-const Alert: React.FC<AlertProps> = (props) => {
+export const Alert: React.FC<AlertProps> = (props) => {
   const { children, color, border } = props
 
   return (
@@ -44,5 +44,3 @@ const Alert: React.FC<AlertProps> = (props) => {
     </div>
   )
 }
-
-export { Alert }

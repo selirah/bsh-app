@@ -12,7 +12,7 @@ interface BadgeProps {
   size?: BadgeSize
 }
 
-const Badge: React.FC<BadgeProps> = (props) => {
+export const Badge: React.FC<BadgeProps> = (props) => {
   const { children, pill, size, color, state } = props
   return (
     <span
@@ -34,5 +34,3 @@ const Badge: React.FC<BadgeProps> = (props) => {
     </span>
   )
 }
-
-export { Badge }

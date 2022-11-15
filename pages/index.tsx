@@ -1,16 +1,44 @@
-import { Avatar } from '../components'
+import React from 'react'
+import { Breadcrumb } from '../components'
+import {
+  ViewListIcon,
+  ChartBarIcon,
+  PresentationChartLineIcon,
+  PlusIcon
+} from '@heroicons/react/outline'
 
 export default function Home() {
+  const links: Array<{ title: string; link: string; active: boolean }> = [
+    { link: '/page', title: 'Agency Banking', active: false },
+    { link: '/page/user', title: 'Create Master', active: true }
+  ]
+
+  const actions: Array<{ title: string; link: string; icon?: React.ElementType }> = [
+    {
+      link: '/agency-list',
+      title: 'Agency List',
+      icon: ViewListIcon
+    },
+    {
+      link: '/agency-reports',
+      title: 'Agency Reports',
+      icon: ChartBarIcon
+    },
+    {
+      link: '/performance-reports',
+      title: 'Performance Reports',
+      icon: PresentationChartLineIcon
+    },
+    {
+      link: '/create-agency',
+      title: 'Create Agency',
+      icon: PlusIcon
+    }
+  ]
+
   return (
-    <div className="px-8">
-      <h1 className="text-h1 font-lato font-regular text-primaryDark">Welcome</h1>
-      <Avatar
-        type="image"
-        size="md"
-        src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80"
-        initials="ES"
-        circular
-      />
+    <div className="px-8 mt-10">
+      <Breadcrumb links={links} actions={actions} />
     </div>
   )
 }
