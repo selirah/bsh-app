@@ -20,12 +20,9 @@ module.exports = {
       secondary: '#DB1EBC',
       secondaryLight: '#ff61ef',
       secondaryDark: '#a5008b',
-      tertiary: '#FF3B88',
-      tertiaryLight: '#ff76b8',
-      tertiaryDark: '#c6005b',
-      neutral: '#FF805D',
-      neutralLight: '#ffb18b',
-      neutralDark: '#c75032',
+      accent: '#FF3B88',
+      accentLight: '#ff76b8',
+      accentDark: '#c6005b',
       light: {
         background: '#F2F4F7',
         container: '#FEFEFE',
@@ -60,23 +57,15 @@ module.exports = {
         text: '#B5241E',
         container: '#F9DFDC',
         card: '#DC2726',
-        hovered: '#9E221C'
+        hovered: '#9E221C',
+        disabled: '#DA7A7A'
       },
       success: {
         text: '#376A20',
         container: '#DDFDE7',
         card: '#1EA249',
-        hovered: '#2A501A'
-      },
-      warning: {
-        text: '#F57C00',
-        container: '#FFAD42',
-        hovered: '#D16B02'
-      },
-      info: {
-        text: '#42ACFF',
-        container: '#82DDFF',
-        hovered: '#3392DD'
+        hovered: '#2A501A',
+        disabled: '#94E2AE'
       },
       badge: {
         default: {
@@ -184,13 +173,9 @@ module.exports = {
       lato: ['Lato', 'sans-serif'],
       montserrat: ['Montserrat', 'sans-serif']
     },
-    borderRadius: {
-      sm: '4px',
-      md: '6px',
-      lg: '8px'
-    },
     extend: {
       padding: {
+        '4px': '4px',
         '8px': '8px',
         '10px': '10px',
         '12px': '12px',
@@ -201,6 +186,13 @@ module.exports = {
         '22px': '22px',
         '24px': '24px',
         '48px': '48px'
+      },
+      height: {
+        '24px': '24px',
+        '30px': '30px',
+        '40px': '40px',
+        '45px': '45px',
+        '50px': '50px'
       }
     }
   },

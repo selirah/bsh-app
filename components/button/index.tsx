@@ -1,21 +1,22 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, ReactNode } from 'react'
 import classnames from 'classnames'
+
+type ButtonColor = 'primary' | 'error' | 'success' | 'accent'
+type ButtonSize = 'small' | 'medium' | 'large'
 
 interface ButtonProps {
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
-  color?: 'primary'
+  color?: ButtonColor
   block?: boolean
-  style?: 'filled' | 'outlined'
-  type?: 'pill' | 'rounded'
-  icon?: React.ReactNode
+  outline?: boolean
+  pill?: boolean
   disabled?: boolean
-  loading?: boolean
-  children: React.ReactNode
-  size?: 'small | medium | large'
+  children: ReactNode
+  size?: ButtonSize
 }
 
 const Button: React.FC<ButtonProps> = (props) => {
-  const { onClick, children, icon } = props
+  const { onClick, children, block, color, outline, pill, disabled, size } = props
   const [mounted, setMounted] = useState(false)
   const [rippling, setRippling] = useState(false)
   const [coords, setCoords] = useState({ x: -1, y: -1 })
@@ -45,8 +46,35 @@ const Button: React.FC<ButtonProps> = (props) => {
   return (
     <button
       className={classnames(
-        'relative overflow-hidden px-[24px] py-[10px] bg-primary text-light-btnText rounded-sm font-lato text-pSmall hover:bg-primaryDark transition duration-300 delay-150 hover:delay-150',
-        {}
+        'relative overflow-hidden px-[24px] py-[10px] font-lato transition duration-300 delay-150 hover:delay-150 text-center',
+        {
+          'w-full': block,
+          rounded: !pill,
+          'rounded-full': pill,
+          'h-[40px] text-pSmall': size === 'small',
+          'h-[45px] text-pNormal': size === 'medium' || !size,
+          'h-[50px] text-pLarge': size === 'large' || !size,
+          'text-light-btnText': !outline,
+          'bg-primary hover:bg-primaryDark': (!color || color === 'primary') && !outline,
+          'bg-error-card hover:bg-error-hovered': color === 'error' && !outline,
+          'bg-success-card hover:bg-success-hovered': color === 'success' && !outline,
+          'bg-accent hover:bg-accentDark': color === 'accent' && !outline,
+          'border-2 font-bold': outline,
+          'border-primary text-primary': outline && color === 'primary',
+          'border-error-card text-error-card': outline && color === 'error',
+          'border-success-card text-success-card': outline && color === 'success',
+          'border-accent text-accent': outline && color === 'accent',
+          'disabled:bg-primaryLight': disabled && color === 'primary' && !outline,
+          'disabled:bg-accentLight': disabled && color === 'accent' && !outline,
+          'disabled:bg-error-disabled': disabled && color === 'error' && !outline,
+          'disabled:bg-success-disabled': disabled && color === 'success' && !outline,
+          'disabled:border-primaryLight disabled:text-primaryLight': outline && color === 'primary',
+          'disabled:border-error-disabled disabled:text-error-disabled':
+            outline && color === 'error',
+          'disabled:border-success-disabled disabled:text-success-disabled':
+            outline && color === 'success',
+          'disabled:border-accentLight disabled:text-accentLight': outline && color === 'accent'
+        }
       )}
       onClick={(e) => {
         const rect = e.target as HTMLFormElement
@@ -57,6 +85,7 @@ const Button: React.FC<ButtonProps> = (props) => {
           onClick(e)
         }
       }}
+      disabled={disabled}
     >
       {children}
       {rippling ? (
@@ -66,4 +95,4 @@ const Button: React.FC<ButtonProps> = (props) => {
   )
 }
 
-export default Button
+export { Button }
