@@ -1,4 +1,5 @@
 import { Alert } from '../components'
+import { ViewListIcon } from '@heroicons/react/outline'
 
 export default function Home() {
   return (
