@@ -1,7 +1,7 @@
 import React, { useState, createContext, useEffect } from 'react'
 import { IntlProvider } from 'react-intl'
-import EN from '../lang/en.json'
-import FR from '../lang/fr.json'
+import EN from '../lang/compiled/en.json'
+import FR from '../lang/compiled/fr.json'
 
 const languages = {
   en: { ...EN },
@@ -15,10 +15,7 @@ type ContextTypes = {
   changeLanguage: (lang: LangTypes) => void
 }
 
-const LanguageContext = createContext<ContextTypes>({
-  lang: 'en',
-  changeLanguage: (lang: LangTypes) => lang
-})
+const LanguageContext = createContext<ContextTypes | null>(null)
 
 interface Props {
   children: React.ReactNode
