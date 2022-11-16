@@ -1,11 +1,3 @@
-exports.compile = function (msgs) {
-  const results = {}
-  for (const [id, msg] of Object.entries(msgs)) {
-    results[id] = msg.string
-  }
-  return results
-}
-
 exports.format = function (msgs) {
   const results = {}
   for (const [id, msg] of Object.entries(msgs)) {
@@ -13,6 +5,14 @@ exports.format = function (msgs) {
       string: msg.defaultMessage,
       comment: msg.description
     }
+  }
+  return results
+}
+
+exports.compile = function (msgs) {
+  const results = {}
+  for (const [id, msg] of Object.entries(msgs)) {
+    results[id] = msg.string
   }
   return results
 }

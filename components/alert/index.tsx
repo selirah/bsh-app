@@ -20,7 +20,7 @@ export const Alert: React.FC<AlertProps> = (props) => {
 
   return (
     <div
-      className={classnames('flex p-[16px] font-lato font-medium text-pNormal', {
+      className={classnames('flex p-[16px] font-lato font-medium text-pNormal items-center', {
         rounded: !border,
         'bg-warning-container text-warning-text': color === 'warning',
         'bg-success-container text-success-text': color === 'success',
@@ -32,15 +32,15 @@ export const Alert: React.FC<AlertProps> = (props) => {
       id="alert"
     >
       {color === 'warning' ? (
-        <ExclamationIcon className="flex-shrink-0 inline w-6 h-6 mr-3 mt-0.5" />
+        <ExclamationIcon className="flex-shrink-0 inline w-6 h-6 mr-3 " />
       ) : color === 'error' ? (
-        <ExclamationCircleIcon className="flex-shrink-0 inline w-6 h-6 mr-3 mt-0.5" />
+        <ExclamationCircleIcon className="flex-shrink-0 inline w-6 h-6 mr-3 " />
       ) : color === 'info' ? (
-        <InformationCircleIcon className="flex-shrink-0 inline w-6 h-6 mr-3 mt-0.5" />
+        <InformationCircleIcon className="flex-shrink-0 inline w-6 h-6 mr-3" />
       ) : (
-        <CheckCircleIcon className="flex-shrink-0 inline w-6 h-6 mr-3 mt-0.5" />
+        <CheckCircleIcon className="flex-shrink-0 inline w-6 h-6 mr-3 " />
       )}
-      <div className="mt-0.5">{children}</div>
+      <div className="">{children}</div>
     </div>
   )
 }

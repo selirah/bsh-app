@@ -7,7 +7,7 @@ import { useIntl } from 'react-intl'
 
 interface BreadcrumbProps {
   links: Array<{ title: string; link: string; active: boolean }>
-  actions?: Array<{ title: string; link: string; Icon?: React.ElementType }>
+  actions?: Array<{ title: string; link: string; IconSVG?: any }>
 }
 
 export const Breadcrumb: React.FC<BreadcrumbProps> = (props) => {
@@ -15,7 +15,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = (props) => {
   const intl = useIntl()
 
   return (
-    <nav className="flex justify-between" aria-label="Breadcrumb">
+    <nav className="flex justify-between p-[16px] shadow-penumbra rounded" aria-label="Breadcrumb">
       <ol className="inline-flex items-center space-x-1 md:space-x-3 font-lato">
         <li className="inline-flex items-center">
           <Link href="#" className="inline-flex">
@@ -71,18 +71,26 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = (props) => {
                   {actions.map((action) => (
                     <Menu.Item key={action.link}>
                       {({ active }) => (
-                        <button
-                          className={classnames(
-                            'group flex w-full items-center rounded px-2 py-2 text-sm font-montserrat font-regular text-pSmall',
-                            {
-                              'bg-primary text-light-btnText': active,
-                              'text-light-text': !active
-                            }
-                          )}
-                        >
-                          {/* {active ? action.Icon : action.Icon} */}
-                          {action.title}
-                        </button>
+                        <Link href={action.link}>
+                          <button
+                            className={classnames(
+                              'group flex w-full items-center rounded px-[12px] py-[12px] text-sm font-montserrat font-regular text-pSmall',
+                              {
+                                'bg-primary text-light-btnText': active,
+                                'text-light-text': !active
+                              }
+                            )}
+                          >
+                            {action.IconSVG ? (
+                              active ? (
+                                <action.IconSVG className="mr-2 h-5 w-5" aria-hidden="true" />
+                              ) : (
+                                <action.IconSVG className="mr-2 h-5 w-5" aria-hidden="true" />
+                              )
+                            ) : null}
+                            {action.title}
+                          </button>
+                        </Link>
                       )}
                     </Menu.Item>
                   ))}
