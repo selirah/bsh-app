@@ -1,7 +1,9 @@
-import React, { ChangeEvent, Fragment } from 'react'
+import React, { ChangeEvent, useState } from 'react'
 import classnames from 'classnames'
-import { ExclamationCircleIcon } from '@heroicons/react/solid'
-import { Listbox, Transition } from '@headlessui/react'
+import { ExclamationCircleIcon, EyeIcon, EyeOffIcon } from '@heroicons/react/solid'
+import { Select } from 'components'
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
 
 type InputSizes = 'sm' | 'md' | 'lg'
 type IconPosition = 'leading' | 'trailing'
@@ -11,9 +13,8 @@ type DropdownData = {
 }
 
 interface InputProps {
-  value: string | number
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void
-  type?: 'text' | 'number' | 'tel' | 'email'
+  value: string
+  type?: 'text' | 'number' | 'tel' | 'email' | 'password'
   name?: string
   label?: string
   error?: string
@@ -24,26 +25,40 @@ interface InputProps {
   onFocus?: (e: ChangeEvent<HTMLInputElement>) => void
   onBlur?: (e: ChangeEvent<HTMLInputElement>) => void
   onKeyUp?: (e: ChangeEvent<HTMLInputElement>) => void
+  max?: number
+}
+
+interface BasicProps extends InputProps {
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
 interface IconProps extends InputProps {
   iconPosition?: IconPosition
-  IconSVG: any
+  IconSVG: React.FC<React.SVGProps<SVGSVGElement>>
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
 interface AddOnProps extends InputProps {
   addOnText: string
   addOnPosition?: IconPosition
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
 interface DropdownProps extends InputProps {
   list: DropdownData[]
-  selected: DropdownData
-  setSelected: (value: DropdownData) => void
+  setSelected: (value: unknown) => void
+  loading?: boolean
+  selectPlaceholder?: string
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
-export const Basic: React.FC<InputProps> = (props) => {
-  const { type, name, label, value, placeholder, onChange, disabled, size, error, success } = props
+interface PhoneProps extends InputProps {
+  onSetPhone: (value: string) => void
+}
+
+export const Basic: React.FC<BasicProps> = (props) => {
+  const { type, name, label, value, placeholder, onChange, disabled, size, error, success, max } =
+    props
 
   return (
     <div className="">
@@ -61,31 +76,27 @@ export const Basic: React.FC<InputProps> = (props) => {
           {label}
         </label>
       ) : null}
-      <div className="relative">
-        <input
-          type={type ?? 'text'}
-          id={name}
-          name={name}
-          value={value}
-          placeholder={placeholder}
-          className={classnames(
-            'font-montserrat font-regular bg-light-container dark:bg-dark-container border rounded focus:outline-none focus:ring-1 focus:border-transparent block w-full p-[16px] common-transition focus:shadow-penumbra disabled:bg-light-form-inputDisabled dark:disabled:bg-dark-form-inputDisabled disabled:cursor-not-allowed',
-            {
-              'h-[40px] text-pSmall': size === 'sm',
-              'h-[45px] text-pNormal': size === 'md' || !size || size === 'lg',
-              'h-[50px]': size === 'lg',
-              'border-light-form-inputBorder focus:ring-primary dark:border-dark-border text-light-form-inputText dark:text-dark-form-inputText placeholder:text-light-form-placeholder dark:placeholder:text-dark-form-placeholder':
-                !error && !success,
-              'border-error-text focus:ring-error-text text-error-text placeholder:text-error-text':
-                error,
-              'border-success-text text-success-text placeholder:text-success-text focus:ring-success-text':
-                success
-            }
-          )}
-          onChange={onChange}
-          disabled={disabled}
-        />
-      </div>
+      <input
+        type={type ?? 'text'}
+        id={name}
+        name={name}
+        value={value}
+        placeholder={placeholder}
+        className={classnames(
+          'font-montserrat font-regular focus:ring-primary dark:border-dark-border text-light-form-inputText dark:text-dark-form-inputText placeholder:text-light-form-placeholder dark:placeholder:text-dark-form-placeholder bg-light-container dark:bg-dark-container border rounded focus:outline-none focus:ring-1 focus:border-transparent block w-full p-[16px] common-transition focus:shadow-penumbra disabled:bg-light-form-inputDisabled dark:disabled:bg-dark-form-inputDisabled disabled:cursor-not-allowed',
+          {
+            'h-[40px] text-pSmall': size === 'sm',
+            'h-[45px] text-pNormal': size === 'md' || !size,
+            'h-[50px] text-pNormal': size === 'lg',
+            'border-light-form-inputBorder ': !error && !success,
+            'border-error-text': error,
+            'border-success-text': success
+          }
+        )}
+        onChange={onChange}
+        disabled={disabled}
+        maxLength={max}
+      />
       {error ? (
         <div className="mt-[8px] items-center flex">
           <ExclamationCircleIcon
@@ -120,7 +131,9 @@ export const Icon: React.FC<IconProps> = (props) => {
     error,
     success,
     iconPosition,
-    IconSVG
+    IconSVG,
+    max,
+    onBlur
   } = props
 
   return (
@@ -161,23 +174,22 @@ export const Icon: React.FC<IconProps> = (props) => {
           value={value}
           placeholder={placeholder}
           className={classnames(
-            'font-montserrat font-regular bg-light-container dark:bg-dark-container border rounded focus:outline-none focus:ring-1 focus:border-transparent block w-full pr-[16px] py-[16px] common-transition focus:shadow-penumbra disabled:bg-light-form-inputDisabled dark:disabled:bg-dark-form-inputDisabled disabled:cursor-not-allowed',
+            'font-montserrat font-regular  focus:ring-primary dark:border-dark-border text-light-form-inputText dark:text-dark-form-inputText placeholder:text-light-form-placeholder dark:placeholder:text-dark-form-placeholder bg-light-container dark:bg-dark-container border rounded focus:outline-none focus:ring-1 focus:border-transparent block w-full pr-[16px] py-[16px] common-transition focus:shadow-penumbra disabled:bg-light-form-inputDisabled dark:disabled:bg-dark-form-inputDisabled disabled:cursor-not-allowed',
             {
               'h-[40px] text-pSmall': size === 'sm',
-              'h-[45px] text-pNormal': size === 'md' || !size || size === 'lg',
-              'h-[50px]': size === 'lg',
+              'h-[45px] text-pNormal': size === 'md' || !size,
+              'h-[50px] text-pNormal': size === 'lg',
               'pl-[40px]': iconPosition === 'leading' || !iconPosition,
               'pl-[16px]': iconPosition === 'trailing',
-              'border-light-form-inputBorder focus:ring-primary dark:border-dark-border text-light-form-inputText dark:text-dark-form-inputText placeholder:text-light-form-placeholder dark:placeholder:text-dark-form-placeholder':
-                !error && !success,
-              'border-error-text focus:ring-error-text text-error-text placeholder:text-error-text':
-                error,
-              'border-success-text text-success-text placeholder:text-success-text focus:ring-success-text':
-                success
+              'border-light-form-inputBorder': !error && !success,
+              'border-error-text': error,
+              'border-success-text': success
             }
           )}
           onChange={onChange}
           disabled={disabled}
+          maxLength={max}
+          onBlur={onBlur}
         />
       </div>
       {error ? (
@@ -214,7 +226,9 @@ export const AddOn: React.FC<AddOnProps> = (props) => {
     error,
     success,
     addOnPosition,
-    addOnText
+    addOnText,
+    max,
+    onBlur
   } = props
 
   return (
@@ -254,23 +268,22 @@ export const AddOn: React.FC<AddOnProps> = (props) => {
           value={value}
           placeholder={placeholder}
           className={classnames(
-            'font-montserrat font-regular bg-light-container dark:bg-dark-container border rounded-none  focus:outline-none focus:ring-1 focus:border-transparent block w-full pr-[16px] py-[16px] px-[16px] common-transition focus:shadow-penumbra disabled:bg-light-form-inputDisabled dark:disabled:bg-dark-form-inputDisabled disabled:cursor-not-allowed',
+            'font-montserrat font-regular focus:ring-primary dark:border-dark-border text-light-form-inputText dark:text-dark-form-inputText placeholder:text-light-form-placeholder dark:placeholder:text-dark-form-placeholder bg-light-container dark:bg-dark-container border rounded-none  focus:outline-none focus:ring-1 focus:border-transparent block w-full pr-[16px] py-[16px] px-[16px] common-transition focus:shadow-penumbra disabled:bg-light-form-inputDisabled dark:disabled:bg-dark-form-inputDisabled disabled:cursor-not-allowed',
             {
               'h-[40px] text-pSmall': size === 'sm',
-              'h-[45px] text-pNormal': size === 'md' || !size || size === 'lg',
-              'h-[50px]': size === 'lg',
+              'h-[45px] text-pNormal': size === 'md' || !size,
+              'h-[50px] text-pNormal': size === 'lg',
               'rounded-r': addOnPosition === 'leading' || !addOnPosition,
               'rounded-l': addOnPosition === 'trailing',
-              'border-light-form-inputBorder focus:ring-primary dark:border-dark-border text-light-form-inputText dark:text-dark-form-inputText placeholder:text-light-form-placeholder dark:placeholder:text-dark-form-placeholder':
-                !error && !success,
-              'border-error-text focus:ring-error-text text-error-text placeholder:text-error-text':
-                error,
-              'border-success-text text-success-text placeholder:text-success-text focus:ring-success-text':
-                success
+              'border-light-form-inputBorder ': !error && !success,
+              'border-error-text': error,
+              'border-success-text': success
             }
           )}
           onChange={onChange}
           disabled={disabled}
+          maxLength={max}
+          onBlur={onBlur}
         />
         {addOnPosition === 'trailing' ? (
           <span
@@ -315,9 +328,12 @@ export const Dropdown: React.FC<DropdownProps> = (props) => {
     size,
     error,
     success,
-    selected,
     setSelected,
-    list
+    list,
+    loading,
+    selectPlaceholder,
+    max,
+    onBlur
   } = props
 
   return (
@@ -344,87 +360,31 @@ export const Dropdown: React.FC<DropdownProps> = (props) => {
           value={value}
           placeholder={placeholder}
           className={classnames(
-            'font-montserrat font-regular bg-light-container dark:bg-dark-container border rounded focus:outline-none focus:ring-1 focus:border-transparent block w-full p-[16px] common-transition focus:shadow-penumbra disabled:bg-light-form-inputDisabled dark:disabled:bg-dark-form-inputDisabled disabled:cursor-not-allowed',
+            'font-montserrat font-regular focus:ring-primary dark:border-dark-border text-light-form-inputText dark:text-dark-form-inputText placeholder:text-light-form-placeholder dark:placeholder:text-dark-form-placeholder bg-light-container dark:bg-dark-container border rounded focus:outline-none focus:ring-1 focus:border-transparent block w-full p-[16px] common-transition focus:shadow-penumbra disabled:bg-light-form-inputDisabled dark:disabled:bg-dark-form-inputDisabled disabled:cursor-not-allowed',
             {
               'h-[40px] text-pSmall': size === 'sm',
-              'h-[45px] text-pNormal': size === 'md' || !size || size === 'lg',
-              'h-[50px]': size === 'lg',
-              'border-light-form-inputBorder focus:ring-primary dark:border-dark-border text-light-form-inputText dark:text-dark-form-inputText placeholder:text-light-form-placeholder dark:placeholder:text-dark-form-placeholder':
-                !error && !success,
-              'border-error-text focus:ring-error-text text-error-text placeholder:text-error-text':
-                error,
-              'border-success-text text-success-text placeholder:text-success-text focus:ring-success-text':
-                success
+              'h-[45px] text-pNormal': size === 'md' || !size,
+              'h-[50px] text-pNormal': size === 'lg',
+              'border-light-form-inputBorder ': !error && !success,
+              'border-error-text': error,
+              'border-success-text': success
             }
           )}
           onChange={onChange}
           disabled={disabled}
+          maxLength={max}
+          onBlur={onBlur}
         />
-        <div className="w-24">
-          <Listbox value={selected} onChange={setSelected} disabled={disabled}>
-            <div className="relative">
-              <Listbox.Button
-                className={classnames(
-                  'relative w-full border rounded bg-light-container dark:bg-dark-container py-2 pl-3 pr-10 text-left focus:outline-none focus:ring-1 focus:shadow-penumbra common-transition',
-                  {
-                    'h-[40px] text-pSmall': size === 'sm',
-                    'h-[45px] text-pNormal': size === 'md' || !size || size === 'lg',
-                    'h-[50px]': size === 'lg',
-                    'border-light-form-inputBorder dark:border-dark-border focus:border-primary':
-                      !error && !success,
-                    'border-error-text text-error-text ': error,
-                    'border-success-text text-success-text': success,
-                    'cursor-pointer': !disabled,
-                    'cursor-not-allowed': disabled
-                  }
-                )}
-              >
-                <span className="block truncate">{selected.label}</span>
-                <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                  <Selector error={error ?? null} success={success ?? false} />
-                </span>
-              </Listbox.Button>
-              <Transition
-                as={Fragment}
-                leave="transition ease-in duration-100"
-                leaveFrom="opacity-100"
-                leaveTo="opacity-0"
-              >
-                <Listbox.Options className="absolute font-montserrat mt-1 w-full overflow-auto rounded bg-white py-1 text-light-form-inputText shadow-penumbra ring-1 ring-primary ring-opacity-5 focus:outline-none">
-                  {list.map((l, i) => (
-                    <Listbox.Option
-                      key={i}
-                      className={({ active }) =>
-                        classnames('relative cursor-pointer select-none py-2 pl-8 pr-4', {
-                          'bg-primary text-light-btnText': active,
-                          'text-gray-900': !active
-                        })
-                      }
-                      value={l}
-                    >
-                      {({ selected }) => (
-                        <>
-                          <span
-                            className={classnames('block truncate font-montserrat', {
-                              'font-medium': selected,
-                              'font-regular': !selected
-                            })}
-                          >
-                            {l.label}
-                          </span>
-                          {selected ? (
-                            <span className="absolute inset-y-0 left-0 flex items-center pl-3">
-                              <Selected />
-                            </span>
-                          ) : null}
-                        </>
-                      )}
-                    </Listbox.Option>
-                  ))}
-                </Listbox.Options>
-              </Transition>
-            </div>
-          </Listbox>
+        <div className="w-48">
+          <Select.Single
+            onChange={setSelected}
+            options={list}
+            disabled={disabled}
+            error={error}
+            placeholder={selectPlaceholder}
+            loading={loading}
+            size={size}
+          />
         </div>
       </div>
       {error ? (
@@ -448,38 +408,166 @@ export const Dropdown: React.FC<DropdownProps> = (props) => {
     </div>
   )
 }
+export const Password: React.FC<BasicProps> = (props) => {
+  const { name, label, value, placeholder, onChange, disabled, size, error, success, onBlur } =
+    props
+  const [visible, setVisible] = useState(false)
 
-const Selected = () => (
-  <svg
-    className="h-5 w-5"
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 20 20"
-    fill="currentColor"
-  >
-    <path
-      fillRule="evenodd"
-      clipRule="evenodd"
-      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-    />
-  </svg>
-)
+  return (
+    <div className="">
+      {label ? (
+        <label
+          htmlFor={name}
+          className={classnames('block mb-[8px] font-lato font-medium', {
+            'text-pSmall': size === 'sm',
+            'text-pNormal': size === 'md' || !size || size === 'lg',
+            'text-light-form-label dark:text-dark-form-label': !error && !success,
+            'text-error-text': error,
+            'text-success-text': success
+          })}
+        >
+          {label}
+        </label>
+      ) : null}
+      <div className="relative flex">
+        <input
+          type={!visible ? 'password' : 'text'}
+          id={name}
+          name={name}
+          value={value}
+          placeholder={placeholder}
+          className={classnames(
+            'font-montserrat font-regular border-r-0 rounded-r-none  dark:border-dark-border text-light-form-inputText dark:text-dark-form-inputText placeholder:text-light-form-placeholder dark:placeholder:text-dark-form-placeholder bg-light-container dark:bg-dark-container border rounded focus:outline-none focus:ring-1 focus:border-transparent block w-full p-[16px] common-transition focus:shadow-penumbra disabled:bg-light-form-inputDisabled dark:disabled:bg-dark-form-inputDisabled disabled:cursor-not-allowed',
+            {
+              'h-[40px] text-pSmall': size === 'sm',
+              'h-[45px] text-pNormal': size === 'md' || !size,
+              'h-[50px] text-pNormal': size === 'lg',
+              'border-light-form-inputBorder focus:ring-primary': !error && !success,
+              'border-error-text': error,
+              'border-success-text': success
+            }
+          )}
+          onChange={onChange}
+          disabled={disabled}
+          onBlur={onBlur}
+        />
+        <span
+          className={classnames(
+            'inline-flex items-center text-light-text dark:text-dark-text px-3 font-lato font-medium border border-l-0 rounded-r border-light-form-inputBorder dark:border-dark-border bg-light-container dark:bg-dark-container',
+            {
+              'border-error-text': error
+            }
+          )}
+        >
+          {!visible ? (
+            <EyeIcon
+              className={classnames('w-5 h-5 cursor-pointer', {
+                'text-light-form-placeholder dark:text-dark-form-placeholder': !error && !success,
+                'text-error-text': error,
+                'text-success-text': success
+              })}
+              onClick={() => setVisible(!visible)}
+            />
+          ) : (
+            <EyeOffIcon
+              className={classnames('w-5 h-5 cursor-pointer', {
+                'text-light-form-placeholder dark:text-dark-form-placeholder': !error && !success,
+                'text-error-text': error,
+                'text-success-text': success
+              })}
+              onClick={() => setVisible(!visible)}
+            />
+          )}
+        </span>
+      </div>
+      {error ? (
+        <div className="mt-[8px] items-center flex">
+          <ExclamationCircleIcon
+            className={classnames('flex-shrink-0 inline mr-[4px] text-error-text', {
+              'w-4 h-4': size === 'sm',
+              'w-5 h-5': size === 'md' || !size || size === 'lg'
+            })}
+          />
+          <span
+            className={classnames('font-montserrat font-medium text-error-text', {
+              'text-pSmall': size === 'sm',
+              'text-pNormal': size === 'md' || !size || size === 'lg'
+            })}
+          >
+            {error}
+          </span>
+        </div>
+      ) : null}
+    </div>
+  )
+}
+export const Phone: React.FC<PhoneProps> = (props) => {
+  const { name, label, value, placeholder, disabled, size, error, success, onBlur, onSetPhone } =
+    props
 
-const Selector: React.FC<{ error: string | null; success: boolean }> = ({ error, success }) => (
-  <svg
-    className={classnames('h-5 w-5', {
-      ' text-light-text dark:text-dark-text': !error && !success,
-      ' text-error-text': error,
-      ' text-success-text': success
-    })}
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 20 20"
-    fill="currentColor"
-    aria-hidden="true"
-  >
-    <path
-      fillRule="evenodd"
-      d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
-      clipRule="evenodd"
-    />
-  </svg>
-)
+  return (
+    <div className="">
+      {label ? (
+        <label
+          htmlFor={name}
+          className={classnames('block mb-[8px] font-lato font-medium', {
+            'text-pSmall': size === 'sm',
+            'text-pNormal': size === 'md' || !size || size === 'lg',
+            'text-light-form-label dark:text-dark-form-label': !error && !success,
+            'text-error-text': error,
+            'text-success-text': success
+          })}
+        >
+          {label}
+        </label>
+      ) : null}
+      <PhoneInput
+        placeholder="Enter phone number"
+        value={value}
+        onChange={onSetPhone}
+        inputClass={classnames(
+          'font-montserrat font-regular focus:ring-primary dark:border-dark-border text-light-form-inputText dark:text-dark-form-inputText placeholder:text-light-form-placeholder dark:placeholder:text-dark-form-placeholder bg-light-container dark:bg-dark-container border rounded focus:outline-none focus:ring-1 focus:border-transparent block w-full p-[16px] common-transition focus:shadow-penumbra disabled:bg-light-form-inputDisabled dark:disabled:bg-dark-form-inputDisabled disabled:cursor-not-allowed'
+        )}
+        inputStyle={{
+          borderRadius: '4px',
+          height: size === 'sm' ? '40px' : size === 'md' ? '45px' : size === 'lg' ? '50px' : '45px',
+          border: `1px solid ${error ? '#B5241E' : success ? '#376A20' : '#DDE0E4'}`,
+          width: 'inherit',
+          fontSize:
+            size === 'sm' ? '13.2px' : size === 'md' ? '16px' : size === 'lg' ? '19.2px' : '16px'
+        }}
+        country="cd"
+        preferredCountries={['cd', 'us', 'gb', 'gh']}
+        inputProps={{
+          name: name,
+          placeholder: placeholder,
+          onBlur: onBlur
+        }}
+        countryCodeEditable={false}
+        buttonStyle={{
+          border: `1px solid ${error ? '#B5241E' : success ? '#376A20' : '#DDE0E4'}`,
+          backgroundColor: '#FEFEFE'
+        }}
+        disabled={disabled}
+      />
+      {error ? (
+        <div className="mt-[8px] items-center flex">
+          <ExclamationCircleIcon
+            className={classnames('flex-shrink-0 inline mr-[4px] text-error-text', {
+              'w-4 h-4': size === 'sm',
+              'w-5 h-5': size === 'md' || !size || size === 'lg'
+            })}
+          />
+          <span
+            className={classnames('font-montserrat font-medium text-error-text', {
+              'text-pSmall': size === 'sm',
+              'text-pNormal': size === 'md' || !size || size === 'lg'
+            })}
+          >
+            {error}
+          </span>
+        </div>
+      ) : null}
+    </div>
+  )
+}

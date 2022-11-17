@@ -1,39 +1,19 @@
 import React, { useState } from 'react'
-import { Input } from '../components'
-
-type Option = {
-  label: string
-  value: string | number
-}
-
-const list: Option[] = [
-  {
-    label: 'USD',
-    value: 'USD'
-  },
-  {
-    label: 'GHS',
-    value: 'GHS'
-  }
-]
+import { Input } from 'components'
 
 export default function Home() {
-  const [value, setValue] = useState('')
-  const [data, setData] = useState<Option>(list[0])
+  const [password, setPassword] = useState('')
+
+  console.log(password)
 
   return (
-    <div className="px-8 mt-10">
-      <Input.Dropdown
-        label="Amount"
-        name="name"
-        type="number"
-        value={value}
-        placeholder="Input name"
-        onChange={(e) => setValue(e.target.value)}
+    <div className="px-8 mt-10 m-56">
+      <Input.Phone
+        onSetPhone={setPassword}
+        value={password}
+        label="Phone"
+        placeholder="Enter Phone"
         size="md"
-        setSelected={setData}
-        list={list}
-        selected={data}
       />
     </div>
   )

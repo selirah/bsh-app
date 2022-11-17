@@ -1,7 +1,7 @@
 import React, { useState, createContext, useEffect } from 'react'
 import { IntlProvider } from 'react-intl'
-import EN from '../lang/compiled/en.json'
-import FR from '../lang/compiled/fr.json'
+import EN from 'lang/compiled/en.json'
+import FR from 'lang/compiled/fr.json'
 
 const languages = {
   en: { ...EN },

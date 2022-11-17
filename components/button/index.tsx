@@ -2,7 +2,7 @@ import React, { useState, useEffect, ReactNode } from 'react'
 import classnames from 'classnames'
 
 type ButtonColor = 'primary' | 'error' | 'success' | 'accent'
-type ButtonSize = 'small' | 'medium' | 'large'
+type ButtonSize = 'sm' | 'md' | 'lg'
 
 interface ButtonProps {
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
@@ -46,14 +46,14 @@ export const Button: React.FC<ButtonProps> = (props) => {
   return (
     <button
       className={classnames(
-        'relative overflow-hidden px-[24px] py-[10px] font-lato common-transition text-center',
+        'relative inline-flex items-center overflow-hidden px-[24px] py-[10px] font-lato common-transition text-center',
         {
           'w-full': block,
           rounded: !pill,
           'rounded-full': pill,
-          'h-[40px] text-pSmall': size === 'small',
-          'h-[45px] text-pNormal': size === 'medium' || !size,
-          'h-[50px] text-pLarge': size === 'large' || !size,
+          'h-[40px] text-pSmall': size === 'sm',
+          'h-[45px] text-pNormal': size === 'md' || !size,
+          'h-[50px] text-pLarge': size === 'lg',
           'text-light-btnText': !outline,
           'bg-primary hover:bg-primaryDark': (!color || color === 'primary') && !outline,
           'bg-error-card hover:bg-error-hovered': color === 'error' && !outline,

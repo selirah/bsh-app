@@ -7,7 +7,11 @@ import { useIntl } from 'react-intl'
 
 interface BreadcrumbProps {
   links: Array<{ title: string; link: string; active: boolean }>
-  actions?: Array<{ title: string; link: string; IconSVG?: any }>
+  actions?: Array<{
+    title: string
+    link: string
+    IconSVG?: React.FC<React.SVGProps<SVGSVGElement>>
+  }>
 }
 
 export const Breadcrumb: React.FC<BreadcrumbProps> = (props) => {
@@ -77,16 +81,12 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = (props) => {
                               'group flex w-full items-center rounded px-[12px] py-[12px] text-sm font-montserrat font-regular text-pSmall',
                               {
                                 'bg-primary text-light-btnText': active,
-                                'text-light-text': !active
+                                'text-light-text dark:text-dark-text': !active
                               }
                             )}
                           >
                             {action.IconSVG ? (
-                              active ? (
-                                <action.IconSVG className="mr-2 h-5 w-5" aria-hidden="true" />
-                              ) : (
-                                <action.IconSVG className="mr-2 h-5 w-5" aria-hidden="true" />
-                              )
+                              <action.IconSVG className="mr-2 h-4 w-4" aria-hidden="true" />
                             ) : null}
                             {action.title}
                           </button>
