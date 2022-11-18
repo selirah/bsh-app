@@ -52,7 +52,7 @@ export const Basic: React.FC<RadioProps> = (props) => {
         type="radio"
         value={value}
         className={classnames(
-          ' focus:ring-0 bg-light-container dark:bg-dark-container border rounded-full border-light-form-inputBorder dark:border-dark-form-inputBorder cursor-pointer common-transition disabled:cursor-not-allowed',
+          'focus:ring-0 bg-light-container dark:bg-dark-container border rounded-full border-light-form-inputBorder dark:border-dark-form-inputBorder cursor-pointer common-transition disabled:cursor-not-allowed',
           {
             'w-[20px] h-[20px]': size === 'sm',
             'w-[25px] h-[25px]': size === 'md' || !size,

@@ -3,7 +3,6 @@ import classnames from 'classnames'
 import { ExclamationCircleIcon, EyeIcon, EyeOffIcon } from '@heroicons/react/solid'
 import { Select } from 'components'
 import PhoneInput from 'react-phone-input-2'
-import 'react-phone-input-2/lib/style.css'
 
 type InputSizes = 'sm' | 'md' | 'lg'
 type IconPosition = 'leading' | 'trailing'
@@ -22,7 +21,7 @@ interface InputProps {
   size?: InputSizes
   placeholder?: string
   disabled?: boolean
-  onFocus?: (e: ChangeEvent<HTMLInputElement>) => void
+  onFocus?: () => void
   onBlur?: (e: ChangeEvent<HTMLInputElement>) => void
   onKeyUp?: (e: ChangeEvent<HTMLInputElement>) => void
   max?: number
