@@ -56,6 +56,11 @@ interface PhoneProps extends InputProps {
   onSetPhone: (value: string) => void
 }
 
+interface TextareaProps extends InputProps {
+  onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void
+  rows?: number
+}
+
 export const Basic: React.FC<BasicProps> = (props) => {
   const { type, name, label, value, placeholder, onChange, disabled, size, error, success, max } =
     props
@@ -550,6 +555,65 @@ export const Phone: React.FC<PhoneProps> = (props) => {
         }}
         disabled={disabled}
       />
+      {error ? (
+        <div className="mt-[8px] items-center flex">
+          <ExclamationCircleIcon
+            className={classnames('flex-shrink-0 inline mr-[4px] text-error-text', {
+              'w-4 h-4': size === 'sm',
+              'w-5 h-5': size === 'md' || !size || size === 'lg'
+            })}
+          />
+          <span
+            className={classnames('font-montserrat font-medium text-error-text', {
+              'text-pSmall': size === 'sm',
+              'text-pNormal': size === 'md' || !size || size === 'lg'
+            })}
+          >
+            {error}
+          </span>
+        </div>
+      ) : null}
+    </div>
+  )
+}
+export const Textarea: React.FC<TextareaProps> = (props) => {
+  const { name, label, value, placeholder, onChange, disabled, size, error, success, max, rows } =
+    props
+
+  return (
+    <div className="">
+      {label ? (
+        <label
+          htmlFor={name}
+          className={classnames('block mb-[8px] font-lato font-medium', {
+            'text-pSmall': size === 'sm',
+            'text-pNormal': size === 'md' || !size || size === 'lg',
+            'text-light-form-label dark:text-dark-form-label': !error && !success,
+            'text-error-text': error,
+            'text-success-text': success
+          })}
+        >
+          {label}
+        </label>
+      ) : null}
+      <textarea
+        id={name}
+        name={name}
+        value={value}
+        placeholder={placeholder}
+        className={classnames(
+          'font-montserrat font-regular focus:ring-primary dark:border-dark-border text-light-form-inputText dark:text-dark-form-inputText placeholder:text-light-form-placeholder dark:placeholder:text-dark-form-placeholder bg-light-container dark:bg-dark-container border rounded focus:outline-none focus:ring-1 focus:border-transparent block w-full p-[16px] common-transition focus:shadow-penumbra disabled:bg-light-form-inputDisabled dark:disabled:bg-dark-form-inputDisabled disabled:cursor-not-allowed',
+          {
+            'border-light-form-inputBorder ': !error && !success,
+            'border-error-text': error,
+            'border-success-text': success
+          }
+        )}
+        onChange={onChange}
+        disabled={disabled}
+        maxLength={max}
+        rows={rows ?? 4}
+      ></textarea>
       {error ? (
         <div className="mt-[8px] items-center flex">
           <ExclamationCircleIcon
