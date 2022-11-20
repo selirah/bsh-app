@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react'
+import React, { ChangeEvent, useState, LegacyRef } from 'react'
 import classnames from 'classnames'
 import { ExclamationCircleIcon, EyeIcon, EyeOffIcon } from '@heroicons/react/solid'
 import { Select } from 'components'
@@ -29,18 +29,21 @@ interface InputProps {
 
 interface BasicProps extends InputProps {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void
+  ref?: LegacyRef<HTMLInputElement>
 }
 
 interface IconProps extends InputProps {
   iconPosition?: IconPosition
   IconSVG: React.FC<React.SVGProps<SVGSVGElement>>
   onChange: (e: ChangeEvent<HTMLInputElement>) => void
+  ref?: LegacyRef<HTMLInputElement>
 }
 
 interface AddOnProps extends InputProps {
   addOnText: string
   addOnPosition?: IconPosition
   onChange: (e: ChangeEvent<HTMLInputElement>) => void
+  ref?: LegacyRef<HTMLInputElement>
 }
 
 interface DropdownProps extends InputProps {
@@ -49,15 +52,18 @@ interface DropdownProps extends InputProps {
   loading?: boolean
   selectPlaceholder?: string
   onChange: (e: ChangeEvent<HTMLInputElement>) => void
+  ref?: LegacyRef<HTMLInputElement>
 }
 
 interface PhoneProps extends InputProps {
   onSetPhone: (value: string) => void
+  ref?: LegacyRef<HTMLInputElement>
 }
 
 interface TextareaProps extends InputProps {
   onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void
   rows?: number
+  ref?: LegacyRef<HTMLTextAreaElement>
 }
 
 export const Basic: React.FC<BasicProps> = (props) => {
@@ -137,7 +143,8 @@ export const Icon: React.FC<IconProps> = (props) => {
     iconPosition,
     IconSVG,
     max,
-    onBlur
+    onBlur,
+    ref
   } = props
 
   return (
@@ -194,6 +201,7 @@ export const Icon: React.FC<IconProps> = (props) => {
           disabled={disabled}
           maxLength={max}
           onBlur={onBlur}
+          ref={ref}
         />
       </div>
       {error ? (
@@ -232,7 +240,8 @@ export const AddOn: React.FC<AddOnProps> = (props) => {
     addOnPosition,
     addOnText,
     max,
-    onBlur
+    onBlur,
+    ref
   } = props
 
   return (
@@ -288,6 +297,7 @@ export const AddOn: React.FC<AddOnProps> = (props) => {
           disabled={disabled}
           maxLength={max}
           onBlur={onBlur}
+          ref={ref}
         />
         {addOnPosition === 'trailing' ? (
           <span
@@ -337,7 +347,8 @@ export const Dropdown: React.FC<DropdownProps> = (props) => {
     loading,
     selectPlaceholder,
     max,
-    onBlur
+    onBlur,
+    ref
   } = props
 
   return (
@@ -378,6 +389,7 @@ export const Dropdown: React.FC<DropdownProps> = (props) => {
           disabled={disabled}
           maxLength={max}
           onBlur={onBlur}
+          ref={ref}
         />
         <div className="w-48">
           <Select.Single
@@ -413,7 +425,7 @@ export const Dropdown: React.FC<DropdownProps> = (props) => {
   )
 }
 export const Password: React.FC<BasicProps> = (props) => {
-  const { name, label, value, placeholder, onChange, disabled, size, error, success, onBlur } =
+  const { name, label, value, placeholder, onChange, disabled, size, error, success, onBlur, ref } =
     props
   const [visible, setVisible] = useState(false)
 
@@ -454,6 +466,7 @@ export const Password: React.FC<BasicProps> = (props) => {
           onChange={onChange}
           disabled={disabled}
           onBlur={onBlur}
+          ref={ref}
         />
         <span
           className={classnames(
@@ -506,8 +519,19 @@ export const Password: React.FC<BasicProps> = (props) => {
   )
 }
 export const Phone: React.FC<PhoneProps> = (props) => {
-  const { name, label, value, placeholder, disabled, size, error, success, onBlur, onSetPhone } =
-    props
+  const {
+    name,
+    label,
+    value,
+    placeholder,
+    disabled,
+    size,
+    error,
+    success,
+    onBlur,
+    onSetPhone,
+    ref
+  } = props
 
   return (
     <div className="">
@@ -545,7 +569,8 @@ export const Phone: React.FC<PhoneProps> = (props) => {
         inputProps={{
           name: name,
           placeholder: placeholder,
-          onBlur: onBlur
+          onBlur: onBlur,
+          ref: ref
         }}
         countryCodeEditable={false}
         buttonStyle={{
@@ -576,8 +601,20 @@ export const Phone: React.FC<PhoneProps> = (props) => {
   )
 }
 export const Textarea: React.FC<TextareaProps> = (props) => {
-  const { name, label, value, placeholder, onChange, disabled, size, error, success, max, rows } =
-    props
+  const {
+    name,
+    label,
+    value,
+    placeholder,
+    onChange,
+    disabled,
+    size,
+    error,
+    success,
+    max,
+    rows,
+    ref
+  } = props
 
   return (
     <div className="">
@@ -612,6 +649,7 @@ export const Textarea: React.FC<TextareaProps> = (props) => {
         disabled={disabled}
         maxLength={max}
         rows={rows ?? 4}
+        ref={ref}
       ></textarea>
       {error ? (
         <div className="mt-[8px] items-center flex">

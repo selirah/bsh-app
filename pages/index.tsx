@@ -6,7 +6,7 @@ export default function Home() {
 
   return (
     <div className="px-8 mt-10 m-56">
-      <div className="mt-6">
+      <div className="mb-6">
         <DatePicker.Icon
           name="date"
           label="Date"

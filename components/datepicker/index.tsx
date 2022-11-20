@@ -70,6 +70,7 @@ export const Basic: React.FC<DatePickerProps> = (props) => {
     endDate,
     value
   } = props
+
   return (
     <div className="">
       {label ? (
@@ -120,6 +121,8 @@ export const Basic: React.FC<DatePickerProps> = (props) => {
         selectsRange={isRange}
         startDate={startDate}
         endDate={endDate}
+        popperClassName="rounded border-light-form-inputBorder"
+        calendarClassName="shadow-penumbra border-light-border"
       />
       {error ? (
         <div className="mt-[8px] items-center flex">
@@ -173,6 +176,7 @@ export const Icon: React.FC<IconProps> = (props) => {
     iconPosition,
     value
   } = props
+
   return (
     <div className="">
       {label ? (
@@ -197,7 +201,7 @@ export const Icon: React.FC<IconProps> = (props) => {
           })}
         >
           <CalendarIcon
-            className={classnames('w-5 h-5', {
+            className={classnames('z-10 w-5 h-5', {
               'text-light-form-placeholder dark:text-dark-form-placeholder': !error && !success,
               'text-error-text': error,
               'text-success-text': success
@@ -240,6 +244,8 @@ export const Icon: React.FC<IconProps> = (props) => {
           selectsRange={isRange}
           startDate={startDate}
           endDate={endDate}
+          popperClassName="rounded border-light-form-inputBorder"
+          calendarClassName="shadow-penumbra border-light-border"
         />
       </div>
       {error ? (

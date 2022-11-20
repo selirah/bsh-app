@@ -1,0 +1,32 @@
+.spinnerContentLoader {
+  animation: svgSpinner 1.4s linear infinite;
+}
+
+.spinnerContentLoaderCircle {
+  animation: svgSpinnerCircle 1.4s ease-in-out infinite;
+  stroke-dasharray: 80px, 200px;
+  stroke-dashoffset: 0px;
+  stroke: theme('colors.primary');
+  stroke-linecap: round;
+}
+
+@keyframes svgSpinner {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes svgSpinnerCircle {
+  0% {
+    stroke-dasharray: 1px, 200px;
+    stroke-dashoffset: 0px;
+  }
+  50% {
+    stroke-dasharray: 100px, 200px;
+    stroke-dashoffset: -15px;
+  }
+  100% {
+    stroke-dasharray: 100px, 200px;
+    stroke-dashoffset: -120px;
+  }
+}
