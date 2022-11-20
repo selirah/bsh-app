@@ -1,0 +1,31 @@
+.Toastify__toast-container {
+  @apply w-[500px];
+}
+
+.Toastify__toast {
+  @apply bg-light-container dark:bg-dark-container rounded shadow-penumbra p-[12px] border border-light-border dark:border-dark-border;
+}
+
+.Toastify__toast .Toastify__toast-body .Toastify__close-button {
+  @apply text-light-text dark:text-dark-text;
+}
+
+.Toastify__toast .toastify-header .title-wrapper .avatar svg {
+  @apply h-[16px] w-[16px];
+}
+
+.Toastify__toast .Toastify__close-button {
+  @apply opacity-100 mt-[1px] ml-[0.5rem];
+}
+
+.Toastify__toast .Toastify__close-button svg {
+  @apply h-[16px] w-[16px] fill-light-text dark:fill-dark-text;
+}
+
+.Toastify__toast .Toastify__close-button svg:hover {
+  @apply fill-dark-btnText dark:fill-light-btnText common-transition;
+}
+
+.Toastify__toast .Toastify__close-button svg:focus {
+  @apply outline-none;
+}

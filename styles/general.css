@@ -1,0 +1,14 @@
+@layer base {
+  html {
+    background: theme('colors.light.background');
+  }
+  html.dark {
+    background: theme('colors.dark.background');
+  }
+}
+
+@layer components {
+  .common-transition {
+    @apply transition duration-300 delay-150 hover:delay-150;
+  }
+}
