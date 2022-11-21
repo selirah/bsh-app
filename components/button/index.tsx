@@ -1,7 +1,7 @@
 import React, { useState, useEffect, ReactNode } from 'react'
 import classnames from 'classnames'
 
-type ButtonColor = 'primary' | 'error' | 'success' | 'accent'
+type ButtonColor = 'primary' | 'error' | 'success' | 'accent' | 'secondary' | 'info' | 'warning'
 type ButtonSize = 'sm' | 'md' | 'lg'
 
 interface ButtonProps {
@@ -56,9 +56,12 @@ export const Button: React.FC<ButtonProps> = (props) => {
           'h-[50px] text-pLarge': size === 'lg',
           'text-light-btnText': !outline,
           'bg-primary hover:bg-primaryDark': (!color || color === 'primary') && !outline,
+          'bg-secondary hover:bg-secondary-hovered': color === 'secondary' && !outline,
           'bg-error-card hover:bg-error-hovered': color === 'error' && !outline,
           'bg-success-card hover:bg-success-hovered': color === 'success' && !outline,
           'bg-accent hover:bg-accentDark': color === 'accent' && !outline,
+          'bg-info-avatar hover:bg-info-text': color === 'info' && !outline,
+          'bg-warning-avatar hover:bg-warning-text': color === 'warning' && !outline,
           'border-2 font-bold': outline,
           'border-primary text-primary': outline && color === 'primary',
           'border-error-card text-error-card': outline && color === 'error',
@@ -67,6 +70,7 @@ export const Button: React.FC<ButtonProps> = (props) => {
           'disabled:bg-primaryLight': disabled && color === 'primary' && !outline,
           'disabled:bg-accentLight': disabled && color === 'accent' && !outline,
           'disabled:bg-error-disabled': disabled && color === 'error' && !outline,
+          'disabled:bg-secondaryLight': disabled && color === 'secondary' && !outline,
           'disabled:bg-success-disabled': disabled && color === 'success' && !outline,
           'disabled:border-primaryLight disabled:text-primaryLight': outline && color === 'primary',
           'disabled:border-error-disabled disabled:text-error-disabled':

@@ -5,13 +5,16 @@ import { Menu, Transition } from '@headlessui/react'
 import classnames from 'classnames'
 import { useIntl } from 'react-intl'
 
+type LinkObject = { title: string; link: string; active: boolean }
+type ActionObject = {
+  title: string
+  link: string
+  IconSVG?: React.FC<React.SVGProps<SVGSVGElement>>
+}
+
 interface BreadcrumbProps {
-  links: Array<{ title: string; link: string; active: boolean }>
-  actions?: Array<{
-    title: string
-    link: string
-    IconSVG?: React.FC<React.SVGProps<SVGSVGElement>>
-  }>
+  links: LinkObject[]
+  actions?: ActionObject[]
 }
 
 export const Breadcrumb: React.FC<BreadcrumbProps> = (props) => {
