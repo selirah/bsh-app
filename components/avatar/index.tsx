@@ -5,6 +5,7 @@ import classnames from 'classnames'
 type AvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 type AvatarState = 'success' | 'error' | 'warning' | 'info'
 type IconColor = 'success' | 'error' | 'warning' | 'info'
+type InitalsColor = 'primary' | 'secondary' | 'accent' | 'success' | 'info' | 'error' | 'warning'
 
 interface AvatarProps {
   size: AvatarSize
@@ -27,6 +28,7 @@ interface ImgProps extends AvatarProps {
 interface InitialsProps extends AvatarProps {
   initials: string
   state?: AvatarState
+  bgColor?: InitalsColor
 }
 
 interface IconProps extends AvatarProps {
@@ -78,13 +80,13 @@ export const Img: React.FC<ImgProps> = (props) => {
 }
 
 export const Initals: React.FC<InitialsProps> = (props) => {
-  const { initials, size, circular, state } = props
+  const { initials, size, circular, state, bgColor } = props
 
   return (
     <div className="relative">
       <div
         className={classnames(
-          'inline-flex overflow-hidden relative justify-center items-center bg-light-form-placeholder',
+          'inline-flex overflow-hidden relative justify-center items-center text-light-btnText',
           {
             'rounded-full': circular,
             rounded: !circular,
@@ -92,7 +94,14 @@ export const Initals: React.FC<InitialsProps> = (props) => {
             'w-[50px] h-[50px]': size === 'sm',
             'w-[60px] h-[60px]': size === 'md',
             'w-[70px] h-[70px]': size === 'lg',
-            'w-[80px] h-[80px]': size === 'xl'
+            'w-[80px] h-[80px]': size === 'xl',
+            'bg-primary': bgColor === 'primary' || !bgColor,
+            'bg-secondary': bgColor === 'secondary',
+            'bg-accent': bgColor === 'accent',
+            'bg-success-avatar': bgColor === 'success',
+            'bg-error-avatar': bgColor === 'error',
+            'bg-info-avatar': bgColor === 'info',
+            'bg-warning-avatar': bgColor === 'warning'
           }
         )}
       >

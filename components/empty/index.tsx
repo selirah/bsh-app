@@ -15,25 +15,25 @@ interface ActionButtonProps extends EmptyProps {
   btnColor?: ButtonColor
   IconSVG?: React.FC<React.SVGProps<SVGSVGElement>>
   btnText: string
+  onClick: () => void
 }
 
 export const Basic: React.FC<EmptyProps> = (props) => {
-  const { title, children } = props
+  const { title, children, border } = props
   return (
     <div
-      className={classnames(
-        'w-full rounded bg-light-container dark:bg-dark-container py-20',
-        'border border-light-border dark:border-dark-border'
-      )}
+      className={classnames('w-full rounded bg-light-container dark:bg-dark-container py-12', {
+        'border border-light-border dark:border-dark-border border-dashed': border
+      })}
     >
       <div className="flex justify-center">
-        <FolderAddIcon className="w-[100px] h-[100px] text-light-gray dark:bg-dark-gray" />
+        <FolderAddIcon className="w-[100px] h-[100px] text-light-gray dark:text-dark-gray" />
       </div>
       <div className="text-center mt-4">
-        <h5 className="font-lato text-h5 font-bold text-dark-btnText dark:text-light-btnText">
+        <h6 className="font-lato text-h6 font-bold text-dark-btnText dark:text-light-btnText">
           {title}
-        </h5>
-        <p className="text-light-text dark:text-dark-text font-montserrat text-pLarge">
+        </h6>
+        <p className="text-light-text dark:text-dark-text font-montserrat text-pNormal font-regular">
           {children}
         </p>
       </div>
@@ -42,26 +42,25 @@ export const Basic: React.FC<EmptyProps> = (props) => {
 }
 
 export const ActionButton: React.FC<ActionButtonProps> = (props) => {
-  const { btnColor, IconSVG, title, btnText, children } = props
+  const { btnColor, IconSVG, title, btnText, children, border, onClick } = props
   return (
     <div
-      className={classnames(
-        'w-full rounded bg-light-container dark:bg-dark-container py-20',
-        'border border-light-border dark:border-dark-border'
-      )}
+      className={classnames('w-full rounded bg-light-container dark:bg-dark-container py-12', {
+        'border border-light-border dark:border-dark-border border-dashed': border
+      })}
     >
       <div className="flex justify-center">
-        <FolderAddIcon className="w-[100px] h-[100px] text-light-gray dark:bg-dark-gray" />
+        <FolderAddIcon className="w-[100px] h-[80px] text-light-gray dark:text-dark-gray" />
       </div>
       <div className="text-center mt-4">
-        <h5 className="font-lato text-h5 font-bold text-dark-btnText dark:text-light-btnText">
+        <h6 className="font-lato text-h6 font-bold text-dark-btnText dark:text-light-btnText">
           {title}
-        </h5>
-        <p className="text-light-text dark:text-dark-text font-montserrat text-pLarge">
+        </h6>
+        <p className="text-light-text dark:text-dark-text font-montserrat text-pNormal font-regular">
           {children}
         </p>
         <div className="mt-8">
-          <Button size="md" color={btnColor}>
+          <Button size="sm" color={btnColor} onClick={onClick}>
             <IconSVG className="w-4 h-5 mr-2" />
             {btnText}
           </Button>
@@ -72,22 +71,21 @@ export const ActionButton: React.FC<ActionButtonProps> = (props) => {
 }
 
 export const Filter: React.FC<EmptyProps> = (props) => {
-  const { title, children } = props
+  const { title, children, border } = props
   return (
     <div
-      className={classnames(
-        'w-full rounded bg-light-container dark:bg-dark-container py-20',
-        'border border-light-border dark:border-dark-border'
-      )}
+      className={classnames('w-full rounded bg-light-container dark:bg-dark-container py-12', {
+        'border border-light-border dark:border-dark-border border-dashed': border
+      })}
     >
       <div className="flex justify-center">
-        <SearchIcon className="w-[100px] h-[100px] text-light-gray dark:bg-dark-gray" />
+        <SearchIcon className="w-[100px] h-[100px] text-light-gray dark:text-dark-gray" />
       </div>
       <div className="text-center mt-4">
-        <h5 className="font-lato text-h5 font-bold text-dark-btnText dark:text-light-btnText">
+        <h6 className="font-lato text-h6 font-bold text-dark-btnText dark:text-light-btnText">
           {title}
-        </h5>
-        <p className="text-light-text dark:text-dark-text font-montserrat text-pLarge">
+        </h6>
+        <p className="text-light-text dark:text-dark-text font-montserrat text-pNormal font-regular">
           {children}
         </p>
       </div>

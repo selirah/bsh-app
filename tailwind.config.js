@@ -104,7 +104,8 @@ module.exports = {
       table: {
         cell: '#F8FAFA',
         header: '#F2F4F7'
-      }
+      },
+      overlay: '#374051'
     },
     boxShadow: {
       umbra: '0 16px 24px 2px rgba(0, 0, 0, 0.14)',

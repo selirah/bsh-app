@@ -1,7 +1,15 @@
 import React, { useState, useEffect, ReactNode } from 'react'
 import classnames from 'classnames'
 
-type ButtonColor = 'primary' | 'error' | 'success' | 'accent' | 'secondary' | 'info' | 'warning'
+type ButtonColor =
+  | 'primary'
+  | 'error'
+  | 'success'
+  | 'accent'
+  | 'secondary'
+  | 'info'
+  | 'warning'
+  | 'default'
 type ButtonSize = 'sm' | 'md' | 'lg'
 
 interface ButtonProps {
@@ -62,8 +70,11 @@ export const Button: React.FC<ButtonProps> = (props) => {
           'bg-accent hover:bg-accentDark': color === 'accent' && !outline,
           'bg-info-avatar hover:bg-info-text': color === 'info' && !outline,
           'bg-warning-avatar hover:bg-warning-text': color === 'warning' && !outline,
-          'border-2 font-bold': outline,
+          'bg-light-container dark:bg-dark-container': color === 'default' && !outline,
+          'border-2 font-bold ': outline,
           'border-primary text-primary': outline && color === 'primary',
+          'border-light-border dark:border-dark-border text-light-text dark:text-dark-text':
+            outline && color === 'default',
           'border-error-card text-error-card': outline && color === 'error',
           'border-success-card text-success-card': outline && color === 'success',
           'border-accent text-accent': outline && color === 'accent',

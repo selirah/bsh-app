@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react'
 import classnames from 'classnames'
 
 type BadgeColor = 'default' | 'block' | 'pending' | 'rejected' | 'active'
-type BadgeSize = 'small' | 'medium' | 'large'
+type BadgeSize = 'sm' | 'md' | 'lg'
 
 interface BadgeProps {
   pill?: boolean
@@ -17,9 +17,9 @@ export const Badge: React.FC<BadgeProps> = (props) => {
   return (
     <span
       className={classnames('font-lato font-bold px-[16px] py-[4px]', {
-        'text-pSmall h-[24px]': !size || size === 'small',
-        'text-pNormal h-[30px]': size === 'medium',
-        'text-pLarge h-[40px]': size === 'large',
+        'text-pSmall h-[24px]': !size || size === 'sm',
+        'text-pNormal h-[30px]': size === 'md',
+        'text-pLarge h-[40px]': size === 'lg',
         'bg-badge-default-container text-badge-default-text': !color || color === 'default',
         'bg-badge-block-container text-badge-block-text': color === 'block',
         'bg-badge-pending-container text-badge-pending-text': color === 'pending',
