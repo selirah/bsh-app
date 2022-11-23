@@ -1,0 +1,10 @@
+.arrow {
+  display: block;
+  width: 0px;
+  height: 0px;
+  border: 40px solid transparent;
+}
+.arrow.arrow-right {
+  border-left-color: #ccc;
+  border-right-width: 0px;
+}
