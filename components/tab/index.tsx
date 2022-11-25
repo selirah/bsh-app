@@ -1,25 +1,30 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import classnames from 'classnames'
+interface TabContainerProps {
+  children: React.ReactNode
+}
 
-type Nav = {
-  title: string
-  active?: boolean
+interface TabMenuProps {
+  children: React.ReactNode
+}
+
+interface TabMenuItemProps {
+  children: React.ReactNode
+  activeTab: string
   IconSVG?: React.FC<React.SVGProps<SVGSVGElement>>
   badge?: number
+  tabId: string
+  onSetActiveTab: (tabId: string) => void
 }
 
-type TabObject = {
-  nav: Nav
-  content: React.ReactNode
+interface TabContentProps {
+  children: React.ReactNode
+  activeTab: string
+  tabId: string
 }
 
-interface TabProps {
-  data: TabObject[]
-}
-
-export const Tab: React.FC<TabProps> = (props) => {
-  const { data } = props
-  const [addClass, setAddClass] = useState(0)
+export const TabContainer: React.FC<TabContainerProps> = (props) => {
+  const { children } = props
 
   useEffect(() => {
     let tabs = document.querySelectorAll('.tab')
@@ -52,52 +57,63 @@ export const Tab: React.FC<TabProps> = (props) => {
     })
   }, [])
 
+  return <div className="w-full">{children}</div>
+}
+
+export const TabMenu: React.FC<TabMenuProps> = (props) => {
+  const { children } = props
   return (
-    <div className="w-full">
-      <div className="text-center border-b border-light-border dark:border-dark-border">
-        <ul className="flex flex-wrap -mb-px relative font-lato" role="tablist" aria-label="tabs">
-          <div className="absolute top-0 left-0 my-auto bottom-0 border-b-2 border-primary p-4 indicator"></div>
-          {data.map((d, i) => (
-            <li
-              className={classnames(
-                'inline-flex items-center mr-2 tab p-4 hover:text-primary hover:border-primary common-transition cursor-pointer disabled:cursor-not-allowed',
-                {
-                  'text-light-text dark:text-dark-text': i !== addClass,
-                  'text-primary': i === addClass
-                }
-              )}
-              role="tab"
-              aria-selected="true"
-              id={`tab-${i}`}
-              tabIndex={0}
-              aria-controls={`panel-${i}`}
-              key={i}
-              onClick={() => setAddClass(i)}
-            >
-              {d.nav.IconSVG ? <d.nav.IconSVG className="w-5 h-5 mr-[8px]" /> : null}
-              {d.nav.title}
-              {d.nav.badge ? (
-                <div className="bg-light-background dark:bg-dark-background rounded-full px-[12px] py-0 ml-[8px] text-center">
-                  <span className="text-pSmall">{d.nav.badge}</span>
-                </div>
-              ) : null}
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div className="mt-2 relative font-montserrat">
-        {data.map((d, i) => (
-          <div
-            role="tabpanel"
-            id={`panel-${i}`}
-            className={classnames('tab-panel p-6 transition duration-300', {
-              'absolute top-0 invisible': !d.nav.active
-            })}
-            key={i}
-          >
-            {d.content}
-          </div>
-        ))}
+    <div className="text-center border-b border-light-border dark:border-dark-border">
+      <ul className="flex flex-wrap -mb-px relative font-lato" role="tablist" aria-label="tabs">
+        <div className="absolute top-0 left-0 my-auto bottom-0 border-b-2 border-primary p-4 indicator"></div>
+        {children}
+      </ul>
+    </div>
+  )
+}
+
+export const TabMenuItem: React.FC<TabMenuItemProps> = (props) => {
+  const { children, IconSVG, badge, tabId, activeTab, onSetActiveTab } = props
+  return (
+    <li
+      className={classnames(
+        'inline-flex items-center mr-2 tab p-4 hover:text-primary hover:border-primary common-transition cursor-pointer disabled:cursor-not-allowed',
+        {
+          'text-light-text dark:text-dark-text': tabId !== activeTab,
+          'text-primary': tabId === activeTab
+        }
+      )}
+      role="tab"
+      aria-selected="true"
+      id={`tab-${tabId}`}
+      tabIndex={0}
+      aria-controls={`panel-${tabId}`}
+      onClick={() => onSetActiveTab(tabId)}
+    >
+      {IconSVG ? <IconSVG className="w-5 h-5 mr-[8px]" /> : null}
+      {badge ? (
+        <div className="bg-light-background dark:bg-dark-background rounded-full px-[12px] py-0 ml-[8px] text-center">
+          <span className="text-pSmall">{badge}</span>
+        </div>
+      ) : null}
+      {children}
+    </li>
+  )
+}
+
+export const TabContent: React.FC<TabContentProps> = (props) => {
+  const { children, activeTab, tabId } = props
+
+  return (
+    <div className="mt-2 relative font-montserrat">
+      <div
+        role="tabpanel"
+        id={`panel-${tabId}`}
+        className={classnames('tab-panel px-[12px] py-[12px] transition duration-300', {
+          'absolute top-0 invisible': tabId !== activeTab
+        })}
+      >
+        {children}
       </div>
     </div>
   )

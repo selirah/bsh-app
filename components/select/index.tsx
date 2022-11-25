@@ -7,8 +7,8 @@ import makeAnimated from 'react-select/animated'
 
 type InputSizes = 'sm' | 'md' | 'lg'
 
-type SelectData = {
-  label: string
+export type SelectData = {
+  label: string | number
   value: string | number
 }
 
@@ -24,6 +24,7 @@ interface SelectProps {
   placeholder?: string
   loading?: boolean
   success?: boolean
+  isClearable?: boolean
 }
 
 interface SingleProps extends SelectProps {
@@ -48,7 +49,8 @@ export const Single: React.FC<SingleProps> = (props) => {
     error,
     options,
     success,
-    loading
+    loading,
+    isClearable
   } = props
   return (
     <div className="">
@@ -75,7 +77,7 @@ export const Single: React.FC<SingleProps> = (props) => {
         isDisabled={disabled}
         isLoading={loading}
         defaultValue={defaultValue}
-        isClearable
+        isClearable={isClearable}
         isSearchable
         options={options}
         placeholder={placeholder}
@@ -119,7 +121,8 @@ export const Multiple: React.FC<MultipleProps> = (props) => {
     error,
     options,
     success,
-    loading
+    loading,
+    isClearable
   } = props
 
   return (
@@ -148,7 +151,7 @@ export const Multiple: React.FC<MultipleProps> = (props) => {
         isDisabled={disabled}
         isLoading={loading}
         defaultValue={defaultValue}
-        isClearable
+        isClearable={isClearable}
         isSearchable
         options={options}
         placeholder={placeholder}

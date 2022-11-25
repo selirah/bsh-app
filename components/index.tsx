@@ -16,9 +16,20 @@ export * as DatePicker from './datepicker'
 export * from './ui-loader'
 export * as ToastBox from './toast'
 export * as Accordion from './accordion'
-export * from './tab'
+export { TabContainer, TabMenu, TabMenuItem, TabContent } from './tab'
 export * as Empty from './empty'
 export * as DescriptionHeader from './description-header'
 export * as DescriptionList from './description-list'
 export { Modal, ModalBody, ModalHeader, ModalFooter } from './modal'
 export * as Step from './step'
+export {
+  Table,
+  TableHeader,
+  TableHeaderColumn,
+  TableBody,
+  TableRow,
+  TableColumn,
+  TableFooter,
+  TableHeaderRow
+} from './table'
+export * from './pagination'

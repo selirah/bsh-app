@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react'
+import React, { ChangeEvent, HTMLProps } from 'react'
 import classnames from 'classnames'
 
 type Sizes = 'sm' | 'md' | 'lg'
@@ -7,7 +7,7 @@ type ColorTypes = 'primary' | 'secondary' | 'accent' | 'success' | 'error' | 'in
 
 interface CheckboxProps {
   size?: Sizes
-  name: string
+  name?: string
   disabled?: boolean
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void
   value?: any
@@ -25,7 +25,7 @@ interface HelpTextProps extends CheckboxProps {
 }
 
 export const Basic: React.FC<BasicProps> = (props) => {
-  const { size, name, label, onChange, value, disabled, direction, color } = props
+  const { size, name, label, onChange, value, disabled, direction, color, ...rest } = props
   return (
     <div
       className={classnames('flex items-center', {
@@ -68,6 +68,7 @@ export const Basic: React.FC<BasicProps> = (props) => {
         )}
         onChange={onChange}
         disabled={disabled}
+        {...rest}
       />
       {direction === 'left' || !direction ? (
         label ? (
@@ -90,7 +91,8 @@ export const Basic: React.FC<BasicProps> = (props) => {
 }
 
 export const HelpText: React.FC<HelpTextProps> = (props) => {
-  const { size, name, label, onChange, value, disabled, helpText, direction, color } = props
+  const { size, name, label, onChange, value, disabled, helpText, direction, color, ...rest } =
+    props
   return (
     <div
       className={classnames('flex', {
@@ -141,6 +143,7 @@ export const HelpText: React.FC<HelpTextProps> = (props) => {
           )}
           onChange={onChange}
           disabled={disabled}
+          {...rest}
         />
       </div>
       {direction === 'left' || !direction ? (
@@ -164,5 +167,51 @@ export const HelpText: React.FC<HelpTextProps> = (props) => {
         </div>
       ) : null}
     </div>
+  )
+}
+
+interface IndeterminateProps {
+  color?: ColorTypes
+  size?: Sizes
+  indeterminate?: boolean & HTMLProps<HTMLInputElement>
+  rest?: any
+  checked?: boolean
+}
+
+export const Indeterminate: React.FC<IndeterminateProps> = ({
+  indeterminate,
+  color,
+  size,
+  ...rest
+}) => {
+  const ref = React.useRef<HTMLInputElement>(null!)
+
+  React.useEffect(() => {
+    if (typeof indeterminate === 'boolean') {
+      ref.current.indeterminate = !rest.checked && indeterminate
+    }
+  }, [ref, indeterminate])
+
+  return (
+    <input
+      type="checkbox"
+      className={classnames(
+        'checked:shadow-penumbra focus:ring-0 bg-light-container dark:bg-dark-container border rounded border-light-form-inputBorder dark:border-dark-form-inputBorder cursor-pointer common-transition disabled:cursor-not-allowed',
+        {
+          'w-[20px] h-[20px]': size === 'sm' || !size,
+          'w-[25px] h-[25px]': size === 'md',
+          'w-[30px] h-[30px]': size === 'lg',
+          'text-primary': color === 'primary' || !color,
+          'text-secondary': color === 'secondary',
+          'text-accent': color === 'accent',
+          'text-success-card': color === 'success',
+          'text-error-card': color === 'error',
+          'text-info-avatar': color === 'info',
+          'text-warning-avatar': color === 'warning'
+        }
+      )}
+      ref={ref}
+      {...rest}
+    />
   )
 }

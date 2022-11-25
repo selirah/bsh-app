@@ -1,5 +1,10 @@
-import {} from 'components'
+import React from 'react'
+import PaginationControlledTable from 'examples/tables/PaginationControlled'
 
 export default function Home() {
-  return <div className="px-4 m-56"></div>
+  return (
+    <div className="px-4 m-56">
+      <PaginationControlledTable />
+    </div>
+  )
 }
