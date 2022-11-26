@@ -9,7 +9,7 @@ export const CustomStyles = (
   return {
     control: (base, { isFocused }) => ({
       ...base,
-      height: size === 'sm' ? '40px' : size === 'md' ? '45px' : size === 'lg' ? '50px' : '45',
+      height: size === 'sm' ? '40px' : size === 'md' ? '45px' : size === 'lg' ? '50px' : '45px',
       boxShadow: isFocused ? '0 6px 30px 5px rgba(0, 0, 0, 0.12)' : 'none',
       transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
       borderRadius: '4px',

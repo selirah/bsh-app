@@ -33,7 +33,7 @@ const chart: StatsCard.ChartObj[] = [
   }
 ]
 
-export default function Home() {
+const StatsCardComponent = () => {
   return (
     <div className="m-56">
       <StatsCard.Basic title="Total Subscribers" value={71897} />
@@ -55,3 +55,5 @@ export default function Home() {
     </div>
   )
 }
+
+export default StatsCardComponent

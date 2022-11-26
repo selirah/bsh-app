@@ -26,6 +26,8 @@
     "next": "13.0.3",
     "perfect-scrollbar": "^1.5.5",
     "react": "18.2.0",
+    "react-auth-code-input": "^3.2.1",
+    "react-countup": "^6.4.0",
     "react-datepicker": "^4.8.0",
     "react-dom": "18.2.0",
     "react-intl": "^6.2.1",
@@ -33,6 +35,8 @@
     "react-query": "^3.39.2",
     "react-select": "^5.6.1",
     "react-toastify": "^9.1.1",
+    "recharts": "^2.1.16",
+    "remove": "^0.1.5",
     "typescript": "4.8.4"
   },
   "devDependencies": {
@@ -41,6 +45,7 @@
     "@svgr/webpack": "^6.5.1",
     "@tailwindcss/forms": "^0.5.3",
     "@types/react-datepicker": "^4.8.0",
+    "@types/recharts": "^1.8.24",
     "@typescript-eslint/eslint-plugin": "^5.43.0",
     "@typescript-eslint/parser": "^5.43.0",
     "autoprefixer": "^10.4.13",
@@ -67,7 +72,10 @@
     "next": "13.0.3",
     "@heroicons/react": "1.0.6",
     "husky": "4",
-    "@tanstack/react-table": "^8.7.0"
+    "@tanstack/react-table": "^8.7.0",
+    "react-auth-code-input": "^3.2.1",
+    "react-countup": "^6.4.0",
+    "recharts": "^2.1.16"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json}": [

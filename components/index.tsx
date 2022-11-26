@@ -33,3 +33,5 @@ export {
   TableHeaderRow
 } from './table'
 export * from './pagination'
+export * from './code-input'
+export * as StatsCard from './stats-card'
