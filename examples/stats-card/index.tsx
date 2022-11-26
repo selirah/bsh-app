@@ -4,31 +4,31 @@ import { UserGroupIcon, ChartBarIcon } from '@heroicons/react/solid'
 
 const chart: StatsCard.ChartObj[] = [
   {
-    name: 'Page A',
+    name: 'Monday',
     value: 4000
   },
   {
-    name: 'Page B',
+    name: 'Tuesday',
     value: 3000
   },
   {
-    name: 'Page C',
+    name: 'Wednesday',
     value: 2000
   },
   {
-    name: 'Page D',
+    name: 'Thursday',
     value: 2780
   },
   {
-    name: 'Page E',
+    name: 'Friday',
     value: 1890
   },
   {
-    name: 'Page F',
+    name: 'Saturday',
     value: 2390
   },
   {
-    name: 'Page G',
+    name: 'Sunday',
     value: 3490
   }
 ]

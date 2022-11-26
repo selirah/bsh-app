@@ -35,3 +35,4 @@ export {
 export * from './pagination'
 export * from './code-input'
 export * as StatsCard from './stats-card'
+export * as NavMenu from './nav-menu'

@@ -124,6 +124,7 @@ export const Icon: React.FC<IconProps> = (props) => {
 
 export const Chart: React.FC<ChartProps> = (props) => {
   const { IconSVG, title, value, chartData, chartColor, currency } = props
+  const intl = useIntl()
 
   return (
     <div className="block shadow-penumbra rounded border border-light-border dark:border-dark-border">
@@ -153,7 +154,12 @@ export const Chart: React.FC<ChartProps> = (props) => {
             <AreaChart data={chartData}>
               <XAxis dataKey="name" tick={false} hide />
               <YAxis hide />
-              <Tooltip labelClassName="text-primary" />
+              <Tooltip
+                labelClassName="text-primary"
+                contentStyle={{ backgroundColor: '#fff' }}
+                label={intl.formatMessage({ defaultMessage: 'Value', description: '' })}
+                isAnimationActive
+              />
               <Area
                 type="monotone"
                 dataKey="value"
