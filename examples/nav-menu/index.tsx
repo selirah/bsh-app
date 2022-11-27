@@ -22,7 +22,7 @@ const NavMenuComponent = () => {
     <div className="m-56 w-56">
       <NavMenu.Basic menuTitle="Dashboard" IconSVG={HomeIcon} link="/admin" />
       <NavMenu.Basic menuTitle="Banking" IconSVG={OfficeBuildingIcon} link="/admin" />
-      <NavMenu.Basic menuTitle="Reports" IconSVG={ChartBarIcon} link="/admin" />
+      <NavMenu.Basic menuTitle="Reports" IconSVG={ChartBarIcon} link="/admin" iconOnly />
 
       <div className="mt-10 w-56">
         <NavMenu.SubLink menuTitle="Banking" subLinks={subdata} IconSVG={OfficeBuildingIcon} />
