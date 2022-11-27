@@ -9,6 +9,6 @@
 
 @layer components {
   .common-transition {
-    @apply transition duration-300 delay-150 hover:delay-150;
+    @apply transition-all ease-in-out duration-300 delay-100;
   }
 }

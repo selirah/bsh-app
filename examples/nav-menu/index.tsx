@@ -13,12 +13,11 @@ const subdata: NavMenu.SubLinkObj[] = [
   },
   {
     link: '/three',
-    title: 'e-Banking',
-    inaccessible: true
+    title: 'e-Banking'
   }
 ]
 
-export default function Home() {
+const NavMenuComponent = () => {
   return (
     <div className="m-56 w-56">
       <NavMenu.Basic menuTitle="Dashboard" IconSVG={HomeIcon} link="/admin" />
@@ -31,3 +30,5 @@ export default function Home() {
     </div>
   )
 }
+
+export default NavMenuComponent
