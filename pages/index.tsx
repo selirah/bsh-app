@@ -1,10 +1,13 @@
 import React from 'react'
-import { ThemeSwitcher } from 'controllers'
+import { AuthNav, Navbar } from 'layouts'
 
 export default function Home() {
   return (
-    <div className="m-56 w-56">
-      <ThemeSwitcher />
+    <div className="m-56">
+      <AuthNav />
+      <div className="mt-8">
+        <Navbar />
+      </div>
     </div>
   )
 }

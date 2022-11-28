@@ -1,2 +1,2 @@
-export { LanguageSwitcher } from '../controllers/LanguageSwitcher'
-export { ThemeSwitcher } from '../controllers/ThemeSwitcher'
+export { AuthNav } from './AuthNav'
+export { Navbar } from './Navbar'

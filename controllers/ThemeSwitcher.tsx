@@ -1,6 +1,6 @@
 import React from 'react'
 import { ThemeContext, ThemeTypes } from 'contexts/Theme'
-import { SunIcon, MoonIcon } from '@heroicons/react/solid'
+import { SunIcon, MoonIcon } from '@heroicons/react/outline'
 
 export const ThemeSwitcher = () => {
   const { theme, changeTheme } = React.useContext(ThemeContext)

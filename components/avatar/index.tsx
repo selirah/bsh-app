@@ -45,17 +45,18 @@ export const Img: React.FC<ImgProps> = (props) => {
         className={classnames('object-cover', {
           'rounded-full': circular,
           rounded: !circular,
-          'w-[40px] h-[40px]': size === 'xs',
-          'w-[50px] h-[50px]': size === 'sm',
-          'w-[60px] h-[60px]': size === 'md',
-          'w-[70px] h-[70px]': size === 'lg',
-          'w-[80px] h-[80px]': size === 'xl'
+          'w-[30px] h-[30px]': size === 'xs',
+          'w-[40px] h-[40px]': size === 'sm',
+          'w-[50px] h-[50px]': size === 'md',
+          'w-[60px] h-[60px]': size === 'lg',
+          'w-[70px] h-[70px]': size === 'xl'
         })}
         src={src}
         alt="avatar"
         width={AvatarSizes[size]}
         height={AvatarSizes[size]}
         unoptimized
+        priority
       />
       {state ? (
         <span
@@ -90,11 +91,11 @@ export const Initals: React.FC<InitialsProps> = (props) => {
           {
             'rounded-full': circular,
             rounded: !circular,
-            'w-[40px] h-[40px]': size === 'xs',
-            'w-[50px] h-[50px]': size === 'sm',
-            'w-[60px] h-[60px]': size === 'md',
-            'w-[70px] h-[70px]': size === 'lg',
-            'w-[80px] h-[80px]': size === 'xl',
+            'w-[30px] h-[30px]': size === 'xs',
+            'w-[40px] h-[40px]': size === 'sm',
+            'w-[50px] h-[50px]': size === 'md',
+            'w-[60px] h-[60px]': size === 'lg',
+            'w-[70px] h-[70px]': size === 'xl',
             'bg-primary': bgColor === 'primary' || !bgColor,
             'bg-secondary': bgColor === 'secondary',
             'bg-accent': bgColor === 'accent',
