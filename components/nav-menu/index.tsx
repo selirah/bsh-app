@@ -16,7 +16,6 @@ interface NavMenuProps {
   menuTitle: string
   active?: boolean
   IconSVG: React.FC<React.SVGProps<SVGSVGElement>>
-  iconOnly?: boolean
 }
 
 interface BasicProps extends NavMenuProps {
@@ -28,8 +27,8 @@ interface SubLinksProps extends NavMenuProps {
 }
 
 export const Basic: React.FC<BasicProps> = (props) => {
-  const { menuTitle, IconSVG, active, link, iconOnly } = props
-  return !iconOnly ? (
+  const { menuTitle, IconSVG, active, link } = props
+  return (
     <div
       className={classnames(
         'p-[12px] rounded font-montserrat cursor-pointer hover:bg-primary hover:rounded font-regular hover:text-light-btnText common-transition',
@@ -44,25 +43,11 @@ export const Basic: React.FC<BasicProps> = (props) => {
         <span className="text-pNormal">{menuTitle}</span>
       </Link>
     </div>
-  ) : (
-    <div
-      className={classnames(
-        'flex justify-center items-center p-[12px] w-[70px] h-[56px] cursor-pointer hover:bg-primary hover:rounded  hover:text-light-btnText common-transition',
-        {
-          'text-light-text dark:text-dark-text ': !active,
-          'bg-primary text-light-btnText': active
-        }
-      )}
-    >
-      <Link href={link} className="flex items-center">
-        <IconSVG className="w-[24px] h-[24px]" />
-      </Link>
-    </div>
   )
 }
 
 export const SubLink: React.FC<SubLinksProps> = (props) => {
-  const { menuTitle, subLinks, IconSVG, active, iconOnly } = props
+  const { menuTitle, subLinks, IconSVG, active } = props
   const [isEnter, setIsEnter] = React.useState(false)
   const nodeRef = React.useRef(null)
 
@@ -74,7 +59,7 @@ export const SubLink: React.FC<SubLinksProps> = (props) => {
     setIsEnter(false)
   }
 
-  return !iconOnly ? (
+  return (
     <div
       className="inline-block relative w-full"
       onMouseOver={onMouseOver}
@@ -120,7 +105,43 @@ export const SubLink: React.FC<SubLinksProps> = (props) => {
         </ul>
       </Transition.Dropdown>
     </div>
-  ) : (
+  )
+}
+
+export const BasicIcon: React.FC<BasicProps> = (props) => {
+  const { IconSVG, active, link } = props
+
+  return (
+    <div
+      className={classnames(
+        'flex justify-center items-center p-[12px] w-[70px] h-[56px] cursor-pointer hover:bg-primary hover:rounded  hover:text-light-btnText common-transition',
+        {
+          'text-light-text dark:text-dark-text ': !active,
+          'bg-primary text-light-btnText': active
+        }
+      )}
+    >
+      <Link href={link} className="flex items-center">
+        <IconSVG className="w-[24px] h-[24px]" />
+      </Link>
+    </div>
+  )
+}
+
+export const SubLinkIcon: React.FC<SubLinksProps> = (props) => {
+  const { subLinks, IconSVG, active } = props
+  const [isEnter, setIsEnter] = React.useState(false)
+  const nodeRef = React.useRef(null)
+
+  const onMouseOver = () => {
+    setIsEnter(true)
+  }
+
+  const onMouseOut = () => {
+    setIsEnter(false)
+  }
+
+  return (
     <div
       className="inline-block relative w-full"
       onMouseOver={onMouseOver}
