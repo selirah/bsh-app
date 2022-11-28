@@ -8,14 +8,14 @@ const languages = {
   fr: { ...FR }
 }
 
-type LangTypes = 'en' | 'fr'
+export type LangTypes = 'en' | 'fr'
 
 type ContextTypes = {
   lang: LangTypes
   changeLanguage: (lang: LangTypes) => void
 }
 
-const LanguageContext = createContext<ContextTypes | null>(null)
+const LanguageContext = createContext<ContextTypes>(null)
 
 interface Props {
   children: React.ReactNode

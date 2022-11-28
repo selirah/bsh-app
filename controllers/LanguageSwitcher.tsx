@@ -3,13 +3,13 @@ import ENIcon from 'public/i18n/en.svg'
 import ENIconFaded from 'public/i18n/en-faded.svg'
 import FRIcon from 'public/i18n/fr.svg'
 import FRIconFaded from 'public/i18n/fr-faded.svg'
-import { LanguageContext } from 'contexts/i18n'
+import { LanguageContext, LangTypes } from 'contexts/i18n'
 
 export const LanguageSwitcher = () => {
   const { lang, changeLanguage } = React.useContext(LanguageContext)
-  const [locale, setLocale] = React.useState<'en' | 'fr'>(lang)
+  const [locale, setLocale] = React.useState<LangTypes>(lang)
 
-  const onSwitchLanguage = (lang: 'en' | 'fr') => {
+  const onSwitchLanguage = (lang: LangTypes) => {
     localStorage.setItem('lang', lang)
     changeLanguage(lang)
     setLocale(lang)

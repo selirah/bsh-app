@@ -1,10 +1,10 @@
 import React from 'react'
-import { LanguageSwitcher } from 'layouts'
+import { ThemeSwitcher } from 'controllers'
 
 export default function Home() {
   return (
     <div className="m-56 w-56">
-      <LanguageSwitcher />
+      <ThemeSwitcher />
     </div>
   )
 }
