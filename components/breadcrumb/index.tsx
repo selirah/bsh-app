@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { HomeIcon, ChevronRightIcon, ChevronDownIcon } from '@heroicons/react/outline'
+import { FiHome, FiChevronRight, FiChevronDown } from 'react-icons/fi'
 import Link from 'next/link'
 import { Menu, Transition } from '@headlessui/react'
 import classnames from 'classnames'
@@ -26,13 +26,13 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = (props) => {
       <ol className="inline-flex items-center space-x-1 md:space-x-3 font-lato">
         <li className="inline-flex items-center">
           <Link href="#" className="inline-flex">
-            <HomeIcon className="w-5 h-5 mr-2 text-light-text hover:text-primary md:ml-2 dark:text-dark-text common-transition hover:delay-150 dark:hover:text-light-text" />
+            <FiHome className="w-5 h-5 mr-2 text-light-text hover:text-primary md:ml-2 dark:text-dark-text common-transition hover:delay-150 dark:hover:text-light-text" />
           </Link>
         </li>
         {links.map((link) => (
           <li key={link.link}>
             <div className="flex items-center">
-              <ChevronRightIcon className="w-5 h-5 text-light-text dark:text-dark-text" />
+              <FiChevronRight className="w-5 h-5 text-light-text dark:text-dark-text" />
               {!link.active ? (
                 <Link
                   href="#"
@@ -58,7 +58,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = (props) => {
                   defaultMessage: 'Actions',
                   description: 'Actions that can be performed on a visited page'
                 })}
-                <ChevronDownIcon
+                <FiChevronDown
                   className="ml-2 -mr-1 mt-0.5 h-5 w-5 text-violet-200 hover:text-violet-100"
                   aria-hidden="true"
                 />

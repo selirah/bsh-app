@@ -1,6 +1,6 @@
 import React, { useState, useEffect, createRef, DragEvent, ChangeEvent } from 'react'
 import classnames from 'classnames'
-import { ExclamationCircleIcon, CloudUploadIcon } from '@heroicons/react/solid'
+import { FiAlertCircle, FiUploadCloud } from 'react-icons/fi'
 import { useIntl } from 'react-intl'
 
 type FileTypes =
@@ -109,7 +109,7 @@ export const FileInput: React.FC<FileInputProps> = (props) => {
                 }
               )}
             >
-              <CloudUploadIcon
+              <FiUploadCloud
                 className={classnames('', {
                   'w-8 h-8': size === 'sm',
                   'w-9 h-9': size === 'md' || !size,
@@ -148,7 +148,7 @@ export const FileInput: React.FC<FileInputProps> = (props) => {
       </div>
       {error ? (
         <div className="mt-[8px] items-center flex">
-          <ExclamationCircleIcon
+          <FiAlertCircle
             className={classnames('flex-shrink-0 inline mr-[4px] text-error-text', {
               'w-4 h-4': size === 'sm',
               'w-5 h-5': size === 'md' || !size || size === 'lg'

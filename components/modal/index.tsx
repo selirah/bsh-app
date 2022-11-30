@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import classnames from 'classnames'
-import { XIcon } from '@heroicons/react/solid'
+import { FiX } from 'react-icons/fi'
 
 type Size = 'sm' | 'md' | 'lg' | 'xl'
 
@@ -91,7 +91,7 @@ export const ModalHeader: React.FC<ModalHeaderProps> = (props) => {
         </Dialog.Title>
         <button type="button" className="rounded-md font-bold focus:outline-none" onClick={toggle}>
           <span className="sr-only">Close panel</span>
-          <XIcon
+          <FiX
             className="h-5 w-5 text-light-text dark:text-dark-text hover:text-primary common-transition"
             aria-hidden="true"
           />

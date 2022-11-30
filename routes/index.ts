@@ -1,23 +1,20 @@
+import { HiOutlineUserGroup } from 'react-icons/hi2'
+import { AiOutlineDashboard, AiOutlineBank, AiOutlineBarChart } from 'react-icons/ai'
 import {
-  HomeIcon,
-  GlobeIcon,
-  LibraryIcon,
-  CreditCardIcon,
-  FolderIcon,
-  SwitchHorizontalIcon,
-  BadgeCheckIcon,
-  ClockIcon,
-  ChartBarIcon,
-  FingerPrintIcon,
-  UsersIcon
-} from '@heroicons/react/outline'
+  MdOutline360,
+  MdOutlineProductionQuantityLimits,
+  MdFingerprint,
+  MdOutlineMiscellaneousServices,
+  MdUpdate
+} from 'react-icons/md'
+import { ImCreditCard } from 'react-icons/im'
+import { BiTransferAlt } from 'react-icons/bi'
 
 export type SubMenuTypes = {
   title: string
   link: string
   active?: boolean
   IconSVG?: React.FC<React.SVGProps<SVGSVGElement>>
-  inaccessible?: boolean
   scope?: string
 }
 
@@ -28,26 +25,28 @@ export type MenuTypes = {
   link?: string
   subLinks?: SubMenuTypes[]
   scope?: string
+  spacing?: boolean
 }
 
 export const Routes: MenuTypes[] = [
   {
     menuTitle: 'Dashboard',
-    IconSVG: HomeIcon,
+    IconSVG: AiOutlineDashboard,
     active: false,
     link: '/dashboard',
     scope: 'Dashboard'
   },
   {
     menuTitle: 'Client 360',
-    IconSVG: GlobeIcon,
+    IconSVG: MdOutline360,
     active: false,
     link: '/client360',
-    scope: 'Client360'
+    scope: 'Client360',
+    spacing: true
   },
   {
     menuTitle: 'Banking',
-    IconSVG: LibraryIcon,
+    IconSVG: AiOutlineBank,
     active: false,
     subLinks: [
       {
@@ -72,7 +71,7 @@ export const Routes: MenuTypes[] = [
   },
   {
     menuTitle: 'Payments',
-    IconSVG: CreditCardIcon,
+    IconSVG: ImCreditCard,
     active: false,
     subLinks: [
       {
@@ -115,7 +114,7 @@ export const Routes: MenuTypes[] = [
   },
   {
     menuTitle: 'Transfers',
-    IconSVG: SwitchHorizontalIcon,
+    IconSVG: BiTransferAlt,
     active: false,
     subLinks: [
       {
@@ -140,7 +139,7 @@ export const Routes: MenuTypes[] = [
   },
   {
     menuTitle: 'Products',
-    IconSVG: FolderIcon,
+    IconSVG: MdOutlineProductionQuantityLimits,
     active: false,
     subLinks: [
       {
@@ -165,7 +164,7 @@ export const Routes: MenuTypes[] = [
   },
   {
     menuTitle: 'Services',
-    IconSVG: BadgeCheckIcon,
+    IconSVG: MdOutlineMiscellaneousServices,
     active: false,
     subLinks: [
       {
@@ -208,8 +207,9 @@ export const Routes: MenuTypes[] = [
   },
   {
     menuTitle: 'Static Data',
-    IconSVG: ClockIcon,
+    IconSVG: MdUpdate,
     active: false,
+    spacing: true,
     subLinks: [
       {
         title: 'Customer Onboarding',
@@ -245,21 +245,21 @@ export const Routes: MenuTypes[] = [
   },
   {
     menuTitle: 'Reports',
-    IconSVG: ChartBarIcon,
+    IconSVG: AiOutlineBarChart,
     active: false,
     link: '/reports',
     scope: 'Reports'
   },
   {
     menuTitle: 'Biometric',
-    IconSVG: FingerPrintIcon,
+    IconSVG: MdFingerprint,
     active: false,
     link: '/biometric',
     scope: 'Biometric'
   },
   {
     menuTitle: 'User & Roles',
-    IconSVG: UsersIcon,
+    IconSVG: HiOutlineUserGroup,
     active: false,
     link: '/user-roles',
     scope: 'UserRoles'

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ChevronDownIcon } from '@heroicons/react/solid'
+import { FiChevronDown } from 'react-icons/fi'
 import classnames from 'classnames'
 import { Button } from 'components'
 
@@ -48,7 +48,7 @@ export const Basic: React.FC<BasicProps> = (props) => {
         </h1>
       </div>
       <div className="absolute top-3 right-[16px] transition-transform duration-500 rotate-0 peer-checked:rotate-180">
-        <ChevronDownIcon className={classnames('h-6 w-6 text-light-btnText', {})} />
+        <FiChevronDown className={classnames('h-6 w-6 text-light-btnText', {})} />
       </div>
       <div className="bg-light-container dark:bg-dark-container overflow-hidden transition-all duration-500 max-h-0 peer-checked:max-h-96">
         <div
@@ -97,7 +97,7 @@ export const ActionButton: React.FC<ActionButtonProps> = (props) => {
               className="peer absolute top-0 h-10 left-0 inset-x-0 w-full opacity-0 z-10 cursor-pointer"
             />
             <IconSVG className="h-4 w-4 mr-1" /> {btnText}
-            <ChevronDownIcon
+            <FiChevronDown
               className={classnames(
                 'transition-transform duration-500 rotate-0 h-5 w-5 ml-1 peer-checked:rotate-180',
                 {}

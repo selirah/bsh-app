@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import { Menu, Transition } from '@headlessui/react'
-import { ChevronDownIcon, DotsVerticalIcon } from '@heroicons/react/solid'
+import { FiChevronDown, FiMoreVertical } from 'react-icons/fi'
 import classnames from 'classnames'
 import Link from 'next/link'
 
@@ -92,7 +92,7 @@ export const Button: React.FC<BottonProps> = (props) => {
             }}
           >
             {btnTitle}
-            <ChevronDownIcon
+            <FiChevronDown
               className="ml-2 -mr-1 h-5 w-5 text-violet-200 hover:text-violet-100"
               aria-hidden="true"
             />
@@ -171,7 +171,7 @@ export const Khebab: React.FC<KhebabProps> = (props) => {
           <Menu.Button
             className={classnames('relative inline-flex justify-center items-center text-center')}
           >
-            <DotsVerticalIcon
+            <FiMoreVertical
               className={classnames('text-light-text dark:text-dark-text', {
                 'w-3 h-3': size === 'sm',
                 'w-4 h-4': size === 'md' || !size,

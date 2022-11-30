@@ -2,7 +2,7 @@ import React from 'react'
 import Select from 'react-select'
 import classnames from 'classnames'
 import { CustomStyles } from './styles'
-import { ExclamationCircleIcon } from '@heroicons/react/solid'
+import { FiAlertCircle } from 'react-icons/fi'
 import makeAnimated from 'react-select/animated'
 
 type InputSizes = 'sm' | 'md' | 'lg'
@@ -89,7 +89,7 @@ export const Single: React.FC<SingleProps> = (props) => {
       />
       {error ? (
         <div className="mt-[8px] items-center flex">
-          <ExclamationCircleIcon
+          <FiAlertCircle
             className={classnames('flex-shrink-0 inline mr-[4px] text-error-text', {
               'w-4 h-4': size === 'sm',
               'w-5 h-5': size === 'md' || !size || size === 'lg'
@@ -164,7 +164,7 @@ export const Multiple: React.FC<MultipleProps> = (props) => {
       />
       {error ? (
         <div className="mt-[8px] items-center flex">
-          <ExclamationCircleIcon
+          <FiAlertCircle
             className={classnames('flex-shrink-0 inline mr-[4px] text-error-text', {
               'w-4 h-4': size === 'sm',
               'w-5 h-5': size === 'md' || !size || size === 'lg'

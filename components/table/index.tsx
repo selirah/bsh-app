@@ -1,6 +1,6 @@
 import React from 'react'
 import classnames from 'classnames'
-import { ChevronUpIcon, ChevronDownIcon } from '@heroicons/react/solid'
+import { FiChevronUp, FiChevronDown } from 'react-icons/fi'
 
 interface TableProps {
   children: React.ReactNode
@@ -87,9 +87,9 @@ export const TableHeaderColumn: React.FC<TableHeaderColumnProps> = (props) => {
         {children}
         {sortable ? (
           sortDir && sortDir === 'desc' ? (
-            <ChevronDownIcon className="w-4 h-4 ml-2 text-light-text dark:text-dark-text" />
+            <FiChevronDown className="w-4 h-4 ml-2 text-light-text dark:text-dark-text" />
           ) : sortDir && sortDir === 'asc' ? (
-            <ChevronUpIcon className="w-4 h-4 ml-2 text-light-text dark:text-dark-text" />
+            <FiChevronUp className="w-4 h-4 ml-2 text-light-text dark:text-dark-text" />
           ) : null
         ) : null}
       </div>

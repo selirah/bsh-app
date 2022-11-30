@@ -1,6 +1,6 @@
 import React from 'react'
 import { StatsCard } from 'components'
-import { UserGroupIcon, ChartBarIcon } from '@heroicons/react/solid'
+import { FiUsers, FiBarChart2 } from 'react-icons/fi'
 
 const chart: StatsCard.ChartObj[] = [
   {
@@ -39,14 +39,14 @@ const StatsCardComponent = () => {
       <StatsCard.Basic title="Total Subscribers" value={71897} />
 
       <div className="mt-4">
-        <StatsCard.Icon title="Total Subscribers" value={71897} IconSVG={UserGroupIcon} circular />
+        <StatsCard.Icon title="Total Subscribers" value={71897} IconSVG={FiUsers} circular />
       </div>
 
       <div className="mt-4">
         <StatsCard.Chart
           title="Weekly income"
           value={750}
-          IconSVG={ChartBarIcon}
+          IconSVG={FiBarChart2}
           currency="$"
           chartData={chart}
           chartColor="success"

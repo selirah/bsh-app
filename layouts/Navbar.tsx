@@ -1,14 +1,27 @@
 import React from 'react'
-import { MenuAlt1Icon /*, MenuIcon*/ } from '@heroicons/react/outline'
+import { AiOutlineMenuFold, AiOutlineMenuUnfold } from 'react-icons/ai'
 import { LanguageSwitcher, ThemeSwitcher, UserProfile } from 'controllers'
+import { LayoutContext } from 'contexts'
 
 export const Navbar = () => {
+  const { onSetOpenSideNav, openSideNav } = React.useContext(LayoutContext)
+
   return (
-    <nav className="w-full flex justify-between py-[8px] bg-light-container dark:bg-dark-container">
-      <MenuAlt1Icon className="w-[30px] h-[30px] text-light-text dark:text-dark-text cursor-pointer" />
-      <div className="flex items-center space-x-4">
+    <nav className="w-full flex justify-between px-[16px] py-[12px] bg-light-container dark:bg-dark-container shadow-penumbra">
+      {openSideNav ? (
+        <AiOutlineMenuFold
+          className="w-[30px] h-[30px] text-light-text dark:text-dark-text cursor-pointer"
+          onClick={onSetOpenSideNav}
+        />
+      ) : (
+        <AiOutlineMenuUnfold
+          className="w-[30px] h-[30px] text-light-text dark:text-dark-text cursor-pointer"
+          onClick={onSetOpenSideNav}
+        />
+      )}
+      <div className="flex items-center gap-x-4">
         <LanguageSwitcher />
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center gap-x-4">
           <ThemeSwitcher />
           <UserProfile username="Username" />
         </div>

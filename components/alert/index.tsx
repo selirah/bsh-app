@@ -1,11 +1,6 @@
 import React, { ReactNode } from 'react'
 import classnames from 'classnames'
-import {
-  InformationCircleIcon,
-  ExclamationCircleIcon,
-  CheckCircleIcon,
-  ExclamationIcon
-} from '@heroicons/react/solid'
+import { FiInfo, FiAlertCircle, FiCheckCircle, FiAlertTriangle } from 'react-icons/fi'
 
 type AlertColor = 'warning' | 'success' | 'error' | 'info'
 
@@ -32,13 +27,13 @@ export const Alert: React.FC<AlertProps> = (props) => {
       id="alert"
     >
       {color === 'warning' ? (
-        <ExclamationIcon className="flex-shrink-0 inline w-6 h-6 mr-3 " />
+        <FiAlertTriangle className="flex-shrink-0 inline w-6 h-6 mr-3 " />
       ) : color === 'error' ? (
-        <ExclamationCircleIcon className="flex-shrink-0 inline w-6 h-6 mr-3 " />
+        <FiAlertCircle className="flex-shrink-0 inline w-6 h-6 mr-3 " />
       ) : color === 'info' ? (
-        <InformationCircleIcon className="flex-shrink-0 inline w-6 h-6 mr-3" />
+        <FiInfo className="flex-shrink-0 inline w-6 h-6 mr-3" />
       ) : (
-        <CheckCircleIcon className="flex-shrink-0 inline w-6 h-6 mr-3 " />
+        <FiCheckCircle className="flex-shrink-0 inline w-6 h-6 mr-3 " />
       )}
       <div className="">{children}</div>
     </div>

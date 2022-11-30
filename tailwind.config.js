@@ -24,6 +24,8 @@ module.exports = {
       accent: '#FF3B88',
       accentLight: '#ff76b8',
       accentDark: '#c6005b',
+      white: '#ffffff',
+      black: '#000000',
       light: {
         background: '#F2F4F7',
         container: '#FEFEFE',
@@ -111,7 +113,8 @@ module.exports = {
     boxShadow: {
       umbra: '0 16px 24px 2px rgba(0, 0, 0, 0.14)',
       penumbra: '0 6px 30px 5px rgba(0, 0, 0, 0.12)',
-      ambient: '0 8px 10px 0 rgba(0, 0, 0, 0.20)'
+      ambient: '0 8px 10px 0 rgba(0, 0, 0, 0.20)',
+      none: '0 0 #0000'
     },
     fontSize: {
       h1: [
@@ -229,6 +232,6 @@ module.exports = {
       }
     }
   },
-  plugins: [require('@tailwindcss/forms')],
+  plugins: [require('@tailwindcss/forms'), require('tailwind-scrollbar')],
   darkMode: 'class'
 }

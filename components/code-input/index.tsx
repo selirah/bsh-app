@@ -1,5 +1,5 @@
 import React from 'react'
-import { ExclamationCircleIcon } from '@heroicons/react/solid'
+import { FiAlertCircle } from 'react-icons/fi'
 import classnames from 'classnames'
 import AuthCodeInput from 'react-auth-code-input'
 
@@ -40,7 +40,7 @@ export const CodeInput: React.FC<CodeInputProps> = (props) => {
       />
       {error ? (
         <div className="mt-[8px] items-center flex">
-          <ExclamationCircleIcon
+          <FiAlertCircle
             className={classnames('flex-shrink-0 inline mr-[4px] text-error-text', {
               'w-4 h-4': size === 'sm',
               'w-5 h-5': size === 'md' || !size || size === 'lg'

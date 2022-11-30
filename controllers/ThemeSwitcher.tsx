@@ -1,6 +1,6 @@
 import React from 'react'
 import { ThemeContext, ThemeTypes } from 'contexts/Theme'
-import { SunIcon, MoonIcon } from '@heroicons/react/outline'
+import { FiSun, FiMoon } from 'react-icons/fi'
 
 export const ThemeSwitcher = () => {
   const { theme, changeTheme } = React.useContext(ThemeContext)
@@ -18,13 +18,13 @@ export const ThemeSwitcher = () => {
   return (
     <div className="">
       {theme === 'dark' ? (
-        <SunIcon
-          className="w-[24px] h-[24px] text-light-text dark:text-dark-text cursor-pointer"
+        <FiSun
+          className="text-pLarge text-light-text dark:text-dark-text cursor-pointer"
           onClick={() => onSwitchTheme('light')}
         />
       ) : (
-        <MoonIcon
-          className="w-[24px] h-[24px] text-light-text dark:text-dark-text cursor-pointer"
+        <FiMoon
+          className="text-pLarge text-light-text dark:text-dark-text cursor-pointer"
           onClick={() => onSwitchTheme('dark')}
         />
       )}

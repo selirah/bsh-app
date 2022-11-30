@@ -1,12 +1,7 @@
 import React from 'react'
 import { Select } from 'components'
 import { useIntl } from 'react-intl'
-import {
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  ChevronDoubleLeftIcon,
-  ChevronDoubleRightIcon
-} from '@heroicons/react/solid'
+import { FiChevronLeft, FiChevronRight, FiChevronsLeft, FiChevronsRight } from 'react-icons/fi'
 import classnames from 'classnames'
 
 const pages: Select.SelectData[] = [
@@ -90,7 +85,7 @@ export const Pagination: React.FC<PaginationProps> = (props) => {
             disabled={!canPreviousPage}
             onClick={() => gotoPage(0)}
           >
-            <ChevronDoubleLeftIcon
+            <FiChevronsLeft
               className={classnames(' w-[28px] h-[28px]', {
                 'text-light-text dark:text-dark-text': canPreviousPage,
                 'text-light-form-placeholder opacity-40': !canPreviousPage
@@ -103,7 +98,7 @@ export const Pagination: React.FC<PaginationProps> = (props) => {
             onClick={() => previousPage()}
             disabled={!canPreviousPage}
           >
-            <ChevronLeftIcon
+            <FiChevronLeft
               className={classnames('w-[28px] h-[28px]', {
                 'text-light-text dark:text-dark-text': canPreviousPage,
                 'text-light-form-placeholder opacity-40': !canPreviousPage
@@ -117,7 +112,7 @@ export const Pagination: React.FC<PaginationProps> = (props) => {
             onClick={() => nextPage()}
             disabled={!canNextPage}
           >
-            <ChevronRightIcon
+            <FiChevronRight
               className={classnames('w-[28px] h-[28px]', {
                 'text-light-text dark:text-dark-text': canNextPage,
                 'text-light-form-placeholder opacity-40': !canNextPage
@@ -130,7 +125,7 @@ export const Pagination: React.FC<PaginationProps> = (props) => {
             disabled={!canNextPage}
             onClick={() => gotoPage(pageCount - 1)}
           >
-            <ChevronDoubleRightIcon
+            <FiChevronsRight
               className={classnames('w-[28px] h-[28px]', {
                 'text-light-text dark:text-dark-text': canNextPage,
                 'text-light-form-placeholder opacity-40': !canNextPage

@@ -1,7 +1,7 @@
 import React from 'react'
 import classnames from 'classnames'
 import DatePicker from 'react-datepicker'
-import { ExclamationCircleIcon, CalendarIcon } from '@heroicons/react/solid'
+import { FiAlertCircle, FiCalendar } from 'react-icons/fi'
 
 type DateFormat = 'yyyy-MM-dd' | 'dd-MM-yyyy' | 'MM-dd-yyyy'
 type InputSizes = 'sm' | 'md' | 'lg'
@@ -126,7 +126,7 @@ export const Basic: React.FC<DatePickerProps> = (props) => {
       />
       {error ? (
         <div className="mt-[8px] items-center flex">
-          <ExclamationCircleIcon
+          <FiAlertCircle
             className={classnames('flex-shrink-0 inline mr-[4px] text-error-text', {
               'w-4 h-4': size === 'sm',
               'w-5 h-5': size === 'md' || !size || size === 'lg'
@@ -200,7 +200,7 @@ export const Icon: React.FC<IconProps> = (props) => {
             'right-0 pr-3': iconPosition === 'trailing'
           })}
         >
-          <CalendarIcon
+          <FiCalendar
             className={classnames('z-10 w-5 h-5', {
               'text-light-form-placeholder dark:text-dark-form-placeholder': !error && !success,
               'text-error-text': error,
@@ -250,7 +250,7 @@ export const Icon: React.FC<IconProps> = (props) => {
       </div>
       {error ? (
         <div className="mt-[8px] items-center flex">
-          <ExclamationCircleIcon
+          <FiAlertCircle
             className={classnames('flex-shrink-0 inline mr-[4px] text-error-text', {
               'w-4 h-4': size === 'sm',
               'w-5 h-5': size === 'md' || !size || size === 'lg'

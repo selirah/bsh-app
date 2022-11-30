@@ -3,7 +3,7 @@ import { Avatar } from 'components'
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
 import { signOut } from 'next-auth/react'
-import { UserIcon, LogoutIcon, KeyIcon } from '@heroicons/react/outline'
+import { FiUser, FiLogOut, FiKey } from 'react-icons/fi'
 import { Transition } from 'components'
 
 interface Props {
@@ -47,14 +47,14 @@ export const UserProfile: React.FC<Props> = (props) => {
             href="/user/profile"
             className="flex w-full items-center disabled:cursor-not-allowed text-light-text dark:text-dark-text hover:text-light-btnText hover:bg-primary rounded p-[12px] common-transition"
           >
-            <UserIcon className="w-4 h-4 mr-2" />
+            <FiUser className="w-4 h-4 mr-2" />
             {intl.formatMessage({ defaultMessage: 'Profile', description: 'User Profile' })}
           </Link>
           <Link
             href="/user/change-password"
             className="flex w-full items-center disabled:cursor-not-allowed text-light-text dark:text-dark-text hover:text-light-btnText hover:bg-primary rounded p-[12px] common-transition"
           >
-            <KeyIcon className="w-4 h-4 mr-2" />
+            <FiKey className="w-4 h-4 mr-2" />
             {intl.formatMessage({
               defaultMessage: 'Change Password',
               description: 'Change user password'
@@ -64,7 +64,7 @@ export const UserProfile: React.FC<Props> = (props) => {
             className="flex w-full items-center disabled:cursor-not-allowed text-light-text dark:text-dark-text hover:text-light-btnText hover:bg-primary rounded p-[12px] common-transition"
             onClick={() => signOut()}
           >
-            <LogoutIcon className="w-4 h-4 mr-2" />
+            <FiLogOut className="w-4 h-4 mr-2" />
             {intl.formatMessage({
               defaultMessage: 'Logout',
               description: 'Log user out'

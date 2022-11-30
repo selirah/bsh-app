@@ -1,5 +1,5 @@
 import React from 'react'
-import { CheckIcon } from '@heroicons/react/solid'
+import { FiCheck } from 'react-icons/fi'
 import classnames from 'classnames'
 
 type Color = 'primary' | 'secondary' | 'accent' | 'success' | 'info' | 'error' | 'warning'
@@ -45,7 +45,7 @@ export const Completed: React.FC<CompletedProps> = (props) => {
         {IconSVG ? (
           <IconSVG className="w-[20px] h-[20px] text-light-btnText" />
         ) : (
-          <CheckIcon className="w-[20px] h-[20px] text-light-btnText" />
+          <FiCheck className="w-[20px] h-[20px] text-light-btnText" />
         )}
       </div>
       <div className="ml-[12px] text-dark-btnText dark:text-light-btnText">{title}</div>

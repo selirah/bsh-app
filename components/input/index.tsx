@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useState, LegacyRef } from 'react'
 import classnames from 'classnames'
-import { ExclamationCircleIcon, EyeIcon, EyeOffIcon } from '@heroicons/react/solid'
+import { FiAlertCircle, FiEye, FiEyeOff } from 'react-icons/fi'
 import { Select } from 'components'
 import PhoneInput from 'react-phone-input-2'
 
@@ -109,7 +109,7 @@ export const Basic: React.FC<BasicProps> = (props) => {
       />
       {error ? (
         <div className="mt-[8px] items-center flex">
-          <ExclamationCircleIcon
+          <FiAlertCircle
             className={classnames('flex-shrink-0 inline mr-[4px] text-error-text', {
               'w-4 h-4': size === 'sm',
               'w-5 h-5': size === 'md' || !size || size === 'lg'
@@ -206,7 +206,7 @@ export const Icon: React.FC<IconProps> = (props) => {
       </div>
       {error ? (
         <div className="mt-[8px] items-center flex">
-          <ExclamationCircleIcon
+          <FiAlertCircle
             className={classnames('flex-shrink-0 inline mr-[4px] text-error-text', {
               'w-4 h-4': size === 'sm',
               'w-5 h-5': size === 'md' || !size || size === 'lg'
@@ -311,7 +311,7 @@ export const AddOn: React.FC<AddOnProps> = (props) => {
       </div>
       {error ? (
         <div className="mt-[8px] items-center flex">
-          <ExclamationCircleIcon
+          <FiAlertCircle
             className={classnames('flex-shrink-0 inline mr-[4px] text-error-text', {
               'w-4 h-4': size === 'sm',
               'w-5 h-5': size === 'md' || !size || size === 'lg'
@@ -405,7 +405,7 @@ export const Dropdown: React.FC<DropdownProps> = (props) => {
       </div>
       {error ? (
         <div className="mt-[8px] items-center flex">
-          <ExclamationCircleIcon
+          <FiAlertCircle
             className={classnames('flex-shrink-0 inline mr-[4px] text-error-text', {
               'w-4 h-4': size === 'sm',
               'w-5 h-5': size === 'md' || !size || size === 'lg'
@@ -477,7 +477,7 @@ export const Password: React.FC<BasicProps> = (props) => {
           )}
         >
           {!visible ? (
-            <EyeIcon
+            <FiEye
               className={classnames('w-5 h-5 cursor-pointer', {
                 'text-light-form-placeholder dark:text-dark-form-placeholder': !error && !success,
                 'text-error-text': error,
@@ -486,7 +486,7 @@ export const Password: React.FC<BasicProps> = (props) => {
               onClick={() => setVisible(!visible)}
             />
           ) : (
-            <EyeOffIcon
+            <FiEyeOff
               className={classnames('w-5 h-5 cursor-pointer', {
                 'text-light-form-placeholder dark:text-dark-form-placeholder': !error && !success,
                 'text-error-text': error,
@@ -499,7 +499,7 @@ export const Password: React.FC<BasicProps> = (props) => {
       </div>
       {error ? (
         <div className="mt-[8px] items-center flex">
-          <ExclamationCircleIcon
+          <FiAlertCircle
             className={classnames('flex-shrink-0 inline mr-[4px] text-error-text', {
               'w-4 h-4': size === 'sm',
               'w-5 h-5': size === 'md' || !size || size === 'lg'
@@ -581,7 +581,7 @@ export const Phone: React.FC<PhoneProps> = (props) => {
       />
       {error ? (
         <div className="mt-[8px] items-center flex">
-          <ExclamationCircleIcon
+          <FiAlertCircle
             className={classnames('flex-shrink-0 inline mr-[4px] text-error-text', {
               'w-4 h-4': size === 'sm',
               'w-5 h-5': size === 'md' || !size || size === 'lg'
@@ -653,7 +653,7 @@ export const Textarea: React.FC<TextareaProps> = (props) => {
       ></textarea>
       {error ? (
         <div className="mt-[8px] items-center flex">
-          <ExclamationCircleIcon
+          <FiAlertCircle
             className={classnames('flex-shrink-0 inline mr-[4px] text-error-text', {
               'w-4 h-4': size === 'sm',
               'w-5 h-5': size === 'md' || !size || size === 'lg'

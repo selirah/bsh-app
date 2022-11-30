@@ -1,6 +1,6 @@
 import React, { ChangeEvent } from 'react'
 import classnames from 'classnames'
-import { ArrowCircleRightIcon } from '@heroicons/react/solid'
+import { FiArrowRightCircle } from 'react-icons/fi'
 
 type Sizes = 'sm' | 'md' | 'lg'
 type RadioDirection = 'left' | 'right'
@@ -210,7 +210,7 @@ export const Layout: React.FC<LayoutProps> = (props) => {
             {description}
           </div>
         </div>
-        <ArrowCircleRightIcon
+        <FiArrowRightCircle
           className={classnames('ml-3 w-6 h-6', {
             'text-primary': color === 'primary' || !color,
             'text-secondary': color === 'secondary',

@@ -1,3 +1,3 @@
-export { AuthNav } from './AuthNav'
-export { Navbar } from './Navbar'
-export { Sidebar } from './Sidebar'
+export * from './Sidebar'
+export * from './AuthNav'
+export * from './Navbar'
