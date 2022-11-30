@@ -27,7 +27,7 @@ const LayoutContextProvider: React.FC<Props> = ({ children }) => {
       setOpenSideNav(false)
     } else if (window.innerWidth >= 769 && window.innerWidth <= 1024) {
       setLayout('laptop')
-      setOpenSideNav(false)
+      setOpenSideNav(true)
     } else if (window.innerWidth > 1024) {
       setLayout('desktop')
       setOpenSideNav(true)

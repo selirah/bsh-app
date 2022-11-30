@@ -1,8 +1,8 @@
-import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import { LanguageContextProvider, ThemeContextProvider, LayoutContextProvider } from '../contexts'
 import { ToastContainer } from 'react-toastify'
 import { QueryClientProvider, QueryClient } from 'react-query'
+import '../styles/globals.css'
 
 const queryClient = new QueryClient()
 

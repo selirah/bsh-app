@@ -7,12 +7,6 @@ module.exports = {
     './containers/**/*.{js,ts,jsx,tsx}'
   ],
   theme: {
-    screens: {
-      sm: '640px',
-      md: '768px',
-      lg: '1024px',
-      xl: '1280px'
-    },
     colors: {
       transparent: 'transparent',
       primary: '#4E45E4',
@@ -232,6 +226,6 @@ module.exports = {
       }
     }
   },
-  plugins: [require('@tailwindcss/forms'), require('tailwind-scrollbar')],
+  plugins: [require('@tailwindcss/forms')],
   darkMode: 'class'
 }

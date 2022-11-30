@@ -1,13 +1,14 @@
 import React from 'react'
-import { Sidebar, Navbar } from 'layouts'
+import { ThemeContext } from 'contexts'
+import { AuthLayout } from 'layouts'
+import IllustrationLight from 'public/illustrations/light/welcome.svg'
+import IllustrationDark from 'public/illustrations/dark/welcome.svg'
 
-export default function Home() {
+const Home = () => {
+  const { theme } = React.useContext(ThemeContext)
   return (
-    <div className="flex">
-      <Sidebar />
-      <div className="flex-1">
-        <Navbar />
-      </div>
-    </div>
+    <AuthLayout SVG={theme === 'light' ? IllustrationLight : IllustrationDark}>Welcome</AuthLayout>
   )
 }
+
+export default Home
