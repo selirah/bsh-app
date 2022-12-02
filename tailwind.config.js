@@ -4,7 +4,10 @@ module.exports = {
     './app/**/*.{js,ts,jsx,tsx}',
     './pages/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
-    './containers/**/*.{js,ts,jsx,tsx}'
+    './containers/**/*.{js,ts,jsx,tsx}',
+    './layouts/**/*.{js,ts,jsx,tsx}',
+    './controllers/**/*.{js,ts,jsx,tsx}',
+    './examples/**/*.{js,ts,jsx,tsx}'
   ],
   theme: {
     colors: {
@@ -108,7 +111,8 @@ module.exports = {
       umbra: '0 16px 24px 2px rgba(0, 0, 0, 0.14)',
       penumbra: '0 6px 30px 5px rgba(0, 0, 0, 0.12)',
       ambient: '0 8px 10px 0 rgba(0, 0, 0, 0.20)',
-      none: '0 0 #0000'
+      none: '0 0 #0000',
+      card: '0 2px 4px rgba(0, 0, 0, 0.2)'
     },
     fontSize: {
       h1: [
@@ -176,6 +180,7 @@ module.exports = {
       ]
     },
     fontWeight: {
+      light: 300,
       regular: 400,
       medium: 500,
       bold: 700
