@@ -11,6 +11,7 @@ type ButtonColor =
   | 'warning'
   | 'default'
 type ButtonSize = 'sm' | 'md' | 'lg'
+type ButtonType = 'button' | 'submit' | 'reset'
 
 interface ButtonProps {
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
@@ -21,10 +22,11 @@ interface ButtonProps {
   disabled?: boolean
   children: ReactNode
   size?: ButtonSize
+  type?: ButtonType
 }
 
 export const Button: React.FC<ButtonProps> = (props) => {
-  const { onClick, children, block, color, outline, pill, disabled, size } = props
+  const { onClick, children, block, color, outline, pill, disabled, size, type } = props
   const [mounted, setMounted] = useState(false)
   const [rippling, setRippling] = useState(false)
   const [coords, setCoords] = useState({ x: -1, y: -1 })
@@ -54,9 +56,9 @@ export const Button: React.FC<ButtonProps> = (props) => {
   return (
     <button
       className={classnames(
-        'relative inline-flex items-center overflow-hidden px-[24px] py-[10px] font-lato common-transition text-center',
+        'relative inline-flex items-center overflow-hidden px-[24px] py-[10px] font-lato common-transition text-center disabled:cursor-not-allowed',
         {
-          'w-full': block,
+          'w-full justify-center': block,
           rounded: !pill,
           'rounded-full': pill,
           'h-[40px] text-pSmall': size === 'sm',
@@ -101,6 +103,7 @@ export const Button: React.FC<ButtonProps> = (props) => {
         }
       }}
       disabled={disabled}
+      type={type ?? 'button'}
     >
       {children}
       {rippling ? (

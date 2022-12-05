@@ -4,15 +4,16 @@ import classnames from 'classnames'
 import { CustomStyles } from './styles'
 import { FiAlertCircle } from 'react-icons/fi'
 import makeAnimated from 'react-select/animated'
+import { ThemeContext } from 'contexts/Theme'
 
 type InputSizes = 'sm' | 'md' | 'lg'
 
 export type SelectData = {
-  label: string | number
-  value: string | number
+  label: string
+  value: string
 }
 
-interface SelectProps {
+export interface SelectProps {
   options: SelectData[]
   name?: string
   label?: string
@@ -29,15 +30,16 @@ interface SelectProps {
 
 interface SingleProps extends SelectProps {
   defaultValue?: SelectData | unknown
-  onChange: (value: unknown) => void
+  onChange?: (value: unknown) => void
 }
 
 interface MultipleProps extends SelectProps {
   defaultValue?: SelectData[] | unknown
-  onChange: (value: unknown) => void
+  onChange?: (value: unknown) => void
 }
 
 export const Single: React.FC<SingleProps> = (props) => {
+  const { theme } = React.useContext(ThemeContext)
   const {
     name,
     label,
@@ -85,7 +87,7 @@ export const Single: React.FC<SingleProps> = (props) => {
         onChange={onChange}
         name={name}
         id={name}
-        styles={CustomStyles(size ?? 'md', error ?? '', success ?? false)}
+        styles={CustomStyles(size ?? 'md', error ?? '', success ?? false, theme)}
       />
       {error ? (
         <div className="mt-[8px] items-center flex">
@@ -110,6 +112,7 @@ export const Single: React.FC<SingleProps> = (props) => {
 }
 
 export const Multiple: React.FC<MultipleProps> = (props) => {
+  const { theme } = React.useContext(ThemeContext)
   const {
     name,
     label,
@@ -155,11 +158,11 @@ export const Multiple: React.FC<MultipleProps> = (props) => {
         isSearchable
         options={options}
         placeholder={placeholder}
-        instanceId="cdbehbvueifvb"
+        instanceId="ewewewewewew"
         onChange={onChange}
         name={name}
         id={name}
-        styles={CustomStyles(size ?? 'md', error ?? '', success ?? false)}
+        styles={CustomStyles(size ?? 'md', error ?? '', success ?? false, theme)}
         components={makeAnimated()}
       />
       {error ? (

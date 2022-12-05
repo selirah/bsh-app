@@ -1,11 +1,18 @@
 import React, { ChangeEvent, HTMLProps } from 'react'
 import classnames from 'classnames'
 
-type Sizes = 'sm' | 'md' | 'lg'
+export type Sizes = 'sm' | 'md' | 'lg'
 type CheckDirection = 'left' | 'right'
-type ColorTypes = 'primary' | 'secondary' | 'accent' | 'success' | 'error' | 'info' | 'warning'
+export type ColorTypes =
+  | 'primary'
+  | 'secondary'
+  | 'accent'
+  | 'success'
+  | 'error'
+  | 'info'
+  | 'warning'
 
-interface CheckboxProps {
+export interface CheckboxProps {
   size?: Sizes
   name?: string
   disabled?: boolean
@@ -13,9 +20,11 @@ interface CheckboxProps {
   value?: any
   direction?: CheckDirection
   color?: ColorTypes
+  checked?: any
+  id?: string
 }
 
-interface BasicProps extends CheckboxProps {
+export interface BasicProps extends CheckboxProps {
   label?: string
 }
 
@@ -25,7 +34,8 @@ interface HelpTextProps extends CheckboxProps {
 }
 
 export const Basic: React.FC<BasicProps> = (props) => {
-  const { size, name, label, onChange, value, disabled, direction, color, ...rest } = props
+  const { size, name, label, onChange, value, disabled, direction, color, checked, id, ...rest } =
+    props
   return (
     <div
       className={classnames('flex items-center', {
@@ -36,7 +46,7 @@ export const Basic: React.FC<BasicProps> = (props) => {
       {direction === 'right' ? (
         label ? (
           <label
-            htmlFor={name}
+            htmlFor={id}
             className={classnames('ml-2 text-light-form-label dark:text-dark-text cursor-pointer', {
               'text-pSmall': size === 'sm',
               'text-pNormal': size === 'md' || !size || size === 'lg'
@@ -47,7 +57,7 @@ export const Basic: React.FC<BasicProps> = (props) => {
         ) : null
       ) : null}
       <input
-        id={name}
+        id={id}
         name={name}
         type="checkbox"
         value={value}
@@ -68,6 +78,7 @@ export const Basic: React.FC<BasicProps> = (props) => {
         )}
         onChange={onChange}
         disabled={disabled}
+        checked={checked}
         {...rest}
       />
       {direction === 'left' || !direction ? (
@@ -91,7 +102,7 @@ export const Basic: React.FC<BasicProps> = (props) => {
 }
 
 export const HelpText: React.FC<HelpTextProps> = (props) => {
-  const { size, name, label, onChange, value, disabled, helpText, direction, color, ...rest } =
+  const { size, name, label, onChange, value, disabled, helpText, direction, color, id, ...rest } =
     props
   return (
     <div
@@ -103,7 +114,7 @@ export const HelpText: React.FC<HelpTextProps> = (props) => {
       {direction === 'right' ? (
         <div className="">
           <label
-            htmlFor={name}
+            htmlFor={id}
             className={classnames(
               'ml-2 text-light-form-label dark:text-dark-text cursor-pointer font-lato text-pNormal'
             )}
@@ -111,7 +122,7 @@ export const HelpText: React.FC<HelpTextProps> = (props) => {
             {label}
           </label>
           <p
-            id={name}
+            id={id}
             className={classnames(
               'ml-2 text-light-text dark:text-dark-text cursor-pointer font-montserrat text-pSmall'
             )}
@@ -122,7 +133,7 @@ export const HelpText: React.FC<HelpTextProps> = (props) => {
       ) : null}
       <div className="flex items-center h-8">
         <input
-          id={name}
+          id={id}
           name={name}
           type="checkbox"
           value={value}

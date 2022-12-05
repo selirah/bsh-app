@@ -3,8 +3,8 @@ import { StylesConfig } from 'react-select'
 export const CustomStyles = (
   size: 'sm' | 'md' | 'lg',
   error: string,
-  success: boolean
-  // theme?: 'light' | 'dark'
+  success: boolean,
+  theme?: 'light' | 'dark'
 ) => {
   return {
     control: (base, { isFocused }) => ({
@@ -15,22 +15,33 @@ export const CustomStyles = (
       borderRadius: '4px',
       transitionDelay: '150ms',
       transitionDuration: '300ms',
-      borderColor: isFocused ? '#4E45E4' : error ? '#B5241E' : success ? '#376A20' : '#DDE0E4',
+      borderColor: isFocused
+        ? '#4E45E4'
+        : error
+        ? '#B5241E'
+        : success
+        ? '#376A20'
+        : theme === 'dark'
+        ? '#2D2D2D'
+        : '#DDE0E4',
       cursor: 'pointer',
       '&:active': {
         borderColor: '#4E45E4'
-      }
+      },
+      backgroundColor: theme === 'dark' ? '#212021' : '#FEFEFE',
+      color: theme === 'dark' ? '#D1D5DA' : '#0E172B'
     }),
-    option: (base, { isSelected }) => ({
+    option: (base) => ({
       ...base,
-      borderColor: '#EEEEEE',
+      borderColor: theme === 'dark' ? '#212021' : '#FEFEFE',
       '&:hover': {
         backgroundColor: '#4E45E4',
         color: '#FFFFFF'
       },
-      backgroundColor: isSelected ? '#EEEEEE' : 'transparent',
-      color: '#0E172B',
-      cursor: 'pointer'
+      backgroundColor: theme === 'dark' ? '#212021' : '#FEFEFE',
+      color: theme === 'dark' ? '#D1D5DA' : '#0E172B',
+      cursor: 'pointer',
+      borderRadius: '4px'
     }),
     multiValue: (base) => ({
       ...base,
@@ -48,6 +59,19 @@ export const CustomStyles = (
         background: '#DC2726',
         color: '#FFFFFF'
       }
+    }),
+    menuList: (base) => ({
+      ...base,
+      backgroundColor: theme === 'dark' ? '#212021' : '#FEFEFE',
+      borderRadius: '4px'
+    }),
+    input: (base) => ({
+      ...base,
+      color: theme === 'dark' ? '#D1D5DA' : '#0E172B'
+    }),
+    singleValue: (base) => ({
+      ...base,
+      color: theme === 'dark' ? '#D1D5DA' : '#0E172B'
     })
   } as StylesConfig
 }

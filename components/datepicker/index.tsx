@@ -8,7 +8,7 @@ type InputSizes = 'sm' | 'md' | 'lg'
 type DatePlacement = 'top-start' | 'top' | 'top-end' | 'bottom' | 'bottom-end' | 'bottom-start'
 type IconPosition = 'leading' | 'trailing'
 
-interface DatePickerProps {
+export interface DatePickerProps {
   label?: string
   disabled?: boolean
   placeholder?: string
@@ -37,7 +37,7 @@ interface DatePickerProps {
   value?: Date
 }
 
-interface IconProps extends DatePickerProps {
+export interface IconProps extends DatePickerProps {
   iconPosition?: IconPosition
 }
 

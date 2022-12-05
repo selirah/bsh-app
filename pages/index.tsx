@@ -1,7 +1,7 @@
-import { Fragment } from 'react'
+import React, { Fragment } from 'react'
 import { useSession } from 'next-auth/react'
 import { UILoader } from 'components'
-import Welcome from './auth/welcome'
+import WelcomePage from './auth/welcome'
 import Dashboard from './dashboard'
 
 const Home = () => {
@@ -11,7 +11,7 @@ const Home = () => {
     if (status === 'loading') {
       return <UILoader size="lg" />
     } else if (status === 'unauthenticated') {
-      return <Welcome />
+      return <WelcomePage />
     } else {
       return <Dashboard />
     }

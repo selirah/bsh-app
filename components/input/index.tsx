@@ -4,15 +4,15 @@ import { FiAlertCircle, FiEye, FiEyeOff } from 'react-icons/fi'
 import { Select } from 'components'
 import PhoneInput from 'react-phone-input-2'
 
-type InputSizes = 'sm' | 'md' | 'lg'
-type IconPosition = 'leading' | 'trailing'
+export type InputSizes = 'sm' | 'md' | 'lg'
+export type IconPosition = 'leading' | 'trailing'
 type DropdownData = {
   label: string
-  value: string | number
+  value: string
 }
 
-interface InputProps {
-  value: string
+export interface InputProps {
+  value?: string
   type?: 'text' | 'number' | 'tel' | 'email' | 'password'
   name?: string
   label?: string
@@ -28,21 +28,21 @@ interface InputProps {
 }
 
 interface BasicProps extends InputProps {
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void
   ref?: LegacyRef<HTMLInputElement>
 }
 
-interface IconProps extends InputProps {
+export interface IconProps extends InputProps {
   iconPosition?: IconPosition
   IconSVG: React.FC<React.SVGProps<SVGSVGElement>>
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void
   ref?: LegacyRef<HTMLInputElement>
 }
 
-interface AddOnProps extends InputProps {
+export interface AddOnProps extends InputProps {
   addOnText: string
   addOnPosition?: IconPosition
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void
   ref?: LegacyRef<HTMLInputElement>
 }
 
@@ -55,13 +55,13 @@ interface DropdownProps extends InputProps {
   ref?: LegacyRef<HTMLInputElement>
 }
 
-interface PhoneProps extends InputProps {
+export interface PhoneProps extends InputProps {
   onSetPhone: (value: string) => void
   ref?: LegacyRef<HTMLInputElement>
 }
 
-interface TextareaProps extends InputProps {
-  onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void
+export interface TextareaProps extends InputProps {
+  onChange?: (e: ChangeEvent<HTMLTextAreaElement>) => void
   rows?: number
   ref?: LegacyRef<HTMLTextAreaElement>
 }
@@ -467,6 +467,7 @@ export const Password: React.FC<BasicProps> = (props) => {
           disabled={disabled}
           onBlur={onBlur}
           ref={ref}
+          autoComplete=""
         />
         <span
           className={classnames(
