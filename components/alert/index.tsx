@@ -17,10 +17,12 @@ export const Alert: React.FC<AlertProps> = (props) => {
     <div
       className={classnames('flex p-[16px] font-lato font-medium text-pNormal items-center', {
         rounded: !border,
-        'bg-warning-container text-warning-text': color === 'warning',
-        'bg-success-container text-success-text': color === 'success',
-        'bg-info-container text-info-text': color === 'info',
-        'bg-error-container text-error-text': color === 'error',
+        'bg-warning-container text-warning-text dark:bg-dark-background dark:border':
+          color === 'warning',
+        'bg-success-container text-success-text dark:bg-dark-background dark:border':
+          color === 'success',
+        'bg-info-container text-info-text dark:bg-dark-background dark:border': color === 'info',
+        'bg-error-container text-error-text dark:bg-dark-background dark:border': color === 'error',
         'border-l-4': border
       })}
       role="alert"

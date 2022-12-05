@@ -21,7 +21,6 @@ export interface CheckboxProps {
   direction?: CheckDirection
   color?: ColorTypes
   checked?: any
-  id?: string
 }
 
 export interface BasicProps extends CheckboxProps {
@@ -34,8 +33,7 @@ interface HelpTextProps extends CheckboxProps {
 }
 
 export const Basic: React.FC<BasicProps> = (props) => {
-  const { size, name, label, onChange, value, disabled, direction, color, checked, id, ...rest } =
-    props
+  const { size, name, label, onChange, value, disabled, direction, color, checked, ...rest } = props
   return (
     <div
       className={classnames('flex items-center', {
@@ -46,7 +44,7 @@ export const Basic: React.FC<BasicProps> = (props) => {
       {direction === 'right' ? (
         label ? (
           <label
-            htmlFor={id}
+            htmlFor={name}
             className={classnames('ml-2 text-light-form-label dark:text-dark-text cursor-pointer', {
               'text-pSmall': size === 'sm',
               'text-pNormal': size === 'md' || !size || size === 'lg'
@@ -57,7 +55,7 @@ export const Basic: React.FC<BasicProps> = (props) => {
         ) : null
       ) : null}
       <input
-        id={id}
+        id={name}
         name={name}
         type="checkbox"
         value={value}
@@ -102,7 +100,7 @@ export const Basic: React.FC<BasicProps> = (props) => {
 }
 
 export const HelpText: React.FC<HelpTextProps> = (props) => {
-  const { size, name, label, onChange, value, disabled, helpText, direction, color, id, ...rest } =
+  const { size, name, label, onChange, value, disabled, helpText, direction, color, ...rest } =
     props
   return (
     <div
@@ -114,7 +112,7 @@ export const HelpText: React.FC<HelpTextProps> = (props) => {
       {direction === 'right' ? (
         <div className="">
           <label
-            htmlFor={id}
+            htmlFor={name}
             className={classnames(
               'ml-2 text-light-form-label dark:text-dark-text cursor-pointer font-lato text-pNormal'
             )}
@@ -122,7 +120,7 @@ export const HelpText: React.FC<HelpTextProps> = (props) => {
             {label}
           </label>
           <p
-            id={id}
+            id={name}
             className={classnames(
               'ml-2 text-light-text dark:text-dark-text cursor-pointer font-montserrat text-pSmall'
             )}
@@ -133,7 +131,7 @@ export const HelpText: React.FC<HelpTextProps> = (props) => {
       ) : null}
       <div className="flex items-center h-8">
         <input
-          id={id}
+          id={name}
           name={name}
           type="checkbox"
           value={value}

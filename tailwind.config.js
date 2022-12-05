@@ -228,6 +228,12 @@ module.exports = {
         '80px': '80px',
         '90px': '90px',
         '100px': '100px'
+      },
+      animation: {
+        'spin-slow': 'spin 0.9s linear infinite',
+        'spin-fast': 'spin 0.6s linear infinite',
+        'stroke-slow': 'spin 1.2s linear infinite',
+        'stroke-fast': 'spin 0.9s linear infinite'
       }
     }
   },

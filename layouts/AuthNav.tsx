@@ -4,7 +4,7 @@ import { LanguageSwitcher, ThemeSwitcher } from 'controllers'
 
 export const AuthNav = () => {
   return (
-    <nav className="w-full flex justify-between px-[16px] py-[12px]">
+    <nav className="w-full flex justify-between px-[24px] py-[12px]">
       <Image
         src="/logo.png"
         alt="logo"

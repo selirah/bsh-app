@@ -20,11 +20,16 @@ export const Badge: React.FC<BadgeProps> = (props) => {
         'text-pSmall h-[24px]': !size || size === 'sm',
         'text-pNormal h-[30px]': size === 'md',
         'text-pLarge h-[40px]': size === 'lg',
-        'bg-badge-default-container text-badge-default-text': !color || color === 'default',
-        'bg-badge-block-container text-badge-block-text': color === 'block',
-        'bg-badge-pending-container text-badge-pending-text': color === 'pending',
-        'bg-badge-rejected-container text-badge-rejected-text': color === 'rejected',
-        'bg-badge-active-container text-badge-active-text': color === 'active',
+        'bg-badge-default-container text-badge-default-text dark:bg-dark-background dark:border':
+          !color || color === 'default',
+        'bg-badge-block-container text-badge-block-text dark:bg-dark-background dark:border':
+          color === 'block',
+        'bg-badge-pending-container text-badge-pending-text dark:bg-dark-background dark:border':
+          color === 'pending',
+        'bg-badge-rejected-container text-badge-rejected-text dark:bg-dark-background dark:border':
+          color === 'rejected',
+        'bg-badge-active-container text-badge-active-text dark:bg-dark-background dark:border':
+          color === 'active',
         rounded: !pill,
         'rounded-full': pill
       })}
