@@ -1,7 +1,7 @@
 import React from 'react'
 import { Field, ErrorMessage } from 'formik'
 import { Checkbox } from 'components/index'
-import { TextError } from './TextError'
+import InputError from './InputError'
 import classnames from 'classnames'
 
 export type Option = {
@@ -13,7 +13,7 @@ interface Props extends Checkbox.BasicProps {
   options: Option[]
 }
 
-export const RadioGroup: React.FC<Props> = (props) => {
+export const CheckboxGroup: React.FC<Props> = (props) => {
   const { label, name, options, size, color, disabled, ...rest } = props
   return (
     <React.Fragment>
@@ -31,14 +31,13 @@ export const RadioGroup: React.FC<Props> = (props) => {
             return (
               <div className="flex items-center mb-2" key={option.key}>
                 <input
-                  type="radio"
+                  type="checkbox"
                   id={option.value}
                   {...field}
                   value={option.value}
-                  checked={field.value === option.value}
-                  disabled={disabled}
+                  checked={field.value.includes(option.value)}
                   className={classnames(
-                    'focus:ring-0 bg-light-container dark:bg-dark-container border rounded-full cursor-pointer common-transition disabled:cursor-not-allowed',
+                    'checked:shadow-penumbra focus:ring-0 bg-light-container dark:bg-dark-container border rounded  cursor-pointer common-transition disabled:cursor-not-allowed',
                     {
                       'border-light-form-inputBorder dark:border-dark-form-inputBorder':
                         !form.errors[name],
@@ -51,10 +50,10 @@ export const RadioGroup: React.FC<Props> = (props) => {
                       'text-success-card': color === 'success',
                       'text-error-card': color === 'error',
                       'text-info-avatar': color === 'info',
-                      'text-warning-avatar': color === 'warning',
-                      'border-error-card': form.errors[name]
+                      'text-warning-avatar': color === 'warning'
                     }
                   )}
+                  disabled={disabled}
                 />
                 <label
                   htmlFor={option.value}
@@ -73,7 +72,7 @@ export const RadioGroup: React.FC<Props> = (props) => {
           })
         }}
       </Field>
-      <ErrorMessage name={name} component={TextError} />
+      <ErrorMessage name={name}>{(msg) => <InputError size={size}>{msg}</InputError>}</ErrorMessage>
     </React.Fragment>
   )
 }

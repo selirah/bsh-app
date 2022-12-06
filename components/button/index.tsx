@@ -80,7 +80,7 @@ export const Button: React.FC<ButtonProps> = (props) => {
           'border-error-card text-error-card': outline && color === 'error',
           'border-success-card text-success-card': outline && color === 'success',
           'border-accent text-accent': outline && color === 'accent',
-          'disabled:bg-primaryLight': disabled && color === 'primary' && !outline,
+          'disabled:bg-primaryLight': disabled && !outline && (color === 'primary' || !color),
           'disabled:bg-accentLight': disabled && color === 'accent' && !outline,
           'disabled:bg-error-disabled': disabled && color === 'error' && !outline,
           'disabled:bg-secondaryLight': disabled && color === 'secondary' && !outline,

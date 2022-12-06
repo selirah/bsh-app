@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { AuthLayout } from 'layouts'
 import { ThemeContext, LayoutContext } from 'contexts'
 import { Formik, Form } from 'formik'
-import { Input, PasswordInput, Checkbox } from 'form'
+import { Input, Password, Checkbox } from 'formik-controls'
 import { Button /*, AppleLoader*/ } from 'components'
 import IllustrationLight from 'public/illustrations/light/login.svg'
 import IllustrationDark from 'public/illustrations/dark/login.svg'
@@ -10,6 +10,7 @@ import { useIntl } from 'react-intl'
 import Link from 'next/link'
 import { loginValidation } from 'validation-schema'
 import { BsShieldCheck } from 'react-icons/bs'
+import { MdPassword } from 'react-icons/md'
 
 interface Schema {
   username: string
@@ -52,7 +53,7 @@ const LoginPage = () => {
           {(formikProps) => (
             <Form>
               <div className="mb-[24px]">
-                <Input.Icon
+                <Input
                   name="username"
                   IconSVG={BsShieldCheck}
                   iconPosition="trailing"
@@ -62,11 +63,13 @@ const LoginPage = () => {
                 />
               </div>
               <div className="mb-[24px]">
-                <PasswordInput
+                <Password
                   name="password"
                   size={layout === 'mobile' ? 'sm' : 'lg'}
                   placeholder={intl.formatMessage({ defaultMessage: 'Enter your password' })}
                   label={intl.formatMessage({ defaultMessage: 'Password' })}
+                  IconSVG={MdPassword}
+                  iconPosition="trailing"
                 />
               </div>
               <div className="mb-[24px] flex justify-between">

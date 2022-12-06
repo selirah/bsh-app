@@ -7,7 +7,7 @@ interface Props {
   children?: React.ReactNode
 }
 
-export const TextError: React.FC<Props> = (props) => {
+const InputError: React.FC<Props> = (props) => {
   const { size, children } = props
   return (
     <div className="mt-[8px] items-center flex">
@@ -28,3 +28,5 @@ export const TextError: React.FC<Props> = (props) => {
     </div>
   )
 }
+
+export default InputError

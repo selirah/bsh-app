@@ -34,7 +34,7 @@ const WelcomePage = () => {
             defaultMessage: 'OR'
           })}
         </p>
-        <Button size="md" block outline color="primary" disabled>
+        <Button size="md" block outline disabled>
           {formatMessage({ defaultMessage: 'Sign in with Azure/ADO' })}
         </Button>
       </div>
