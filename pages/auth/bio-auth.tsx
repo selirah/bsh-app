@@ -153,6 +153,7 @@ const BioAuthPage = () => {
           type="submit"
           disabled={!finger || isLoading}
           block
+          color="secondary"
         >
           <div className="flex items-center space-x-2">
             {isLoading && <AppleLoader size="lg" />}
