@@ -11,10 +11,11 @@ export type AxiosOptions = {
   url: string
   method: 'post' | 'get'
   data?: unknown
+  bearerToken?: string
 }
 
 export const adminRequest = async ({ ...options }: AxiosOptions) => {
-  adminInstance.defaults.headers.common['Authorization'] = `Bearer token`
+  adminInstance.defaults.headers.common['Authorization'] = `Bearer ${options.bearerToken}`
   adminInstance.defaults.headers.post['Content-Type'] = 'application/json'
 
   const onSuccess = (response: AxiosResponse) => response
@@ -31,7 +32,7 @@ export const adminRequest = async ({ ...options }: AxiosOptions) => {
 }
 
 export const authRequest = async ({ ...options }: AxiosOptions) => {
-  authInstance.defaults.headers.common['Authorization'] = `Bearer token`
+  authInstance.defaults.headers.common['Authorization'] = `Bearer ${options.bearerToken}`
   authInstance.defaults.headers.post['Content-Type'] = 'application/json'
 
   const onSuccess = (response: AxiosResponse) => response

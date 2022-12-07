@@ -1,54 +1,23 @@
 import NextAuth, { NextAuthOptions } from 'next-auth'
 import { NextApiRequest, NextApiResponse } from 'next'
 import Credentials from 'next-auth/providers/credentials'
-// import { validateBio, validateOTP } from 'middleware/auth'
-// import { BioVerify, OTPVerify } from 'interfaces/Auth'
 
 const providers = [
   Credentials({
-    name: 'Broker2FA',
+    name: 'Two Factor Authentication',
     credentials: {
-      username: { label: 'Username/Email/Domain user', type: 'text' },
-      password: { label: 'Enter password here', type: 'password' }
+      username: {},
+      password: {}
     },
 
     async authorize(credentials) {
       try {
-        const credsPayload: any = credentials
-        // const limitedToken = credsPayload.limitedToken
-        const authMode = credsPayload.authMode
-
-        if (authMode === 'OTP') {
-          // const payload: OTPVerify = {
-          //   email: credsPayload.email,
-          //   otp: credsPayload.otp,
-          //   username: credsPayload.username
-          // }
-          // const response = await validateOTP(payload, limitedToken)
-          const response = null
-          if (response && response.data) {
-            if (response.headers['x-jwt-token']) {
-              response.data.token = response.headers['x-jwt-token']
-            }
-            return response.data
-          } else {
-            return null
-          }
-        } else if (authMode === 'BIO') {
-          // const payload: BioVerify = {
-          //   fingerprints: JSON.parse(credsPayload.payload).fingerprints,
-          //   searchCriteria: JSON.parse(credsPayload.payload).searchCriteria
-          // }
-          // const response = await validateBio(payload, limitedToken)
-          const response = null
-          if (response && response.data) {
-            if (response.headers['x-jwt-token']) {
-              response.data.token = response.headers['x-jwt-token']
-            }
-            return response.data
-          } else {
-            return null
-          }
+        const payload: any = credentials
+        const data = JSON.parse(payload.data)
+        if (data) {
+          return data
+        } else {
+          return null
         }
       } catch (error) {
         throw new Error(error)

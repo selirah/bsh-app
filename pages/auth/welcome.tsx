@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { AuthLayout } from 'layouts'
-import { ThemeContext } from 'contexts'
+import { ThemeContext, LayoutContext } from 'contexts'
 import { Button } from 'components'
 import IllustrationLight from 'public/illustrations/light/welcome.svg'
 import IllustrationDark from 'public/illustrations/dark/welcome.svg'
@@ -9,6 +9,7 @@ import Link from 'next/link'
 
 const WelcomePage = () => {
   const { theme } = useContext(ThemeContext)
+  const { layout } = useContext(LayoutContext)
   const { formatMessage } = useIntl()
 
   return (
@@ -25,7 +26,7 @@ const WelcomePage = () => {
           })}
         </p>
         <Link href="/auth/login">
-          <Button size="md" block>
+          <Button size={layout === 'mobile' ? 'sm' : 'lg'} block>
             {formatMessage({ defaultMessage: 'Sign in with Basic Auth' })}
           </Button>
         </Link>
@@ -34,7 +35,7 @@ const WelcomePage = () => {
             defaultMessage: 'OR'
           })}
         </p>
-        <Button size="md" block color="primary" outline disabled>
+        <Button size={layout === 'mobile' ? 'sm' : 'lg'} block color="primary" outline disabled>
           {formatMessage({ defaultMessage: 'Sign in with Azure/ADO' })}
         </Button>
       </div>

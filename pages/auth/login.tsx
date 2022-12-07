@@ -14,7 +14,8 @@ import { BsShieldCheck } from 'react-icons/bs'
 import { MdPassword } from 'react-icons/md'
 import { LoginSchema, LoginResponse } from 'schema/Auth'
 import { SuccessResponse, ErrorResponse } from 'schema/Axios'
-import { useLogin } from 'hooks'
+import { useLogin } from 'hooks/auth'
+import { onAxiosError } from 'utils'
 
 const LoginPage = () => {
   const { theme } = useContext(ThemeContext)
@@ -51,14 +52,10 @@ const LoginPage = () => {
       setError(intl.formatMessage({ defaultMessage: 'Invalid Credentials' }))
     }
   }
-  const onLoginError = (error: ErrorResponse) => {
-    if (error.response && error.response.data) {
-      setError(JSON.stringify(error.response.data).replace(/\"/g, ''))
-    } else if (error.message) {
-      setError(JSON.stringify(error.message).replace(/\"/g, ''))
-    }
-  }
-  const { mutate: loginUser, isLoading } = useLogin(onLoginSuccess, onLoginError)
+
+  const { mutate: loginUser, isLoading } = useLogin(onLoginSuccess, (error: ErrorResponse) =>
+    onAxiosError(error, setError)
+  )
 
   const onSubmit = (values: LoginSchema) => {
     loginUser(values)
@@ -117,7 +114,12 @@ const LoginPage = () => {
                   </p>
                 </Link>
               </div>
-              <Button size="lg" type="submit" disabled={!isValid || isLoading} block>
+              <Button
+                size={layout === 'mobile' ? 'sm' : 'lg'}
+                type="submit"
+                disabled={!isValid || isLoading}
+                block
+              >
                 <div className="flex items-center space-x-2">
                   {isLoading && <AppleLoader size="lg" />}
                   <span>

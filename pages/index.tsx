@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import { useSession } from 'next-auth/react'
 import { UILoader } from 'components'
 import WelcomePage from './auth/welcome'
-import Dashboard from './dashboard'
+import Dashboard from './admin/dashboard'
 
 const Home = () => {
   const { status } = useSession()

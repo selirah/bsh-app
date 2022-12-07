@@ -23,7 +23,7 @@ export const AuthLayout: React.FC<Props> = (props) => {
       </Head>
       <AuthNav />
       <div
-        className={classnames('block md:flex w-full mt-8 md:mt-16', {
+        className={classnames('block md:flex w-full mt-8 md:mt-20', {
           'h-screen': layout === 'mobile'
         })}
       >
