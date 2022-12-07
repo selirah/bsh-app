@@ -14,7 +14,7 @@ const WelcomePage = () => {
   return (
     <AuthLayout SVG={theme === 'dark' ? IllustrationDark : IllustrationLight}>
       <div className="md:mt-32">
-        <h5 className="text-h6 md:text-h5 text-dark-btnText dark:text-light-btnText font-lato font-medium animate__animated animate__slideInLeft">
+        <h5 className="text-h6 md:text-h5 text-dark-btnText dark:text-light-btnText font-lato font-medium animate__animated animate__fadeInDown">
           {formatMessage({
             defaultMessage: 'Welcome to Branch Service Hub'
           })}
@@ -34,7 +34,7 @@ const WelcomePage = () => {
             defaultMessage: 'OR'
           })}
         </p>
-        <Button size="md" block outline disabled>
+        <Button size="md" block color="primary" outline disabled>
           {formatMessage({ defaultMessage: 'Sign in with Azure/ADO' })}
         </Button>
       </div>
