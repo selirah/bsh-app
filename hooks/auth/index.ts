@@ -1,11 +1,12 @@
 import { useMutation } from 'react-query'
-import { authRequest } from 'utils/axios'
+import { authRequest, bioDeviceRequest } from 'utils/axios'
 import {
   LoginSchema,
   RequestOtpSchema,
   OtpSchema,
   ForgottenPasswordSchema,
-  ResetPasswordSchema
+  ResetPasswordSchema,
+  BioSchema
 } from 'schema/Auth'
 import { AxiosError, AxiosResponse } from 'axios'
 
@@ -17,7 +18,9 @@ const endPoints = {
   requestOtp: process.env.NEXT_PUBLIC_REQUEST_OTP,
   validateOtp: process.env.NEXT_PUBLIC_VALIDATE_OTP,
   forgottenPassword: process.env.NEXT_PUBLIC_FORGOTTEN_PASSWORD,
-  resetPassword: process.env.NEXT_PUBLIC_RESET_PASSWORD
+  resetPassword: process.env.NEXT_PUBLIC_RESET_PASSWORD,
+  bioDevice: process.env.NEXT_PUBLIC_BIO_INIT,
+  validateBio: process.env.NEXT_PUBLIC_VALIDATE_BIO
 }
 
 const loginUser = (payload: LoginSchema) => {
@@ -77,6 +80,36 @@ const resetPassword = (payload: ResetPasswordSchema) => {
 
 export const useResetPassword = (onSuccess: onSuccess, onError: onError) => {
   return useMutation(resetPassword, {
+    onSuccess,
+    onError
+  })
+}
+
+const requestBioInit = () => {
+  return bioDeviceRequest({
+    url: endPoints.bioDevice,
+    method: 'post'
+  })
+}
+
+export const useBioInit = (onSuccess: onSuccess, onError: onError) => {
+  return useMutation(requestBioInit, {
+    onSuccess,
+    onError
+  })
+}
+
+const validateBio = (payload: BioSchema) => {
+  return authRequest({
+    url: endPoints.validateBio,
+    method: 'post',
+    data: { data: payload },
+    bearerToken: payload.limitedToken
+  })
+}
+
+export const useValidateBio = (onSuccess: onSuccess, onError: onError) => {
+  return useMutation(validateBio, {
     onSuccess,
     onError
   })

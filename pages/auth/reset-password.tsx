@@ -66,7 +66,9 @@ const ResetPasswordPage = () => {
         <div className="mb-6">
           {success && (
             <Alert color="success" border>
-              <h6 className="font-lato text-pNormal font-medium">Nice!</h6>
+              <h6 className="font-lato text-pNormal font-medium">
+                {intl.formatMessage({ defaultMessage: 'Nice!' })}
+              </h6>
               <p className="font-montserrat font-light">
                 {intl.formatMessage({
                   defaultMessage:

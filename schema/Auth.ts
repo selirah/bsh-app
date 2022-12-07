@@ -57,3 +57,47 @@ export type ResetPasswordSchema = {
   password: string
   processId: string
 }
+
+export type FingerPrintSchema = {
+  position: string
+  image: {
+    format: string
+    resolutionDpi: number
+    data: string
+  }
+}
+
+export type BioDeviceResponse = {
+  ErrorCode: number
+  Manufacturer: string
+  Model: string
+  SerialNumber: string
+  ImageWidth: number
+  ImageHeight: number
+  ImageDPI: number
+  ImageQuality: number
+  NFIQ: number
+  Attempts: number
+  Result: number
+  EnrollData?: {
+    Templates: Template[]
+  }
+  SerHandle: number
+  BMPBase64: string
+}
+
+export type Template = {
+  fpos: string
+  nfiq: number
+  TemplateBase64: string
+}
+
+export type BioSchema = {
+  reference?: string
+  searchCriteria: {
+    label: string
+    value: string
+  }
+  fingerPrints?: FingerPrintSchema[]
+  limitedToken?: string
+}

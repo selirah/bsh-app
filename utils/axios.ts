@@ -7,6 +7,10 @@ const authInstance: AxiosInstance = axios.create({
   baseURL: `${process.env.NEXT_PUBLIC_USERSERVICE_URL}/api`
 })
 
+const bioDeviceInstance: AxiosInstance = axios.create({
+  baseURL: `${process.env.NEXT_PUBLIC_BIOMETRIC_DEVICE_URL}`
+})
+
 export type AxiosOptions = {
   url: string
   method: 'post' | 'get'
@@ -42,6 +46,22 @@ export const authRequest = async ({ ...options }: AxiosOptions) => {
   }
   try {
     const response = await authInstance(options)
+    return onSuccess(response)
+  } catch (error) {
+    return onError(error)
+  }
+}
+
+export const bioDeviceRequest = async ({ ...options }: AxiosOptions) => {
+  bioDeviceInstance.defaults.headers.post['Content-Type'] = 'application/json'
+
+  const onSuccess = (response: AxiosResponse) => response
+  const onError = (error: unknown) => {
+    // optionaly catch errors and add additional logging here
+    return error as AxiosError
+  }
+  try {
+    const response = await bioDeviceInstance(options)
     return onSuccess(response)
   } catch (error) {
     return onError(error)
