@@ -13,7 +13,11 @@ import { AxiosError, AxiosResponse } from 'axios'
 type onSuccess = (response: AxiosResponse) => void
 type onError = (response: AxiosError) => void
 
-const endPoints = {
+type KeyValuePair = {
+  [key: string]: string
+}
+
+const endPoints: KeyValuePair = {
   login: process.env.NEXT_PUBLIC_LOGIN,
   requestOtp: process.env.NEXT_PUBLIC_REQUEST_OTP,
   validateOtp: process.env.NEXT_PUBLIC_VALIDATE_OTP,

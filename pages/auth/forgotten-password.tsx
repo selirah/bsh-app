@@ -89,7 +89,7 @@ const ForgottenPasswordPage = () => {
                   <span>
                     {isLoading
                       ? intl.formatMessage({ defaultMessage: 'Processing...' })
-                      : intl.formatMessage({ defaultMessage: 'Sign in' })}
+                      : intl.formatMessage({ defaultMessage: 'Send Instructions' })}
                   </span>
                 </div>
               </Button>

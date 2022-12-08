@@ -15,7 +15,7 @@ export const Alert: React.FC<AlertProps> = (props) => {
 
   return (
     <div
-      className={classnames('flex p-[16px] font-lato font-medium text-pNormal items-center', {
+      className={classnames('flex p-[16px] font-lato font-medium text-pNormal', {
         rounded: !border,
         'bg-warning-container text-warning-text dark:bg-dark-background dark:border':
           color === 'warning',
@@ -29,13 +29,13 @@ export const Alert: React.FC<AlertProps> = (props) => {
       id="alert"
     >
       {color === 'warning' ? (
-        <FiAlertTriangle className="flex-shrink-0 inline w-6 h-6 mr-3 " />
+        <FiAlertTriangle className="flex-shrink-0 inline w-6 h-6 mr-3 mt-1 " />
       ) : color === 'error' ? (
-        <FiAlertCircle className="flex-shrink-0 inline w-6 h-6 mr-3 " />
+        <FiAlertCircle className="flex-shrink-0 inline w-6 h-6 mr-3 mt-1" />
       ) : color === 'info' ? (
-        <FiInfo className="flex-shrink-0 inline w-6 h-6 mr-3" />
+        <FiInfo className="flex-shrink-0 inline w-6 h-6 mr-3 mt-1" />
       ) : (
-        <FiCheckCircle className="flex-shrink-0 inline w-6 h-6 mr-3 " />
+        <FiCheckCircle className="flex-shrink-0 inline w-6 h-6 mr-3 mt-1" />
       )}
       <div className="">{children}</div>
     </div>

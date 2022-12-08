@@ -46,7 +46,7 @@ const LoginPage = () => {
           push('/auth/otp-auth')
         }
       } else {
-        push('/auth/unauthorized')
+        push('/401')
       }
     } else {
       setError(intl.formatMessage({ defaultMessage: 'Invalid Credentials' }))

@@ -126,7 +126,7 @@ const ResetPasswordPage = () => {
                   <span>
                     {isLoading
                       ? intl.formatMessage({ defaultMessage: 'Processing...' })
-                      : intl.formatMessage({ defaultMessage: 'Sign in' })}
+                      : intl.formatMessage({ defaultMessage: 'Reset Password' })}
                   </span>
                 </div>
               </Button>

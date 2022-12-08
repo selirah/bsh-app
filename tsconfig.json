@@ -19,6 +19,6 @@
     "noUnusedLocals": true,
     "noImplicitReturns": false
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "@casl/react/contextAPIPatch.d.ts"],
   "exclude": ["node_modules"]
 }

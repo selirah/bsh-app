@@ -6,6 +6,7 @@ import 'react-perfect-scrollbar/dist/css/styles.css'
 import { NavMenu } from 'components'
 import Image from 'next/image'
 import { Routes } from 'routes'
+import Link from 'next/link'
 
 export const Sidebar = () => {
   const { openSideNav } = React.useContext(LayoutContext)
@@ -19,28 +20,30 @@ export const Sidebar = () => {
           'flex justify-center': !openSideNav
         })}
       >
-        <Image
-          src="/logo.png"
-          width={30}
-          height={30}
-          alt="logo"
-          unoptimized
-          style={{ width: 30, height: 30 }}
-          className={classnames('cursor-pointer duration-500', {
-            'rotate-[360deg] mr-2': openSideNav,
-            '': !openSideNav
-          })}
-        />
-        <h6
-          className={classnames(
-            'text-dark-btnText dark:text-light-btnText origin-left text-h6 common-transition font-lato',
-            {
-              hidden: !openSideNav
-            }
-          )}
-        >
-          EquityBCDC
-        </h6>
+        <Link href="/">
+          <Image
+            src="/logo.png"
+            width={30}
+            height={30}
+            alt="logo"
+            unoptimized
+            style={{ width: 30, height: 30 }}
+            className={classnames('cursor-pointer duration-500', {
+              'rotate-[360deg] mr-2': openSideNav,
+              '': !openSideNav
+            })}
+          />
+          <h6
+            className={classnames(
+              'text-dark-btnText dark:text-light-btnText origin-left text-h6 common-transition font-lato',
+              {
+                hidden: !openSideNav
+              }
+            )}
+          >
+            EquityBCDC
+          </h6>
+        </Link>
       </div>
 
       <ul className="mt-8 relative">

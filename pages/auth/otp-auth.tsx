@@ -109,7 +109,7 @@ const OtpAuthPage = () => {
                   <span>
                     {isLoading
                       ? intl.formatMessage({ defaultMessage: 'Processing...' })
-                      : intl.formatMessage({ defaultMessage: 'Sign in' })}
+                      : intl.formatMessage({ defaultMessage: 'Verify' })}
                   </span>
                 </div>
               </Button>

@@ -9,6 +9,12 @@ export type SubLinkObj = {
   link: string
   active?: boolean
   IconSVG?: React.FC<React.SVGProps<SVGSVGElement>>
+  scope?: Scope
+}
+
+type Scope = {
+  action: 'read' | 'write'
+  resource: string
 }
 
 interface NavMenuProps {
@@ -16,7 +22,7 @@ interface NavMenuProps {
   active?: boolean
   IconSVG: React.FC<React.SVGProps<SVGSVGElement>>
   hideTitle?: boolean
-  scope?: string
+  scope?: Scope
   spacing?: boolean
   setHoverActive?: (value: boolean) => void
 }

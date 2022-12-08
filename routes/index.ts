@@ -10,12 +10,17 @@ import {
 import { ImCreditCard } from 'react-icons/im'
 import { BiTransferAlt } from 'react-icons/bi'
 
+type Scope = {
+  action: 'manage' | 'read' | 'update' | 'create' | 'delete' | 'export'
+  subject: string
+}
+
 export type SubMenuTypes = {
   title: string
   link: string
   active?: boolean
   IconSVG?: React.FC<React.SVGProps<SVGSVGElement>>
-  scope?: string
+  scope?: Scope
 }
 
 export type MenuTypes = {
@@ -24,7 +29,7 @@ export type MenuTypes = {
   IconSVG: React.FC<React.SVGProps<SVGSVGElement>>
   link?: string
   subLinks?: SubMenuTypes[]
-  scope?: string
+  scope?: Scope
   spacing?: boolean
 }
 
@@ -34,14 +39,20 @@ export const Routes: MenuTypes[] = [
     IconSVG: AiOutlineDashboard,
     active: false,
     link: '/dashboard',
-    scope: 'Dashboard'
+    scope: {
+      action: 'manage',
+      subject: 'Dashboard'
+    }
   },
   {
     menuTitle: 'Client 360',
     IconSVG: MdOutline360,
     active: false,
     link: '/client360',
-    scope: 'Client360',
+    scope: {
+      action: 'manage',
+      subject: 'Client360'
+    },
     spacing: true
   },
   {
@@ -53,19 +64,28 @@ export const Routes: MenuTypes[] = [
         title: 'Agency Banking',
         link: '/agency-banking',
         active: false,
-        scope: 'AgencyBanking'
+        scope: {
+          action: 'manage',
+          subject: 'AgencyBanking'
+        }
       },
       {
         title: 'm-Banking',
         link: '/m-banking',
         active: false,
-        scope: 'mBanking'
+        scope: {
+          action: 'manage',
+          subject: 'mBanking'
+        }
       },
       {
         title: 'e-Banking',
         link: '/e-banking',
         active: false,
-        scope: 'eBanking'
+        scope: {
+          action: 'manage',
+          subject: 'eBanking'
+        }
       }
     ]
   },
@@ -78,37 +98,55 @@ export const Routes: MenuTypes[] = [
         title: 'Bulk Payments',
         link: '/bulk-payments',
         active: false,
-        scope: 'BulkPayments'
+        scope: {
+          action: 'manage',
+          subject: 'BulkPayments'
+        }
       },
       {
         title: 'Government Salaries',
         link: '/government-payments',
         active: false,
-        scope: 'GovernmentSalaries'
+        scope: {
+          action: 'manage',
+          subject: 'GovernmentSalaries'
+        }
       },
       {
         title: 'Tax Payments',
         link: '/tax-payments',
         active: false,
-        scope: 'TaxPayments'
+        scope: {
+          action: 'manage',
+          subject: 'TaxPayments'
+        }
       },
       {
         title: 'Billers',
         link: '/billers',
         active: false,
-        scope: 'Billers'
+        scope: {
+          action: 'manage',
+          subject: 'Billers'
+        }
       },
       {
         title: 'Online Payments',
         link: '/online-payments',
         active: false,
-        scope: 'OnlinePayment'
+        scope: {
+          action: 'manage',
+          subject: 'OnlinePayment'
+        }
       },
       {
         title: 'Till Payments',
         link: '/till-payments',
         active: false,
-        scope: 'TillManagement'
+        scope: {
+          action: 'manage',
+          subject: 'TillManagement'
+        }
       }
     ]
   },
@@ -121,19 +159,28 @@ export const Routes: MenuTypes[] = [
         title: 'SWIFT & RTGS',
         link: '/swift-transfer',
         active: false,
-        scope: 'SWIFTRTGS'
+        scope: {
+          action: 'manage',
+          subject: 'SWIFTRTGS'
+        }
       },
       {
         title: 'Funds Transfer',
         link: '/funds-transfer',
         active: false,
-        scope: 'FundTransfers'
+        scope: {
+          action: 'manage',
+          subject: 'FundTransfers'
+        }
       },
       {
         title: 'MC Send',
         link: '/mc-send',
         active: false,
-        scope: 'MCSend'
+        scope: {
+          action: 'manage',
+          subject: 'MCSend'
+        }
       }
     ]
   },
@@ -146,19 +193,28 @@ export const Routes: MenuTypes[] = [
         title: 'Card Management',
         link: '/cards-management',
         active: false,
-        scope: 'Cards'
+        scope: {
+          action: 'manage',
+          subject: 'Cards'
+        }
       },
       {
         title: 'Chequebook Management',
         link: '/chequebook-management',
         active: false,
-        scope: 'ChequeBookManagement'
+        scope: {
+          action: 'manage',
+          subject: 'ChequeBookManagement'
+        }
       },
       {
         title: 'Contract Management',
         link: '/contract-management',
         active: false,
-        scope: 'ContractManagement'
+        scope: {
+          action: 'manage',
+          subject: 'ContractManagement'
+        }
       }
     ]
   },
@@ -171,37 +227,55 @@ export const Routes: MenuTypes[] = [
         title: 'Cash Allocations',
         link: '/cash-allocations',
         active: false,
-        scope: 'CashAllocations'
+        scope: {
+          action: 'manage',
+          subject: 'CashAllocations'
+        }
       },
       {
         title: 'Thunes',
         link: '/thunes',
         active: false,
-        scope: 'Thunes'
+        scope: {
+          action: 'manage',
+          subject: 'Thunes'
+        }
       },
       {
         title: 'Hologram',
         link: '/hologram',
         active: false,
-        scope: 'Hologram'
+        scope: {
+          action: 'manage',
+          subject: 'Hologram'
+        }
       },
       {
         title: 'Inventory',
         link: '/inventory',
         active: false,
-        scope: 'Inventory'
+        scope: {
+          action: 'manage',
+          subject: 'Inventory'
+        }
       },
       {
         title: 'Fees & Commissions',
         link: '/fees-commissions',
         active: false,
-        scope: 'FeesCommissions'
+        scope: {
+          action: 'manage',
+          subject: 'FeesCommissions'
+        }
       },
       {
         title: 'Payment Hub Service',
         link: '/paymenthub-service',
         active: false,
-        scope: 'PaymentHubServiceManagement'
+        scope: {
+          action: 'manage',
+          subject: 'PaymentHubServiceManagement'
+        }
       }
     ]
   },
@@ -215,31 +289,46 @@ export const Routes: MenuTypes[] = [
         title: 'Customer Onboarding',
         link: '/customer-onboarding',
         active: false,
-        scope: 'CustomerOnboarding'
+        scope: {
+          action: 'manage',
+          subject: 'CustomerOnboarding'
+        }
       },
       {
         title: 'Account Opening',
         link: '/account-opening',
         active: false,
-        scope: 'AccountOpening'
+        scope: {
+          action: 'manage',
+          subject: 'AccountOpening'
+        }
       },
       {
         title: 'Entity Onboarding',
         link: '/entity-onboarding',
         active: false,
-        scope: 'EntityOnboarding'
+        scope: {
+          action: 'manage',
+          subject: 'EntityOnboarding'
+        }
       },
       {
         title: 'Dormant Account Activation',
         link: '/dormant-account-activation',
         active: false,
-        scope: 'DormantAccountActivation'
+        scope: {
+          action: 'manage',
+          subject: 'DormantAccountActivation'
+        }
       },
       {
         title: 'Update Customer',
         link: '/update-customer',
         active: false,
-        scope: 'UpdateCustomer'
+        scope: {
+          action: 'manage',
+          subject: 'UpdateCustomer'
+        }
       }
     ]
   },
@@ -248,20 +337,29 @@ export const Routes: MenuTypes[] = [
     IconSVG: AiOutlineBarChart,
     active: false,
     link: '/reports',
-    scope: 'Reports'
+    scope: {
+      action: 'manage',
+      subject: 'Reports'
+    }
   },
   {
     menuTitle: 'Biometric',
     IconSVG: MdFingerprint,
     active: false,
     link: '/biometric',
-    scope: 'Biometric'
+    scope: {
+      action: 'manage',
+      subject: 'Biometric'
+    }
   },
   {
     menuTitle: 'User & Roles',
     IconSVG: HiOutlineUserGroup,
     active: false,
     link: '/user-roles',
-    scope: 'UserRoles'
+    scope: {
+      action: 'manage',
+      subject: 'UserRoles'
+    }
   }
 ]
