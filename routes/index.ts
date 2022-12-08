@@ -11,7 +11,7 @@ import { ImCreditCard } from 'react-icons/im'
 import { BiTransferAlt } from 'react-icons/bi'
 
 type Scope = {
-  action: 'manage' | 'read' | 'update' | 'create' | 'delete' | 'export'
+  action: 'read' | 'read' | 'update' | 'create' | 'delete' | 'export'
   subject: string
 }
 
@@ -40,7 +40,7 @@ export const Routes: MenuTypes[] = [
     active: false,
     link: '/dashboard',
     scope: {
-      action: 'manage',
+      action: 'read',
       subject: 'Dashboard'
     }
   },
@@ -50,7 +50,7 @@ export const Routes: MenuTypes[] = [
     active: false,
     link: '/client360',
     scope: {
-      action: 'manage',
+      action: 'read',
       subject: 'Client360'
     },
     spacing: true
@@ -65,7 +65,7 @@ export const Routes: MenuTypes[] = [
         link: '/agency-banking',
         active: false,
         scope: {
-          action: 'manage',
+          action: 'read',
           subject: 'AgencyBanking'
         }
       },
@@ -74,7 +74,7 @@ export const Routes: MenuTypes[] = [
         link: '/m-banking',
         active: false,
         scope: {
-          action: 'manage',
+          action: 'read',
           subject: 'mBanking'
         }
       },
@@ -83,7 +83,7 @@ export const Routes: MenuTypes[] = [
         link: '/e-banking',
         active: false,
         scope: {
-          action: 'manage',
+          action: 'read',
           subject: 'eBanking'
         }
       }
@@ -99,7 +99,7 @@ export const Routes: MenuTypes[] = [
         link: '/bulk-payments',
         active: false,
         scope: {
-          action: 'manage',
+          action: 'read',
           subject: 'BulkPayments'
         }
       },
@@ -108,7 +108,7 @@ export const Routes: MenuTypes[] = [
         link: '/government-payments',
         active: false,
         scope: {
-          action: 'manage',
+          action: 'read',
           subject: 'GovernmentSalaries'
         }
       },
@@ -117,7 +117,7 @@ export const Routes: MenuTypes[] = [
         link: '/tax-payments',
         active: false,
         scope: {
-          action: 'manage',
+          action: 'read',
           subject: 'TaxPayments'
         }
       },
@@ -126,7 +126,7 @@ export const Routes: MenuTypes[] = [
         link: '/billers',
         active: false,
         scope: {
-          action: 'manage',
+          action: 'read',
           subject: 'Billers'
         }
       },
@@ -135,7 +135,7 @@ export const Routes: MenuTypes[] = [
         link: '/online-payments',
         active: false,
         scope: {
-          action: 'manage',
+          action: 'read',
           subject: 'OnlinePayment'
         }
       },
@@ -144,8 +144,8 @@ export const Routes: MenuTypes[] = [
         link: '/till-payments',
         active: false,
         scope: {
-          action: 'manage',
-          subject: 'TillManagement'
+          action: 'read',
+          subject: 'Tillreadment'
         }
       }
     ]
@@ -160,7 +160,7 @@ export const Routes: MenuTypes[] = [
         link: '/swift-transfer',
         active: false,
         scope: {
-          action: 'manage',
+          action: 'read',
           subject: 'SWIFTRTGS'
         }
       },
@@ -169,7 +169,7 @@ export const Routes: MenuTypes[] = [
         link: '/funds-transfer',
         active: false,
         scope: {
-          action: 'manage',
+          action: 'read',
           subject: 'FundTransfers'
         }
       },
@@ -178,7 +178,7 @@ export const Routes: MenuTypes[] = [
         link: '/mc-send',
         active: false,
         scope: {
-          action: 'manage',
+          action: 'read',
           subject: 'MCSend'
         }
       }
@@ -190,30 +190,30 @@ export const Routes: MenuTypes[] = [
     active: false,
     subLinks: [
       {
-        title: 'Card Management',
-        link: '/cards-management',
+        title: 'Card readment',
+        link: '/cards-readment',
         active: false,
         scope: {
-          action: 'manage',
+          action: 'read',
           subject: 'Cards'
         }
       },
       {
-        title: 'Chequebook Management',
-        link: '/chequebook-management',
+        title: 'Chequebook readment',
+        link: '/chequebook-readment',
         active: false,
         scope: {
-          action: 'manage',
-          subject: 'ChequeBookManagement'
+          action: 'read',
+          subject: 'ChequeBookreadment'
         }
       },
       {
-        title: 'Contract Management',
-        link: '/contract-management',
+        title: 'Contract readment',
+        link: '/contract-readment',
         active: false,
         scope: {
-          action: 'manage',
-          subject: 'ContractManagement'
+          action: 'read',
+          subject: 'Contractreadment'
         }
       }
     ]
@@ -228,7 +228,7 @@ export const Routes: MenuTypes[] = [
         link: '/cash-allocations',
         active: false,
         scope: {
-          action: 'manage',
+          action: 'read',
           subject: 'CashAllocations'
         }
       },
@@ -237,7 +237,7 @@ export const Routes: MenuTypes[] = [
         link: '/thunes',
         active: false,
         scope: {
-          action: 'manage',
+          action: 'read',
           subject: 'Thunes'
         }
       },
@@ -246,7 +246,7 @@ export const Routes: MenuTypes[] = [
         link: '/hologram',
         active: false,
         scope: {
-          action: 'manage',
+          action: 'read',
           subject: 'Hologram'
         }
       },
@@ -255,7 +255,7 @@ export const Routes: MenuTypes[] = [
         link: '/inventory',
         active: false,
         scope: {
-          action: 'manage',
+          action: 'read',
           subject: 'Inventory'
         }
       },
@@ -264,7 +264,7 @@ export const Routes: MenuTypes[] = [
         link: '/fees-commissions',
         active: false,
         scope: {
-          action: 'manage',
+          action: 'read',
           subject: 'FeesCommissions'
         }
       },
@@ -273,8 +273,8 @@ export const Routes: MenuTypes[] = [
         link: '/paymenthub-service',
         active: false,
         scope: {
-          action: 'manage',
-          subject: 'PaymentHubServiceManagement'
+          action: 'read',
+          subject: 'PaymentHubServicereadment'
         }
       }
     ]
@@ -290,7 +290,7 @@ export const Routes: MenuTypes[] = [
         link: '/customer-onboarding',
         active: false,
         scope: {
-          action: 'manage',
+          action: 'read',
           subject: 'CustomerOnboarding'
         }
       },
@@ -299,7 +299,7 @@ export const Routes: MenuTypes[] = [
         link: '/account-opening',
         active: false,
         scope: {
-          action: 'manage',
+          action: 'read',
           subject: 'AccountOpening'
         }
       },
@@ -308,7 +308,7 @@ export const Routes: MenuTypes[] = [
         link: '/entity-onboarding',
         active: false,
         scope: {
-          action: 'manage',
+          action: 'read',
           subject: 'EntityOnboarding'
         }
       },
@@ -317,7 +317,7 @@ export const Routes: MenuTypes[] = [
         link: '/dormant-account-activation',
         active: false,
         scope: {
-          action: 'manage',
+          action: 'read',
           subject: 'DormantAccountActivation'
         }
       },
@@ -326,7 +326,7 @@ export const Routes: MenuTypes[] = [
         link: '/update-customer',
         active: false,
         scope: {
-          action: 'manage',
+          action: 'read',
           subject: 'UpdateCustomer'
         }
       }
@@ -338,7 +338,7 @@ export const Routes: MenuTypes[] = [
     active: false,
     link: '/reports',
     scope: {
-      action: 'manage',
+      action: 'read',
       subject: 'Reports'
     }
   },
@@ -348,7 +348,7 @@ export const Routes: MenuTypes[] = [
     active: false,
     link: '/biometric',
     scope: {
-      action: 'manage',
+      action: 'read',
       subject: 'Biometric'
     }
   },
@@ -358,7 +358,7 @@ export const Routes: MenuTypes[] = [
     active: false,
     link: '/user-roles',
     scope: {
-      action: 'manage',
+      action: 'read',
       subject: 'UserRoles'
     }
   }
