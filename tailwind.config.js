@@ -112,7 +112,7 @@ module.exports = {
       penumbra: '0 6px 30px 5px rgba(0, 0, 0, 0.12)',
       ambient: '0 8px 10px 0 rgba(0, 0, 0, 0.20)',
       none: '0 0 #0000',
-      card: '0 2px 4px rgba(0, 0, 0, 0.2)'
+      card: '0 2px 2px rgba(0, 0, 0, 0.2)'
     },
     fontSize: {
       h1: [
@@ -190,45 +190,6 @@ module.exports = {
       montserrat: ['Montserrat', 'sans-serif']
     },
     extend: {
-      padding: {
-        '4px': '4px',
-        '6px': '6px',
-        '8px': '8px',
-        '10px': '10px',
-        '12px': '12px',
-        '14px': '14px',
-        '16px': '16px',
-        '18px': '18px',
-        '20px': '20px',
-        '22px': '22px',
-        '24px': '24px',
-        '32px': '32px',
-        '48px': '48px'
-      },
-      height: {
-        '24px': '24px',
-        '30px': '30px',
-        '40px': '40px',
-        '45px': '45px',
-        '50px': '50px',
-        '60px': '60px',
-        '70px': '70px',
-        '80px': '80px',
-        '90px': '90px',
-        '100px': '100px'
-      },
-      width: {
-        '24px': '24px',
-        '30px': '30px',
-        '40px': '40px',
-        '45px': '45px',
-        '50px': '50px',
-        '60px': '60px',
-        '70px': '70px',
-        '80px': '80px',
-        '90px': '90px',
-        '100px': '100px'
-      },
       animation: {
         'spin-slow': 'spin 0.9s linear infinite',
         'spin-fast': 'spin 0.6s linear infinite',
@@ -237,6 +198,6 @@ module.exports = {
       }
     }
   },
-  plugins: [require('@tailwindcss/forms')],
+  plugins: [require('@tailwindcss/forms'), require('tailwindcss-textshadow')],
   darkMode: 'class'
 }

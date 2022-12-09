@@ -10,356 +10,231 @@ import {
 import { ImCreditCard } from 'react-icons/im'
 import { BiTransferAlt } from 'react-icons/bi'
 
-type Scope = {
-  action: 'read' | 'read' | 'update' | 'create' | 'delete' | 'export'
-  subject: string
-}
-
 export type SubMenuTypes = {
   title: string
   link: string
-  active?: boolean
   IconSVG?: React.FC<React.SVGProps<SVGSVGElement>>
-  scope?: Scope
+  scope?: string
 }
 
 export type MenuTypes = {
+  id: number
   menuTitle: string
-  active?: boolean
   IconSVG: React.FC<React.SVGProps<SVGSVGElement>>
   link?: string
   subLinks?: SubMenuTypes[]
-  scope?: Scope
+  scope?: string
   spacing?: boolean
 }
 
 export const Routes: MenuTypes[] = [
   {
+    id: 1,
     menuTitle: 'Dashboard',
     IconSVG: AiOutlineDashboard,
-    active: false,
-    link: '/dashboard',
-    scope: {
-      action: 'read',
-      subject: 'Dashboard'
-    }
+    link: '/admin/dashboard',
+    scope: 'Dashboard'
   },
   {
+    id: 2,
     menuTitle: 'Client 360',
     IconSVG: MdOutline360,
-    active: false,
-    link: '/client360',
-    scope: {
-      action: 'read',
-      subject: 'Client360'
-    },
+    link: '/admin/client-360',
+    scope: 'Client360',
     spacing: true
   },
   {
+    id: 3,
     menuTitle: 'Banking',
     IconSVG: AiOutlineBank,
-    active: false,
     subLinks: [
       {
         title: 'Agency Banking',
-        link: '/agency-banking',
-        active: false,
-        scope: {
-          action: 'read',
-          subject: 'AgencyBanking'
-        }
+        link: '/admin/agency-banking',
+        scope: 'AgencyBanking'
       },
       {
         title: 'm-Banking',
-        link: '/m-banking',
-        active: false,
-        scope: {
-          action: 'read',
-          subject: 'mBanking'
-        }
+        link: '/admin/m-banking',
+        scope: 'mBanking'
       },
       {
         title: 'e-Banking',
-        link: '/e-banking',
-        active: false,
-        scope: {
-          action: 'read',
-          subject: 'eBanking'
-        }
+        link: '/admin/e-banking',
+        scope: 'eBanking'
       }
     ]
   },
   {
+    id: 4,
     menuTitle: 'Payments',
     IconSVG: ImCreditCard,
-    active: false,
     subLinks: [
       {
         title: 'Bulk Payments',
-        link: '/bulk-payments',
-        active: false,
-        scope: {
-          action: 'read',
-          subject: 'BulkPayments'
-        }
+        link: '/admin/bulk-payments',
+        scope: 'BulkPayments'
       },
       {
         title: 'Government Salaries',
-        link: '/government-payments',
-        active: false,
-        scope: {
-          action: 'read',
-          subject: 'GovernmentSalaries'
-        }
+        link: '/admin/government-payments',
+        scope: 'GovernmentSalaries'
       },
       {
         title: 'Tax Payments',
-        link: '/tax-payments',
-        active: false,
-        scope: {
-          action: 'read',
-          subject: 'TaxPayments'
-        }
+        link: '/admin/tax-payments',
+        scope: 'TaxPayments'
       },
       {
         title: 'Billers',
-        link: '/billers',
-        active: false,
-        scope: {
-          action: 'read',
-          subject: 'Billers'
-        }
+        link: '/admin/billers',
+        scope: 'Billers'
       },
       {
         title: 'Online Payments',
-        link: '/online-payments',
-        active: false,
-        scope: {
-          action: 'read',
-          subject: 'OnlinePayment'
-        }
+        link: '/admin/online-payments',
+        scope: 'OnlinePayment'
       },
       {
         title: 'Till Payments',
-        link: '/till-payments',
-        active: false,
-        scope: {
-          action: 'read',
-          subject: 'Tillreadment'
-        }
+        link: '/admin/till-payments',
+        scope: 'TillManagement'
       }
     ]
   },
   {
+    id: 5,
     menuTitle: 'Transfers',
     IconSVG: BiTransferAlt,
-    active: false,
     subLinks: [
       {
         title: 'SWIFT & RTGS',
-        link: '/swift-transfer',
-        active: false,
-        scope: {
-          action: 'read',
-          subject: 'SWIFTRTGS'
-        }
+        link: '/admin/swift-transfer',
+        scope: 'SWIFTRTGS'
       },
       {
         title: 'Funds Transfer',
-        link: '/funds-transfer',
-        active: false,
-        scope: {
-          action: 'read',
-          subject: 'FundTransfers'
-        }
+        link: '/admin/funds-transfer',
+        scope: 'FundTransfers'
       },
       {
         title: 'MC Send',
-        link: '/mc-send',
-        active: false,
-        scope: {
-          action: 'read',
-          subject: 'MCSend'
-        }
+        link: '/admin/mc-send',
+        scope: 'MCSend'
       }
     ]
   },
   {
+    id: 6,
     menuTitle: 'Products',
     IconSVG: MdOutlineProductionQuantityLimits,
-    active: false,
     subLinks: [
       {
-        title: 'Card readment',
-        link: '/cards-readment',
-        active: false,
-        scope: {
-          action: 'read',
-          subject: 'Cards'
-        }
+        title: 'Card Management',
+        link: '/admin/cards-management',
+        scope: 'Cards'
       },
       {
-        title: 'Chequebook readment',
-        link: '/chequebook-readment',
-        active: false,
-        scope: {
-          action: 'read',
-          subject: 'ChequeBookreadment'
-        }
+        title: 'Chequebook Management',
+        link: '/admin/chequebook-management',
+        scope: 'ChequeBookManagement'
       },
       {
-        title: 'Contract readment',
-        link: '/contract-readment',
-        active: false,
-        scope: {
-          action: 'read',
-          subject: 'Contractreadment'
-        }
+        title: 'Contract Management',
+        link: '/admin/contract-management',
+        scope: 'ContractManagement'
       }
     ]
   },
   {
+    id: 7,
     menuTitle: 'Services',
     IconSVG: MdOutlineMiscellaneousServices,
-    active: false,
     subLinks: [
       {
         title: 'Cash Allocations',
-        link: '/cash-allocations',
-        active: false,
-        scope: {
-          action: 'read',
-          subject: 'CashAllocations'
-        }
+        link: '/admin/cash-allocations',
+        scope: 'CashAllocations'
       },
       {
         title: 'Thunes',
-        link: '/thunes',
-        active: false,
-        scope: {
-          action: 'read',
-          subject: 'Thunes'
-        }
+        link: '/admin/thunes',
+        scope: 'Thunes'
       },
       {
         title: 'Hologram',
-        link: '/hologram',
-        active: false,
-        scope: {
-          action: 'read',
-          subject: 'Hologram'
-        }
+        link: '/admin/hologram',
+        scope: 'Hologram'
       },
       {
         title: 'Inventory',
-        link: '/inventory',
-        active: false,
-        scope: {
-          action: 'read',
-          subject: 'Inventory'
-        }
+        link: '/admin/inventory',
+        scope: 'Inventory'
       },
       {
         title: 'Fees & Commissions',
-        link: '/fees-commissions',
-        active: false,
-        scope: {
-          action: 'read',
-          subject: 'FeesCommissions'
-        }
+        link: '/admin/fees-commissions',
+        scope: 'FeesCommissions'
       },
       {
         title: 'Payment Hub Service',
-        link: '/paymenthub-service',
-        active: false,
-        scope: {
-          action: 'read',
-          subject: 'PaymentHubServicereadment'
-        }
+        link: '/admin/paymenthub-service',
+        scope: 'PaymentHubServiceManagement'
       }
     ]
   },
   {
+    id: 8,
     menuTitle: 'Static Data',
     IconSVG: MdUpdate,
-    active: false,
     spacing: true,
     subLinks: [
       {
         title: 'Customer Onboarding',
-        link: '/customer-onboarding',
-        active: false,
-        scope: {
-          action: 'read',
-          subject: 'CustomerOnboarding'
-        }
+        link: '/admin/customer-onboarding',
+        scope: 'CustomerOnboarding'
       },
       {
         title: 'Account Opening',
-        link: '/account-opening',
-        active: false,
-        scope: {
-          action: 'read',
-          subject: 'AccountOpening'
-        }
+        link: '/admin/account-opening',
+        scope: 'AccountOpening'
       },
       {
         title: 'Entity Onboarding',
-        link: '/entity-onboarding',
-        active: false,
-        scope: {
-          action: 'read',
-          subject: 'EntityOnboarding'
-        }
+        link: '/admin/entity-onboarding',
+        scope: 'EntityOnboarding'
       },
       {
         title: 'Dormant Account Activation',
-        link: '/dormant-account-activation',
-        active: false,
-        scope: {
-          action: 'read',
-          subject: 'DormantAccountActivation'
-        }
+        link: '/admin/dormant-account-activation',
+        scope: 'DormantAccountActivation'
       },
       {
         title: 'Update Customer',
-        link: '/update-customer',
-        active: false,
-        scope: {
-          action: 'read',
-          subject: 'UpdateCustomer'
-        }
+        link: '/admin/update-customer',
+        scope: 'UpdateCustomer'
       }
     ]
   },
   {
+    id: 9,
     menuTitle: 'Reports',
     IconSVG: AiOutlineBarChart,
-    active: false,
-    link: '/reports',
-    scope: {
-      action: 'read',
-      subject: 'Reports'
-    }
+    link: '/admin/reports',
+    scope: 'Reports'
   },
   {
+    id: 10,
     menuTitle: 'Biometric',
     IconSVG: MdFingerprint,
-    active: false,
-    link: '/biometric',
-    scope: {
-      action: 'read',
-      subject: 'Biometric'
-    }
+    link: '/admin/biometric',
+    scope: 'Biometric'
   },
   {
+    id: 11,
     menuTitle: 'User & Roles',
     IconSVG: HiOutlineUserGroup,
-    active: false,
-    link: '/user-roles',
-    scope: {
-      action: 'read',
-      subject: 'UserRoles'
-    }
+    link: '/admin/user-roles',
+    scope: 'UserRoles'
   }
 ]

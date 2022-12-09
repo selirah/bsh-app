@@ -1,16 +1,21 @@
-import React from 'react'
+import { FC, useContext, useState } from 'react'
 import classnames from 'classnames'
 import { LayoutContext } from 'contexts'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import 'react-perfect-scrollbar/dist/css/styles.css'
 import { NavMenu } from 'components'
 import Image from 'next/image'
-import { Routes } from 'routes'
-import Link from 'next/link'
+import { MenuTypes } from 'routes'
 
-export const Sidebar = () => {
-  const { openSideNav } = React.useContext(LayoutContext)
-  const [hoverActive, setHoverActive] = React.useState(false)
+interface Props {
+  routes: MenuTypes[]
+  activeRoute?: string
+}
+
+export const Sidebar: FC<Props> = (props) => {
+  const { openSideNav } = useContext(LayoutContext)
+  const [hoverActive, setHoverActive] = useState(false)
+  const { routes, activeRoute } = props
 
   const renderMenu = () => (
     <div className={classnames('px-[16px]', {})}>
@@ -20,35 +25,33 @@ export const Sidebar = () => {
           'flex justify-center': !openSideNav
         })}
       >
-        <Link href="/">
-          <Image
-            src="/logo.png"
-            width={30}
-            height={30}
-            alt="logo"
-            unoptimized
-            style={{ width: 30, height: 30 }}
-            className={classnames('cursor-pointer duration-500', {
-              'rotate-[360deg] mr-2': openSideNav,
-              '': !openSideNav
-            })}
-          />
-          <h6
-            className={classnames(
-              'text-dark-btnText dark:text-light-btnText origin-left text-h6 common-transition font-lato',
-              {
-                hidden: !openSideNav
-              }
-            )}
-          >
-            EquityBCDC
-          </h6>
-        </Link>
+        <Image
+          src="/logo.png"
+          width={30}
+          height={30}
+          alt="logo"
+          unoptimized
+          style={{ width: 30, height: 30 }}
+          className={classnames('cursor-pointer duration-500', {
+            'rotate-[360deg] mr-2': openSideNav,
+            '': !openSideNav
+          })}
+        />
+        <h6
+          className={classnames(
+            'text-dark-btnText dark:text-light-btnText origin-left text-h6 common-transition font-lato',
+            {
+              hidden: !openSideNav
+            }
+          )}
+        >
+          EquityBCDC
+        </h6>
       </div>
 
       <ul className="mt-8 relative">
-        {Routes.map((route) => (
-          <div key={route.menuTitle}>
+        {routes.map((route) => (
+          <div key={route.id}>
             {route.subLinks && route.subLinks.length ? (
               <NavMenu.SubLink
                 menuTitle={route.menuTitle}
@@ -57,6 +60,7 @@ export const Sidebar = () => {
                 hideTitle={!openSideNav}
                 spacing={route.spacing}
                 setHoverActive={setHoverActive}
+                active={route.link === activeRoute}
               />
             ) : (
               <NavMenu.Basic
@@ -65,6 +69,7 @@ export const Sidebar = () => {
                 link={route.link}
                 hideTitle={!openSideNav}
                 spacing={route.spacing}
+                active={route.link === activeRoute}
               />
             )}
           </div>
@@ -76,7 +81,7 @@ export const Sidebar = () => {
   return (
     <nav
       className={classnames(
-        'h-screen bg-light-container dark:bg-dark-container duration-300 shadow-penumbra',
+        'h-screen bg-light-container dark:bg-dark-container duration-300 shadow-umbra',
         {
           'w-72': openSideNav,
           'w-20': !openSideNav

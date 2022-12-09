@@ -1,9 +1,9 @@
-import React from 'react'
-import { signOut } from 'next-auth/react'
+import { AdminLayout } from 'layouts'
+// import { useSession } from 'next-auth/react'
 
 const Dashboard = () => {
-  signOut()
-  return <div>index</div>
+  // const { data: session } = useSession()
+  return <AdminLayout pageTitle="Dashboard">Dashboard</AdminLayout>
 }
 
 export default Dashboard

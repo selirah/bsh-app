@@ -1,53 +1,47 @@
-import React, { Fragment } from 'react'
-import { FiHome, FiChevronRight, FiChevronDown } from 'react-icons/fi'
-import Link from 'next/link'
+import { Children, Fragment } from 'react'
+import { FiChevronRight, FiChevronDown } from 'react-icons/fi'
 import { Menu, Transition } from '@headlessui/react'
-import classnames from 'classnames'
+import Link from 'next/link'
 import { useIntl } from 'react-intl'
+import classnames from 'classnames'
 
-type LinkObject = { title: string; link: string; active: boolean }
-type ActionObject = {
+export type ActionObject = {
   title: string
   link: string
   IconSVG?: React.FC<React.SVGProps<SVGSVGElement>>
 }
 
 interface BreadcrumbProps {
-  links: LinkObject[]
   actions?: ActionObject[]
+  children?: React.ReactNode
 }
 
 export const Breadcrumb: React.FC<BreadcrumbProps> = (props) => {
-  const { links, actions } = props
+  const { children, actions } = props
   const intl = useIntl()
+  const childrenArray = Children.toArray(children)
+
+  const childrenWtihSeperator = childrenArray.map((child, index) => {
+    if (index !== childrenArray.length - 1) {
+      return (
+        <Fragment key={index}>
+          {child}
+          <div className="hidden md:flex items-center">
+            <FiChevronRight className="w-5 h-5 text-light-text dark:text-dark-text" />
+          </div>
+        </Fragment>
+      )
+    }
+    return child
+  })
 
   return (
-    <nav className="flex justify-between p-[16px] shadow-penumbra rounded" aria-label="Breadcrumb">
+    <div
+      className="flex justify-between p-[16px] bg-light-container dark:bg-dark-container shadow-penumbra rounded"
+      aria-label="breadcrumb"
+    >
       <ol className="inline-flex items-center space-x-1 md:space-x-3 font-lato">
-        <li className="inline-flex items-center">
-          <Link href="#" className="inline-flex">
-            <FiHome className="w-5 h-5 mr-2 text-light-text hover:text-primary md:ml-2 dark:text-dark-text common-transition hover:delay-150 dark:hover:text-light-text" />
-          </Link>
-        </li>
-        {links.map((link) => (
-          <li key={link.link}>
-            <div className="flex items-center">
-              <FiChevronRight className="w-5 h-5 text-light-text dark:text-dark-text" />
-              {!link.active ? (
-                <Link
-                  href="#"
-                  className="ml-2 font-bold text-pNormal text-light-text hover:text-primary dark:text-dark-text common-transition hover:delay-150 dark:hover:text-light-text"
-                >
-                  {link.title}
-                </Link>
-              ) : (
-                <span className="ml-2 font-regular text-pNormal text-light-text dark:text-dark-text">
-                  {link.title}
-                </span>
-              )}
-            </div>
-          </li>
-        ))}
+        {childrenWtihSeperator}
       </ol>
       {actions && actions.length ? (
         <div className="w-56 text-right">
@@ -78,7 +72,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = (props) => {
                   {actions.map((action) => (
                     <Menu.Item key={action.link}>
                       {({ active }) => (
-                        <Link href={action.link}>
+                        <Link href={{ pathname: action.link, query: { name: action.title } }}>
                           <button
                             className={classnames(
                               'group flex w-full items-center rounded px-[12px] py-[12px] text-sm font-montserrat font-regular text-pSmall',
@@ -103,6 +97,27 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = (props) => {
           </Menu>
         </div>
       ) : null}
-    </nav>
+    </div>
+  )
+}
+
+export const BreadcrumbItem = ({ children, href, isCurrent, ...props }) => {
+  return (
+    <li {...props} className="inline-flex items-center">
+      <Link
+        href={href}
+        passHref
+        className={classnames(
+          'ml-2 text-pNormal text-light-text hover:text-primary dark:text-dark-text common-transition hover:delay-150 dark:hover:text-light-text',
+          {
+            'font-bold': !isCurrent,
+            'font-normal': isCurrent
+          }
+        )}
+        aria-current={isCurrent ? 'page' : 'false'}
+      >
+        {children}
+      </Link>
+    </li>
   )
 }

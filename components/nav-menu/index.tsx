@@ -1,20 +1,14 @@
 import React from 'react'
 import classnames from 'classnames'
-import Link from 'next/link'
 import { FiChevronRight } from 'react-icons/fi'
 import { Transition } from 'components'
+import Link from 'next/link'
 
 export type SubLinkObj = {
   title: string
   link: string
-  active?: boolean
   IconSVG?: React.FC<React.SVGProps<SVGSVGElement>>
-  scope?: Scope
-}
-
-type Scope = {
-  action: 'read' | 'write'
-  resource: string
+  scope?: string
 }
 
 interface NavMenuProps {
@@ -22,7 +16,7 @@ interface NavMenuProps {
   active?: boolean
   IconSVG: React.FC<React.SVGProps<SVGSVGElement>>
   hideTitle?: boolean
-  scope?: Scope
+  scope?: string
   spacing?: boolean
   setHoverActive?: (value: boolean) => void
 }
@@ -49,7 +43,7 @@ export const Basic: React.FC<BasicProps> = (props) => {
         }
       )}
     >
-      <Link href={link ?? ''} className="flex items-center">
+      <Link className="flex items-center cursor-pointer" href={link}>
         <IconSVG
           className={classnames('', {
             'w-[18px] h-[18px]': !hideTitle,
@@ -107,16 +101,21 @@ export const SubLink: React.FC<SubLinksProps> = (props) => {
           />
           {!hideTitle ? <span className="text-pNormal">{menuTitle}</span> : null}
         </div>
-        <FiChevronRight className={classnames('w-4 h-4')} />
+        <FiChevronRight
+          className={classnames('w-4 h-4', {
+            invisible: !isEnter,
+            visible: isEnter
+          })}
+        />
       </div>
       <Transition.Dropdown isEnter={isEnter} nodeRef={nodeRef}>
         <ul
-          className="w-64 absolute origin-top-right -right-[257px] top-0 rounded border border-light-border dark:border-dark-border shadow-penumbra bg-light-container dark:bg-dark-container font-montserrat text-pSmall"
+          className="w-64 absolute origin-top-right -right-[255px] top-0 rounded border border-light-border dark:border-dark-border shadow-penumbra bg-light-container dark:bg-dark-container font-montserrat text-pSmall"
           ref={nodeRef}
         >
           {subLinks.map((link) => (
             <li key={link.link} className="">
-              <Link className="" href={link.link}>
+              <Link className="cursor-pointer" href={link.link}>
                 <button
                   className="flex w-full items-center disabled:cursor-not-allowed text-light-text dark:text-dark-text hover:text-light-btnText hover:bg-primary rounded p-[12px] disabled:hover:bg-primaryLight"
                   // disabled={link.inaccessible}

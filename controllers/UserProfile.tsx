@@ -1,4 +1,4 @@
-import React from 'react'
+import { FC, useState, useRef } from 'react'
 import { Avatar } from 'components'
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
@@ -11,11 +11,11 @@ interface Props {
   imageSrc?: string
 }
 
-export const UserProfile: React.FC<Props> = (props) => {
+export const UserProfile: FC<Props> = (props) => {
   const { username, imageSrc } = props
-  const [isEnter, setIsEnter] = React.useState(false)
+  const [isEnter, setIsEnter] = useState(false)
   const intl = useIntl()
-  const nodeRef = React.useRef(null)
+  const nodeRef = useRef(null)
 
   const onMouseOver = () => {
     setIsEnter(true)

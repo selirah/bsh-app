@@ -1,6 +1,6 @@
 import React from 'react'
 import { ThemeContext, ThemeTypes } from 'contexts/Theme'
-import { FiSun, FiMoon } from 'react-icons/fi'
+import { IoMoonSharp, IoSunnySharp } from 'react-icons/io5'
 
 export const ThemeSwitcher = () => {
   const { theme, changeTheme } = React.useContext(ThemeContext)
@@ -18,12 +18,12 @@ export const ThemeSwitcher = () => {
   return (
     <div className="">
       {theme === 'dark' ? (
-        <FiSun
+        <IoSunnySharp
           className="text-pLarge text-light-text dark:text-dark-text cursor-pointer"
           onClick={() => onSwitchTheme('light')}
         />
       ) : (
-        <FiMoon
+        <IoMoonSharp
           className="text-pLarge text-light-text dark:text-dark-text cursor-pointer"
           onClick={() => onSwitchTheme('dark')}
         />

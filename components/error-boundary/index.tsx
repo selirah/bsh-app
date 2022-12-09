@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import { MiscLayout } from 'layouts'
 import Illustration from 'public/illustrations/clienterror.svg'
 import { FormattedMessage } from 'react-intl'
-import Link from 'next/link'
-
 export class ErrorBoundary extends Component<any, any> {
   constructor(props: any) {
     super(props)
@@ -27,9 +25,6 @@ export class ErrorBoundary extends Component<any, any> {
           </h1>
           <p className="font-montserrat mb-10 font-light text-pNormal md:text-pLarge animate__animated animate__fadeInUp text-light-text dark:text-dark-text">
             <FormattedMessage defaultMessage="Our technicians are fixing the issue now." />
-            <Link href="/" className="underline font-bold text-primary">
-              <FormattedMessage defaultMessage="Return Home" />
-            </Link>
           </p>
           <div className="hidden md:flex justify-center">
             <Illustration />
