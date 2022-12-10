@@ -1,5 +1,5 @@
 import { useContext, FC } from 'react'
-import { BsArrowLeftCircleFill } from 'react-icons/bs'
+import { AiOutlineMenuFold, AiOutlineMenuUnfold } from 'react-icons/ai'
 import { LanguageSwitcher, ThemeSwitcher, UserProfile } from 'controllers'
 import { LayoutContext } from 'contexts'
 import classnames from 'classnames'
@@ -14,13 +14,27 @@ export const Navbar: FC<Props> = (props) => {
 
   return (
     <nav className="w-full flex justify-between px-[16px] py-[12px] bg-light-container dark:bg-dark-container shadow-umbra">
-      <BsArrowLeftCircleFill
-        className={classnames('w-[30px] h-[30px] text-accent duration-300 cursor-pointer', {
-          'rotate-180': !openSideNav,
-          invisible: layout === 'mobile'
-        })}
-        onClick={onSetOpenSideNav}
-      />
+      {openSideNav ? (
+        <AiOutlineMenuFold
+          className={classnames(
+            'w-[30px] h-[30px] text-light-text dark:text-dark-text cursor-pointer',
+            {
+              invisible: layout === 'mobile'
+            }
+          )}
+          onClick={onSetOpenSideNav}
+        />
+      ) : (
+        <AiOutlineMenuUnfold
+          className={classnames(
+            'w-[30px] h-[30px] text-light-text dark:text-dark-text cursor-pointer',
+            {
+              invisible: layout === 'mobile'
+            }
+          )}
+          onClick={onSetOpenSideNav}
+        />
+      )}
       <div className="flex items-center gap-x-4">
         <LanguageSwitcher />
         <div className="flex items-center gap-x-4">

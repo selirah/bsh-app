@@ -13,7 +13,13 @@ export type ActionObject = {
 
 interface BreadcrumbProps {
   actions?: ActionObject[]
-  children?: React.ReactNode
+  children: React.ReactNode
+}
+
+interface BreadcrumbItemProps {
+  children: React.ReactNode
+  href: string
+  isCurrent: boolean
 }
 
 export const Breadcrumb: React.FC<BreadcrumbProps> = (props) => {
@@ -49,7 +55,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = (props) => {
             <div>
               <Menu.Button className="inline-flex w-full justify-center px-4 py-2 text-sm font-medium common-transition text-light-text dark:text-dark-text focus:outline-none hover:text-primary">
                 {intl.formatMessage({
-                  defaultMessage: 'Actions',
+                  defaultMessage: 'Useful Links',
                   description: 'Actions that can be performed on a visited page'
                 })}
                 <FiChevronDown
@@ -101,7 +107,12 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = (props) => {
   )
 }
 
-export const BreadcrumbItem = ({ children, href, isCurrent, ...props }) => {
+export const BreadcrumbItem: React.FC<BreadcrumbItemProps> = ({
+  children,
+  href,
+  isCurrent,
+  ...props
+}) => {
   return (
     <li {...props} className="inline-flex items-center">
       <Link

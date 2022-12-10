@@ -1,18 +1,17 @@
 import { useEffect, useState } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
+import { getSession } from 'next-auth/react'
 import { Navbar } from './Navbar'
 import { Sidebar } from './Sidebar'
 import { Routes } from 'routes'
 import { ActionObject } from 'components'
 import { Breadcrumb, BreadcrumbItem } from 'components'
 import { HiOutlineHomeModern } from 'react-icons/hi2'
-
 interface Props {
   pageTitle: string
   children: React.ReactNode
   breadcrumbActions?: ActionObject[]
-  username?: string
 }
 
 type Breadcrumb = {
@@ -22,9 +21,10 @@ type Breadcrumb = {
 }
 
 export const AdminLayout: React.FC<Props> = (props) => {
-  const { children, pageTitle, breadcrumbActions, username } = props
+  const { children, pageTitle, breadcrumbActions } = props
   const router = useRouter()
   const [breadcrumbs, setBreadcrumbs] = useState<Breadcrumb[]>([])
+  const [username, setUsername] = useState('')
 
   useEffect(() => {
     const pathWithoutQuery = router.asPath.split('?')[0]
@@ -32,15 +32,24 @@ export const AdminLayout: React.FC<Props> = (props) => {
     pathArray.shift()
     pathArray = pathArray.filter((path) => path !== '')
     const breadcrumbs = pathArray.map((path, index) => {
-      const href = '/' + pathArray.slice(0, index + 1).join('/')
+      let href = ''
+      if (path === 'admin') {
+        href = '/'
+      } else {
+        href = '/' + pathArray.slice(0, index + 1).join('/')
+      }
       return {
         href,
         label: path.charAt(0).toUpperCase() + path.slice(1),
         isCurrent: index === pathArray.length - 1
       }
     })
-
     setBreadcrumbs(breadcrumbs)
+
+    getSession().then((session) => {
+      const { user } = session
+      setUsername(user.username)
+    })
   }, [router.asPath])
 
   return (
