@@ -60,7 +60,7 @@ export const AdminLayout: React.FC<Props> = (props) => {
       <Sidebar routes={Routes} activeRoute={router.pathname} />
       <div className="flex-1">
         <Navbar username={username ?? 'User'} />
-        <div className="mt-10 px-[16px]">
+        <div className="mt-9 px-[16px]">
           <Breadcrumb actions={breadcrumbActions}>
             <BreadcrumbItem isCurrent={router.pathname === '/'} href="/">
               <HiOutlineHomeModern className="w-5 h-5 mr-2 text-light-text hover:text-primary md:ml-2 dark:text-dark-text common-transition hover:delay-150 dark:hover:text-light-text" />
