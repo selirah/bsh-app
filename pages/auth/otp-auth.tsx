@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from 'react'
+import { useContext, useState } from 'react'
 import { AuthLayout } from 'layouts'
 import { ThemeContext, LayoutContext } from 'contexts'
 import { Formik, Form } from 'formik'
@@ -11,7 +11,7 @@ import Link from 'next/link'
 import { otpValidation } from 'validation-schema'
 import { OtpSchema, UserDTO } from 'schema/Auth'
 import { SuccessResponse, ErrorResponse } from 'schema/Axios'
-import { useRequestOtp, useValidateOtp } from 'hooks/auth'
+import { useValidateOtp } from 'hooks/auth'
 import { onAxiosError } from 'utils'
 import { signIn, getSession } from 'next-auth/react'
 
@@ -27,15 +27,6 @@ const OtpAuthPage = () => {
     username: ''
   }
   const [error, setError] = useState(null)
-  const { mutate: requestOtp } = useRequestOtp()
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const user: UserDTO = JSON.parse(localStorage.getItem('user'))
-      const token = localStorage.getItem('token')
-      requestOtp({ username: user.username, template: 'MFA', limitedToken: token })
-    }
-  }, [])
 
   const onValidationSuccess = async (response: SuccessResponse) => {
     const { data, headers, status } = response

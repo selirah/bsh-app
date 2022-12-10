@@ -14,7 +14,7 @@ import { BsShieldCheck } from 'react-icons/bs'
 import { MdPassword } from 'react-icons/md'
 import { LoginSchema, LoginResponse } from 'schema/Auth'
 import { SuccessResponse, ErrorResponse } from 'schema/Axios'
-import { useLogin } from 'hooks/auth'
+import { useLogin, useRequestOtp } from 'hooks/auth'
 import { onAxiosError } from 'utils'
 
 const LoginPage = () => {
@@ -28,17 +28,21 @@ const LoginPage = () => {
   }
   const [error, setError] = useState(null)
   const { push } = useRouter()
+  const { mutate: requestOtp } = useRequestOtp()
 
   const onLoginSuccess = (response: SuccessResponse) => {
     const { data, headers, status } = response
     if (status === 200 && data && headers) {
       const userData = data as LoginResponse
       const { authMode, userDTO } = userData
-      localStorage.setItem('token', headers['x-jwt-token'])
+      const token = headers['x-jwt-token']
+      localStorage.setItem('token', token)
       localStorage.setItem('user', JSON.stringify(userDTO))
       const { requires2StepVerification } = userDTO
       if (requires2StepVerification) {
         if (authMode === 'OTP') {
+          // request for OTP
+          requestOtp({ username: userDTO.username, template: 'MFA', limitedToken: token })
           push('/auth/otp-auth')
         } else if (authMode === 'BIO') {
           push('/auth/bio-auth')
