@@ -1,12 +1,10 @@
 import { useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import { AuthLayout } from 'layouts'
-import { ThemeContext, LayoutContext } from 'contexts'
+import { LayoutContext } from 'contexts'
 import { Formik, Form } from 'formik'
 import { Input, Password, Checkbox } from 'formik-controls'
 import { Button, AppleLoader, Alert } from 'components'
-import IllustrationLight from 'public/illustrations/light/login.svg'
-import IllustrationDark from 'public/illustrations/dark/login.svg'
 import { useIntl } from 'react-intl'
 import Link from 'next/link'
 import { loginValidation } from 'validation-schema'
@@ -18,7 +16,6 @@ import { useLogin, useRequestOtp } from 'hooks/auth'
 import { onAxiosError } from 'utils'
 
 const LoginPage = () => {
-  const { theme } = useContext(ThemeContext)
   const { layout } = useContext(LayoutContext)
   const intl = useIntl()
   const initialValues: LoginSchema = {
@@ -66,7 +63,7 @@ const LoginPage = () => {
   }
 
   return (
-    <AuthLayout SVG={theme === 'dark' ? IllustrationDark : IllustrationLight}>
+    <AuthLayout SVG="login">
       <div className="md:mt-32">
         <div className="mb-6">{error && <Alert color="error">{error}</Alert>}</div>
         <h5 className="text-h6 md:text-h5 text-dark-btnText dark:text-light-btnText font-lato font-medium animate__animated animate__fadeInDown">

@@ -1,9 +1,9 @@
-import React from 'react'
+import { useContext } from 'react'
 import { ThemeContext, ThemeTypes } from 'contexts/Theme'
 import { IoMoonSharp, IoSunnySharp } from 'react-icons/io5'
 
 export const ThemeSwitcher = () => {
-  const { theme, changeTheme } = React.useContext(ThemeContext)
+  const { theme, changeTheme } = useContext(ThemeContext)
 
   const onSwitchTheme = (theme: ThemeTypes) => {
     changeTheme(theme)

@@ -1,19 +1,16 @@
 import { useContext } from 'react'
 import { AuthLayout } from 'layouts'
-import { ThemeContext, LayoutContext } from 'contexts'
+import { LayoutContext } from 'contexts'
 import { Button } from 'components'
-import IllustrationLight from 'public/illustrations/light/welcome.svg'
-import IllustrationDark from 'public/illustrations/dark/welcome.svg'
 import { useIntl } from 'react-intl'
 import Link from 'next/link'
 
 const WelcomePage = () => {
-  const { theme } = useContext(ThemeContext)
   const { layout } = useContext(LayoutContext)
   const { formatMessage } = useIntl()
 
   return (
-    <AuthLayout SVG={theme === 'dark' ? IllustrationDark : IllustrationLight}>
+    <AuthLayout SVG="welcome">
       <div className="md:mt-32">
         <h5 className="text-h6 md:text-h5 text-dark-btnText dark:text-light-btnText font-lato font-medium animate__animated animate__fadeInDown">
           {formatMessage({

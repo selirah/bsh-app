@@ -22,12 +22,19 @@ const ColorContextProvider: React.FC<Props> = ({ children }) => {
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      if (color === 'prod') {
-        applyTheme(baseThemeProd)
-      } else {
-        applyTheme(baseThemeUat)
+      const userColor = localStorage.getItem('color') as ColorTypes
+      if (userColor) {
+        if (userColor === 'prod') {
+          setColor('prod')
+        } else {
+          setColor('uat')
+        }
       }
     }
+  }, [])
+
+  useEffect(() => {
+    color === 'prod' ? applyTheme(baseThemeProd) : applyTheme(baseThemeUat)
   }, [color])
 
   const changeColor = (color: ColorTypes) => {

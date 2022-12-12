@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { MiscLayout } from 'layouts'
-import Illustration from 'public/illustrations/clienterror.svg'
+import { I400 } from 'illustrations'
 import { FormattedMessage } from 'react-intl'
 export class ErrorBoundary extends Component<any, any> {
   constructor(props: any) {
@@ -27,7 +27,7 @@ export class ErrorBoundary extends Component<any, any> {
             <FormattedMessage defaultMessage="Our technicians are fixing the issue now." />
           </p>
           <div className="hidden md:flex justify-center">
-            <Illustration />
+            <I400 />
           </div>
         </MiscLayout>
       )

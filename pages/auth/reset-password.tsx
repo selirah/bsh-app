@@ -1,12 +1,10 @@
 import { useContext, useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { AuthLayout } from 'layouts'
-import { ThemeContext, LayoutContext } from 'contexts'
+import { LayoutContext } from 'contexts'
 import { Formik, Form } from 'formik'
 import { Password } from 'formik-controls'
 import { Button, AppleLoader, Alert } from 'components'
-import IllustrationLight from 'public/illustrations/light/resetpassword.svg'
-import IllustrationDark from 'public/illustrations/dark/resetpassword.svg'
 import { useIntl } from 'react-intl'
 import { passwordResetValidation } from 'validation-schema'
 import { MdPassword } from 'react-icons/md'
@@ -16,7 +14,6 @@ import { useResetPassword } from 'hooks/auth'
 import { onAxiosError } from 'utils'
 
 const ResetPasswordPage = () => {
-  const { theme } = useContext(ThemeContext)
   const { layout } = useContext(LayoutContext)
   const intl = useIntl()
   const [error, setError] = useState(null)
@@ -60,7 +57,7 @@ const ResetPasswordPage = () => {
   }
 
   return (
-    <AuthLayout SVG={theme === 'dark' ? IllustrationDark : IllustrationLight}>
+    <AuthLayout SVG="resetpassword">
       <div className="md:mt-32">
         <div className="mb-6">{error && <Alert color="error">{error}</Alert>}</div>
         <div className="mb-6">

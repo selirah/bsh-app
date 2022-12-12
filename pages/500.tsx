@@ -1,6 +1,6 @@
 import { MiscLayout } from 'layouts'
 import Link from 'next/link'
-import Illustration from 'public/illustrations/servererror.svg'
+import { I500 } from 'illustrations'
 import { useIntl } from 'react-intl'
 
 const ServerErrorPage = () => {
@@ -20,7 +20,7 @@ const ServerErrorPage = () => {
         </Link>
       </p>
       <div className="hidden md:flex justify-center">
-        <Illustration />
+        <I500 />
       </div>
     </MiscLayout>
   )

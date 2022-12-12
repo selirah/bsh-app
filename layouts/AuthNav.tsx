@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import { LanguageSwitcher, ThemeSwitcher } from 'controllers'
+import { LanguageSwitcher, ThemeSwitcher, ColorSwitcher } from 'controllers'
 import Link from 'next/link'
 
 export const AuthNav = () => {
@@ -18,6 +18,7 @@ export const AuthNav = () => {
       </Link>
       <div className="flex items-center space-x-4">
         <LanguageSwitcher />
+        {process.env.NODE_ENV === 'development' ? <ColorSwitcher /> : null}
         <ThemeSwitcher />
       </div>
     </nav>

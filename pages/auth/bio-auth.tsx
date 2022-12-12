@@ -1,9 +1,7 @@
 import { useContext, useState, useEffect } from 'react'
 import { AuthLayout } from 'layouts'
-import { ThemeContext, LayoutContext, LanguageContext } from 'contexts'
+import { LayoutContext, LanguageContext } from 'contexts'
 import { Button, AppleLoader, Alert, FingerPrint, Select } from 'components'
-import IllustrationLight from 'public/illustrations/light/bio.svg'
-import IllustrationDark from 'public/illustrations/dark/bio.svg'
 import { useIntl } from 'react-intl'
 import Link from 'next/link'
 import { UserDTO, BioDeviceResponse, BioSchema, FingerPrintSchema } from 'schema/Auth'
@@ -14,7 +12,6 @@ import { signIn, getSession } from 'next-auth/react'
 import { fingerListTranslated } from 'mock/fingerPrintData'
 
 const BioAuthPage = () => {
-  const { theme } = useContext(ThemeContext)
   const { layout } = useContext(LayoutContext)
   const { lang } = useContext(LanguageContext)
   const intl = useIntl()
@@ -117,7 +114,7 @@ const BioAuthPage = () => {
   }, [])
 
   return (
-    <AuthLayout SVG={theme === 'dark' ? IllustrationDark : IllustrationLight}>
+    <AuthLayout SVG="bio">
       <div className="md:mt-16">
         <div className="mb-6">{error && <Alert color="error">{error}</Alert>}</div>
         <h5 className="text-h6 md:text-h5 text-dark-btnText dark:text-light-btnText font-lato font-medium animate__animated animate__fadeInDown">

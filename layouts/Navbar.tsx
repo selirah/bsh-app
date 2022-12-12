@@ -1,6 +1,6 @@
 import { useContext, FC } from 'react'
 import { AiOutlineMenuFold, AiOutlineMenuUnfold } from 'react-icons/ai'
-import { LanguageSwitcher, ThemeSwitcher, UserProfile } from 'controllers'
+import { LanguageSwitcher, ThemeSwitcher, UserProfile, ColorSwitcher } from 'controllers'
 import { LayoutContext } from 'contexts'
 import classnames from 'classnames'
 
@@ -37,6 +37,7 @@ export const Navbar: FC<Props> = (props) => {
       )}
       <div className="flex items-center gap-x-4">
         <LanguageSwitcher />
+        {process.env.NODE_ENV === 'development' ? <ColorSwitcher /> : null}
         <div className="flex items-center gap-x-4">
           <ThemeSwitcher />
           <UserProfile username={username} />

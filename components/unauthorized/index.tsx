@@ -1,5 +1,5 @@
 import { MiscLayout } from 'layouts'
-import Illustration from 'public/illustrations/unauthorized.svg'
+import { I401 } from 'illustrations'
 import { useIntl } from 'react-intl'
 import Link from 'next/link'
 
@@ -20,7 +20,7 @@ export const Unauthorized = () => {
         </Link>
       </p>
       <div className="hidden md:flex justify-center">
-        <Illustration />
+        <I401 />
       </div>
     </MiscLayout>
   )

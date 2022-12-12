@@ -1,5 +1,5 @@
 import { MiscLayout } from 'layouts'
-import Illustration from 'public/illustrations/not-found.svg'
+import { I404 } from 'illustrations'
 import { useIntl } from 'react-intl'
 import Link from 'next/link'
 
@@ -20,7 +20,7 @@ const NotFoundPage = () => {
         </Link>
       </p>
       <div className="hidden md:flex justify-center">
-        <Illustration />
+        <I404 />
       </div>
     </MiscLayout>
   )
