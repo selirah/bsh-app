@@ -60,10 +60,10 @@ export const Basic: React.FC<RadioProps> = (props) => {
             'text-primary': color === 'primary' || !color,
             'text-secondary': color === 'secondary',
             'text-accent': color === 'accent',
-            'text-success-card': color === 'success',
-            'text-error-card': color === 'error',
-            'text-info-avatar': color === 'info',
-            'text-warning-avatar': color === 'warning'
+            'text-success': color === 'success',
+            'text-error': color === 'error',
+            'text-info': color === 'info',
+            'text-warning': color === 'warning'
           }
         )}
         onChange={onChange}
@@ -132,10 +132,10 @@ export const HelpText: React.FC<HelpTextProps> = (props) => {
               'text-primary': color === 'primary' || !color,
               'text-secondary': color === 'secondary',
               'text-accent': color === 'accent',
-              'text-success-card': color === 'success',
-              'text-error-card': color === 'error',
-              'text-info-avatar': color === 'info',
-              'text-warning-avatar': color === 'warning'
+              'text-success': color === 'success',
+              'text-error': color === 'error',
+              'text-info': color === 'info',
+              'text-warning': color === 'warning'
             }
           )}
           onChange={onChange}
@@ -187,10 +187,10 @@ export const Layout: React.FC<LayoutProps> = (props) => {
             'hover:border-primary peer-checked:border-primary': color === 'primary' || !color,
             'hover:border-secondary peer-checked:border-secondary': color === 'secondary',
             'hover:border-accent peer-checked:border-accent': color === 'accent',
-            'hover:border-success-avatar peer-checked:border-success-avatar': color === 'success',
-            'hover:border-error-avatar peer-checked:border-error-avatar': color === 'error',
-            'hover:border-info-avatar peer-checked:border-info-avatar': color === 'info',
-            'hover:border-warning-avatar peer-checked:border-warning-avatar': color === 'warning'
+            'hover:border-success peer-checked:border-success': color === 'success',
+            'hover:border-error peer-checked:border-error': color === 'error',
+            'hover:border-info peer-checked:border-info': color === 'info',
+            'hover:border-warning peer-checked:border-warning': color === 'warning'
           }
         )}
       >
@@ -215,10 +215,10 @@ export const Layout: React.FC<LayoutProps> = (props) => {
             'text-primary': color === 'primary' || !color,
             'text-secondary': color === 'secondary',
             'text-accent': color === 'accent',
-            'text-success-card': color === 'success',
-            'text-error-card': color === 'error',
-            'text-info-avatar': color === 'info',
-            'text-warning-avatar': color === 'warning'
+            'text-success': color === 'success',
+            'text-error': color === 'error',
+            'text-info': color === 'info',
+            'text-warning': color === 'warning'
           })}
         />
       </label>

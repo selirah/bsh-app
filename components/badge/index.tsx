@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react'
 import classnames from 'classnames'
 
-type BadgeColor = 'default' | 'block' | 'pending' | 'rejected' | 'active'
+type BadgeColor = 'default' | 'error' | 'warning' | 'info' | 'success'
 type BadgeSize = 'sm' | 'md' | 'lg'
 
 interface BadgeProps {
@@ -22,14 +22,14 @@ export const Badge: React.FC<BadgeProps> = (props) => {
         'text-pLarge h-[40px]': size === 'lg',
         'bg-badge-default-container text-badge-default-text dark:bg-dark-background dark:border':
           !color || color === 'default',
-        'bg-badge-block-container text-badge-block-text dark:bg-dark-background dark:border':
-          color === 'block',
-        'bg-badge-pending-container text-badge-pending-text dark:bg-dark-background dark:border':
-          color === 'pending',
-        'bg-badge-rejected-container text-badge-rejected-text dark:bg-dark-background dark:border':
-          color === 'rejected',
-        'bg-badge-active-container text-badge-active-text dark:bg-dark-background dark:border':
-          color === 'active',
+        'bg-badge-error-container text-badge-error-text dark:bg-dark-background dark:border':
+          color === 'error',
+        'bg-badge-warning-container text-badge-warning-text dark:bg-dark-background dark:border':
+          color === 'warning',
+        'bg-badge-info-container text-badge-info-text dark:bg-dark-background dark:border':
+          color === 'info',
+        'bg-badge-success-container text-badge-success-text dark:bg-dark-background dark:border':
+          color === 'success',
         rounded: !pill,
         'rounded-full': pill
       })}

@@ -17,12 +17,10 @@ export const Alert: React.FC<AlertProps> = (props) => {
     <div
       className={classnames('flex p-[16px] font-lato font-medium text-pNormal', {
         rounded: !border,
-        'bg-warning-container text-warning-text dark:bg-dark-background dark:border':
-          color === 'warning',
-        'bg-success-container text-success-text dark:bg-dark-background dark:border':
-          color === 'success',
-        'bg-info-container text-info-text dark:bg-dark-background dark:border': color === 'info',
-        'bg-error-container text-error-text dark:bg-dark-background dark:border': color === 'error',
+        'bg-warning-light text-warning dark:bg-dark-background dark:border': color === 'warning',
+        'bg-success-light text-success dark:bg-dark-background dark:border': color === 'success',
+        'bg-info-light text-info dark:bg-dark-background dark:border': color === 'info',
+        'bg-error-light text-error dark:bg-dark-background dark:border': color === 'error',
         'border-l-4': border
       })}
       role="alert"
@@ -31,9 +29,9 @@ export const Alert: React.FC<AlertProps> = (props) => {
       {color === 'warning' ? (
         <FiAlertTriangle className="flex-shrink-0 inline w-6 h-6 mr-3 mt-1 " />
       ) : color === 'error' ? (
-        <FiAlertCircle className="flex-shrink-0 inline w-6 h-6 mr-3 mt-1" />
+        <FiAlertCircle className="flex-shrink-0 inline w-6 h-6 mr-3" />
       ) : color === 'info' ? (
-        <FiInfo className="flex-shrink-0 inline w-6 h-6 mr-3 mt-1" />
+        <FiInfo className="flex-shrink-0 inline w-6 h-6 mr-3" />
       ) : (
         <FiCheckCircle className="flex-shrink-0 inline w-6 h-6 mr-3 mt-1" />
       )}

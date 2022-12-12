@@ -37,10 +37,10 @@ export const Basic: React.FC<BasicProps> = (props) => {
           'bg-primary': color === 'primary' || !color,
           'bg-secondary': color === 'secondary',
           'bg-accent': color === 'accent',
-          'bg-success-card': color === 'success',
-          'bg-error-card': color === 'error',
-          'bg-info-avatar': color === 'info',
-          'bg-warning-avatar': color === 'warning'
+          'bg-success': color === 'success',
+          'bg-error': color === 'error',
+          'bg-info': color === 'info',
+          'bg-warning': color === 'warning'
         })}
       >
         <h1 className={classnames('text-pNormal font-lato font-regular text-light-btnText', {})}>

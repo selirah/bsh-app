@@ -47,10 +47,10 @@ export const CheckboxGroup: React.FC<Props> = (props) => {
                       'text-primary': color === 'primary' || !color,
                       'text-secondary': color === 'secondary',
                       'text-accent': color === 'accent',
-                      'text-success-card': color === 'success',
-                      'text-error-card': color === 'error',
-                      'text-info-avatar': color === 'info',
-                      'text-warning-avatar': color === 'warning'
+                      'text-success': color === 'success',
+                      'text-error': color === 'error',
+                      'text-info': color === 'info',
+                      'text-warning': color === 'warning'
                     }
                   )}
                   disabled={disabled}

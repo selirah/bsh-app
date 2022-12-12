@@ -42,10 +42,10 @@ export const Switch: React.FC<SwitchProps> = (props) => {
               'peer-checked:bg-primary': color === 'primary' || !color,
               'peer-checked:bg-secondary': color === 'secondary',
               'peer-checked:bg-accent': color === 'accent',
-              'peer-checked:bg-success-card': color === 'success',
-              'peer-checked:bg-error-card': color === 'error',
-              'peer-checked:bg-info-avatar': color === 'info',
-              'peer-checked:bg-warning-avatar': color === 'warning'
+              'peer-checked:bg-success': color === 'success',
+              'peer-checked:bg-error': color === 'error',
+              'peer-checked:bg-info': color === 'info',
+              'peer-checked:bg-warning': color === 'warning'
             }
           )}
         ></div>

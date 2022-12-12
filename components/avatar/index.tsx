@@ -63,10 +63,10 @@ export const Img: React.FC<ImgProps> = (props) => {
           className={classnames(
             'bottom-0 left-9 absolute border-2 border-light-btnText dark:border-gray-800 rounded-full',
             {
-              'bg-success-avatar': state === 'success',
-              'bg-error-avatar': state === 'error',
-              'bg-warning-avatar': state === 'warning',
-              'bg-info-avatar': state === 'info',
+              'bg-success': state === 'success',
+              'bg-error': state === 'error',
+              'bg-warning': state === 'warning',
+              'bg-info': state === 'info',
               'left-7 w-3 h-3': size === 'xs',
               'left-8 w-3 h-3': size === 'sm',
               'left-10 w-4 h-4': size === 'md',
@@ -99,10 +99,10 @@ export const Initals: React.FC<InitialsProps> = (props) => {
             'bg-primary': bgColor === 'primary' || !bgColor,
             'bg-secondary': bgColor === 'secondary',
             'bg-accent': bgColor === 'accent',
-            'bg-success-avatar': bgColor === 'success',
-            'bg-error-avatar': bgColor === 'error',
-            'bg-info-avatar': bgColor === 'info',
-            'bg-warning-avatar': bgColor === 'warning'
+            'bg-success': bgColor === 'success',
+            'bg-error': bgColor === 'error',
+            'bg-info': bgColor === 'info',
+            'bg-warning': bgColor === 'warning'
           }
         )}
       >
@@ -113,10 +113,10 @@ export const Initals: React.FC<InitialsProps> = (props) => {
           className={classnames(
             'bottom-0 left-9 absolute w-4 h-4 border-2 border-light-btnText dark:border-gray-800 rounded-full',
             {
-              'bg-success-avatar': state === 'success',
-              'bg-error-avatar': state === 'error',
-              'bg-warning-avatar': state === 'warning',
-              'bg-info-avatar': state === 'info',
+              'bg-success': state === 'success',
+              'bg-error': state === 'error',
+              'bg-warning': state === 'warning',
+              'bg-info': state === 'info',
               'left-7 w-3 h-3': size === 'xs',
               'left-8 w-3 h-3': size === 'sm',
               'left-10 w-4 h-4': size === 'md',
@@ -143,10 +143,10 @@ export const Icon: React.FC<IconProps> = (props) => {
         'w-[30px] h-[30px]': size === 'md',
         'w-[40px] h-[40px]': size === 'lg',
         'w-[50px] h-[50px]': size === 'xl',
-        'bg-success-container': color === 'success',
-        'bg-error-container': color === 'error',
-        'bg-info-container': color === 'info',
-        'bg-warning-container': color === 'warning'
+        'bg-success-light': color === 'success',
+        'bg-error-light': color === 'error',
+        'bg-info-light': color === 'info',
+        'bg-warning-light': color === 'warning'
       })}
     >
       <span className="font-medium text-light-btnText font-lato">
@@ -157,10 +157,10 @@ export const Icon: React.FC<IconProps> = (props) => {
             'w-6 h-6': size === 'md',
             'w-7 h-7': size === 'lg',
             'w-8 h-8': size === 'xl',
-            'text-success-avatar': color === 'success',
-            'text-error-avatar': color === 'error',
-            'text-info-text': color === 'info',
-            'text-warning-text': color === 'warning'
+            'text-success': color === 'success',
+            'text-error': color === 'error',
+            'text-info': color === 'info',
+            'text-warning': color === 'warning'
           })}
           aria-hidden="true"
         />

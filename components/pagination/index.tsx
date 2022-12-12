@@ -6,24 +6,24 @@ import classnames from 'classnames'
 
 const pages: Select.SelectData[] = [
   {
-    label: 10,
-    value: 10
+    label: '10',
+    value: '10'
   },
   {
-    label: 20,
-    value: 20
+    label: '20',
+    value: '20'
   },
   {
-    label: 30,
-    value: 30
+    label: '30',
+    value: '30'
   },
   {
-    label: 40,
-    value: 40
+    label: '40',
+    value: '40'
   },
   {
-    label: 50,
-    value: 50
+    label: '50',
+    value: '50'
   }
 ]
 
@@ -54,7 +54,7 @@ export const Pagination: React.FC<PaginationProps> = (props) => {
   } = props
 
   const onChange = (data: Select.SelectData) => {
-    setPageSize(data.value as number)
+    setPageSize(parseInt(data.value))
   }
 
   return (

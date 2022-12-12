@@ -36,10 +36,10 @@ export const Completed: React.FC<CompletedProps> = (props) => {
           'bg-primary': color === 'primary' || !color,
           'bg-secondary': color === 'secondary',
           'bg-accent': color === 'accent',
-          'bg-success-avatar': color === 'success',
-          'bg-error-avatar': color === 'error',
-          'bg-info-avatar': color === 'info',
-          'bg-warning-avatar': color === 'warning'
+          'bg-success': color === 'success',
+          'bg-error': color === 'error',
+          'bg-info': color === 'info',
+          'bg-warning': color === 'warning'
         })}
       >
         {IconSVG ? (
@@ -68,10 +68,10 @@ export const Active: React.FC<ActiveProps> = (props) => {
             'border-primary': color === 'primary' || !color,
             'border-secondary': color === 'secondary',
             'border-accent': color === 'accent',
-            'border-success-avatar': color === 'success',
-            'border-error-avatar': color === 'error',
-            'border-info-avatar': color === 'info',
-            'border-warning-avatar': color === 'warning'
+            'border-success': color === 'success',
+            'border-error': color === 'error',
+            'border-info': color === 'info',
+            'border-warning': color === 'warning'
           }
         )}
       >
@@ -80,10 +80,10 @@ export const Active: React.FC<ActiveProps> = (props) => {
             'text-primary': color === 'primary' || !color,
             'text-secondary': color === 'secondary',
             'text-accent': color === 'accent',
-            'text-success-avatar': color === 'success',
-            'text-error-avatar': color === 'error',
-            'text-info-avatar': color === 'info',
-            'text-warning-avatar': color === 'warning'
+            'text-success': color === 'success',
+            'text-error': color === 'error',
+            'text-info': color === 'info',
+            'text-warning': color === 'warning'
           })}
         >
           {step}

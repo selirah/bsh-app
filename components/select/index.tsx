@@ -63,8 +63,8 @@ export const Single: React.FC<SingleProps> = (props) => {
             'text-pSmall': size === 'sm',
             'text-pNormal': size === 'md' || !size || size === 'lg',
             'text-light-form-label dark:text-dark-form-label': !error && !success,
-            'text-error-text': error,
-            'text-success-text': success
+            'text-error': error,
+            'text-success': success
           })}
         >
           {label}
@@ -137,8 +137,8 @@ export const Multiple: React.FC<MultipleProps> = (props) => {
             'text-pSmall': size === 'sm',
             'text-pNormal': size === 'md' || !size || size === 'lg',
             'text-light-form-label dark:text-dark-form-label': !error && !success,
-            'text-error-text': error,
-            'text-success-text': success
+            'text-error': error,
+            'text-success': success
           })}
         >
           {label}

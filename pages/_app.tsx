@@ -1,5 +1,10 @@
 import type { AppProps } from 'next/app'
-import { LanguageContextProvider, ThemeContextProvider, LayoutContextProvider } from '../contexts'
+import {
+  LanguageContextProvider,
+  ThemeContextProvider,
+  LayoutContextProvider,
+  ColorContextProvider
+} from '../contexts'
 import { ErrorBoundary } from 'components'
 import { SessionProvider } from 'next-auth/react'
 import { ToastContainer } from 'react-toastify'
@@ -14,15 +19,17 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
     <LayoutContextProvider>
       <LanguageContextProvider>
         <ThemeContextProvider>
-          <SessionProvider session={session}>
-            <QueryClientProvider client={queryClient}>
-              <ErrorBoundary>
-                <Component {...pageProps} />
-              </ErrorBoundary>
-              <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
-            </QueryClientProvider>
-          </SessionProvider>
-          <ToastContainer newestOnTop />
+          <ColorContextProvider>
+            <SessionProvider session={session}>
+              <QueryClientProvider client={queryClient}>
+                <ErrorBoundary>
+                  <Component {...pageProps} />
+                </ErrorBoundary>
+                <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
+              </QueryClientProvider>
+            </SessionProvider>
+            <ToastContainer newestOnTop />
+          </ColorContextProvider>
         </ThemeContextProvider>
       </LanguageContextProvider>
     </LayoutContextProvider>

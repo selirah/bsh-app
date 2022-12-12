@@ -68,10 +68,10 @@ export const Basic: React.FC<BasicProps> = (props) => {
             'text-primary': color === 'primary' || !color,
             'text-secondary': color === 'secondary',
             'text-accent': color === 'accent',
-            'text-success-card': color === 'success',
-            'text-error-card': color === 'error',
-            'text-info-avatar': color === 'info',
-            'text-warning-avatar': color === 'warning'
+            'text-success': color === 'success',
+            'text-error': color === 'error',
+            'text-info': color === 'info',
+            'text-warning': color === 'warning'
           }
         )}
         onChange={onChange}
@@ -144,10 +144,10 @@ export const HelpText: React.FC<HelpTextProps> = (props) => {
               'text-primary': color === 'primary' || !color,
               'text-secondary': color === 'secondary',
               'text-accent': color === 'accent',
-              'text-success-card': color === 'success',
-              'text-error-card': color === 'error',
-              'text-info-avatar': color === 'info',
-              'text-warning-avatar': color === 'warning'
+              'text-success': color === 'success',
+              'text-error': color === 'error',
+              'text-info': color === 'info',
+              'text-warning': color === 'warning'
             }
           )}
           onChange={onChange}
@@ -213,10 +213,10 @@ export const Indeterminate: React.FC<IndeterminateProps> = ({
           'text-primary': color === 'primary' || !color,
           'text-secondary': color === 'secondary',
           'text-accent': color === 'accent',
-          'text-success-card': color === 'success',
-          'text-error-card': color === 'error',
-          'text-info-avatar': color === 'info',
-          'text-warning-avatar': color === 'warning'
+          'text-success': color === 'success',
+          'text-error': color === 'error',
+          'text-info': color === 'info',
+          'text-warning': color === 'warning'
         }
       )}
       ref={ref}

@@ -31,10 +31,10 @@ export const FingerPrint: React.FC<FingerPrintProps> = (props) => {
         'text-primary': color === 'primary',
         'text-secondary': color === 'secondary',
         'text-accent': color === 'accent',
-        'text-success-avatar': color === 'success',
-        'text-error-avatar': color === 'error',
-        'text-info-avatar': color === 'info',
-        'text-warning-avatar': color === 'warning'
+        'text-success': color === 'success',
+        'text-error': color === 'error',
+        'text-info': color === 'info',
+        'text-warning': color === 'warning'
       })}
     />
   )

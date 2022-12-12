@@ -16,7 +16,7 @@ export const CustomStyles = (
       transitionDelay: '150ms',
       transitionDuration: '300ms',
       borderColor: isFocused
-        ? '#4E45E4'
+        ? '#A32A29'
         : error
         ? '#B5241E'
         : success
@@ -26,7 +26,7 @@ export const CustomStyles = (
         : '#DDE0E4',
       cursor: 'pointer',
       '&:active': {
-        borderColor: '#4E45E4'
+        borderColor: '#A32A29'
       },
       backgroundColor: theme === 'dark' ? '#212021' : '#FEFEFE',
       color: theme === 'dark' ? '#D1D5DA' : '#0E172B'
@@ -35,7 +35,7 @@ export const CustomStyles = (
       ...base,
       borderColor: theme === 'dark' ? '#212021' : '#FEFEFE',
       '&:hover': {
-        backgroundColor: '#4E45E4',
+        backgroundColor: '#A32A29',
         color: '#FFFFFF'
       },
       backgroundColor: theme === 'dark' ? '#212021' : '#FEFEFE',

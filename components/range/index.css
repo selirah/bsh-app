@@ -68,33 +68,33 @@
 }
 
 .range-success::-webkit-slider-thumb {
-  background: theme('colors.success.card');
+  background: theme('colors.success');
 }
 
 .range-success::-moz-slider-thumb {
-  background: theme('colors.success.card');
+  background: theme('colors.success');
 }
 
 .range-error::-webkit-slider-thumb {
-  background: theme('colors.error.card');
+  background: theme('colors.error');
 }
 
 .range-error::-moz-slider-thumb {
-  background: theme('colors.error.card');
+  background: theme('colors.error');
 }
 
 .range-info::-webkit-slider-thumb {
-  background: theme('colors.info.avatar');
+  background: theme('colors.info');
 }
 
 .range-info::-moz-slider-thumb {
-  background: theme('colors.info.avatar');
+  background: theme('colors.info');
 }
 
 .range-warning::-webkit-slider-thumb {
-  background: theme('colors.warning.avatar');
+  background: theme('colors.warning');
 }
 
 .range-warning::-moz-slider-thumb {
-  background: theme('colors.warning.avatar');
+  background: theme('colors.warning');
 }

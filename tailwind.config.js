@@ -12,17 +12,27 @@ module.exports = {
   theme: {
     colors: {
       transparent: 'transparent',
-      primary: '#4E45E4',
-      primaryLight: '#8972ff',
-      primaryDark: '#001bb1',
-      secondary: '#DB1EBC',
-      secondaryLight: '#ff61ef',
-      secondaryDark: '#a5008b',
-      accent: '#FF3B88',
-      accentLight: '#ff76b8',
-      accentDark: '#c6005b',
-      white: '#ffffff',
-      black: '#000000',
+      primary: 'var(--theme-primary)',
+      'primary-light': 'var(--theme-primary-light)',
+      'primary-dark': 'var(--theme-primary-dark)',
+      secondary: 'var(--theme-secondary)',
+      'secondary-light': 'var(--theme-secondary-light)',
+      'secondary-dark': 'var(--theme-secondary-dark)',
+      accent: 'var(--theme-accent)',
+      'accent-light': 'var(--theme-accent-light)',
+      'accent-dark': 'var(--theme-accent-dark)',
+      success: 'var(--theme-success)',
+      'success-light': 'var(--theme-success-light)',
+      'success-dark': 'var(--theme-success-dark)',
+      error: 'var(--theme-error)',
+      'error-light': 'var(--theme-error-light)',
+      'error-dark': 'var(--theme-error-dark)',
+      info: 'var(--theme-info)',
+      'info-light': 'var(--theme-info-light)',
+      'info-dark': 'var(--theme-info-dark)',
+      warning: 'var(--theme-warning)',
+      'warning-light': 'var(--theme-warning-light)',
+      'warning-dark': 'var(--theme-warning-dark)',
       light: {
         background: '#F2F4F7',
         container: '#FEFEFE',
@@ -53,50 +63,24 @@ module.exports = {
           inputDisabled: '#F9FAFB'
         }
       },
-      error: {
-        text: '#B5241E',
-        container: '#F9DFDC',
-        card: '#DC2726',
-        hovered: '#9E221C',
-        disabled: '#DA7A7A',
-        avatar: '#DC2726'
-      },
-      success: {
-        text: '#376A20',
-        container: '#DDFDE7',
-        card: '#1EA249',
-        hovered: '#2A501A',
-        disabled: '#94E2AE',
-        avatar: '#4BDD80'
-      },
-      warning: {
-        text: '#895314',
-        container: '#FFF8C3',
-        avatar: '#F57C00'
-      },
-      info: {
-        text: '#1F41AE',
-        container: '#DAEAFF',
-        avatar: '#42ACFF'
-      },
       badge: {
         default: {
           text: '#202A38',
           container: '#F2F5F6'
         },
-        block: {
+        error: {
           text: '#A63837',
           container: '#FDE3E0'
         },
-        pending: {
+        warning: {
           text: '#895314',
           container: '#FFF8C3'
         },
-        rejected: {
+        info: {
           text: '#1F41AE',
           container: '#DAEAFF'
         },
-        active: {
+        success: {
           text: '#4BDD80',
           container: '#DDFDE7'
         }

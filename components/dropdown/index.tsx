@@ -74,14 +74,14 @@ export const Button: React.FC<BottonProps> = (props) => {
                 'h-[45px] text-pNormal': size === 'md' || !size,
                 'h-[50px] text-pLarge': size === 'lg',
                 'text-light-btnText': !outline,
-                'bg-primary hover:bg-primaryDark': (!color || color === 'primary') && !outline,
-                'bg-error-card hover:bg-error-hovered': color === 'error' && !outline,
-                'bg-success-card hover:bg-success-hovered': color === 'success' && !outline,
-                'bg-accent hover:bg-accentDark': color === 'accent' && !outline,
+                'bg-primary hover:bg-primary-dark': (!color || color === 'primary') && !outline,
+                'bg-error hover:bg-error-dark': color === 'error' && !outline,
+                'bg-success hover:bg-success-dark': color === 'success' && !outline,
+                'bg-accent hover:bg-accent-dark': color === 'accent' && !outline,
                 'border-2 font-bold': outline,
                 'border-primary text-primary': outline && color === 'primary',
-                'border-error-card text-error-card': outline && color === 'error',
-                'border-success-card text-success-card': outline && color === 'success',
+                'border-error text-error': outline && color === 'error',
+                'border-success text-success': outline && color === 'success',
                 'border-accent text-accent': outline && color === 'accent'
               }
             )}

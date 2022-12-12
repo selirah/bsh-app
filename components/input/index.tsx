@@ -79,8 +79,8 @@ export const Basic: React.FC<BasicProps> = (props) => {
             'text-pSmall': size === 'sm',
             'text-pNormal': size === 'md' || !size || size === 'lg',
             'text-light-form-label dark:text-dark-form-label': !error && !success,
-            'text-error-text': error,
-            'text-success-text': success
+            'text-error': error,
+            'text-success': success
           })}
         >
           {label}
@@ -99,8 +99,8 @@ export const Basic: React.FC<BasicProps> = (props) => {
             'h-[45px] text-pNormal': size === 'md' || !size,
             'h-[50px] text-pNormal': size === 'lg',
             'border-light-form-inputBorder ': !error && !success,
-            'border-error-text': error,
-            'border-success-text': success
+            'border-error': error,
+            'border-success': success
           }
         )}
         onChange={onChange}
@@ -156,8 +156,8 @@ export const Icon: React.FC<IconProps> = (props) => {
             'text-pSmall': size === 'sm',
             'text-pNormal': size === 'md' || !size || size === 'lg',
             'text-light-form-label dark:text-dark-form-label': !error && !success,
-            'text-error-text': error,
-            'text-success-text': success
+            'text-error': error,
+            'text-success': success
           })}
         >
           {label}
@@ -173,8 +173,8 @@ export const Icon: React.FC<IconProps> = (props) => {
           <IconSVG
             className={classnames('w-5 h-5', {
               'text-light-form-placeholder dark:text-dark-form-placeholder': !error && !success,
-              'text-error-text': error,
-              'text-success-text': success
+              'text-error': error,
+              'text-success': success
             })}
           />
         </div>
@@ -253,8 +253,8 @@ export const AddOn: React.FC<AddOnProps> = (props) => {
             'text-pSmall': size === 'sm',
             'text-pNormal': size === 'md' || !size || size === 'lg',
             'text-light-form-label dark:text-dark-form-label': !error && !success,
-            'text-error-text': error,
-            'text-success-text': success
+            'text-error': error,
+            'text-success': success
           })}
         >
           {label}
@@ -289,8 +289,8 @@ export const AddOn: React.FC<AddOnProps> = (props) => {
               'rounded-r': addOnPosition === 'leading' || !addOnPosition,
               'rounded-l': addOnPosition === 'trailing',
               'border-light-form-inputBorder ': !error && !success,
-              'border-error-text': error,
-              'border-success-text': success
+              'border-error': error,
+              'border-success': success
             }
           )}
           onChange={onChange}
@@ -360,8 +360,8 @@ export const Dropdown: React.FC<DropdownProps> = (props) => {
             'text-pSmall': size === 'sm',
             'text-pNormal': size === 'md' || !size || size === 'lg',
             'text-light-form-label dark:text-dark-form-label': !error && !success,
-            'text-error-text': error,
-            'text-success-text': success
+            'text-error': error,
+            'text-success': success
           })}
         >
           {label}
@@ -381,8 +381,8 @@ export const Dropdown: React.FC<DropdownProps> = (props) => {
               'h-[45px] text-pNormal': size === 'md' || !size,
               'h-[50px] text-pNormal': size === 'lg',
               'border-light-form-inputBorder ': !error && !success,
-              'border-error-text': error,
-              'border-success-text': success
+              'border-error': error,
+              'border-success': success
             }
           )}
           onChange={onChange}
@@ -438,8 +438,8 @@ export const Password: React.FC<BasicProps> = (props) => {
             'text-pSmall': size === 'sm',
             'text-pNormal': size === 'md' || !size || size === 'lg',
             'text-light-form-label dark:text-dark-form-label': !error && !success,
-            'text-error-text': error,
-            'text-success-text': success
+            'text-error': error,
+            'text-success': success
           })}
         >
           {label}
@@ -459,8 +459,8 @@ export const Password: React.FC<BasicProps> = (props) => {
               'h-[45px] text-pNormal': size === 'md' || !size,
               'h-[50px] text-pNormal': size === 'lg',
               'border-light-form-inputBorder focus:ring-primary': !error && !success,
-              'border-error-text': error,
-              'border-success-text': success
+              'border-error': error,
+              'border-success': success
             }
           )}
           onChange={onChange}
@@ -481,8 +481,8 @@ export const Password: React.FC<BasicProps> = (props) => {
             <FiEye
               className={classnames('w-5 h-5 cursor-pointer', {
                 'text-light-form-placeholder dark:text-dark-form-placeholder': !error && !success,
-                'text-error-text': error,
-                'text-success-text': success
+                'text-error': error,
+                'text-success': success
               })}
               onClick={() => setVisible(!visible)}
             />
@@ -490,8 +490,8 @@ export const Password: React.FC<BasicProps> = (props) => {
             <FiEyeOff
               className={classnames('w-5 h-5 cursor-pointer', {
                 'text-light-form-placeholder dark:text-dark-form-placeholder': !error && !success,
-                'text-error-text': error,
-                'text-success-text': success
+                'text-error': error,
+                'text-success': success
               })}
               onClick={() => setVisible(!visible)}
             />
@@ -543,8 +543,8 @@ export const Phone: React.FC<PhoneProps> = (props) => {
             'text-pSmall': size === 'sm',
             'text-pNormal': size === 'md' || !size || size === 'lg',
             'text-light-form-label dark:text-dark-form-label': !error && !success,
-            'text-error-text': error,
-            'text-success-text': success
+            'text-error': error,
+            'text-success': success
           })}
         >
           {label}
@@ -626,8 +626,8 @@ export const Textarea: React.FC<TextareaProps> = (props) => {
             'text-pSmall': size === 'sm',
             'text-pNormal': size === 'md' || !size || size === 'lg',
             'text-light-form-label dark:text-dark-form-label': !error && !success,
-            'text-error-text': error,
-            'text-success-text': success
+            'text-error': error,
+            'text-success': success
           })}
         >
           {label}
@@ -642,8 +642,8 @@ export const Textarea: React.FC<TextareaProps> = (props) => {
           'font-montserrat font-regular focus:ring-primary dark:border-dark-border text-light-form-inputText dark:text-dark-form-inputText placeholder:text-light-form-placeholder dark:placeholder:text-dark-form-placeholder bg-light-container dark:bg-dark-container border rounded focus:outline-none focus:ring-1 focus:border-transparent block w-full p-[16px] common-transition focus:shadow-penumbra disabled:bg-light-form-inputDisabled dark:disabled:bg-dark-form-inputDisabled disabled:cursor-not-allowed',
           {
             'border-light-form-inputBorder ': !error && !success,
-            'border-error-text': error,
-            'border-success-text': success
+            'border-error': error,
+            'border-success': success
           }
         )}
         onChange={onChange}

@@ -97,7 +97,7 @@
 .react-datepicker__year-text--selected:hover,
 .react-datepicker__year-text--in-selecting-range:hover,
 .react-datepicker__year-text--in-range:hover {
-  @apply rounded bg-primaryDark;
+  @apply rounded bg-primary-dark;
 }
 
 .react-datepicker__navigation {

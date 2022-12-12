@@ -65,32 +65,37 @@ export const Button: React.FC<ButtonProps> = (props) => {
           'h-[45px] text-pNormal': size === 'md' || !size,
           'h-[50px] text-pLarge': size === 'lg',
           'text-light-btnText': !outline,
-          'bg-primary hover:bg-primaryDark': (!color || color === 'primary') && !outline,
-          'bg-secondary hover:bg-secondary-hovered': color === 'secondary' && !outline,
-          'bg-error-card hover:bg-error-hovered': color === 'error' && !outline,
-          'bg-success-card hover:bg-success-hovered': color === 'success' && !outline,
-          'bg-accent hover:bg-accentDark': color === 'accent' && !outline,
-          'bg-info-avatar hover:bg-info-text': color === 'info' && !outline,
-          'bg-warning-avatar hover:bg-warning-text': color === 'warning' && !outline,
-          'bg-light-container dark:bg-dark-container': color === 'default' && !outline,
           'border-2 font-bold ': outline,
-          'border-primary text-primary': outline && color === 'primary',
+
+          'bg-light-container dark:bg-dark-container': color === 'default' && !outline,
+          'bg-primary hover:bg-primary-dark disabled:bg-primary-light':
+            (!color || color === 'primary') && !outline,
+          'bg-secondary hover:bg-secondary-dark disabled:bg-secondary-light':
+            color === 'secondary' && !outline,
+          'bg-accent hover:bg-accent-dark disabled:bg-accent-light': color === 'accent' && !outline,
+          'bg-error hover:bg-error-dark disabled:bg-error-light': color === 'error' && !outline,
+          'bg-success hover:bg-success-dark disabled:bg-success-light':
+            color === 'success' && !outline,
+          'bg-info hover:bg-info-dark disabled:bg-info-light': color === 'info' && !outline,
+          'bg-warning hover:bg-warning-dark disabled:bg-warning-light':
+            color === 'warning' && !outline,
+
           'border-light-border dark:border-dark-border text-light-text dark:text-dark-text':
             outline && color === 'default',
-          'border-error-card text-error-card': outline && color === 'error',
-          'border-success-card text-success-card': outline && color === 'success',
-          'border-accent text-accent': outline && color === 'accent',
-          'disabled:bg-primaryLight': disabled && !outline && (color === 'primary' || !color),
-          'disabled:bg-accentLight': disabled && color === 'accent' && !outline,
-          'disabled:bg-error-disabled': disabled && color === 'error' && !outline,
-          'disabled:bg-secondaryLight': disabled && color === 'secondary' && !outline,
-          'disabled:bg-success-disabled': disabled && color === 'success' && !outline,
-          'disabled:border-primaryLight disabled:text-primaryLight': outline && color === 'primary',
-          'disabled:border-error-disabled disabled:text-error-disabled':
-            outline && color === 'error',
-          'disabled:border-success-disabled disabled:text-success-disabled':
+          'border-primary text-primary hover:border-primary-dark hover:text-primary-dark disabled:border-primary-light disabled:text-primary-light':
+            outline && color === 'primary',
+          'border-secondary text-secondary hover:border-secondary-dark hover:text-secondary-dark disabled:border-secondary-light disabled:text-secondary-light':
+            outline && color === 'secondary',
+          'border-accent text-accent hover:border-accent-dark hover:text-accent-dark disabled:border-accent-light disabled:text-accent-light':
+            outline && color === 'accent',
+          'border-success text-success hover:border-success-dark hover:text-success-dark disabled:border-success-light disabled:text-success-light':
             outline && color === 'success',
-          'disabled:border-accentLight disabled:text-accentLight': outline && color === 'accent'
+          'border-error text-error hover:border-error-dark hover:text-error-dark disabled:border-error-light disabled:text-error-light':
+            outline && color === 'error',
+          'border-info text-info hover:border-info-dark hover:text-info-dark disabled:border-info-light disabled:text-info-light':
+            outline && color === 'info',
+          'border-warning text-warning hover:border-warning-dark hover:text-warning-dark disabled:border-warning-light disabled:text-warning-light':
+            outline && color === 'warning'
         }
       )}
       onClick={(e) => {
@@ -111,4 +116,8 @@ export const Button: React.FC<ButtonProps> = (props) => {
       ) : null}
     </button>
   )
+}
+
+Button.defaultProps = {
+  color: 'primary'
 }

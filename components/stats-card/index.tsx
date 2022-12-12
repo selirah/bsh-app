@@ -88,10 +88,10 @@ export const Icon: React.FC<IconProps> = (props) => {
             'bg-primary': bgColor === 'primary' || !bgColor,
             'bg-secondary': bgColor === 'secondary',
             'bg-accent': bgColor === 'accent',
-            'bg-success-avatar': bgColor === 'success',
-            'bg-error-avatar': bgColor === 'error',
-            'bg-info-avatar': bgColor === 'info',
-            'bg-warning-avatar': bgColor === 'warning',
+            'bg-success': bgColor === 'success',
+            'bg-error': bgColor === 'error',
+            'bg-info': bgColor === 'info',
+            'bg-warning': bgColor === 'warning',
             rounded: !circular,
             'rounded-full': circular
           })}
@@ -131,11 +131,10 @@ export const Chart: React.FC<ChartProps> = (props) => {
       <div className="flex justify-between p-[16px] bg-light-container dark:bg-dark-container">
         <div
           className={classnames('flex justify-center items-center rounded-full p-[20px]', {
-            'bg-badge-rejected-container text-badge-rejected-text':
-              chartColor === 'info' || !chartColor,
-            'bg-badge-active-container text-badge-active-text': chartColor === 'success',
-            'bg-badge-block-container text-badge-block-text': chartColor === 'error',
-            'bg-badge-pending-container text-badge-pending-text': chartColor === 'warning'
+            'bg-badge-info-container text-badge-info-text': chartColor === 'info' || !chartColor,
+            'bg-badge-success-container text-badge-success-text': chartColor === 'success',
+            'bg-badge-error-container text-badge-error-text': chartColor === 'error',
+            'bg-badge-warning-container text-badge-warning-text': chartColor === 'warning'
           })}
         >
           <IconSVG className="w-[32px] h-[32px]" />
