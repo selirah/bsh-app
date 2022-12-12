@@ -132,6 +132,7 @@ const BioAuthPage = () => {
             size={layout === 'mobile' ? 'sm' : 'lg'}
             options={fingerListTranslated(lang)}
             onChange={setFinger}
+            disabled={isLoading}
           />
         </div>
         <div className="mb-[32px] w-full flex justify-center">

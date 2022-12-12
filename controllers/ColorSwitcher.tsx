@@ -14,12 +14,12 @@ export const ColorSwitcher = () => {
     <div className="">
       {color === 'uat' ? (
         <MdOutlineColorLens
-          className="text-pLarge text-[#A32A29] cursor-pointer"
+          className="text-pLarge text-[#4E45E4] cursor-pointer"
           onClick={() => onSwitchColor('prod')}
         />
       ) : (
         <MdOutlineColorLens
-          className="text-pLarge text-[#4E45E4] cursor-pointer"
+          className="text-pLarge text-[#A32A29] cursor-pointer"
           onClick={() => onSwitchColor('uat')}
         />
       )}

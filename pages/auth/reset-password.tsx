@@ -100,6 +100,7 @@ const ResetPasswordPage = () => {
                   label={intl.formatMessage({ defaultMessage: 'New Password' })}
                   IconSVG={MdPassword}
                   iconPosition="trailing"
+                  disabled={isLoading}
                 />
               </div>
               <div className="mb-[24px]">
@@ -110,6 +111,7 @@ const ResetPasswordPage = () => {
                   label={intl.formatMessage({ defaultMessage: 'Confirm Password' })}
                   IconSVG={MdPassword}
                   iconPosition="trailing"
+                  disabled={isLoading}
                 />
               </div>
               <Button

@@ -1,4 +1,4 @@
-import React from 'react'
+import { useState, useRef } from 'react'
 import classnames from 'classnames'
 import { FiChevronRight } from 'react-icons/fi'
 import { Transition } from 'components'
@@ -13,7 +13,7 @@ export type SubLinkObj = {
 
 interface NavMenuProps {
   menuTitle: string
-  active?: boolean
+  activeRoute?: string
   IconSVG: React.FC<React.SVGProps<SVGSVGElement>>
   hideTitle?: boolean
   scope?: string
@@ -30,14 +30,14 @@ interface SubLinksProps extends NavMenuProps {
 }
 
 export const Basic: React.FC<BasicProps> = (props) => {
-  const { menuTitle, IconSVG, active, link, hideTitle, spacing } = props
+  const { menuTitle, IconSVG, activeRoute, link, hideTitle, spacing } = props
   return (
     <li
       className={classnames(
         'p-[12px] rounded font-montserrat cursor-pointer hover:bg-primary hover:rounded font-regular hover:text-light-btnText duration-300',
         {
-          'text-light-text dark:text-dark-text': !active,
-          'bg-primary text-light-btnText': active,
+          'text-light-text dark:text-dark-text': link !== activeRoute,
+          'bg-primary text-light-btnText': link === activeRoute,
           'mb-2': !spacing,
           'mb-9': spacing
         }
@@ -58,9 +58,9 @@ export const Basic: React.FC<BasicProps> = (props) => {
 }
 
 export const SubLink: React.FC<SubLinksProps> = (props) => {
-  const { menuTitle, subLinks, IconSVG, active, hideTitle, spacing, setHoverActive } = props
-  const [isEnter, setIsEnter] = React.useState(false)
-  const nodeRef = React.useRef(null)
+  const { menuTitle, subLinks, IconSVG, activeRoute, hideTitle, spacing, setHoverActive } = props
+  const [isEnter, setIsEnter] = useState(false)
+  const nodeRef = useRef(null)
 
   const onMouseOver = () => {
     setIsEnter(true)
@@ -84,8 +84,9 @@ export const SubLink: React.FC<SubLinksProps> = (props) => {
         className={classnames(
           'flex justify-between items-center p-[12px] rounded font-montserrat cursor-pointer hover:bg-primary hover:rounded font-regular hover:text-light-btnText',
           {
-            'text-light-text dark:text-dark-text ': !active,
-            'bg-primary text-[#fff]': active || isEnter,
+            'text-light-text dark:text-dark-text ': !subLinks.find((l) => l.link === activeRoute),
+            'bg-primary text-light-btnText': subLinks.find((l) => l.link === activeRoute),
+            'bg-primary text-[#fff]': isEnter,
             'mb-2': !spacing,
             'mb-9': spacing
           }
@@ -110,11 +111,17 @@ export const SubLink: React.FC<SubLinksProps> = (props) => {
       </div>
       <Transition.Dropdown isEnter={isEnter} nodeRef={nodeRef}>
         <ul
-          className="w-64 absolute origin-top-right -right-[255px] top-0 rounded border border-light-border dark:border-dark-border shadow-penumbra bg-light-container dark:bg-dark-container font-montserrat text-pSmall"
+          className="w-64 absolute origin-top-right -right-[255px] top-0 rounded border border-light-border dark:border-dark-border shadow-penumbra bg-light-container dark:bg-dark-container font-montserrat text-pSmall z-10"
           ref={nodeRef}
         >
           {subLinks.map((link) => (
-            <li key={link.link} className="">
+            <li
+              key={link.link}
+              className={classnames('', {
+                'text-light-text dark:text-dark-text': link.link !== activeRoute,
+                'bg-primary text-light-btnText': link.link === activeRoute
+              })}
+            >
               <Link className="cursor-pointer" href={link.link}>
                 <button
                   className="flex w-full items-center disabled:cursor-not-allowed text-light-text dark:text-dark-text hover:text-light-btnText hover:bg-primary rounded p-[12px] disabled:hover:bg-primaryLight"

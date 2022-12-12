@@ -63,7 +63,7 @@ export const Active: React.FC<ActiveProps> = (props) => {
     >
       <div
         className={classnames(
-          'w-[50px] h-[50px] border-2 rounded-full flex justify-center items-center',
+          'w-[40px] h-[40px] border-2 rounded-full flex justify-center items-center',
           {
             'border-primary': color === 'primary' || !color,
             'border-secondary': color === 'secondary',
@@ -102,7 +102,7 @@ export const UnAttended: React.FC<UnattendedProps> = (props) => {
         'border-r border-light-border dark:border-dark-border': leftBorder
       })}
     >
-      <div className="w-[50px] h-[50px] border-2 border-light-border dark:border-dark-border rounded-full flex justify-center items-center">
+      <div className="w-[40px] h-[40px] border-2 border-light-border dark:border-dark-border rounded-full flex justify-center items-center">
         <span className="text-light-text dark:text-dark-text font-bold">{step}</span>
       </div>
       <div className="ml-[20px] text-light-text dark:text-dark-text">{title}</div>

@@ -91,6 +91,7 @@ const LoginPage = () => {
                   size={layout === 'mobile' ? 'sm' : 'lg'}
                   placeholder={intl.formatMessage({ defaultMessage: 'Enter your username' })}
                   label={intl.formatMessage({ defaultMessage: 'Username' })}
+                  disabled={isLoading}
                 />
               </div>
               <div className="mb-[24px]">
@@ -101,6 +102,7 @@ const LoginPage = () => {
                   label={intl.formatMessage({ defaultMessage: 'Password' })}
                   IconSVG={MdPassword}
                   iconPosition="trailing"
+                  disabled={isLoading}
                 />
               </div>
               <div className="mb-[24px] flex justify-between">

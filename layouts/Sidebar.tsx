@@ -60,7 +60,7 @@ export const Sidebar: FC<Props> = (props) => {
                 hideTitle={!openSideNav}
                 spacing={route.spacing}
                 setHoverActive={setHoverActive}
-                active={route.link === activeRoute}
+                activeRoute={activeRoute}
               />
             ) : (
               <NavMenu.Basic
@@ -69,7 +69,7 @@ export const Sidebar: FC<Props> = (props) => {
                 link={route.link}
                 hideTitle={!openSideNav}
                 spacing={route.spacing}
-                active={route.link === activeRoute}
+                activeRoute={activeRoute}
               />
             )}
           </div>

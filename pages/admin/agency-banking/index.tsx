@@ -1,6 +1,6 @@
 import { AdminLayout } from 'layouts'
 
-const Dashboard = () => {
+const AgencyBanking = () => {
   return (
     <AdminLayout pageTitle="Dashboard">
       <div className="block bg-light-container dark:bg-dark-container shadow-penumbra rounded"></div>
@@ -8,4 +8,4 @@ const Dashboard = () => {
   )
 }
 
-export default Dashboard
+export default AgencyBanking

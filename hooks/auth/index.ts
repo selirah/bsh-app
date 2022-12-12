@@ -8,23 +8,17 @@ import {
   ResetPasswordSchema,
   BioSchema
 } from 'schema/Auth'
-import { AxiosError, AxiosResponse } from 'axios'
-
-type onSuccess = (response: AxiosResponse) => void
-type onError = (response: AxiosError) => void
-
-type KeyValuePair = {
-  [key: string]: string
-}
+import { onSuccess, onError } from 'schema/Axios'
+import { KeyValuePair } from 'schema/General'
 
 const endPoints: KeyValuePair = {
-  login: process.env.NEXT_PUBLIC_LOGIN,
-  requestOtp: process.env.NEXT_PUBLIC_REQUEST_OTP,
-  validateOtp: process.env.NEXT_PUBLIC_VALIDATE_OTP,
-  forgottenPassword: process.env.NEXT_PUBLIC_FORGOTTEN_PASSWORD,
-  resetPassword: process.env.NEXT_PUBLIC_RESET_PASSWORD,
-  bioDevice: process.env.NEXT_PUBLIC_BIO_INIT,
-  validateBio: process.env.NEXT_PUBLIC_VALIDATE_BIO
+  login: process.env.NEXT_PUBLIC_LOGIN ?? '',
+  requestOtp: process.env.NEXT_PUBLIC_REQUEST_OTP ?? '',
+  validateOtp: process.env.NEXT_PUBLIC_VALIDATE_OTP ?? '',
+  forgottenPassword: process.env.NEXT_PUBLIC_FORGOTTEN_PASSWORD ?? '',
+  resetPassword: process.env.NEXT_PUBLIC_RESET_PASSWORD ?? '',
+  bioDevice: process.env.NEXT_PUBLIC_BIO_INIT ?? '',
+  validateBio: process.env.NEXT_PUBLIC_VALIDATE_BIO ?? ''
 }
 
 const loginUser = (payload: LoginSchema) => {

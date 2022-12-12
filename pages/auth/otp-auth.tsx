@@ -84,7 +84,7 @@ const OtpAuthPage = () => {
           {({ isValid }) => (
             <Form>
               <div className="mb-[32px] w-full">
-                <OtpCode name="otp" size={layout === 'mobile' ? 'sm' : 'lg'} />
+                <OtpCode name="otp" size={layout === 'mobile' ? 'sm' : 'lg'} disabled={isLoading} />
               </div>
               <Button
                 size={layout === 'mobile' ? 'sm' : 'lg'}

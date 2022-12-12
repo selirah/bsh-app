@@ -73,6 +73,7 @@ const ForgottenPasswordPage = () => {
                   size={layout === 'mobile' ? 'sm' : 'lg'}
                   placeholder={intl.formatMessage({ defaultMessage: 'Enter your username' })}
                   label={intl.formatMessage({ defaultMessage: 'Username' })}
+                  disabled={isLoading}
                 />
               </div>
               <Button
