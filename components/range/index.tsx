@@ -4,7 +4,7 @@ import classnames from 'classnames'
 type Sizes = 'sm' | 'md' | 'lg'
 type ColorTypes = 'primary' | 'secondary' | 'accent' | 'success' | 'error' | 'info' | 'warning'
 
-interface RangeProps {
+type RangeProps = {
   size?: Sizes
   name: string
   disabled?: boolean

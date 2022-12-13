@@ -2,25 +2,25 @@ import React from 'react'
 import classnames from 'classnames'
 import { FiChevronUp, FiChevronDown } from 'react-icons/fi'
 
-interface TableProps {
+type TableProps = {
   children: React.ReactNode
   align?: 'left' | 'right' | 'center'
   bordered?: boolean
 }
 
-interface TableHeaderColumnProps extends TableProps {
+type TableHeaderColumnProps = TableProps & {
   sortable?: boolean
   sortDir?: boolean | string
   colSpan?: number
   onToggleSorting?: (event: unknown) => void
 }
 
-interface TableRowProps extends TableProps {
+type TableRowProps = TableProps & {
   striped?: boolean
   hover?: boolean
 }
 
-interface TableColumnProps extends TableProps {
+type TableColumnProps = TableProps & {
   striped?: boolean
   colSpan?: number
 }

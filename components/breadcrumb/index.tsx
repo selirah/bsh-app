@@ -11,12 +11,12 @@ export type ActionObject = {
   IconSVG?: React.FC<React.SVGProps<SVGSVGElement>>
 }
 
-interface BreadcrumbProps {
+type BreadcrumbProps = {
   actions?: ActionObject[]
   children: React.ReactNode
 }
 
-interface BreadcrumbItemProps {
+type BreadcrumbItemProps = {
   children: React.ReactNode
   href: string
   isCurrent: boolean

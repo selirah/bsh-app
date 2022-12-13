@@ -3,22 +3,22 @@ import { Avatar } from 'components'
 
 type ColorTypes = 'success' | 'error' | 'warning' | 'info'
 
-interface ToastProps {
+type ToastProps = {
   title: string
 }
 
-interface BasicProps extends ToastProps {
+type BasicProps = ToastProps & {
   color: ColorTypes
   IconSVG: React.FC<React.SVGProps<SVGSVGElement>>
   description?: string
 }
 
-interface ActionProps extends ToastProps {
+type ActionProps = ToastProps & {
   actionText: string
   onClick?: () => void
 }
 
-interface WithAvatarProps extends ToastProps {
+type WithAvatarProps = ToastProps & {
   src: string
   actionText?: string
   onClick?: () => void

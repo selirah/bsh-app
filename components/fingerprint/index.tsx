@@ -12,7 +12,7 @@ type Colors =
   | 'info'
   | 'warning'
 
-interface FingerPrintProps {
+type FingerPrintProps = {
   size?: Sizes
   color?: Colors
 }

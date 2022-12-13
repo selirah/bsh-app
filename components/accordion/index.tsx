@@ -5,16 +5,16 @@ import { Button } from 'components'
 
 type ColorTypes = 'primary' | 'secondary' | 'accent' | 'success' | 'info' | 'error' | 'warning'
 
-interface AccordionProps {
+type AccordionProps = {
   children: React.ReactNode
 }
 
-interface BasicProps extends AccordionProps {
+type BasicProps = AccordionProps & {
   title: string
   color?: ColorTypes
 }
 
-interface ActionButtonProps extends AccordionProps {
+type ActionButtonProps = AccordionProps & {
   btnText: string
   extraBtnText?: string
   IconSVG?: React.FC<React.SVGProps<SVGSVGElement>>

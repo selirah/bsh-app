@@ -9,7 +9,7 @@ type IconPosition = 'leading' | 'trailing'
 type DateFormat = 'yyyy-MM-dd' | 'dd-MM-yyyy' | 'MM-dd-yyyy'
 type DatePlacement = 'top-start' | 'top' | 'top-end' | 'bottom' | 'bottom-end' | 'bottom-start'
 
-interface DatepickerProps {
+type DatepickerProps = {
   label?: string
   name: string
   size?: InputSizes

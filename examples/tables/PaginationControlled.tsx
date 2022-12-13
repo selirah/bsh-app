@@ -19,7 +19,7 @@ import {
 import { useQuery, UseQueryResult } from 'react-query'
 import { fetchData, Person } from 'mock/fetchData'
 
-interface TableComponentProps {
+type TableComponentProps = {
   dataQuery: UseQueryResult<
     {
       rows: Person[]

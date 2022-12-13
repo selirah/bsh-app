@@ -5,7 +5,7 @@ import InputError from './InputError'
 
 type InputSizes = 'sm' | 'md' | 'lg'
 
-interface InputProps {
+type InputProps = {
   label?: string
   name: string
   size?: InputSizes

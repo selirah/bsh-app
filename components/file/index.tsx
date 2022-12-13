@@ -18,7 +18,7 @@ type FileTypes =
   | '.ppt'
 type InputSizes = 'sm' | 'md' | 'lg'
 
-interface FileInputProps {
+type FileInputProps = {
   name: string
   extensions: FileTypes[]
   size?: InputSizes

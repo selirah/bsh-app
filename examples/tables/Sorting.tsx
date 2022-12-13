@@ -21,7 +21,7 @@ import {
 } from '@tanstack/react-table'
 import { makeData, Person } from 'mock/makeData'
 
-interface TableComponentProps {
+type TableComponentProps = {
   data: Person[]
   columns: ColumnDef<Person>[]
   sorting: SortingState

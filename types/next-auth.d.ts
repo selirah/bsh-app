@@ -2,7 +2,7 @@
 import NextAuth from 'next-auth'
 
 declare module 'next-auth' {
-  interface Session {
+  type Session = {
     accessToken: string
     email: string
     expires: string

@@ -5,23 +5,23 @@ import { FiX } from 'react-icons/fi'
 
 type Size = 'sm' | 'md' | 'lg' | 'xl'
 
-interface ModalProps {
+type ModalProps = {
   isOpen: boolean
   children: React.ReactNode
   size?: Size
 }
 
-interface ModalHeaderProps {
+type ModalHeaderProps = {
   children: React.ReactNode
   toggle: () => void
   border?: boolean
 }
 
-interface ModalBodyProps {
+type ModalBodyProps = {
   children: React.ReactNode
 }
 
-interface ModalFooterProps {
+type ModalFooterProps = {
   children: React.ReactNode
   border?: boolean
 }

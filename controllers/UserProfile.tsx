@@ -6,7 +6,7 @@ import { signOut } from 'next-auth/react'
 import { FiUser, FiLogOut, FiKey } from 'react-icons/fi'
 import { Transition } from 'components'
 
-interface Props {
+type Props = {
   username: string
   imageSrc?: string
 }

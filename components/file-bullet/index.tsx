@@ -2,7 +2,7 @@ import React from 'react'
 import { FiTrash, FiImage, FiFile } from 'react-icons/fi'
 import { getFileExtension } from 'utils'
 
-interface FileBulletProps {
+type FileBulletProps = {
   file: File
   onRemove?: () => void
   onClick?: (file: File) => void

@@ -2,7 +2,7 @@ import React from 'react'
 import { FiAlertCircle } from 'react-icons/fi'
 import classnames from 'classnames'
 
-interface Props {
+type Props = {
   size?: 'sm' | 'md' | 'lg'
   children?: React.ReactNode
 }

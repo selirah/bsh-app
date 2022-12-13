@@ -11,7 +11,7 @@ type DropdownData = {
   value: string
 }
 
-export interface InputProps {
+export type InputProps = {
   value?: string
   type?: 'text' | 'number' | 'tel' | 'email' | 'password'
   name?: string
@@ -27,26 +27,26 @@ export interface InputProps {
   max?: number
 }
 
-interface BasicProps extends InputProps {
+type BasicProps = InputProps & {
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void
   ref?: LegacyRef<HTMLInputElement>
 }
 
-export interface IconProps extends InputProps {
+export type IconProps = InputProps & {
   iconPosition?: IconPosition
   IconSVG: React.FC<React.SVGProps<SVGSVGElement>>
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void
   ref?: LegacyRef<HTMLInputElement>
 }
 
-export interface AddOnProps extends InputProps {
+export type AddOnProps = InputProps & {
   addOnText: string
   addOnPosition?: IconPosition
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void
   ref?: LegacyRef<HTMLInputElement>
 }
 
-interface DropdownProps extends InputProps {
+type DropdownProps = InputProps & {
   list: DropdownData[]
   setSelected: (value: unknown) => void
   loading?: boolean
@@ -55,12 +55,12 @@ interface DropdownProps extends InputProps {
   ref?: LegacyRef<HTMLInputElement>
 }
 
-export interface PhoneProps extends InputProps {
+type PhoneProps = InputProps & {
   onSetPhone: (value: string) => void
   ref?: LegacyRef<HTMLInputElement>
 }
 
-export interface TextareaProps extends InputProps {
+export type TextareaProps = InputProps & {
   onChange?: (e: ChangeEvent<HTMLTextAreaElement>) => void
   rows?: number
   ref?: LegacyRef<HTMLTextAreaElement>

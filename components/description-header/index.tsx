@@ -2,17 +2,17 @@ import React from 'react'
 import { Avatar } from 'components'
 type InitalsColor = 'primary' | 'secondary' | 'accent' | 'success' | 'info' | 'error' | 'warning'
 
-interface DescriptionHeaderProps {
+type DescriptionHeaderProps = {
   title: string
   description: string
 }
 
-interface HeaderAvatarProps extends DescriptionHeaderProps {
+type HeaderAvatarProps = DescriptionHeaderProps & {
   src: string
   circular?: boolean
 }
 
-interface HeaderInitalsProps extends DescriptionHeaderProps {
+type HeaderInitalsProps = DescriptionHeaderProps & {
   initials: string
   circular?: boolean
   bgColor?: InitalsColor

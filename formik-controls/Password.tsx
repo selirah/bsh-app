@@ -6,7 +6,7 @@ import InputError from './InputError'
 type InputSizes = 'sm' | 'md' | 'lg'
 type IconPosition = 'leading' | 'trailing'
 
-interface PasswordProps {
+type PasswordProps = {
   label?: string
   name: string
   size?: InputSizes

@@ -4,7 +4,7 @@ import { FiInfo, FiAlertCircle, FiCheckCircle, FiAlertTriangle } from 'react-ico
 
 type AlertColor = 'warning' | 'success' | 'error' | 'info'
 
-interface AlertProps {
+type AlertProps = {
   color: AlertColor
   border?: boolean
   children: ReactNode

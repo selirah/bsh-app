@@ -6,7 +6,7 @@ type Sizes = 'sm' | 'md' | 'lg'
 type RadioDirection = 'left' | 'right'
 type ColorTypes = 'primary' | 'secondary' | 'accent' | 'success' | 'error' | 'info' | 'warning'
 
-interface RadioProps {
+type RadioProps = {
   size?: Sizes
   name: string
   disabled?: boolean
@@ -17,11 +17,11 @@ interface RadioProps {
   color?: ColorTypes
 }
 
-interface HelpTextProps extends RadioProps {
+type HelpTextProps = RadioProps & {
   helpText: string
 }
 
-interface LayoutProps extends RadioProps {
+type LayoutProps = RadioProps & {
   description: string
 }
 export const Basic: React.FC<RadioProps> = (props) => {

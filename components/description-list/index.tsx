@@ -1,11 +1,11 @@
 import React from 'react'
 
-interface OneColumnProps {
+type OneColumnProps = {
   title: React.ReactNode
   value: React.ReactNode
 }
 
-interface TwoColumnProps {
+type TwoColumnProps = {
   title1: React.ReactNode
   value1: React.ReactNode
   title2?: React.ReactNode

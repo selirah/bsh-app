@@ -13,7 +13,7 @@ export type SelectData = {
   value: string
 }
 
-export interface SelectProps {
+export type SelectProps = {
   options: SelectData[]
   name?: string
   label?: string
@@ -28,12 +28,12 @@ export interface SelectProps {
   isClearable?: boolean
 }
 
-interface SingleProps extends SelectProps {
+type SingleProps = SelectProps & {
   defaultValue?: SelectData | unknown
   onChange?: (value: unknown) => void
 }
 
-interface MultipleProps extends SelectProps {
+type MultipleProps = SelectProps & {
   defaultValue?: SelectData[] | unknown
   onChange?: (value: unknown) => void
 }

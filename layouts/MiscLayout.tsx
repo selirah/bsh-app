@@ -5,7 +5,7 @@ import { useIntl } from 'react-intl'
 import { LayoutContext } from 'contexts'
 import classnames from 'classnames'
 
-interface Props {
+type Props = {
   children: React.ReactNode
 }
 

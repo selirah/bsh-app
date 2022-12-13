@@ -10,7 +10,7 @@ type ContextTypes = {
 
 const LayoutContext = createContext<ContextTypes>(null)
 
-interface Props {
+type Props = {
   children: React.ReactNode
 }
 

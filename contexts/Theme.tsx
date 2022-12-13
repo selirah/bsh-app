@@ -9,7 +9,7 @@ type ContextTypes = {
 
 const ThemeContext = createContext<ContextTypes>(null)
 
-interface Props {
+type Props = {
   children: React.ReactNode
 }
 

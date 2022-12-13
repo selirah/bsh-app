@@ -5,7 +5,7 @@ import AuthCodeInput from 'react-auth-code-input'
 
 type InputSizes = 'sm' | 'md' | 'lg'
 
-export interface CodeInputProps {
+type CodeInputProps = {
   onChange?: (value: string) => void
   fields?: number
   size?: InputSizes

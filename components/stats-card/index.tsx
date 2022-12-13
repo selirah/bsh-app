@@ -13,18 +13,18 @@ export type ChartObj = {
   value: number
 }
 
-interface StatsCardProps {
+type StatsCardProps = {
   title: string
   value: number
   currency?: string
 }
 
-interface BasicProps extends StatsCardProps {
+type BasicProps = StatsCardProps & {
   onClick?: () => void
   actionText?: string
 }
 
-interface IconProps extends StatsCardProps {
+type IconProps = StatsCardProps & {
   IconSVG: React.FC<React.SVGProps<SVGSVGElement>>
   bgColor?: BgColor
   onClick?: () => void
@@ -32,7 +32,7 @@ interface IconProps extends StatsCardProps {
   circular?: boolean
 }
 
-interface ChartProps extends StatsCardProps {
+type ChartProps = StatsCardProps & {
   chartData?: ChartObj[]
   IconSVG: React.FC<React.SVGProps<SVGSVGElement>>
   chartColor?: ChartColor

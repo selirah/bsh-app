@@ -14,17 +14,17 @@ type BgColor = 'white' | 'black'
 
 type LoaderSize = 'sm' | 'md' | 'lg'
 
-interface ButtonLoaderProps {
+type ButtonLoaderProps = {
   size?: LoaderSize
   slow?: boolean
 }
 
-interface BasicLoaderProps extends ButtonLoaderProps {
+type BasicLoaderProps = ButtonLoaderProps & {
   spinColor?: Color
   bgColor?: BgColor
 }
 
-interface AppleLoaderProps extends ButtonLoaderProps {
+type AppleLoaderProps = ButtonLoaderProps & {
   strokeColor?: Color
 }
 

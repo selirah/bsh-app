@@ -7,7 +7,7 @@ import { NavMenu } from 'components'
 import Image from 'next/image'
 import { MenuTypes } from 'routes'
 
-interface Props {
+type Props = {
   routes: MenuTypes[]
   activeRoute?: string
 }

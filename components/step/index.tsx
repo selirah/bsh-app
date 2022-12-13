@@ -4,22 +4,22 @@ import classnames from 'classnames'
 
 type Color = 'primary' | 'secondary' | 'accent' | 'success' | 'info' | 'error' | 'warning'
 
-interface StepProps {
+type StepProps = {
   title: string
   leftBorder?: boolean
 }
 
-interface CompletedProps extends StepProps {
+type CompletedProps = StepProps & {
   IconSVG?: React.FC<React.SVGProps<SVGSVGElement>>
   color?: Color
 }
 
-interface ActiveProps extends StepProps {
+type ActiveProps = StepProps & {
   step: number
   color?: Color
 }
 
-interface UnattendedProps extends StepProps {
+type UnattendedProps = StepProps & {
   step: number
 }
 

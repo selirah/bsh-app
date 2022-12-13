@@ -4,7 +4,7 @@ import { LanguageSwitcher, ThemeSwitcher, UserProfile, ColorSwitcher } from 'con
 import { LayoutContext } from 'contexts'
 import classnames from 'classnames'
 
-interface Props {
+type Props = {
   username: string
 }
 

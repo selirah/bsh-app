@@ -5,13 +5,13 @@ import classnames from 'classnames'
 
 type ButtonColor = 'primary' | 'error' | 'success' | 'accent' | 'secondary' | 'info' | 'warning'
 
-interface EmptyProps {
+type EmptyProps = {
   title: string
   children?: React.ReactNode
   border?: boolean
 }
 
-interface ActionButtonProps extends EmptyProps {
+type ActionButtonProps = EmptyProps & {
   btnColor?: ButtonColor
   IconSVG?: React.FC<React.SVGProps<SVGSVGElement>>
   btnText: string

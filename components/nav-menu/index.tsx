@@ -11,7 +11,7 @@ export type SubLinkObj = {
   scope?: string
 }
 
-interface NavMenuProps {
+type NavMenuProps = {
   menuTitle: string
   activeRoute?: string
   IconSVG: React.FC<React.SVGProps<SVGSVGElement>>
@@ -21,11 +21,11 @@ interface NavMenuProps {
   setHoverActive?: (value: boolean) => void
 }
 
-interface BasicProps extends NavMenuProps {
+type BasicProps = NavMenuProps & {
   link?: string
 }
 
-interface SubLinksProps extends NavMenuProps {
+type SubLinksProps = NavMenuProps & {
   subLinks: SubLinkObj[]
 }
 

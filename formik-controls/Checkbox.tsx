@@ -13,7 +13,7 @@ export type ColorTypes =
   | 'info'
   | 'warning'
 
-interface CheckboxProps {
+type CheckboxProps = {
   label?: string
   name: string
   size?: InputSizes

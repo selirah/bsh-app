@@ -7,7 +7,7 @@ type AvatarState = 'success' | 'error' | 'warning' | 'info'
 type IconColor = 'success' | 'error' | 'warning' | 'info'
 type InitalsColor = 'primary' | 'secondary' | 'accent' | 'success' | 'info' | 'error' | 'warning'
 
-interface AvatarProps {
+type AvatarProps = {
   size: AvatarSize
   circular?: boolean
 }
@@ -20,18 +20,18 @@ const AvatarSizes = {
   xl: 80
 }
 
-interface ImgProps extends AvatarProps {
+type ImgProps = AvatarProps & {
   src: string
   state?: AvatarState
 }
 
-interface InitialsProps extends AvatarProps {
+type InitialsProps = AvatarProps & {
   initials: string
   state?: AvatarState
   bgColor?: InitalsColor
 }
 
-interface IconProps extends AvatarProps {
+type IconProps = AvatarProps & {
   IconSVG: React.FC<React.SVGProps<SVGSVGElement>>
   color: IconColor
 }

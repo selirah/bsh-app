@@ -17,7 +17,7 @@ type ContextTypes = {
 
 const LanguageContext = createContext<ContextTypes>(null)
 
-interface Props {
+type Props = {
   children: React.ReactNode
 }
 

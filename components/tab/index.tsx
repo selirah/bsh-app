@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react'
 import classnames from 'classnames'
-interface TabContainerProps {
+
+type TabContainerProps = {
   children: React.ReactNode
 }
 
-interface TabMenuProps {
+type TabMenuProps = {
   children: React.ReactNode
 }
 
-interface TabMenuItemProps {
+type TabMenuItemProps = {
   children: React.ReactNode
   activeTab: string
   IconSVG?: React.FC<React.SVGProps<SVGSVGElement>>
@@ -17,7 +18,7 @@ interface TabMenuItemProps {
   onSetActiveTab: (tabId: string) => void
 }
 
-interface TabContentProps {
+type TabContentProps = {
   children: React.ReactNode
   activeTab: string
   tabId: string

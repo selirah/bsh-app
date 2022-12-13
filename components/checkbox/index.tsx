@@ -12,7 +12,7 @@ export type ColorTypes =
   | 'info'
   | 'warning'
 
-export interface CheckboxProps {
+export type CheckboxProps = {
   size?: Sizes
   name?: string
   disabled?: boolean
@@ -23,13 +23,21 @@ export interface CheckboxProps {
   checked?: any
 }
 
-export interface BasicProps extends CheckboxProps {
+export type BasicProps = CheckboxProps & {
   label?: string
 }
 
-interface HelpTextProps extends CheckboxProps {
+type HelpTextProps = CheckboxProps & {
   label: string
   helpText: string
+}
+
+type IndeterminateProps = {
+  color?: ColorTypes
+  size?: Sizes
+  indeterminate?: boolean & HTMLProps<HTMLInputElement>
+  rest?: any
+  checked?: boolean
 }
 
 export const Basic: React.FC<BasicProps> = (props) => {
@@ -177,14 +185,6 @@ export const HelpText: React.FC<HelpTextProps> = (props) => {
       ) : null}
     </div>
   )
-}
-
-interface IndeterminateProps {
-  color?: ColorTypes
-  size?: Sizes
-  indeterminate?: boolean & HTMLProps<HTMLInputElement>
-  rest?: any
-  checked?: boolean
 }
 
 export const Indeterminate: React.FC<IndeterminateProps> = ({

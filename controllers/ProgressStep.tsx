@@ -2,7 +2,7 @@ import { Fragment } from 'react'
 import { Step } from 'components'
 import { useIntl } from 'react-intl'
 
-interface Props {
+type Props = {
   totalSteps: number
   titles?: string[]
   active?: number

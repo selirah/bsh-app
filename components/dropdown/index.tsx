@@ -16,11 +16,11 @@ type ButtonSize = 'sm' | 'md' | 'lg'
 
 type ButtonColor = 'primary' | 'error' | 'success' | 'accent'
 
-interface DropdownProps {
+type DropdownProps = {
   actions: DropdownList[]
 }
 
-interface BottonProps extends DropdownProps {
+type BottonProps = DropdownProps & {
   btnTitle: string
   size?: ButtonSize
   outline?: boolean
@@ -28,7 +28,7 @@ interface BottonProps extends DropdownProps {
   color?: ButtonColor
 }
 
-interface KhebabProps extends DropdownProps {
+type KhebabProps = DropdownProps & {
   size?: ButtonSize
 }
 

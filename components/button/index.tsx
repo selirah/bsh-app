@@ -13,7 +13,7 @@ type ButtonColor =
 type ButtonSize = 'sm' | 'md' | 'lg'
 type ButtonType = 'button' | 'submit' | 'reset'
 
-interface ButtonProps {
+type ButtonProps = {
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
   color?: ButtonColor
   block?: boolean

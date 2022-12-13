@@ -7,11 +7,10 @@ import {
   ForgottenPasswordSchema,
   ResetPasswordSchema,
   BioSchema
-} from 'schema/Auth'
-import { onSuccess, onError } from 'schema/Axios'
-import { KeyValuePair } from 'schema/General'
+} from 'types/Auth'
+import { onSuccess, onError } from 'types'
 
-const endPoints: KeyValuePair = {
+const endPoints = {
   login: process.env.NEXT_PUBLIC_LOGIN ?? '',
   requestOtp: process.env.NEXT_PUBLIC_REQUEST_OTP ?? '',
   validateOtp: process.env.NEXT_PUBLIC_VALIDATE_OTP ?? '',

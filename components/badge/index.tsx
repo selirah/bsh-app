@@ -4,7 +4,7 @@ import classnames from 'classnames'
 type BadgeColor = 'default' | 'error' | 'warning' | 'info' | 'success'
 type BadgeSize = 'sm' | 'md' | 'lg'
 
-interface BadgeProps {
+type BadgeProps = {
   pill?: boolean
   state?: boolean
   children: ReactNode

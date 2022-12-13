@@ -8,7 +8,8 @@ import { Routes } from 'routes'
 import { ActionObject } from 'components'
 import { Breadcrumb, BreadcrumbItem } from 'components'
 import { HiOutlineHomeModern } from 'react-icons/hi2'
-interface Props {
+
+type Props = {
   pageTitle: string
   children: React.ReactNode
   breadcrumbActions?: ActionObject[]

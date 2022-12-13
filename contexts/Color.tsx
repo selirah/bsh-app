@@ -11,7 +11,7 @@ type ContextTypes = {
 
 const ColorContext = createContext<ContextTypes>(null)
 
-interface Props {
+type Props = {
   children: React.ReactNode
 }
 

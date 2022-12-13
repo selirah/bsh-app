@@ -3,7 +3,7 @@ import classnames from 'classnames'
 
 type LoaderSizes = 'sm' | 'md' | 'lg'
 
-interface UILoaderProps {
+type UILoaderProps = {
   size?: LoaderSizes
 }
 

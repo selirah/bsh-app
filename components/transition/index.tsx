@@ -1,7 +1,7 @@
 import React from 'react'
 import { CSSTransition } from 'react-transition-group'
 
-interface TransitionProps {
+type TransitionProps = {
   isEnter: boolean
   nodeRef: React.RefObject<HTMLDivElement>
   children: React.ReactNode

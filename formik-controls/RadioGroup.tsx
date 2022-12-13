@@ -9,7 +9,7 @@ export type Option = {
   value: string
 }
 
-interface Props extends Checkbox.BasicProps {
+type Props = Checkbox.BasicProps & {
   options: Option[]
 }
 

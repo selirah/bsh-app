@@ -27,7 +27,7 @@ const pages: Select.SelectData[] = [
   }
 ]
 
-interface PaginationProps {
+type PaginationProps = {
   gotoPage: (value: number) => void
   previousPage: () => void
   nextPage: () => void

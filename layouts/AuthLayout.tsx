@@ -6,7 +6,7 @@ import { LayoutContext } from 'contexts'
 import classnames from 'classnames'
 import { ILogin, IWelcome, IForgottenPassword, IResetPassword, IOtp, IBio } from 'illustrations'
 
-interface Props {
+type Props = {
   SVG: 'login' | 'welcome' | 'forgottenpassword' | 'resetpassword' | 'bio' | 'otp'
   children: React.ReactNode
 }
