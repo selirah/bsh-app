@@ -1,18 +1,12 @@
 import { useQuery, QueryFunctionContext, useMutation } from 'react-query'
 import { adminRequest } from 'utils/axios'
 import {
-  Branch,
-  Classifier,
-  CurrencyPair,
   CurrencyPairPayload,
-  Cashbox,
   CashboxPayload,
-  Denomination,
   onError,
   onSuccess,
   DenominationTxPayload,
-  CheckStatusPayload,
-  SuccessResponse
+  CheckStatusPayload
 } from 'types'
 
 const endPoints = {
@@ -27,7 +21,18 @@ const endPoints = {
   fetchDenominations: process.env.NEXT_PUBLIC_GET_DENOMINATIONS ?? '',
   fetchDocuments: process.env.NEXT_PUBLIC_GET_DOCUMENTS ?? '',
   postDenominationsTx: process.env.NEXT_PUBLIC_POST_DENOMINATIONS_TRX ?? '',
-  fetchCheckStatus: process.env.NEXT_PUBLIC_GET_CHEQUE_STATUS ?? ''
+  fetchChequeStatus: process.env.NEXT_PUBLIC_GET_CHEQUE_STATUS ?? '',
+  fetchNationalities: process.env.NEXT_PUBLIC_GET_NATIONALITIES ?? '',
+  fetchAccountTypes: process.env.NEXT_PUBLIC_GET_CUSTOMER_ACCOUNT_TYPES ?? '',
+  fetchCurrencies: process.env.NEXT_PUBLIC_GET_CURRENCIES ?? '',
+  fetchProfessions: process.env.NEXT_PUBLIC_GET_PROFESSIONS ?? '',
+  fetchDocumentTypes: process.env.NEXT_PUBLIC_GET_DOCUMENT_TYPES ?? '',
+  fetchMaritalStatus: process.env.NEXT_PUBLIC_GET_MARITAL_STATUSES ?? '',
+  fetchGenders: process.env.NEXT_PUBLIC_GET_GENDERS ?? '',
+  fetchLanguages: process.env.NEXT_PUBLIC_GET_LANGUAGES ?? '',
+  fetchTitles: process.env.NEXT_PUBLIC_GET_TITLES ?? '',
+  fetchRegions: process.env.NEXT_PUBLIC_GET_REGIONS ?? '',
+  fetchIssuerOrganizations: process.env.NEXT_PUBLIC_GET_ISSUER_ORGANIZATIONS ?? ''
 }
 
 const fetchBranches = () => {
@@ -37,8 +42,8 @@ const fetchBranches = () => {
   })
 }
 
-export const useFetchBranches = () => {
-  return useQuery<unknown, unknown, Branch[]>('branches', fetchBranches)
+export const useFetchBranches = (onSuccess?: onSuccess, onError?: onError) => {
+  return useQuery('branches', fetchBranches, { onSuccess, onError })
 }
 
 const fetchCountries = () => {
@@ -48,8 +53,11 @@ const fetchCountries = () => {
   })
 }
 
-export const useFetchCountries = () => {
-  return useQuery<unknown, unknown, Classifier[]>('countries', fetchCountries)
+export const useFetchCountries = (onSuccess?: onSuccess, onError?: onError) => {
+  return useQuery('countries', fetchCountries, {
+    onSuccess,
+    onError
+  })
 }
 
 const fetchStates = () => {
@@ -59,8 +67,11 @@ const fetchStates = () => {
   })
 }
 
-export const useFetchStates = () => {
-  return useQuery<unknown, unknown, Classifier[]>('states', fetchStates)
+export const useFetchStates = (onSuccess?: onSuccess, onError?: onError) => {
+  return useQuery('states', fetchStates, {
+    onSuccess,
+    onError
+  })
 }
 
 const fetchFinacleStates = () => {
@@ -70,8 +81,11 @@ const fetchFinacleStates = () => {
   })
 }
 
-export const useFetchFinacleStates = () => {
-  return useQuery<unknown, unknown, Classifier[]>('finacle-states', fetchFinacleStates)
+export const useFetchFinacleStates = (onSuccess?: onSuccess, onError?: onError) => {
+  return useQuery('finacle-states', fetchFinacleStates, {
+    onSuccess,
+    onError
+  })
 }
 
 const fetchCities = () => {
@@ -81,8 +95,11 @@ const fetchCities = () => {
   })
 }
 
-export const useFetchCities = () => {
-  return useQuery<unknown, unknown, Classifier[]>('cities', fetchCities)
+export const useFetchCities = (onSuccess?: onSuccess, onError?: onError) => {
+  return useQuery('cities', fetchCities, {
+    onSuccess,
+    onError
+  })
 }
 
 const fetchCommunes = () => {
@@ -92,8 +109,11 @@ const fetchCommunes = () => {
   })
 }
 
-export const useFetchCommunes = () => {
-  return useQuery<unknown, unknown, Classifier[]>('communes', fetchCommunes)
+export const useFetchCommunes = (onSuccess?: onSuccess, onError?: onError) => {
+  return useQuery('communes', fetchCommunes, {
+    onSuccess,
+    onError
+  })
 }
 
 const fetchCurrencyPair = ({ queryKey }: QueryFunctionContext<[string, CurrencyPairPayload]>) => {
@@ -104,8 +124,12 @@ const fetchCurrencyPair = ({ queryKey }: QueryFunctionContext<[string, CurrencyP
   })
 }
 
-export const useFetchCurrencyPair = (payload: CurrencyPairPayload) => {
-  return useQuery<unknown, unknown, CurrencyPair>(['currency-pair', payload], fetchCurrencyPair)
+export const useFetchCurrencyPair = (
+  payload: CurrencyPairPayload,
+  onSuccess?: onSuccess,
+  onError?: onError
+) => {
+  return useQuery(['currency-pair', payload], fetchCurrencyPair, { onSuccess, onError })
 }
 
 const fetchCashbox = ({ queryKey }: QueryFunctionContext<[string, CashboxPayload]>) => {
@@ -116,8 +140,15 @@ const fetchCashbox = ({ queryKey }: QueryFunctionContext<[string, CashboxPayload
   })
 }
 
-export const useFetchCashbox = (payload: CashboxPayload) => {
-  return useQuery<unknown, unknown, Cashbox>(['cashbox', payload], fetchCashbox)
+export const useFetchCashbox = (
+  payload: CashboxPayload,
+  onSuccess?: onSuccess,
+  onError?: onError
+) => {
+  return useQuery(['cashbox', payload], fetchCashbox, {
+    onSuccess: onSuccess,
+    onError: onError
+  })
 }
 
 const fetchDenominations = ({ queryKey }: QueryFunctionContext<[string, CashboxPayload]>) => {
@@ -128,8 +159,15 @@ const fetchDenominations = ({ queryKey }: QueryFunctionContext<[string, CashboxP
   })
 }
 
-export const useFetchDenominations = (payload: CashboxPayload) => {
-  return useQuery<unknown, unknown, Denomination[]>(['denominations', payload], fetchDenominations)
+export const useFetchDenominations = (
+  payload: CashboxPayload,
+  onSuccess?: onSuccess,
+  onError?: onError
+) => {
+  return useQuery(['denominations', payload], fetchDenominations, {
+    onSuccess: onSuccess,
+    onError: onError
+  })
 }
 
 const fetchDocuments = ({ queryKey }: QueryFunctionContext<[string, string]>) => {
@@ -137,8 +175,11 @@ const fetchDocuments = ({ queryKey }: QueryFunctionContext<[string, string]>) =>
   return adminRequest({ url: `${endPoints.fetchDocuments}?fileKey=${fileKey}`, method: 'get' })
 }
 
-export const useFetchDocuments = (fileKey: string) => {
-  return useQuery<unknown, unknown, { file: string }>(['documents', fileKey], fetchDocuments)
+export const useFetchDocuments = (fileKey: string, onSuccess?: onSuccess, onError?: onError) => {
+  return useQuery(['documents', fileKey], fetchDocuments, {
+    onSuccess: onSuccess,
+    onError: onError
+  })
 }
 
 const postDenominationsTx = (payload: DenominationTxPayload) => {
@@ -152,14 +193,180 @@ export const usePostDenominationTx = (onSuccess: onSuccess, onError: onError) =>
   })
 }
 
-const fetchCheckStatus = ({ queryKey }: QueryFunctionContext<[string, CheckStatusPayload]>) => {
+const fetchChequeStatus = ({ queryKey }: QueryFunctionContext<[string, CheckStatusPayload]>) => {
   const payload = queryKey[1]
   return adminRequest({
-    url: `${endPoints.fetchCheckStatus}?instrumentDate=${payload.instrumentDate}&instrumentNumber=${payload.instrumentNumber}&accountNumber=${payload.accountNumber}`,
+    url: `${endPoints.fetchChequeStatus}?instrumentDate=${payload.instrumentDate}&instrumentNumber=${payload.instrumentNumber}&accountNumber=${payload.accountNumber}`,
     method: 'get'
   })
 }
 
-export const useFetchCheckStatus = (payload: CheckStatusPayload) => {
-  return useQuery<unknown, unknown, SuccessResponse>(['check-status', payload], fetchCheckStatus)
+export const useFetchChequeStatus = (
+  payload: CheckStatusPayload,
+  onSuccess?: onSuccess,
+  onError?: onError
+) => {
+  return useQuery(['check-status', payload], fetchChequeStatus, {
+    onSuccess,
+    onError
+  })
+}
+
+const fetchNationalities = () => {
+  return adminRequest({
+    url: endPoints.fetchNationalities,
+    method: 'get'
+  })
+}
+
+export const useFetchNationalities = (onSuccess?: onSuccess, onError?: onError) => {
+  return useQuery('nationalities', fetchNationalities, {
+    onSuccess,
+    onError
+  })
+}
+
+const fetchAccountTypes = ({ queryKey }: QueryFunctionContext<[string, boolean]>) => {
+  const isStaff = queryKey[1]
+  return adminRequest({
+    url: isStaff ? `${endPoints.fetchAccountTypes}?isStaff=1` : endPoints.fetchAccountTypes,
+    method: 'get'
+  })
+}
+
+export const useFetchAccountTypes = (
+  isStaff?: boolean,
+  onSuccess?: onSuccess,
+  onError?: onError
+) => {
+  return useQuery(['account-types', isStaff], fetchAccountTypes, {
+    onSuccess,
+    onError
+  })
+}
+
+const fetchCurrencies = () => {
+  return adminRequest({
+    url: endPoints.fetchCurrencies,
+    method: 'get'
+  })
+}
+
+export const useFetchCurrencies = (onSuccess?: onSuccess, onError?: onError) => {
+  return useQuery('currencies', fetchCurrencies, {
+    onSuccess,
+    onError
+  })
+}
+
+const fetchProfessions = () => {
+  return adminRequest({
+    url: endPoints.fetchProfessions,
+    method: 'get'
+  })
+}
+
+export const useFetchProfessions = (onSuccess?: onSuccess, onError?: onError) => {
+  return useQuery('professions', fetchProfessions, {
+    onSuccess,
+    onError
+  })
+}
+
+const fetchDocumentTypes = () => {
+  return adminRequest({
+    url: endPoints.fetchDocumentTypes,
+    method: 'get'
+  })
+}
+
+export const useFetchDocumentTypes = (onSuccess?: onSuccess, onError?: onError) => {
+  return useQuery('document-types', fetchDocumentTypes, {
+    onSuccess,
+    onError
+  })
+}
+
+const fetchMaritalStatus = () => {
+  return adminRequest({
+    url: endPoints.fetchMaritalStatus,
+    method: 'get'
+  })
+}
+
+export const useFetchMaritalStatus = (onSuccess?: onSuccess, onError?: onError) => {
+  return useQuery('marital-status', fetchMaritalStatus, {
+    onSuccess,
+    onError
+  })
+}
+
+const fetchGenders = () => {
+  return adminRequest({
+    url: endPoints.fetchGenders,
+    method: 'get'
+  })
+}
+
+export const useFetchGenders = (onSuccess?: onSuccess, onError?: onError) => {
+  return useQuery('genders', fetchGenders, {
+    onSuccess,
+    onError
+  })
+}
+
+const fetchLanguages = () => {
+  return adminRequest({
+    url: endPoints.fetchLanguages,
+    method: 'get'
+  })
+}
+
+export const useFetchLanguages = (onSuccess?: onSuccess, onError?: onError) => {
+  return useQuery('languages', fetchLanguages, {
+    onSuccess,
+    onError
+  })
+}
+
+const fetchTitles = () => {
+  return adminRequest({
+    url: endPoints.fetchTitles,
+    method: 'get'
+  })
+}
+
+export const useFetchTitles = (onSuccess?: onSuccess, onError?: onError) => {
+  return useQuery('titles', fetchTitles, {
+    onSuccess,
+    onError
+  })
+}
+
+const fetchRegions = () => {
+  return adminRequest({
+    url: endPoints.fetchRegions,
+    method: 'get'
+  })
+}
+
+export const useFetchRegions = (onSuccess?: onSuccess, onError?: onError) => {
+  return useQuery('regions', fetchRegions, {
+    onSuccess,
+    onError
+  })
+}
+
+const fetchIssuerOrganizations = () => {
+  return adminRequest({
+    url: endPoints.fetchIssuerOrganizations,
+    method: 'get'
+  })
+}
+
+export const useFetchIssuerOrganizations = (onSuccess?: onSuccess, onError?: onError) => {
+  return useQuery('issuer-organizations', fetchIssuerOrganizations, {
+    onSuccess,
+    onError
+  })
 }

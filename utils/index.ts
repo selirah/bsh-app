@@ -44,7 +44,7 @@ export const dataURLtoFile = (dataUrl: string, filename: string) => {
   return new File([u8arr], filename, { type: mime })
 }
 
-export const urlToFile = async (url: string, filename: string, mimeType: string = 'image/png') => {
+export const urlToFile = async (url: string, filename: string, mimeType = 'image/png') => {
   const res = await fetch(url)
   const buffer = await res.arrayBuffer()
   return new File([buffer], filename, { type: mimeType })
@@ -56,5 +56,34 @@ export const getBase64 = (file: File) => {
     reader.readAsDataURL(file)
     reader.onload = () => resolve(reader.result)
     reader.onerror = (error) => reject(error)
+  })
+}
+
+export const resizeImage = (base64Str: any, maxWidth = 500, maxHeight = 500) => {
+  return new Promise((resolve) => {
+    let img = new Image()
+    img.src = base64Str
+    img.onload = () => {
+      let canvas = document.createElement('canvas')
+      let width = img.width
+      let height = img.height
+
+      if (width > height) {
+        if (width > maxWidth) {
+          height *= maxWidth / width
+          width = maxWidth
+        }
+      } else {
+        if (height > maxHeight) {
+          width *= maxHeight / height
+          height = maxHeight
+        }
+      }
+      canvas.width = width
+      canvas.height = height
+      let ctx = canvas.getContext('2d')
+      ctx.drawImage(img, 0, 0, width, height)
+      resolve(canvas.toDataURL())
+    }
   })
 }

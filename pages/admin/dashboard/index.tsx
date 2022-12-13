@@ -1,13 +1,8 @@
 import { AdminLayout } from 'layouts'
-import { useFetchCustomerData } from 'hooks/customer'
-const Dashboard = () => {
-  const payload = {
-    searchProperty: 'CIF',
-    propertyData: '2334343434',
-    userId: '3'
-  }
+import { useFetchBranches } from 'hooks/common'
 
-  const { data } = useFetchCustomerData(payload)
+const Dashboard = () => {
+  const { data } = useFetchBranches()
 
   console.log(data)
 

@@ -16,6 +16,7 @@ export type FilterPayload = {
   userId?: number
   periodFrom?: string
   periodTo?: string
+  agentId?: number
 }
 
 export type Branch = {
@@ -36,6 +37,7 @@ export type Classifier = {
   id: string
   name: string
   propName?: string
+  hasexpiration?: boolean
 }
 
 export type CurrencyPair = {
@@ -84,4 +86,9 @@ export type CheckStatusPayload = {
   instrumentDate?: string
   instrumentNumber?: string
   accountNumber?: string
+}
+
+export type Option = {
+  label: string
+  value: string
 }
