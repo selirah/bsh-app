@@ -1,9 +1,9 @@
 @layer base {
   html {
-    background: theme('colors.light.background');
+    @apply bg-light-background;
   }
   html.dark {
-    background: theme('colors.dark.background');
+    @apply bg-dark-background;
   }
 }
 

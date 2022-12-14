@@ -22,6 +22,7 @@ type ActionButtonProps = AccordionProps & {
   extraBtnColor?: ColorTypes
   extraBtnAction?: () => void
   IconSVGExtra?: React.FC<React.SVGProps<SVGSVGElement>>
+  borderBottom?: boolean
 }
 
 export const Basic: React.FC<BasicProps> = (props) => {
@@ -73,12 +74,13 @@ export const ActionButton: React.FC<ActionButtonProps> = (props) => {
     IconSVG,
     extraBtnAction,
     children,
-    IconSVGExtra
+    IconSVGExtra,
+    borderBottom
   } = props
   const [addClass, setAddClass] = useState(false)
 
   return (
-    <div className="relative w-full overflow-hidden">
+    <div className="relative w-full z-10">
       <div className={classnames('h-12 w-full pl-[16px] flex items-center justify-end ')}>
         <div className="flex space-x-2">
           {extraBtnText ? (
@@ -108,13 +110,16 @@ export const ActionButton: React.FC<ActionButtonProps> = (props) => {
       </div>
       <div
         className={classnames(
-          'mt-4 bg-light-container dark:bg-dark-container overflow-hidden transition-all max-h-0 duration-500',
-          { 'max-h-96': addClass }
+          'py-[16px] px-1 bg-light-container dark:bg-dark-container overflow-hidden transition-all max-h-0 duration-500',
+          { 'max-h-full': addClass }
         )}
       >
+        {borderBottom ? (
+          <div className="border-t border-light-border mb-4 dark:border-dark-border" />
+        ) : null}
         <div
           className={classnames(
-            'p-4 text-pNormal font-regular font-montserrat text-light-text dark:text-dark-text',
+            'w-full text-pNormal font-regular font-montserrat text-light-text dark:text-dark-text',
             {}
           )}
         >

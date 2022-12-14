@@ -1,11 +1,14 @@
-import { AdminLayout } from 'layouts'
+import { AdminLayout, BasicContainer } from 'layouts'
+import { routes } from 'containers/agency-banking'
+import { useIntl } from 'react-intl'
 
-const AgencyBanking = () => {
+const AgencyBankingPage = () => {
+  const intl = useIntl()
   return (
-    <AdminLayout pageTitle="Dashboard">
-      <div className="block bg-light-container dark:bg-dark-container shadow-penumbra rounded"></div>
+    <AdminLayout pageTitle="Agency Banking" breadcrumbActions={routes(intl)}>
+      <BasicContainer>Dashboard</BasicContainer>
     </AdminLayout>
   )
 }
 
-export default AgencyBanking
+export default AgencyBankingPage

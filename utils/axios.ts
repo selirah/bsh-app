@@ -6,6 +6,10 @@ const adminInstance: AxiosInstance = axios.create({
   baseURL: `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api`
 })
 
+const adminInstanceTest: AxiosInstance = axios.create({
+  baseURL: `${process.env.NEXT_PUBLIC_API_ENDPOINT_TEST}/api`
+})
+
 const authInstance: AxiosInstance = axios.create({
   baseURL: `${process.env.NEXT_PUBLIC_USERSERVICE_URL}/api`
 })
@@ -75,6 +79,33 @@ export const bioDeviceRequest = async ({ ...options }: AxiosOptions) => {
   }
   try {
     const response = await bioDeviceInstance(options)
+    return onSuccess(response)
+  } catch (error) {
+    return onError(error)
+  }
+}
+
+export const adminRequestTest = async ({ ...options }: AxiosOptions) => {
+  const userSession = await getSession()
+  const { accessToken } = userSession
+  adminInstanceTest.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`
+  adminInstanceTest.defaults.headers.post['Content-Type'] = 'application/json'
+
+  const onSuccess = (response: AxiosResponse) => response
+  const onError = (error: AxiosError) => {
+    // optionaly catch errors and add additional logging here
+    return error
+  }
+  try {
+    if (options.data && options.method === 'post') {
+      delete options.data['hash']
+      const salt = 'PCES'
+      options.data['poweredBy'] = salt
+      const hash = md5(JSON.stringify(options.data))
+      delete options.data['poweredBy']
+      options.data['hash'] = hash
+    }
+    const response = await adminInstanceTest(options)
     return onSuccess(response)
   } catch (error) {
     return onError(error)

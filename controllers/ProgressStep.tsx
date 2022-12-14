@@ -20,48 +20,44 @@ export const ProgressStep: React.FC<Props> = (props) => {
         <Fragment key={i}>
           {i === active ? (
             !success ? (
-              <div className="w-1/6">
-                <Step.Active
-                  step={i}
-                  title={
-                    titles.length
-                      ? titles[i - 1]
-                      : `${intl.formatMessage({ defaultMessage: 'Step' })} ${i}`
-                  }
-                />
-              </div>
-            ) : (
-              <div className="w-1/6">
-                <Step.Completed
-                  title={
-                    titles.length
-                      ? titles[i - 1]
-                      : `${intl.formatMessage({ defaultMessage: 'Step' })} ${i}`
-                  }
-                />
-              </div>
-            )
-          ) : active > i ? (
-            <div className="w-1/6">
-              <Step.Completed
-                title={
-                  titles.length
-                    ? titles[i - 1]
-                    : `${intl.formatMessage({ defaultMessage: 'Step' })} ${i}`
-                }
-              />
-            </div>
-          ) : (
-            <div className="w-1/6">
-              <Step.UnAttended
+              <Step.Active
                 step={i}
                 title={
                   titles.length
                     ? titles[i - 1]
                     : `${intl.formatMessage({ defaultMessage: 'Step' })} ${i}`
                 }
+                leftBorder
               />
-            </div>
+            ) : (
+              <Step.Completed
+                title={
+                  titles.length
+                    ? titles[i - 1]
+                    : `${intl.formatMessage({ defaultMessage: 'Step' })} ${i}`
+                }
+                leftBorder
+              />
+            )
+          ) : active > i ? (
+            <Step.Completed
+              title={
+                titles.length
+                  ? titles[i - 1]
+                  : `${intl.formatMessage({ defaultMessage: 'Step' })} ${i}`
+              }
+              leftBorder
+            />
+          ) : (
+            <Step.UnAttended
+              step={i}
+              title={
+                titles.length
+                  ? titles[i - 1]
+                  : `${intl.formatMessage({ defaultMessage: 'Step' })} ${i}`
+              }
+              leftBorder
+            />
           )}
         </Fragment>
       )
@@ -70,7 +66,11 @@ export const ProgressStep: React.FC<Props> = (props) => {
   }
 
   return (
-    <div className="flex justify-start border border-light-border dark:border-dark-border">
+    <div
+      className={`${
+        totalSteps ? 'grid grid-cols-' + totalSteps : 'flex'
+      } border border-light-border dark:border-dark-border`}
+    >
       {renderSteps()}
     </div>
   )

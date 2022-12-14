@@ -10,9 +10,7 @@ type Color =
   | 'warning'
   | 'default'
 
-type BgColor = 'white' | 'black'
-
-type LoaderSize = 'sm' | 'md' | 'lg'
+type LoaderSize = 'sm' | 'md' | 'lg' | 'xl' | '2xl'
 
 type ButtonLoaderProps = {
   size?: LoaderSize
@@ -21,7 +19,6 @@ type ButtonLoaderProps = {
 
 type BasicLoaderProps = ButtonLoaderProps & {
   spinColor?: Color
-  bgColor?: BgColor
 }
 
 type AppleLoaderProps = ButtonLoaderProps & {
@@ -29,39 +26,37 @@ type AppleLoaderProps = ButtonLoaderProps & {
 }
 
 export const BasicLoader: React.FC<BasicLoaderProps> = (props) => {
-  const { size, spinColor, bgColor, slow } = props
+  const { size, spinColor, slow } = props
   return (
     <div aria-label="Loading..." role="status">
       <svg
-        className={classnames('', {
+        className={classnames('spinnerContentLoader', {
           'h-4 w-4': size === 'sm',
           'h-5 w-5': size === 'md' || !size,
           'h-6 w-6': size === 'lg',
-          'animate-spin-fast': !slow,
-          'animate-spin-slow': slow
+          'h-8 w-8': size === 'xl',
+          'h-10 w-10': size === '2xl',
+          'animate-stroke-slow': slow
         })}
-        viewBox="3 3 18 18"
+        viewBox="0 0 50 50"
       >
-        <path
-          className={classnames('', {
-            'fill-light-btnText': bgColor === 'white' || !bgColor,
-            'fill-dark-btnText': bgColor === 'black'
+        <circle
+          className={classnames('spinnerContentLoaderCircle', {
+            'stroke-light-btnText': spinColor === 'default' || !spinColor,
+            'stroke-primary': spinColor === 'primary',
+            'stroke-error': spinColor === 'error',
+            'stroke-success': spinColor === 'success',
+            'stroke-secondary': spinColor === 'secondary',
+            'stroke-accent': spinColor === 'accent',
+            'stroke-info': spinColor === 'info',
+            'stroke-warning': spinColor === 'warning'
           })}
-          d="M12 5C8.13401 5 5 8.13401 5 12C5 15.866 8.13401 19 12 19C15.866 19 19 15.866 19 12C19 8.13401 15.866 5 12 5ZM3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12Z"
-        ></path>
-        <path
-          className={classnames('', {
-            'fill-light-btnText': spinColor === 'default' || !spinColor,
-            'fill-primary': spinColor === 'primary',
-            'fill-error': spinColor === 'error',
-            'fill-success': spinColor === 'success',
-            'fill-secondary': spinColor === 'secondary',
-            'fill-accent': spinColor === 'accent',
-            'fill-info': spinColor === 'info',
-            'fill-warning': spinColor === 'warning'
-          })}
-          d="M16.9497 7.05015C14.2161 4.31648 9.78392 4.31648 7.05025 7.05015C6.65973 7.44067 6.02656 7.44067 5.63604 7.05015C5.24551 6.65962 5.24551 6.02646 5.63604 5.63593C9.15076 2.12121 14.8492 2.12121 18.364 5.63593C18.7545 6.02646 18.7545 6.65962 18.364 7.05015C17.9734 7.44067 17.3403 7.44067 16.9497 7.05015Z"
-        ></path>
+          cx="25"
+          cy="25"
+          r="20"
+          fill="none"
+          strokeWidth="3.0"
+        />
       </svg>
     </div>
   )
@@ -76,6 +71,8 @@ export const AppleLoader: React.FC<AppleLoaderProps> = (props) => {
           'h-4 w-4': size === 'sm',
           'h-5 w-5': size === 'md' || !size,
           'h-6 w-6': size === 'lg',
+          'h-8 w-8': size === 'xl',
+          'h-16 w-16': size === '2xl',
           'animate-stroke-fast': !slow,
           'animate-stroke-slow': slow,
           'stroke-light-btnText': strokeColor === 'default' || !strokeColor,

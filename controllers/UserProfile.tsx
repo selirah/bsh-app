@@ -40,7 +40,7 @@ export const UserProfile: FC<Props> = (props) => {
       )}
       <Transition.Dropdown isEnter={isEnter} nodeRef={nodeRef}>
         <div
-          className="w-64 absolute right-0 rounded border border-light-border dark:border-dark-border shadow-penumbra bg-light-container dark:bg-dark-container font-montserrat transition ease-out duration-100 text-pSmall"
+          className="w-64 absolute right-0 rounded border border-light-border dark:border-dark-border shadow-penumbra bg-light-container dark:bg-dark-container font-montserrat transition ease-out duration-100 text-pSmall z-10"
           ref={nodeRef}
         >
           <Link

@@ -4,7 +4,7 @@ import classnames from 'classnames'
 import { CustomStyles } from './styles'
 import { FiAlertCircle } from 'react-icons/fi'
 import makeAnimated from 'react-select/animated'
-import { ThemeContext } from 'contexts/Theme'
+import { ThemeContext, ColorContext } from 'contexts'
 
 type InputSizes = 'sm' | 'md' | 'lg'
 
@@ -40,6 +40,7 @@ type MultipleProps = SelectProps & {
 
 export const Single: React.FC<SingleProps> = (props) => {
   const { theme } = React.useContext(ThemeContext)
+  const { color } = React.useContext(ColorContext)
   const {
     name,
     label,
@@ -87,7 +88,8 @@ export const Single: React.FC<SingleProps> = (props) => {
         onChange={onChange}
         name={name}
         id={name}
-        styles={CustomStyles(size ?? 'md', error ?? '', success ?? false, theme)}
+        styles={CustomStyles(size ?? 'md', error ?? '', success ?? false, theme, color)}
+        menuPortalTarget={typeof window !== 'undefined' ? document.body : null}
       />
       {error ? (
         <div className="mt-[8px] items-center flex">
@@ -113,6 +115,7 @@ export const Single: React.FC<SingleProps> = (props) => {
 
 export const Multiple: React.FC<MultipleProps> = (props) => {
   const { theme } = React.useContext(ThemeContext)
+  const { color } = React.useContext(ColorContext)
   const {
     name,
     label,
@@ -145,9 +148,12 @@ export const Multiple: React.FC<MultipleProps> = (props) => {
         </label>
       ) : null}
       <Select
-        className={classnames('font-montserrat font-regular', {
+        className={classnames('font-montserrat font-regular z-20', {
           'text-pSmall': size === 'sm',
-          'text-pNormal': size === 'md' || !size || size === 'lg'
+          'text-pNormal': size === 'md' || !size || size === 'lg',
+          'h-[40px] text-pSmall': size === 'sm',
+          'h-[45px] text-pNormal': size === 'md' || !size,
+          'h-[50px] text-pNormal': size === 'lg'
         })}
         isMulti
         classNamePrefix=""
@@ -162,8 +168,9 @@ export const Multiple: React.FC<MultipleProps> = (props) => {
         onChange={onChange}
         name={name}
         id={name}
-        styles={CustomStyles(size ?? 'md', error ?? '', success ?? false, theme)}
+        styles={CustomStyles(size ?? 'md', error ?? '', success ?? false, theme, color)}
         components={makeAnimated()}
+        menuPortalTarget={typeof window !== 'undefined' ? document.body : null}
       />
       {error ? (
         <div className="mt-[8px] items-center flex">

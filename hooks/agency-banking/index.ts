@@ -1,5 +1,5 @@
 import { useQuery, QueryFunctionContext, useMutation } from 'react-query'
-import { adminRequest } from 'utils/axios'
+import { /*adminRequestTest, */ adminRequestTest } from 'utils/axios'
 import {
   onError,
   onSuccess,
@@ -40,7 +40,7 @@ const endPoints = {
 }
 
 const fetchAgentAccountTypes = () => {
-  return adminRequest({
+  return adminRequestTest({
     url: endPoints.fetchAgentAccountTypes,
     method: 'get'
   })
@@ -51,7 +51,7 @@ export const useFetchAgentAccountTypes = (onSuccess?: onSuccess, onError?: onErr
 }
 
 const fetchAgentStatus = () => {
-  return adminRequest({
+  return adminRequestTest({
     url: endPoints.fetchAgentStatus,
     method: 'get'
   })
@@ -62,7 +62,7 @@ export const useFetchAgentStatus = (onSuccess?: onSuccess, onError?: onError) =>
 }
 
 const fetchOutletStatus = () => {
-  return adminRequest({
+  return adminRequestTest({
     url: endPoints.fetchOutletStatus,
     method: 'get'
   })
@@ -73,7 +73,7 @@ export const useFetchOutletStatus = (onSuccess?: onSuccess, onError?: onError) =
 }
 
 const fetchAgentDocumentTypes = () => {
-  return adminRequest({
+  return adminRequestTest({
     url: endPoints.fetchAgentDocumentTypes,
     method: 'get'
   })
@@ -85,7 +85,7 @@ export const useFetchAgentDocumentTypes = (onSuccess?: onSuccess, onError?: onEr
 
 const fetchAllAgents = ({ queryKey }: QueryFunctionContext<[string, FilterPayload]>) => {
   const payload = queryKey[1]
-  return adminRequest({
+  return adminRequestTest({
     url: endPoints.fetchAllAgents,
     method: 'post',
     data: payload
@@ -102,7 +102,7 @@ export const useFetchAllAgents = (
 
 const fetchOutletUsers = ({ queryKey }: QueryFunctionContext<[string, FilterPayload]>) => {
   const payload = queryKey[1]
-  return adminRequest({
+  return adminRequestTest({
     url: endPoints.fetchAllAgents,
     method: 'post',
     data: payload
@@ -118,7 +118,7 @@ export const useFetchOutletUsers = (
 }
 
 const blockOutletUser = (payload: OutletUserPayload) => {
-  return adminRequest({ url: endPoints.blockOutletUser, method: 'post', data: payload })
+  return adminRequestTest({ url: endPoints.blockOutletUser, method: 'post', data: payload })
 }
 
 export const useBlockOutletUser = (onSuccess: onSuccess, onError: onError) => {
@@ -129,7 +129,7 @@ export const useBlockOutletUser = (onSuccess: onSuccess, onError: onError) => {
 }
 
 const unblockOutletUser = (payload: OutletUserPayload) => {
-  return adminRequest({ url: endPoints.unblockOutletUser, method: 'post', data: payload })
+  return adminRequestTest({ url: endPoints.unblockOutletUser, method: 'post', data: payload })
 }
 
 export const useUnblockOutletUser = (onSuccess: onSuccess, onError: onError) => {
@@ -140,7 +140,7 @@ export const useUnblockOutletUser = (onSuccess: onSuccess, onError: onError) => 
 }
 
 const resetOutletUserPin = (payload: OutletUserPayload) => {
-  return adminRequest({ url: endPoints.resetOutletUserPin, method: 'post', data: payload })
+  return adminRequestTest({ url: endPoints.resetOutletUserPin, method: 'post', data: payload })
 }
 
 export const useResetOutletUserPin = (onSuccess: onSuccess, onError: onError) => {
@@ -152,7 +152,7 @@ export const useResetOutletUserPin = (onSuccess: onSuccess, onError: onError) =>
 
 const searchAgentByCode = ({ queryKey }: QueryFunctionContext<[string, string]>) => {
   const agentCode = queryKey[1]
-  return adminRequest({
+  return adminRequestTest({
     url: `${endPoints.searchAgentByCode}?agentCode=${agentCode}`,
     method: 'get'
   })
@@ -170,7 +170,7 @@ export const useSearchAgentByCode = (
 }
 
 const onboardAgent = (payload: AgentPayload) => {
-  return adminRequest({ url: endPoints.onboardAgent, method: 'post', data: payload })
+  return adminRequestTest({ url: endPoints.onboardAgent, method: 'post', data: payload })
 }
 
 export const useOnboardAgent = (onSuccess: onSuccess, onError: onError) => {
@@ -181,7 +181,7 @@ export const useOnboardAgent = (onSuccess: onSuccess, onError: onError) => {
 }
 
 const createOutletUser = (payload: AgentPayload) => {
-  return adminRequest({ url: endPoints.createOutletUser, method: 'post', data: payload })
+  return adminRequestTest({ url: endPoints.createOutletUser, method: 'post', data: payload })
 }
 
 export const useCreateOutletUser = (onSuccess: onSuccess, onError: onError) => {
@@ -192,7 +192,7 @@ export const useCreateOutletUser = (onSuccess: onSuccess, onError: onError) => {
 }
 
 const verifyAgent = (payload: AgentPayload) => {
-  return adminRequest({ url: endPoints.verifyAgent, method: 'post', data: payload })
+  return adminRequestTest({ url: endPoints.verifyAgent, method: 'post', data: payload })
 }
 
 export const useVerifyAgent = (onSuccess: onSuccess, onError: onError) => {
@@ -203,7 +203,7 @@ export const useVerifyAgent = (onSuccess: onSuccess, onError: onError) => {
 }
 
 const validateAgent = (payload: AgentPayload) => {
-  return adminRequest({ url: endPoints.validateAgent, method: 'post', data: payload })
+  return adminRequestTest({ url: endPoints.validateAgent, method: 'post', data: payload })
 }
 
 export const useValidateAgent = (onSuccess: onSuccess, onError: onError) => {
@@ -214,7 +214,7 @@ export const useValidateAgent = (onSuccess: onSuccess, onError: onError) => {
 }
 
 const rejectAgentPermanent = (payload: AgentPayload) => {
-  return adminRequest({ url: endPoints.rejectAgentPermanent, method: 'post', data: payload })
+  return adminRequestTest({ url: endPoints.rejectAgentPermanent, method: 'post', data: payload })
 }
 
 export const useRejectAgentPermanent = (onSuccess: onSuccess, onError: onError) => {
@@ -225,7 +225,7 @@ export const useRejectAgentPermanent = (onSuccess: onSuccess, onError: onError) 
 }
 
 const rejectAgentWithReason = (payload: AgentPayload) => {
-  return adminRequest({ url: endPoints.rejectAgentWithReason, method: 'post', data: payload })
+  return adminRequestTest({ url: endPoints.rejectAgentWithReason, method: 'post', data: payload })
 }
 
 export const useRejectAgentWithReason = (onSuccess: onSuccess, onError: onError) => {
@@ -236,7 +236,7 @@ export const useRejectAgentWithReason = (onSuccess: onSuccess, onError: onError)
 }
 
 const blockAgent = (payload: AgentPayload) => {
-  return adminRequest({ url: endPoints.blockAgent, method: 'post', data: payload })
+  return adminRequestTest({ url: endPoints.blockAgent, method: 'post', data: payload })
 }
 
 export const useBlockAgent = (onSuccess: onSuccess, onError: onError) => {
@@ -247,7 +247,7 @@ export const useBlockAgent = (onSuccess: onSuccess, onError: onError) => {
 }
 
 const unblockAgent = (payload: AgentPayload) => {
-  return adminRequest({ url: endPoints.unblockAgent, method: 'post', data: payload })
+  return adminRequestTest({ url: endPoints.unblockAgent, method: 'post', data: payload })
 }
 
 export const useUnblockAgent = (onSuccess: onSuccess, onError: onError) => {
@@ -259,7 +259,7 @@ export const useUnblockAgent = (onSuccess: onSuccess, onError: onError) => {
 
 const fetchOfferLetter = ({ queryKey }: QueryFunctionContext<[string, string]>) => {
   const agentCode = queryKey[1]
-  return adminRequest({
+  return adminRequestTest({
     url: `${endPoints.fetchOfferLetter}?agentCode=${agentCode}`,
     method: 'get'
   })
@@ -277,7 +277,7 @@ export const useFetchOfferLetter = (
 }
 
 const resetAgentPin = (payload: AgentPayload) => {
-  return adminRequest({ url: endPoints.resetAgentPin, method: 'post', data: payload })
+  return adminRequestTest({ url: endPoints.resetAgentPin, method: 'post', data: payload })
 }
 
 export const useResetAgentPin = (onSuccess: onSuccess, onError: onError) => {
@@ -288,7 +288,7 @@ export const useResetAgentPin = (onSuccess: onSuccess, onError: onError) => {
 }
 
 const selfServiceOnboarding = (payload: AgentPayload) => {
-  return adminRequest({ url: endPoints.selfServiceOnboarding, method: 'post', data: payload })
+  return adminRequestTest({ url: endPoints.selfServiceOnboarding, method: 'post', data: payload })
 }
 
 export const useSelfServiceOnboarding = (onSuccess: onSuccess, onError: onError) => {
@@ -300,7 +300,7 @@ export const useSelfServiceOnboarding = (onSuccess: onSuccess, onError: onError)
 
 const exportAgents = ({ queryKey }: QueryFunctionContext<[string, FilterPayload]>) => {
   const payload = queryKey[1]
-  return adminRequest({
+  return adminRequestTest({
     url: endPoints.exportAgents,
     method: 'post',
     data: payload
@@ -320,7 +320,7 @@ export const useExportAgents = (
 
 const fetchAgentsReport = ({ queryKey }: QueryFunctionContext<[string, FilterPayload]>) => {
   const payload = queryKey[1]
-  return adminRequest({
+  return adminRequestTest({
     url: endPoints.fetchAgentsReport,
     method: 'post',
     data: payload
@@ -340,7 +340,7 @@ export const useFetchAgentsReport = (
 
 const exportAgentsReport = ({ queryKey }: QueryFunctionContext<[string, FilterPayload]>) => {
   const payload = queryKey[1]
-  return adminRequest({
+  return adminRequestTest({
     url: endPoints.exportAgentsReport,
     method: 'post',
     data: payload
@@ -359,7 +359,7 @@ export const useExportAgentsReport = (
 }
 
 const verifyOutletUserStatus = (payload: VerifyOutletUserPayload) => {
-  return adminRequest({
+  return adminRequestTest({
     url: `${endPoints.verifyOutletUserStatus}?approvalStatus=${payload.approvalStatus}&agentId=${payload.agentId}`,
     method: 'post',
     data: payload
@@ -374,7 +374,7 @@ export const useVerifyOutletUserStatus = (onSuccess: onSuccess, onError: onError
 }
 
 const rejectOutletUserStatus = (payload: VerifyOutletUserPayload) => {
-  return adminRequest({
+  return adminRequestTest({
     url: `${endPoints.rejectOutletUserStatus}?approvalStatus=${payload.approvalStatus}&agentId=${payload.agentId}`,
     method: 'post',
     data: payload
@@ -390,7 +390,7 @@ export const useRejectOutletUserStatus = (onSuccess: onSuccess, onError: onError
 
 const fetchAllOutletUsers = ({ queryKey }: QueryFunctionContext<[string, FilterPayload]>) => {
   const payload = queryKey[1]
-  return adminRequest({
+  return adminRequestTest({
     url: endPoints.fetchAllOutletUsers,
     method: 'post',
     data: payload

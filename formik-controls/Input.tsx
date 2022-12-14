@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, Fragment } from 'react'
 import { Field, ErrorMessage } from 'formik'
 import classnames from 'classnames'
 import InputError from './InputError'
@@ -19,7 +19,7 @@ type InputProps = {
 export const Input: FC<InputProps> = (props) => {
   const { label, name, size, IconSVG, iconPosition, ...rest } = props
   return (
-    <div className="">
+    <Fragment>
       {label ? (
         <label
           htmlFor={name}
@@ -60,6 +60,6 @@ export const Input: FC<InputProps> = (props) => {
         />
       </div>
       <ErrorMessage name={name}>{(msg) => <InputError size={size}>{msg}</InputError>}</ErrorMessage>
-    </div>
+    </Fragment>
   )
 }

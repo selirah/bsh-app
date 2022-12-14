@@ -43,10 +43,10 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = (props) => {
 
   return (
     <div
-      className="flex justify-between p-[16px] bg-light-container dark:bg-dark-container shadow-penumbra rounded"
+      className="flex justify-between p-[8px] bg-light-container dark:bg-dark-container shadow-penumbra rounded"
       aria-label="breadcrumb"
     >
-      <ol className="inline-flex items-center space-x-1 md:space-x-3 font-lato">
+      <ol className="hidden md:inline-flex items-center space-x-1 md:space-x-3 font-lato">
         {childrenWtihSeperator}
       </ol>
       {actions && actions.length ? (
@@ -73,12 +73,12 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = (props) => {
               leaveFrom="transform opacity-100 scale-100"
               leaveTo="transform opacity-0 scale-95"
             >
-              <Menu.Items className="absolute border-light-border dark:border-dark-border right-0 mt-2 w-64 origin-top-right divide-y divide-gray-100 rounded shadow-penumbra focus:outline-none bg-light-container dark:bg-dark-container">
+              <Menu.Items className="absolute border-light-border dark:border-dark-border right-0 mt-2 w-64 origin-top-right divide-y divide-gray-100 rounded shadow-penumbra focus:outline-none bg-light-container dark:bg-dark-container z-20">
                 <div className="px-1 py-1">
                   {actions.map((action) => (
                     <Menu.Item key={action.link}>
                       {({ active }) => (
-                        <Link href={{ pathname: action.link, query: { name: action.title } }}>
+                        <Link href={action.link}>
                           <button
                             className={classnames(
                               'group flex w-full items-center rounded px-[12px] py-[12px] text-sm font-montserrat font-regular text-pSmall',

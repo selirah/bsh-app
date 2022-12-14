@@ -6,7 +6,6 @@
   animation: svgSpinnerCircle 1.4s ease-in-out infinite;
   stroke-dasharray: 80px, 200px;
   stroke-dashoffset: 0px;
-  stroke: theme('colors.primary');
   stroke-linecap: round;
 }
 

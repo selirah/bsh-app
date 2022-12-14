@@ -1,5 +1,5 @@
 export type KeyValuePair = {
-  [key: string]: string
+  [key: string]: unknown
 }
 
 export type FilterPayload = {

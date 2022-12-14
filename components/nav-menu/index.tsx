@@ -115,16 +115,16 @@ export const SubLink: React.FC<SubLinksProps> = (props) => {
           ref={nodeRef}
         >
           {subLinks.map((link) => (
-            <li
-              key={link.link}
-              className={classnames('', {
-                'text-light-text dark:text-dark-text': link.link !== activeRoute,
-                'bg-primary text-light-btnText': link.link === activeRoute
-              })}
-            >
+            <li key={link.link}>
               <Link className="cursor-pointer" href={link.link}>
                 <button
-                  className="flex w-full items-center disabled:cursor-not-allowed text-light-text dark:text-dark-text hover:text-light-btnText hover:bg-primary rounded p-[12px] disabled:hover:bg-primaryLight"
+                  className={classnames(
+                    'flex w-full items-center disabled:cursor-not-allowed  hover:text-light-btnText hover:bg-primary rounded p-[12px] disabled:hover:bg-primaryLight',
+                    {
+                      'text-light-text dark:text-dark-text': link.link !== activeRoute,
+                      'bg-primary text-light-btnText': link.link === activeRoute
+                    }
+                  )}
                   // disabled={link.inaccessible}
                 >
                   {link.IconSVG ? (
