@@ -16,10 +16,10 @@ export const Badge: React.FC<BadgeProps> = (props) => {
   const { children, pill, size, color, state } = props
   return (
     <span
-      className={classnames('font-lato font-bold px-[16px] py-[4px]', {
-        'text-pSmall h-[24px]': !size || size === 'sm',
-        'text-pNormal h-[30px]': size === 'md',
-        'text-pLarge h-[40px]': size === 'lg',
+      className={classnames('font-lato font-medium px-[16px] py-[4px]', {
+        'text-pSmall h-[16px]': !size || size === 'sm',
+        'text-pNormal h-[20px]': size === 'md',
+        'text-pLarge h-[24px]': size === 'lg',
         'bg-badge-default-container text-badge-default-text dark:bg-dark-background dark:border':
           !color || color === 'default',
         'bg-badge-error-container text-badge-error-text dark:bg-dark-background dark:border':

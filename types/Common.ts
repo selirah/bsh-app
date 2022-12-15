@@ -92,3 +92,12 @@ export type Option = {
   label: string
   value: string
 }
+
+export type ExportedDocument = {
+  fileContents: string
+  contentType: string
+  fileDownloadName: string
+  lastModified: unknown
+  entityTag: unknown
+  enableRangeProcessing: boolean
+}

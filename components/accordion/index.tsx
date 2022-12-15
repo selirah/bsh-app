@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import { useState, useRef } from 'react'
 import { FiChevronDown } from 'react-icons/fi'
 import classnames from 'classnames'
 import { Button } from 'components'
+import { Transition, AppleLoader } from 'components'
 
 type ColorTypes = 'primary' | 'secondary' | 'accent' | 'success' | 'info' | 'error' | 'warning'
 
@@ -23,6 +24,7 @@ type ActionButtonProps = AccordionProps & {
   extraBtnAction?: () => void
   IconSVGExtra?: React.FC<React.SVGProps<SVGSVGElement>>
   borderBottom?: boolean
+  btnLoading?: boolean
 }
 
 export const Basic: React.FC<BasicProps> = (props) => {
@@ -75,9 +77,11 @@ export const ActionButton: React.FC<ActionButtonProps> = (props) => {
     extraBtnAction,
     children,
     IconSVGExtra,
-    borderBottom
+    borderBottom,
+    btnLoading
   } = props
   const [addClass, setAddClass] = useState(false)
+  const nodeRef = useRef(null)
 
   return (
     <div className="relative w-full z-10">
@@ -90,7 +94,12 @@ export const ActionButton: React.FC<ActionButtonProps> = (props) => {
               onClick={extraBtnAction}
               outline
             >
-              <IconSVGExtra className="h-4 w-4 mr-1" /> {extraBtnText}
+              {btnLoading ? (
+                <AppleLoader strokeColor={extraBtnColor} size="sm" />
+              ) : (
+                <IconSVGExtra className="h-4 w-4 mr-1" />
+              )}{' '}
+              {extraBtnText}
             </Button>
           ) : null}
           <Button color={btnColor} size="sm" onClick={() => setAddClass(!addClass)}>
@@ -108,24 +117,26 @@ export const ActionButton: React.FC<ActionButtonProps> = (props) => {
           </Button>
         </div>
       </div>
-      <div
-        className={classnames(
-          'py-[16px] px-1 bg-light-container dark:bg-dark-container overflow-hidden transition-all max-h-0 duration-500',
-          { 'max-h-full': addClass }
-        )}
-      >
-        {borderBottom ? (
-          <div className="border-t border-light-border mb-4 dark:border-dark-border" />
-        ) : null}
+      <Transition.Dropdown isEnter={addClass} nodeRef={nodeRef}>
         <div
           className={classnames(
-            'w-full text-pNormal font-regular font-montserrat text-light-text dark:text-dark-text',
-            {}
+            'py-[16px] px-1 bg-light-container dark:bg-dark-container overflow-hidden transition-all max-h-0 duration-300',
+            { 'max-h-full': addClass }
           )}
         >
-          {children}
+          {borderBottom ? (
+            <div className="border-t border-light-border mb-4 dark:border-dark-border" />
+          ) : null}
+          <div
+            className={classnames(
+              'w-full text-pNormal font-regular font-montserrat text-light-text dark:text-dark-text',
+              {}
+            )}
+          >
+            {children}
+          </div>
         </div>
-      </div>
+      </Transition.Dropdown>
     </div>
   )
 }

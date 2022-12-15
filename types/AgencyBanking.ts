@@ -109,3 +109,63 @@ export type VerifyOutletUserPayload = {
   approvalStatus: number
   outletUser: OutletUser
 }
+
+export type AgentObject = {
+  agentId: number
+  agentName: string
+  externalId: string
+  parentAgentId: any
+  msisdn: string
+  agentCode: string
+  logo: string
+  agentTypeId: number
+  agentType: string
+  agentStatusId: number
+  agentStatus: string
+  branchId: number
+  idNumber: string
+  createdWhen: string
+  lastModifiedWhen: string
+  agentDocuments: Document[]
+  agentAccounts: AgentAccount[]
+  reason: string
+  agencyPOSMachine: string
+  agencyRegion: string
+  agencyManagerPhone: string
+  agencyBranch: string
+  agencyTerritory: string
+  agencySector: string
+  agencyManagerName: string
+  agencyProvince: string
+  agencyCommune: string
+  agencyStreet: string
+  agencyBuilding: string
+  latitude: string
+  longitude: string
+  outletUser: OutletUser[]
+  parentAgentType: string
+}
+
+export type AgentResponse = {
+  data: AgentObject[]
+  totalRecords: number
+  sorted: {
+    by: string
+    order: string
+  }
+  page: {
+    number: number
+    size: number
+  }
+}
+
+export enum StatusTypes {
+  ACTIVE = 'ACTIVE',
+  REJECTED = 'REJECTED',
+  DORMANT = 'DORMANT',
+  BLOCKED = 'BLOCKED',
+  PENDINGBLOCK = 'PENDING BLOCK',
+  PENDINGVERIFICATION = 'PENDING VERIFICATION',
+  PENDINGEDIT = 'PENDING EDIT',
+  REVERTED = 'REVERTED'
+}

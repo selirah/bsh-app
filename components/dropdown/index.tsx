@@ -1,10 +1,11 @@
-import React, { Fragment, useEffect, useState } from 'react'
-import { Menu, Transition } from '@headlessui/react'
+import React, { useEffect, useState } from 'react'
+import { Menu } from '@headlessui/react'
 import { FiChevronDown, FiMoreVertical } from 'react-icons/fi'
+import HeadlessFloat from 'components/HeadlessFloat'
 import classnames from 'classnames'
 import Link from 'next/link'
 
-type DropdownList = {
+export type DropdownList = {
   title: string
   link?: string
   onClick?: (value?: unknown) => void
@@ -63,7 +64,7 @@ export const Button: React.FC<BottonProps> = (props) => {
   return (
     <div className="relative">
       <Menu as="div" className="relative inline-block text-left">
-        <div>
+        <HeadlessFloat placement="bottom-end">
           <Menu.Button
             className={classnames(
               'relative inline-flex justify-center items-center overflow-hidden px-[24px] py-[10px] font-lato common-transition text-center',
@@ -100,16 +101,7 @@ export const Button: React.FC<BottonProps> = (props) => {
               <span className="waves-ripple" style={{ left: coords.x, top: coords.y }}></span>
             ) : null}
           </Menu.Button>
-        </div>
-        <Transition
-          as={Fragment}
-          enter="transition ease-out duration-100"
-          enterFrom="transform opacity-0 scale-95"
-          enterTo="transform opacity-100 scale-100"
-          leave="transition ease-in duration-75"
-          leaveFrom="transform opacity-100 scale-100"
-          leaveTo="transform opacity-0 scale-95"
-        >
+
           <Menu.Items className="absolute border-light-border dark:border-dark-border right-0 mt-2 w-64 origin-top-right divide-y divide-gray-100 rounded shadow-penumbra focus:outline-none bg-light-container dark:bg-dark-container">
             <div className="px-1 py-1 ">
               {actions.map((action) => (
@@ -155,7 +147,7 @@ export const Button: React.FC<BottonProps> = (props) => {
               ))}
             </div>
           </Menu.Items>
-        </Transition>
+        </HeadlessFloat>
       </Menu>
     </div>
   )
@@ -167,29 +159,22 @@ export const Khebab: React.FC<KhebabProps> = (props) => {
   return (
     <div className="relative">
       <Menu as="div" className="relative inline-block text-left">
-        <div>
+        <HeadlessFloat placement="bottom-end">
           <Menu.Button
             className={classnames('relative inline-flex justify-center items-center text-center')}
           >
             <FiMoreVertical
-              className={classnames('text-light-text dark:text-dark-text', {
-                'w-3 h-3': size === 'sm',
-                'w-4 h-4': size === 'md' || !size,
-                'w-5 h-5': size === 'lg'
-              })}
+              className={classnames(
+                'text-light-text dark:text-dark-text hover:text-dark-btnText dark:hover:text-light-btnText common-transition',
+                {
+                  'w-3 h-3': size === 'sm',
+                  'w-4 h-4': size === 'md' || !size,
+                  'w-5 h-5': size === 'lg'
+                }
+              )}
               aria-hidden="true"
             />
           </Menu.Button>
-        </div>
-        <Transition
-          as={Fragment}
-          enter="transition ease-out duration-100"
-          enterFrom="transform opacity-0 scale-95"
-          enterTo="transform opacity-100 scale-100"
-          leave="transition ease-in duration-75"
-          leaveFrom="transform opacity-100 scale-100"
-          leaveTo="transform opacity-0 scale-95"
-        >
           <Menu.Items className="absolute border-light-border dark:border-dark-border right-0 mt-2 w-64 origin-top-right divide-y divide-gray-100 rounded shadow-penumbra focus:outline-none bg-light-container dark:bg-dark-container">
             <div className="px-1 py-1 ">
               {actions.map((action) => (
@@ -235,7 +220,7 @@ export const Khebab: React.FC<KhebabProps> = (props) => {
               ))}
             </div>
           </Menu.Items>
-        </Transition>
+        </HeadlessFloat>
       </Menu>
     </div>
   )

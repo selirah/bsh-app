@@ -1,5 +1,5 @@
 import { Field, ErrorMessage } from 'formik'
-import { CodeInput, CodeInputProps } from 'components/index'
+import { CodeInput, CodeInputProps } from 'components'
 import InputError from './InputError'
 
 export const OtpCode: React.FC<CodeInputProps> = (props) => {

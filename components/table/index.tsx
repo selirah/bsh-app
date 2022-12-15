@@ -28,7 +28,7 @@ type TableColumnProps = TableProps & {
 export const Table: React.FC<TableProps> = (props) => {
   const { children, bordered, ...rest } = props
   return (
-    <div className="overflow-x-auto relative table-auto">
+    <div className="overflow-x-auto h-full overflow-y-hidden table-auto relative">
       <table
         className={classnames('w-full text-pSmall text-left', {
           'rounded border border-light-border dark:border-dark-border': bordered
@@ -117,8 +117,8 @@ export const TableRow: React.FC<TableRowProps> = (props) => {
         'text-right': align === 'right',
         'text-center': align === 'center',
         'bg-light-container dark:bg-dark-container': !striped,
-        'bg-table-cell dark:bg-dark-background': striped,
-        'hover:bg-table-cell dark:bg-dark-background': hover,
+        'bg-table-cell dark:bg-dark-container': striped,
+        'hover:bg-table-cell dark:hover:bg-dark-background': hover,
         'border-b border-light-border dark:border-dark-border': bordered
       })}
       {...rest}
@@ -137,7 +137,7 @@ export const TableColumn: React.FC<TableColumnProps> = (props) => {
         'text-left': align === 'left' || !align,
         'text-right': align === 'right',
         'text-center': align === 'center',
-        'bg-table-cell dark:bg-dark-background': striped
+        'bg-table-cell dark:bg-dark-container': striped
       })}
       colSpan={colSpan}
       {...rest}

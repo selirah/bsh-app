@@ -12,10 +12,11 @@ type Props = {
   agentTypes: Option[]
   agentStatus: Option[]
   branches: Option[]
-  isSubmitting: boolean
   loadingAgentTypes: boolean
   loadingAgentStatus: boolean
   loadingBranches: boolean
+  onClick?: () => void
+  btnLoading?: boolean
 }
 
 export type FilterValues = {
@@ -31,10 +32,11 @@ export const AgentsListFilter: React.FC<Props> = (props) => {
     agentTypes,
     branches,
     onHandleFilter,
-    isSubmitting,
     loadingAgentStatus,
     loadingAgentTypes,
-    loadingBranches
+    loadingBranches,
+    onClick,
+    btnLoading
   } = props
   const intl = useIntl()
   const initialValues: FilterValues = {
@@ -50,11 +52,12 @@ export const AgentsListFilter: React.FC<Props> = (props) => {
       extraBtnColor="accent"
       extraBtnText={intl.formatMessage({ defaultMessage: 'Export' })}
       IconSVGExtra={FiUploadCloud}
-      extraBtnAction={() => null}
+      extraBtnAction={onClick}
       borderBottom
+      btnLoading={btnLoading}
     >
       <Formik initialValues={initialValues} onSubmit={onHandleFilter}>
-        {({ dirty }) => (
+        {({ dirty, isSubmitting }) => (
           <Form>
             <div className="w-full mb-[16px]">
               <Input

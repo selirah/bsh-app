@@ -5,7 +5,7 @@ import AuthCodeInput from 'react-auth-code-input'
 
 type InputSizes = 'sm' | 'md' | 'lg'
 
-type CodeInputProps = {
+export type CodeInputProps = {
   onChange?: (value: string) => void
   fields?: number
   size?: InputSizes
@@ -35,7 +35,6 @@ export const CodeInput: React.FC<CodeInputProps> = (props) => {
         containerClassName="flex space-x-2 items-center"
         disabled={disabled}
         length={fields ?? 6}
-        placeholder="1"
         allowedCharacters="numeric"
         autoFocus
       />

@@ -10,16 +10,8 @@ type TransitionProps = {
 export const Dropdown: React.FC<TransitionProps> = (props) => {
   const { isEnter, nodeRef, children } = props
   return (
-    <div className="container">
-      <CSSTransition
-        in={isEnter}
-        nodeRef={nodeRef}
-        timeout={300}
-        classNames="dropdown"
-        unmountOnExit
-      >
-        {children}
-      </CSSTransition>
-    </div>
+    <CSSTransition in={isEnter} nodeRef={nodeRef} timeout={300} classNames="dropdown" unmountOnExit>
+      {children}
+    </CSSTransition>
   )
 }
