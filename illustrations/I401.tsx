@@ -1,4 +1,12 @@
+import { useContext } from 'react'
+import { ColorContext } from 'contexts'
+import { baseThemeProd, baseThemeUat } from 'themes/base'
+
 export const I401 = () => {
+  const { color } = useContext(ColorContext)
+  const colorPrimary =
+    color === 'uat' ? baseThemeUat['--theme-primary'] : baseThemeProd['--theme-primary']
+
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -63,35 +71,43 @@ export const I401 = () => {
         />
         <path
           d="M766.35962,15.41823l-30.96686-15.41823s-3.20361,.13761-1.75513,1.75512c1.44849,1.61751,34.86816,17.25422,34.86816,17.25422l-2.14624-3.59111s.00006,0,.00006,0Z"
-          className="fill-primary"
+          fill={colorPrimary}
+          className="common-transition"
         />
         <path
           d="M774.63788,21.76875s1.53302,5.82544,6.74524,9.19806,34.33942,11.65088,34.33942,11.65088l4.29242-2.75942-32.19324-17.78292-10.73108-1.22641-2.45282,.91981s.00006,0,.00006,0Z"
-          className="fill-primary"
+          fill={colorPrimary}
+          className="common-transition"
         />
         <path
           d="M795.11768,73.4544s5.7403,1.82623,11.38037-.76828,28.23383-22.75499,28.23383-22.75499l-.03058-5.10278-32.26202,17.65776-6.78424,8.40439-.53729,2.56392-.00006-.00002Z"
-          className="fill-primary"
+          fill={colorPrimary}
+          className="common-transition"
         />
         <path
           d="M797.95203,74.17428s-4.82367-3.6081-11.00269-3.00719c-6.17908,.60091-34.13574,12.23477-34.13574,12.23477l-1.6449,4.83049,36.2691-6.09823,9.16571-5.71402,1.34857-2.24582s-.00006,0-.00006,0Z"
-          className="fill-primary"
+          fill={colorPrimary}
+          className="common-transition"
         />
         <path
           d="M630.53485,15.41823l30.9668-15.41823s3.20361,.13761,1.75513,1.75512c-1.44849,1.61751-34.86816,17.25422-34.86816,17.25422,0,0,2.14624-3.59111,2.14624-3.59111Z"
-          className="fill-primary"
+          fill={colorPrimary}
+          className="common-transition"
         />
         <path
           d="M622.25659,21.76875s-1.53302,5.82544-6.74524,9.19806-34.33942,11.65088-34.33942,11.65088l-4.29242-2.75942,32.19324-17.78292,10.73108-1.22641,2.45282,.91981s-.00006,0-.00006,0Z"
-          className="fill-primary"
+          fill={colorPrimary}
+          className="common-transition"
         />
         <path
           d="M601.77679,73.4544s-5.7403,1.82623-11.38037-.76828-28.23383-22.75499-28.23383-22.75499l.03058-5.10278,32.26202,17.65776,6.78424,8.40439,.53729,2.56392,.00006-.00002Z"
-          className="fill-primary"
+          fill={colorPrimary}
+          className="common-transition"
         />
         <path
           d="M598.94238,74.17428s4.82367-3.6081,11.00269-3.00719,34.13574,12.23477,34.13574,12.23477l1.6449,4.83049-36.2691-6.09823-9.16571-5.71402-1.34857-2.24582s.00006,0,.00006,0Z"
-          className="fill-primary"
+          fill={colorPrimary}
+          className="common-transition"
         />
         <circle cx="770.80536" cy="23.14846" r="8.58484" fill="#3f3d56" />
         <circle cx="625.01599" cy="23.91497" r="8.58484" fill="#3f3d56" />
@@ -103,7 +119,8 @@ export const I401 = () => {
         />
         <path
           d="M440.10901,279.42715l2.12921-.51141v3.22098c0,1.02963,.94012,1.78912,1.91968,1.55066l8.59802-2.09354c1.25293-.30515,2.13745-1.45016,2.13745-2.76755v-2.95026l4.11716-.98892c2.90543-.69794,5.69199,1.54648,5.70935,4.59891l.52905,93.07187c.02206,3.84149-3.01694,6.96756-6.77335,6.96756h-21.26285c-2.32047,0-4.20779-1.91135-4.23044-4.28424l-.81772-85.45605c-.04736-4.92819,3.25323-9.23111,7.94446-10.35797l-.00003-.00003Z"
-          className="fill-primary"
+          fill={colorPrimary}
+          className="common-transition"
         />
       </g>
       <g>

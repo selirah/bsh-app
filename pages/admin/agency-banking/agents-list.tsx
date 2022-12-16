@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { AdminLayout, BasicContainer } from 'layouts'
 import { routes, AgentsListFilter, FilterValues } from 'containers/agency-banking'
 import { useIntl } from 'react-intl'
+import { PaginationState } from '@tanstack/react-table'
 import {
   FilterPayload,
   SuccessResponse,
@@ -28,13 +29,15 @@ import { MdCreate } from 'react-icons/md'
 
 const AgentsListPage = () => {
   const intl = useIntl()
-  const [currentPage /*, setCurrentPage*/] = useState(1)
-  const [pageSize /*, setPageSize*/] = useState(10)
+  const [{ pageIndex, pageSize }, setPagination] = useState<PaginationState>({
+    pageIndex: 0,
+    pageSize: 10
+  })
   const [filterPayload, setFilterPayload] = useState<FilterPayload>({
     keyword: '',
     filters: {},
     page: {
-      number: currentPage,
+      number: pageIndex,
       size: pageSize
     },
     sort: {
@@ -48,6 +51,14 @@ const AgentsListPage = () => {
   const [branches, setBranches] = useState<Option[]>([])
   const [columns] = useAgentListTableColumns()
   const [agentData, setAgentData] = useState<AgentObject[]>([])
+  const [totalRecords, setTotalRecords] = useState(0)
+  const pagination = useMemo(
+    () => ({
+      pageIndex,
+      pageSize
+    }),
+    [pageIndex, pageSize]
+  )
 
   const onFetchAgentTypeSuccess = (response: SuccessResponse) => {
     const { status, data } = response
@@ -90,6 +101,7 @@ const AgentsListPage = () => {
     if (status === 200 && data) {
       const obj = data as AgentResponse
       setAgentData(obj.data)
+      setTotalRecords(obj.totalRecords)
     }
   }
 
@@ -129,6 +141,8 @@ const AgentsListPage = () => {
     setFilterPayload({ ...filterPayload, filters, keyword })
   }
 
+  console.log(pagination)
+
   return (
     <AdminLayout pageTitle="Agents List" breadcrumbActions={routes(intl)}>
       <BasicContainer>
@@ -155,11 +169,14 @@ const AgentsListPage = () => {
               {intl.formatMessage({ defaultMessage: 'Get started by creating a new agent' })}
             </Empty.ActionButton>
           ) : (
-            <Table.ClientPagination
+            <Table.ServerPagination
               columns={columns}
               data={agentData}
               isSorting
               isFetching={isLoading || isFetching}
+              pagination={pagination}
+              setPagination={setPagination}
+              totalRecords={totalRecords}
             />
           )}
         </div>

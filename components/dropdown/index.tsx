@@ -187,7 +187,7 @@ export const Khebab: React.FC<KhebabProps> = (props) => {
                             'group flex w-full items-center rounded px-[12px] py-[12px] text-sm font-montserrat font-regular text-pSmall',
                             {
                               'bg-primary text-light-btnText': active,
-                              'text-light-text': !active
+                              'text-light-text dark:text-dark-text': !active
                             }
                           )}
                         >
