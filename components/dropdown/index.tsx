@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Menu } from '@headlessui/react'
 import { FiChevronDown, FiMoreVertical } from 'react-icons/fi'
-import HeadlessFloat from 'components/HeadlessFloat'
+import { Float } from '@headlessui-float/react'
 import classnames from 'classnames'
 import Link from 'next/link'
 
@@ -62,12 +62,25 @@ export const Button: React.FC<BottonProps> = (props) => {
   }, [rippling, mounted])
 
   return (
-    <div className="relative">
-      <Menu as="div" className="relative inline-block text-left">
-        <HeadlessFloat placement="bottom-end">
+    <div className="flex justify-center items-center">
+      <Menu>
+        <Float
+          placement="bottom-end"
+          offset={8}
+          flip
+          shift={6}
+          portal
+          enter="transition duration-200 ease-out"
+          enterFrom="scale-95 opacity-0"
+          enterTo="scale-100 opacity-100"
+          leave="transition duration-150 ease-in"
+          leaveFrom="scale-100 opacity-100"
+          leaveTo="scale-95 opacity-0"
+          tailwindcssOriginClass
+        >
           <Menu.Button
             className={classnames(
-              'relative inline-flex justify-center items-center overflow-hidden px-[24px] py-[10px] font-lato common-transition text-center',
+              'flex justify-center items-center px-[24px] py-[10px] font-lato common-transition text-center rounded',
               {
                 rounded: !pill,
                 'rounded-full': pill,
@@ -102,52 +115,50 @@ export const Button: React.FC<BottonProps> = (props) => {
             ) : null}
           </Menu.Button>
 
-          <Menu.Items className="absolute border-light-border dark:border-dark-border right-0 mt-2 w-64 origin-top-right divide-y divide-gray-100 rounded shadow-penumbra focus:outline-none bg-light-container dark:bg-dark-container">
-            <div className="px-1 py-1 ">
-              {actions.map((action) => (
-                <Menu.Item key={action.title}>
-                  {({ active }) =>
-                    action.link ? (
-                      <Link href={action.link}>
-                        <button
-                          className={classnames(
-                            'group flex w-full items-center rounded px-[12px] py-[12px] text-sm font-montserrat font-regular text-pSmall',
-                            {
-                              'bg-primary text-light-btnText': active,
-                              'text-light-text': !active
-                            }
-                          )}
-                        >
-                          {action.IconSVG ? (
-                            <action.IconSVG className="mr-2 h-4 w-4" aria-hidden="true" />
-                          ) : null}
-                          {action.title}
-                        </button>
-                      </Link>
-                    ) : (
+          <Menu.Items className="border border-light-border dark:border-dark-border mt-2 w-64 rounded shadow-penumbra focus:outline-none bg-light-container dark:bg-dark-container overflow-hidden">
+            {actions.map((action) => (
+              <Menu.Item key={action.title}>
+                {({ active }) =>
+                  action.link ? (
+                    <Link href={action.link}>
                       <button
                         className={classnames(
-                          'group flex w-full items-center rounded px-[12px] py-[12px] text-sm font-montserrat font-regular text-pSmall disabled:text-accentLight disabled:cursor-not-allowed',
+                          'group flex w-full items-center rounded px-[12px] py-[12px] text-sm font-montserrat font-regular text-pSmall',
                           {
                             'bg-primary text-light-btnText': active,
-                            'text-light-text dark:text-dark-text': !active
+                            'text-light-text': !active
                           }
                         )}
-                        onClick={action.onClick}
-                        disabled={action.inaccessible}
                       >
                         {action.IconSVG ? (
                           <action.IconSVG className="mr-2 h-4 w-4" aria-hidden="true" />
                         ) : null}
                         {action.title}
                       </button>
-                    )
-                  }
-                </Menu.Item>
-              ))}
-            </div>
+                    </Link>
+                  ) : (
+                    <button
+                      className={classnames(
+                        'group flex w-full items-center rounded px-[12px] py-[12px] text-sm font-montserrat font-regular text-pSmall disabled:text-accentLight disabled:cursor-not-allowed',
+                        {
+                          'bg-primary text-light-btnText': active,
+                          'text-light-text dark:text-dark-text': !active
+                        }
+                      )}
+                      onClick={action.onClick}
+                      disabled={action.inaccessible}
+                    >
+                      {action.IconSVG ? (
+                        <action.IconSVG className="mr-2 h-4 w-4" aria-hidden="true" />
+                      ) : null}
+                      {action.title}
+                    </button>
+                  )
+                }
+              </Menu.Item>
+            ))}
           </Menu.Items>
-        </HeadlessFloat>
+        </Float>
       </Menu>
     </div>
   )
@@ -157,12 +168,23 @@ export const Khebab: React.FC<KhebabProps> = (props) => {
   const { actions, size } = props
 
   return (
-    <div className="relative">
-      <Menu as="div" className="relative inline-block text-left">
-        <HeadlessFloat placement="bottom-end">
-          <Menu.Button
-            className={classnames('relative inline-flex justify-center items-center text-center')}
-          >
+    <div className="relative flex justify-center items-center">
+      <Menu>
+        <Float
+          placement="bottom-end"
+          offset={8}
+          flip
+          shift={6}
+          portal
+          enter="transition duration-200 ease-out"
+          enterFrom="scale-95 opacity-0"
+          enterTo="scale-100 opacity-100"
+          leave="transition duration-150 ease-in"
+          leaveFrom="scale-100 opacity-100"
+          leaveTo="scale-95 opacity-0"
+          tailwindcssOriginClass
+        >
+          <Menu.Button className={classnames('flex justify-center items-center text-center')}>
             <FiMoreVertical
               className={classnames(
                 'text-light-text dark:text-dark-text hover:text-dark-btnText dark:hover:text-light-btnText common-transition',
@@ -175,52 +197,50 @@ export const Khebab: React.FC<KhebabProps> = (props) => {
               aria-hidden="true"
             />
           </Menu.Button>
-          <Menu.Items className="absolute border-light-border dark:border-dark-border right-0 mt-2 w-64 origin-top-right divide-y divide-gray-100 rounded shadow-penumbra focus:outline-none bg-light-container dark:bg-dark-container">
-            <div className="px-1 py-1 ">
-              {actions.map((action) => (
-                <Menu.Item key={action.title}>
-                  {({ active }) =>
-                    action.link ? (
-                      <Link href={action.link}>
-                        <button
-                          className={classnames(
-                            'group flex w-full items-center rounded px-[12px] py-[12px] text-sm font-montserrat font-regular text-pSmall',
-                            {
-                              'bg-primary text-light-btnText': active,
-                              'text-light-text dark:text-dark-text': !active
-                            }
-                          )}
-                        >
-                          {action.IconSVG ? (
-                            <action.IconSVG className="mr-2 h-4 w-4" aria-hidden="true" />
-                          ) : null}
-                          {action.title}
-                        </button>
-                      </Link>
-                    ) : (
+          <Menu.Items className="border border-light-border dark:border-dark-border mt-2 w-64 rounded shadow-penumbra focus:outline-none bg-light-container dark:bg-dark-container overflow-hidden">
+            {actions.map((action) => (
+              <Menu.Item key={action.title}>
+                {({ active }) =>
+                  action.link ? (
+                    <Link href={action.link}>
                       <button
                         className={classnames(
-                          'group flex w-full items-center rounded px-[12px] py-[12px] text-sm font-montserrat font-regular text-pSmall disabled:text-accentLight disabled:cursor-not-allowed',
+                          'group flex w-full items-center rounded px-[12px] py-[12px] text-sm font-montserrat font-regular text-pSmall',
                           {
                             'bg-primary text-light-btnText': active,
                             'text-light-text dark:text-dark-text': !active
                           }
                         )}
-                        onClick={action.onClick}
-                        disabled={action.inaccessible}
                       >
                         {action.IconSVG ? (
                           <action.IconSVG className="mr-2 h-4 w-4" aria-hidden="true" />
                         ) : null}
                         {action.title}
                       </button>
-                    )
-                  }
-                </Menu.Item>
-              ))}
-            </div>
+                    </Link>
+                  ) : (
+                    <button
+                      className={classnames(
+                        'group flex w-full items-center rounded px-[12px] py-[12px] text-sm font-montserrat font-regular text-pSmall disabled:text-accentLight disabled:cursor-not-allowed',
+                        {
+                          'bg-primary text-light-btnText': active,
+                          'text-light-text dark:text-dark-text': !active
+                        }
+                      )}
+                      onClick={action.onClick}
+                      disabled={action.inaccessible}
+                    >
+                      {action.IconSVG ? (
+                        <action.IconSVG className="mr-2 h-4 w-4" aria-hidden="true" />
+                      ) : null}
+                      {action.title}
+                    </button>
+                  )
+                }
+              </Menu.Item>
+            ))}
           </Menu.Items>
-        </HeadlessFloat>
+        </Float>
       </Menu>
     </div>
   )

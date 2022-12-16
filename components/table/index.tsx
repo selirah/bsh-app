@@ -2,7 +2,7 @@ import React from 'react'
 import classnames from 'classnames'
 import { FiChevronUp, FiChevronDown } from 'react-icons/fi'
 
-type TableProps = {
+export type TableProps = {
   children: React.ReactNode
   align?: 'left' | 'right' | 'center'
   bordered?: boolean
@@ -42,15 +42,12 @@ export const Table: React.FC<TableProps> = (props) => {
 }
 
 export const TableHeader: React.FC<TableProps> = (props) => {
-  const { children, bordered, align, ...rest } = props
+  const { children, bordered, ...rest } = props
   return (
     <thead
       className={classnames(
         'text-pSmall font-lato font-medium text-dark-btnText uppercase bg-table-header dark:bg-dark-background dark:text-light-btnText',
         {
-          'text-left': align === 'left' || !align,
-          'text-right': align === 'right',
-          'text-center': align === 'center',
           'border-b border-light-border dark:border-dark-border': bordered
         }
       )}
@@ -73,9 +70,6 @@ export const TableHeaderColumn: React.FC<TableHeaderColumnProps> = (props) => {
     <th
       scope="col"
       className={classnames('p-[12px]', {
-        'text-left': align === 'left' || !align,
-        'text-right': align === 'right',
-        'text-center': align === 'center',
         'cursor-pointer': sortable,
         'border border-light-border dark:border-dark-border': bordered
       })}
@@ -83,7 +77,13 @@ export const TableHeaderColumn: React.FC<TableHeaderColumnProps> = (props) => {
       onClick={onToggleSorting}
       {...rest}
     >
-      <div className="flex items-center">
+      <div
+        className={classnames('flex items-center', {
+          'justify-left': align === 'left' || !align,
+          'justify-right': align === 'right',
+          'justify-center': align === 'center'
+        })}
+      >
         {children}
         {sortable ? (
           sortDir && sortDir === 'desc' ? (

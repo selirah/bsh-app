@@ -16,14 +16,6 @@ const pages: Select.SelectData[] = [
   {
     label: '30',
     value: '30'
-  },
-  {
-    label: '40',
-    value: '40'
-  },
-  {
-    label: '50',
-    value: '50'
   }
 ]
 

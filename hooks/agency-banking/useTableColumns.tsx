@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import { ColumnDef } from '@tanstack/react-table'
 import { useIntl } from 'react-intl'
-import { AgentObject, StatusTypes } from 'types'
+import { AgentObject, StatusTypes, AgentTypes } from 'types'
 import moment from 'moment'
 import { Badge, Dropdown } from 'components'
 
@@ -92,12 +92,25 @@ export const useAgentListTableColumns = () => {
     }
   }
 
+  const transformAgentType = (type: string) => {
+    switch (type) {
+      case AgentTypes.MASTERAGENT:
+        return <span className="text-primary font-medium">{type}</span>
+      case AgentTypes.ORDINARYAGENT:
+        return <span className="text-secondary font-medium">{type}</span>
+      case AgentTypes.SUBAGENT:
+        return <span className="text-accent font-medium">{type}</span>
+      case AgentTypes.OUTLET:
+        return <span className="text-info font-medium">{type}</span>
+    }
+  }
+
   const columns = useMemo<ColumnDef<AgentObject>[]>(
     () => [
       {
         accessorFn: (row) => row.agentType,
         accessorKey: 'agentType',
-        cell: (info) => info.getValue(),
+        cell: (info) => transformAgentType(info.row.original.agentType),
         header: () => <span>{intl.formatMessage({ defaultMessage: 'Type' })}</span>,
         footer: (props) => props.column.id
       },
@@ -127,7 +140,10 @@ export const useAgentListTableColumns = () => {
         accessorKey: 'agentStatus',
         cell: (info) => transformStatus(info.row.original.agentStatus),
         header: () => <span>{intl.formatMessage({ defaultMessage: 'Status' })}</span>,
-        footer: (props) => props.column.id
+        footer: (props) => props.column.id,
+        meta: {
+          textAlign: 'center'
+        }
       },
       {
         accessorFn: (row) => row.createdWhen,
@@ -142,7 +158,7 @@ export const useAgentListTableColumns = () => {
         cell: (info) => callDropdownActions(info.row.original)
       }
     ],
-    [transformStatus, callDropdownActions]
+    [transformStatus, callDropdownActions, transformAgentType]
   )
 
   return [columns]

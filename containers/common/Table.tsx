@@ -56,6 +56,7 @@ export const ClientPagination: React.FC<Props> = (props) => {
           {table.getHeaderGroups().map((headerGroup) => (
             <TableHeaderRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
+                const meta = header.column.columnDef.meta
                 return (
                   <TableHeaderColumn
                     key={header.id}
@@ -63,6 +64,7 @@ export const ClientPagination: React.FC<Props> = (props) => {
                     sortable={header.column.getCanSort()}
                     sortDir={header.column.getIsSorted()}
                     onToggleSorting={header.column.getToggleSortingHandler()}
+                    align={meta ? meta['textAlign'] : 'left'}
                   >
                     {header.isPlaceholder ? null : (
                       <span>{flexRender(header.column.columnDef.header, header.getContext())}</span>
@@ -79,8 +81,9 @@ export const ClientPagination: React.FC<Props> = (props) => {
             return (
               <TableRow key={row.id} striped={striped} bordered hover>
                 {row.getVisibleCells().map((cell) => {
+                  const meta = cell.column.columnDef.meta
                   return (
-                    <TableColumn key={cell.id}>
+                    <TableColumn key={cell.id} align={meta ? meta['textAlign'] : 'left'}>
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </TableColumn>
                   )
@@ -139,6 +142,7 @@ export const ServerPagination: React.FC<ServerPaginationProps> = (props) => {
           {table.getHeaderGroups().map((headerGroup) => (
             <TableHeaderRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
+                const meta = header.column.columnDef.meta
                 return (
                   <TableHeaderColumn
                     key={header.id}
@@ -146,6 +150,7 @@ export const ServerPagination: React.FC<ServerPaginationProps> = (props) => {
                     sortable={header.column.getCanSort()}
                     sortDir={header.column.getIsSorted()}
                     onToggleSorting={header.column.getToggleSortingHandler()}
+                    align={meta ? meta['textAlign'] : 'left'}
                   >
                     {header.isPlaceholder ? null : (
                       <span>{flexRender(header.column.columnDef.header, header.getContext())}</span>
@@ -162,8 +167,9 @@ export const ServerPagination: React.FC<ServerPaginationProps> = (props) => {
             return (
               <TableRow key={row.id} striped={striped} bordered hover>
                 {row.getVisibleCells().map((cell) => {
+                  const meta = cell.column.columnDef.meta
                   return (
-                    <TableColumn key={cell.id}>
+                    <TableColumn key={cell.id} align={meta ? meta['textAlign'] : 'left'}>
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </TableColumn>
                   )

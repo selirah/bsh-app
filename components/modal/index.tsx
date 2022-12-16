@@ -3,7 +3,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import classnames from 'classnames'
 import { FiX } from 'react-icons/fi'
 
-type Size = 'sm' | 'md' | 'lg' | 'xl'
+type Size = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 
 type ModalProps = {
   isOpen: boolean
@@ -59,6 +59,7 @@ export const Modal: React.FC<ModalProps> = (props) => {
                 className={classnames(
                   'w-full transform overflow-hidden rounded bg-light-container p-[24px] text-left align-middle shadow-penumbra transition-all dark:bg-dark-container',
                   {
+                    'max-w-[480px]': size === 'xs',
                     'max-w-[640px]': size === 'sm' || !size,
                     'max-w-[768px]': size === 'md',
                     'max-w-[1024px]': size === 'lg',

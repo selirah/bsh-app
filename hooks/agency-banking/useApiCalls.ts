@@ -119,7 +119,9 @@ export const useFetchAllAgents = (
 ) => {
   return useQuery(['agents', payload], fetchAllAgents, {
     onSuccess,
-    onError
+    onError,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false
   })
 }
 

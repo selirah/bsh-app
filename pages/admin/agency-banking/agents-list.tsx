@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { AdminLayout, BasicContainer } from 'layouts'
 import { routes, AgentsListFilter, FilterValues } from 'containers/agency-banking'
 import { useIntl } from 'react-intl'
@@ -37,7 +37,7 @@ const AgentsListPage = () => {
     keyword: '',
     filters: {},
     page: {
-      number: pageIndex,
+      number: pageIndex + 1,
       size: pageSize
     },
     sort: {
@@ -141,7 +141,12 @@ const AgentsListPage = () => {
     setFilterPayload({ ...filterPayload, filters, keyword })
   }
 
-  console.log(pagination)
+  useEffect(() => {
+    setFilterPayload({
+      ...filterPayload,
+      page: { number: pagination.pageIndex + 1, size: pagination.pageSize }
+    })
+  }, [pagination])
 
   return (
     <AdminLayout pageTitle="Agents List" breadcrumbActions={routes(intl)}>
