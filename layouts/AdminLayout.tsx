@@ -1,12 +1,14 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { getSession, signOut } from 'next-auth/react'
+import { LayoutContext } from 'contexts'
 import { Navbar, Sidebar, Footer, SessionLayout } from 'layouts'
 import { Routes } from 'routes'
 import { ActionObject } from 'components'
 import { Breadcrumb, BreadcrumbItem } from 'components'
 import { HiOutlineHomeModern } from 'react-icons/hi2'
+import classnames from 'classnames'
 
 type Props = {
   pageTitle: string
@@ -27,6 +29,7 @@ const TIME = process.env.NEXT_PUBLIC_SESSION_TIME_MINUTES
 export const AdminLayout: React.FC<Props> = (props) => {
   const { children, pageTitle, breadcrumbActions } = props
   const router = useRouter()
+  const { openSideNav } = useContext(LayoutContext)
   const [breadcrumbs, setBreadcrumbs] = useState<Breadcrumb[]>([])
   const [username, setUsername] = useState('')
   const activeRoute =
@@ -108,12 +111,17 @@ export const AdminLayout: React.FC<Props> = (props) => {
   }, [])
 
   return (
-    <div className="flex w-full animate__animated animate__fadeIn">
+    <div className="flex relative w-full animate__animated animate__fadeIn">
       <Head>
         <title>{`${pageTitle} | Branch Service Hub`}</title>
       </Head>
       <Sidebar routes={Routes} activeRoute={'/' + activeRoute} />
-      <div className="flex-1">
+      <div
+        className={classnames('flex-1 duration-300', {
+          'ml-72': openSideNav,
+          'ml-20': !openSideNav
+        })}
+      >
         <Navbar username={username ?? 'User'} />
         <div className="mt-9 px-[16px]">
           <Breadcrumb actions={breadcrumbActions}>

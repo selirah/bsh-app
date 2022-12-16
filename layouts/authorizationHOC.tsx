@@ -5,7 +5,7 @@ import Can from './Can'
 export const authorizationHOC =
   <P extends object>(
     scope: string,
-    Component: React.ComponentType<P>,
+    Component?: React.ComponentType<P>,
     isLink = false,
     ownerId?: number
   ) =>

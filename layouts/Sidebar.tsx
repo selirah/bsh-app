@@ -36,6 +36,7 @@ export const Sidebar: FC<Props> = (props) => {
             'rotate-[360deg] mr-2': openSideNav,
             '': !openSideNav
           })}
+          priority
         />
         <h6
           className={classnames(
@@ -81,7 +82,7 @@ export const Sidebar: FC<Props> = (props) => {
   return (
     <nav
       className={classnames(
-        'h-screen bg-light-container dark:bg-dark-container duration-300 shadow-umbra',
+        'h-full fixed z-10 bg-light-container dark:bg-dark-container duration-300 shadow-umbra',
         {
           'w-72': openSideNav,
           'w-20': !openSideNav

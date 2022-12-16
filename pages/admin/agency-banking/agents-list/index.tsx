@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from 'react'
-import { AdminLayout, BasicContainer } from 'layouts'
+import { AdminLayout, BasicContainer, authorizationHOC } from 'layouts'
 import { routes, AgentsListFilter, FilterValues } from 'containers/agency-banking'
 import { useIntl } from 'react-intl'
 import { PaginationState } from '@tanstack/react-table'
@@ -164,7 +164,7 @@ const AgentsListPage = () => {
           btnLoading={isExportingAgents}
         />
         <div className="mt-8">
-          {isFetched && !agentData.length ? (
+          {isFetched && !isLoading && !isFetching && !agentData.length ? (
             <Empty.ActionButton
               btnText={intl.formatMessage({ defaultMessage: 'Create agent' })}
               IconSVG={MdCreate}
@@ -190,4 +190,4 @@ const AgentsListPage = () => {
   )
 }
 
-export default AgentsListPage
+export default authorizationHOC('AgencyBanking:Manage', AgentsListPage, true)

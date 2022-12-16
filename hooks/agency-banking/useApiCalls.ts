@@ -19,7 +19,7 @@ const endPoints = {
   blockOutletUser: process.env.NEXT_PUBLIC_BLOCK_OUTLET_USER ?? '',
   unblockOutletUser: process.env.NEXT_PUBLIC_UNBLOCK_OUTLET_USER ?? '',
   resetOutletUserPin: process.env.NEXT_PUBLIC_RESET_OUTLET_USER_PIN ?? '',
-  searchAgentByCode: process.env.NEXT_PUBLIC_SEARCH_AGENT_BY_CODE ?? '',
+  fetchAgentByCode: process.env.NEXT_PUBLIC_SEARCH_AGENT_BY_CODE ?? '',
   onboardAgent: process.env.NEXT_PUBLIC_ONBOARD_AGENT ?? '',
   createOutletUser: process.env.NEXT_PUBLIC_ADD_OUTLET_USER ?? '',
   verifyAgent: process.env.NEXT_PUBLIC_ONBOARD_AGENT ?? '',
@@ -120,8 +120,7 @@ export const useFetchAllAgents = (
   return useQuery(['agents', payload], fetchAllAgents, {
     onSuccess,
     onError,
-    refetchOnWindowFocus: false,
-    refetchOnMount: false
+    refetchOnWindowFocus: false
   })
 }
 
@@ -175,22 +174,23 @@ export const useResetOutletUserPin = (onSuccess: onSuccess, onError: onError) =>
   })
 }
 
-const searchAgentByCode = ({ queryKey }: QueryFunctionContext<[string, string]>) => {
+const fetchAgentByCode = ({ queryKey }: QueryFunctionContext<[string, string]>) => {
   const agentCode = queryKey[1]
   return adminRequestTest({
-    url: `${endPoints.searchAgentByCode}?agentCode=${agentCode}`,
+    url: `${endPoints.fetchAgentByCode}?agentCode=${agentCode}`,
     method: 'get'
   })
 }
 
-export const useSearchAgentByCode = (
+export const useFetchAgentByCode = (
   agentCode: string,
   onSuccess?: onSuccess,
   onError?: onError
 ) => {
-  return useQuery(['agent', agentCode], searchAgentByCode, {
+  return useQuery(['agent', agentCode], fetchAgentByCode, {
     onSuccess,
-    onError
+    onError,
+    refetchOnWindowFocus: false
   })
 }
 

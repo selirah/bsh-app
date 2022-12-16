@@ -3,7 +3,8 @@ import { ColumnDef } from '@tanstack/react-table'
 import { useIntl } from 'react-intl'
 import { AgentObject, StatusTypes, AgentTypes } from 'types'
 import moment from 'moment'
-import { Badge, Dropdown } from 'components'
+import { Dropdown } from 'components'
+import { transformStatus } from 'utils/transform-status'
 
 export const useAgentListTableColumns = () => {
   const intl = useIntl()
@@ -13,83 +14,66 @@ export const useAgentListTableColumns = () => {
       {
         title: intl.formatMessage({ defaultMessage: 'View details' }),
         inaccessible: false,
-        link: `agency-banking/agents-list/view-details?agentCode=${row.agentCode}`
+        link: `agents-list/view-details?agentCode=${row.agentCode}`
       },
       {
         title: intl.formatMessage({ defaultMessage: 'Edit' }),
         inaccessible: false,
-        link: `agency-banking/agents-list/edit?agentCode=${row.agentCode}`
+        link: `agents-list/edit?agentCode=${row.agentCode}`
       },
       {
         title: intl.formatMessage({ defaultMessage: 'View transactions' }),
-        inaccessible: false,
-        link: `agency-banking/agents-list/view-transactions?agentCode=${row.agentCode}`
+        inaccessible: row.agentStatus !== StatusTypes.ACTIVE,
+        link: `agents-list/view-transactions?agentCode=${row.agentCode}`
       },
       {
         title: intl.formatMessage({ defaultMessage: 'Block/Deactivate' }),
-        inaccessible: false,
-        link: `agency-banking/agents-list/block?agentCode=${row.agentCode}`
+        inaccessible: row.agentStatus !== StatusTypes.ACTIVE,
+        link: `agents-list/block?agentCode=${row.agentCode}`
+      },
+      {
+        title: intl.formatMessage({ defaultMessage: 'Unblock/Activate' }),
+        inaccessible: row.agentStatus !== StatusTypes.BLOCKED,
+        link: `agents-list/unblock?agentCode=${row.agentCode}`
       },
       {
         title: intl.formatMessage({ defaultMessage: 'Manage users' }),
-        inaccessible: false,
-        link: `agency-banking/agents-list/manage-users?agentCode=${row.agentCode}`
+        inaccessible: row.agentType !== AgentTypes.OUTLET || row.agentStatus !== StatusTypes.ACTIVE,
+        link: `agents-list/manage-users?agentCode=${row.agentCode}`
       },
       {
         title: intl.formatMessage({ defaultMessage: 'Create additional outlet' }),
-        inaccessible: false,
-        link: `agency-banking/agents-list/create-outlet?agentCode=${row.agentCode}`
+        inaccessible: row.agentType === AgentTypes.OUTLET || row.agentStatus !== StatusTypes.ACTIVE,
+        link: `agents-list/create-outlet?agentCode=${row.agentCode}`
+      },
+      {
+        title: intl.formatMessage({ defaultMessage: 'Verify account' }),
+        inaccessible: row.agentStatus !== StatusTypes.PENDINGVERIFICATION,
+        link: `agents-list/verify-agent?agentCode=${row.agentCode}`
+      },
+      {
+        title: intl.formatMessage({ defaultMessage: 'Verify edit' }),
+        inaccessible: row.agentStatus !== StatusTypes.PENDINGEDIT,
+        link: `agents-list/verify-edit?agentCode=${row.agentCode}`
+      },
+      {
+        title: intl.formatMessage({ defaultMessage: 'Reset PIN' }),
+        inaccessible: row.agentType === AgentTypes.OUTLET || row.agentStatus !== StatusTypes.ACTIVE,
+        link: `agents-list/reset-pin?agentCode=${row.agentCode}`
+      },
+      {
+        title: intl.formatMessage({ defaultMessage: 'Self service onboarding' }),
+        inaccessible: row.agentType === AgentTypes.OUTLET || row.agentStatus !== StatusTypes.ACTIVE,
+        link: `agents-list/self-service?agentCode=${row.agentCode}`
+      },
+      {
+        title: intl.formatMessage({ defaultMessage: 'Verify block' }),
+        inaccessible: row.agentStatus !== StatusTypes.PENDINGBLOCK,
+        link: `agents-list/verify-block?agentCode=${row.agentCode}`
       }
     ] as Dropdown.DropdownList[]
 
     return <Dropdown.Khebab actions={links} />
-  }
-
-  const transformStatus = (status: string) => {
-    switch (status) {
-      case StatusTypes.ACTIVE:
-        return (
-          <Badge color="success" pill size="sm">
-            {status}
-          </Badge>
-        )
-      case StatusTypes.BLOCKED:
-        return (
-          <Badge color="error" pill size="sm">
-            {status}
-          </Badge>
-        )
-      case StatusTypes.PENDINGBLOCK:
-        return (
-          <Badge color="warning" pill size="sm">
-            {status}
-          </Badge>
-        )
-      case StatusTypes.REJECTED:
-        return (
-          <Badge color="info" pill size="sm">
-            {status}
-          </Badge>
-        )
-      case StatusTypes.PENDINGEDIT:
-        return (
-          <Badge color="warning" pill size="sm">
-            {status}
-          </Badge>
-        )
-      case StatusTypes.PENDINGVERIFICATION:
-        return (
-          <Badge color="default" pill size="sm">
-            {status}
-          </Badge>
-        )
-      default:
-        return (
-          <Badge color="warning" pill size="sm">
-            {status}
-          </Badge>
-        )
-    }
   }
 
   const transformAgentType = (type: string) => {

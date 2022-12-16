@@ -41,7 +41,7 @@ export const dataURLtoFile = (dataUrl: string, filename: string) => {
   while (n--) {
     u8arr[n] = bstr.charCodeAt(n)
   }
-  return new File([u8arr], filename, { type: mime })
+  return new File([u8arr], filename, { type: mime as string })
 }
 
 export const urlToFile = async (url: string, filename: string, mimeType = 'image/png') => {
