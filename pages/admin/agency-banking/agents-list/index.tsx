@@ -23,7 +23,7 @@ import {
 import { useFetchBranches } from 'hooks/common'
 import { onAxiosError } from 'utils'
 import { Alert, Empty } from 'components'
-import { Table } from 'containers/common'
+import { Table } from 'controllers'
 import { AgentObject, AgentResponse } from 'types'
 import { MdCreate } from 'react-icons/md'
 
