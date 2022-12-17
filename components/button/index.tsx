@@ -26,7 +26,7 @@ type ButtonProps = {
 }
 
 export const Button: React.FC<ButtonProps> = (props) => {
-  const { onClick, children, block, color, outline, pill, disabled, size, type } = props
+  const { onClick, children, block, color, outline, pill, disabled, size, type, ...rest } = props
   const [mounted, setMounted] = useState(false)
   const [rippling, setRippling] = useState(false)
   const [coords, setCoords] = useState({ x: -1, y: -1 })
@@ -109,6 +109,7 @@ export const Button: React.FC<ButtonProps> = (props) => {
       }}
       disabled={disabled}
       type={type ?? 'button'}
+      {...rest}
     >
       {children}
       {rippling ? (

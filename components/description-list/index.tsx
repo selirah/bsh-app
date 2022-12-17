@@ -21,13 +21,15 @@ export const OneColumn: React.FC<OneColumnProps> = (props) => {
   return (
     <div
       className={classnames(
-        'p-[16px] flex justify-between items-center font-montserrat font-regular',
+        'p-[16px] block md:flex justify-between items-center font-montserrat font-regular',
         {
           'bg-table-cell dark:bg-dark-background': bgGray
         }
       )}
     >
-      <div className="text-pNormal text-dark-btnText dark:text-light-btnText">{title}</div>
+      <div className="text-pNormal text-dark-btnText dark:text-light-btnText mb-2 md:mb-0">
+        {title}
+      </div>
       <div className="text-pNormal text-light-text dark:text-dark-text">{value}</div>
     </div>
   )
@@ -38,22 +40,24 @@ export const TwoColumn: React.FC<TwoColumnProps> = (props) => {
   return (
     <div
       className={classnames(
-        'p-[16px] flex justify-between items-center font-montserrat font-regular',
+        'p-[16px] block md:flex md:justify-between items-center font-montserrat font-regular',
         {
           'bg-table-cell dark:bg-dark-background': bgGray
         }
       )}
     >
-      <div>
+      <div className="">
         <div className="text-pSmall text-dark-btnText dark:text-light-btnText">{title1}</div>
-        <div className="text-pNormal text-light-text dark:text-dark-text">{value1}</div>
+        <div className="text-pNormal text-light-text dark:text-dark-text mb-2 md:mb-0">
+          {value1}
+        </div>
       </div>
       {title2 && value2 ? (
         <div>
-          <div className="text-pSmall text-dark-btnText dark:text-light-btnText text-right">
+          <div className="text-pSmall text-dark-btnText dark:text-light-btnText md:text-right">
             {title2}
           </div>
-          <div className="text-pNormal text-light-text dark:text-dark-text text-right">
+          <div className="text-pNormal text-light-text dark:text-dark-text md:text-right mb-2 md:mb-0">
             {value2}
           </div>
         </div>

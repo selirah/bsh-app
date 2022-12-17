@@ -43,8 +43,10 @@ export const HeaderAvatar: React.FC<HeaderAvatarProps> = (props) => {
       })}
     >
       <div>
-        <h6 className="text-h6 font-lato text-dark-btnText dark:text-light-btnText">{title}</h6>
-        <p className="mt-[8px] font-montserrat text-light-text dark:text-dark-text">
+        <h6 className="text-pSmall md:text-h6 font-lato text-dark-btnText dark:text-light-btnText">
+          {title}
+        </h6>
+        <p className="mt-[8px] text-pSmall font-montserrat text-light-text dark:text-dark-text">
           {description}
         </p>
       </div>

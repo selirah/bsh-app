@@ -60,7 +60,7 @@ module.exports = {
           inputBorder: '#2D2D2D',
           inputText: '#D1D5DA',
           label: '#D1D5DA',
-          inputDisabled: '#F9FAFB'
+          inputDisabled: '#121212'
         }
       },
       badge: {
