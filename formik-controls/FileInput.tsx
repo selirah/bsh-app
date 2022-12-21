@@ -90,7 +90,7 @@ type Props = {
 export const FileInput: React.FC<Props> = (props) => {
   const { extensions, name, maxFiles, maxSizeInKB, multiple, size, disabled, label } = props
   const [files, setFiles] = useState<UploadableFile[]>([])
-  const [, , helpers] = useField(name)
+  const [value, , helpers] = useField(name)
   let acceptedTypes: Accept = {}
   const { formatMessage } = useIntl()
   const [error, setError] = useState(false)
@@ -101,7 +101,12 @@ export const FileInput: React.FC<Props> = (props) => {
   }, [])
 
   useEffect(() => {
-    helpers.setValue(files)
+    if (files.length) {
+      helpers.setValue(files)
+    } else {
+      helpers.setValue(value.value)
+      setFiles(value.value)
+    }
     files.map((file) => {
       if (file.errors.length) {
         setError(true)
@@ -109,7 +114,6 @@ export const FileInput: React.FC<Props> = (props) => {
         setError(false)
       }
     })
-    // helpers.setTouched(true)
   }, [files])
 
   removeDuplicates(extensions).map((ex) => {

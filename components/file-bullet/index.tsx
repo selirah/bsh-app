@@ -1,8 +1,8 @@
-import React from 'react'
 import { FiTrash, FiImage, FiFile } from 'react-icons/fi'
 import { getFileExtension } from 'utils'
 import { BsFileEarmarkPdfFill } from 'react-icons/bs'
 import { FileError } from 'react-dropzone'
+import classnames from 'classnames'
 
 type Props = {
   file: File
@@ -13,9 +13,13 @@ type FileBulletProps = Props & {
   onRemove?: (file: File) => void
 }
 
-type FileErrorWrapperProps = FileBulletProps & {
+type FileErrorWrapperProps = Props & {
   errors: FileError[]
   onRemove?: (file: File) => void
+}
+
+type FileViewerListProps = Props & {
+  rightAlign?: boolean
 }
 
 export const FileBullet: React.FC<FileBulletProps> = (props) => {
@@ -75,15 +79,19 @@ export const FileErrorWrapper: React.FC<FileErrorWrapperProps> = (props) => {
   )
 }
 
-export const FileViewerList: React.FC<Props> = (props) => {
-  const { file, onClick } = props
+export const FileViewerList: React.FC<FileViewerListProps> = (props) => {
+  const { file, onClick, rightAlign } = props
 
   return (
     <div
-      className="flex justify-between items-center px-2 py-4 w-full"
+      className={classnames('items-center px-2 py-4 w-full', {})}
       onClick={() => (onClick ? onClick(file) : null)}
     >
-      <div className="inline-flex items-center space-x-2 font-montserrat font-medium text-pSmall cursor-pointer">
+      <div
+        className={classnames(
+          'inline-flex items-center space-x-2 font-montserrat font-medium text-pSmall cursor-pointer'
+        )}
+      >
         {getFileExtension(file.name) === 'jpeg' || getFileExtension(file.name) === 'png' ? (
           <FiImage className="w-4 h-4 text-light-text dark:text-dark-text hover:text-primary common-transitiont" />
         ) : getFileExtension(file.name) === 'pdf' ? (
@@ -91,7 +99,14 @@ export const FileViewerList: React.FC<Props> = (props) => {
         ) : (
           <FiFile className="w-4 h-4 text-light-text dark:text-dark-text hover:text-primary common-transition" />
         )}
-        <span className="text-light-text dark:text-dark-text hover:text-primary common-transition">
+        <span
+          className={classnames(
+            'text-light-text dark:text-dark-text hover:text-primary common-transition',
+            {
+              'text-right': rightAlign
+            }
+          )}
+        >
           {file.name}
         </span>
       </div>

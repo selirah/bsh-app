@@ -55,7 +55,7 @@ export const StepFour: React.FC<Props> = (props) => {
     }
     if (files.length) {
       files.map((file, index) => {
-        node.push(<FileViewerList file={file} key={index} onClick={onViewFile} />)
+        node.push(<FileViewerList file={file} key={index} onClick={onViewFile} rightAlign />)
       })
       return node
     }
