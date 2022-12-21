@@ -46,7 +46,6 @@ export const useFetchBranches = (onSuccess?: onSuccess, onError?: onError) => {
   return useQuery('branches', fetchBranches, {
     onSuccess,
     onError,
-    refetchOnMount: false,
     refetchOnWindowFocus: false
   })
 }
@@ -62,7 +61,6 @@ export const useFetchCountries = (onSuccess?: onSuccess, onError?: onError) => {
   return useQuery('countries', fetchCountries, {
     onSuccess,
     onError,
-    refetchOnMount: false,
     refetchOnWindowFocus: false
   })
 }
@@ -78,7 +76,6 @@ export const useFetchStates = (onSuccess?: onSuccess, onError?: onError) => {
   return useQuery('states', fetchStates, {
     onSuccess,
     onError,
-    refetchOnMount: false,
     refetchOnWindowFocus: false
   })
 }
@@ -94,7 +91,6 @@ export const useFetchFinacleStates = (onSuccess?: onSuccess, onError?: onError) 
   return useQuery('finacle-states', fetchFinacleStates, {
     onSuccess,
     onError,
-    refetchOnMount: false,
     refetchOnWindowFocus: false
   })
 }
@@ -110,7 +106,6 @@ export const useFetchCities = (onSuccess?: onSuccess, onError?: onError) => {
   return useQuery('cities', fetchCities, {
     onSuccess,
     onError,
-    refetchOnMount: false,
     refetchOnWindowFocus: false
   })
 }
@@ -126,7 +121,6 @@ export const useFetchCommunes = (onSuccess?: onSuccess, onError?: onError) => {
   return useQuery('communes', fetchCommunes, {
     onSuccess,
     onError,
-    refetchOnMount: false,
     refetchOnWindowFocus: false
   })
 }
@@ -182,7 +176,6 @@ export const useFetchDenominations = (
   return useQuery(['denominations', payload], fetchDenominations, {
     onSuccess: onSuccess,
     onError: onError,
-    refetchOnMount: false,
     refetchOnWindowFocus: false
   })
 }
@@ -240,7 +233,6 @@ export const useFetchNationalities = (onSuccess?: onSuccess, onError?: onError) 
   return useQuery('nationalities', fetchNationalities, {
     onSuccess,
     onError,
-    refetchOnMount: false,
     refetchOnWindowFocus: false
   })
 }
@@ -261,7 +253,6 @@ export const useFetchAccountTypes = (
   return useQuery(['account-types', isStaff], fetchAccountTypes, {
     onSuccess,
     onError,
-    refetchOnMount: false,
     refetchOnWindowFocus: false
   })
 }
@@ -277,7 +268,6 @@ export const useFetchCurrencies = (onSuccess?: onSuccess, onError?: onError) => 
   return useQuery('currencies', fetchCurrencies, {
     onSuccess,
     onError,
-    refetchOnMount: false,
     refetchOnWindowFocus: false
   })
 }
@@ -293,7 +283,6 @@ export const useFetchProfessions = (onSuccess?: onSuccess, onError?: onError) =>
   return useQuery('professions', fetchProfessions, {
     onSuccess,
     onError,
-    refetchOnMount: false,
     refetchOnWindowFocus: false
   })
 }
@@ -309,7 +298,6 @@ export const useFetchDocumentTypes = (onSuccess?: onSuccess, onError?: onError) 
   return useQuery('document-types', fetchDocumentTypes, {
     onSuccess,
     onError,
-    refetchOnMount: false,
     refetchOnWindowFocus: false
   })
 }
@@ -325,7 +313,6 @@ export const useFetchMaritalStatus = (onSuccess?: onSuccess, onError?: onError) 
   return useQuery('marital-status', fetchMaritalStatus, {
     onSuccess,
     onError,
-    refetchOnMount: false,
     refetchOnWindowFocus: false
   })
 }
@@ -341,7 +328,6 @@ export const useFetchGenders = (onSuccess?: onSuccess, onError?: onError) => {
   return useQuery('genders', fetchGenders, {
     onSuccess,
     onError,
-    refetchOnMount: false,
     refetchOnWindowFocus: false
   })
 }
@@ -357,7 +343,6 @@ export const useFetchLanguages = (onSuccess?: onSuccess, onError?: onError) => {
   return useQuery('languages', fetchLanguages, {
     onSuccess,
     onError,
-    refetchOnMount: false,
     refetchOnWindowFocus: false
   })
 }
@@ -373,7 +358,6 @@ export const useFetchTitles = (onSuccess?: onSuccess, onError?: onError) => {
   return useQuery('titles', fetchTitles, {
     onSuccess,
     onError,
-    refetchOnMount: false,
     refetchOnWindowFocus: false
   })
 }
@@ -389,7 +373,6 @@ export const useFetchRegions = (onSuccess?: onSuccess, onError?: onError) => {
   return useQuery('regions', fetchRegions, {
     onSuccess,
     onError,
-    refetchOnMount: false,
     refetchOnWindowFocus: false
   })
 }
@@ -405,7 +388,6 @@ export const useFetchIssuerOrganizations = (onSuccess?: onSuccess, onError?: onE
   return useQuery('issuer-organizations', fetchIssuerOrganizations, {
     onSuccess,
     onError,
-    refetchOnMount: false,
     refetchOnWindowFocus: false
   })
 }

@@ -15,7 +15,7 @@ export const Alert: React.FC<AlertProps> = (props) => {
 
   return (
     <div
-      className={classnames('flex p-[16px] font-lato font-medium text-pNormal', {
+      className={classnames('flex p-[16px]', {
         rounded: !border,
         'bg-warning-light text-warning dark:bg-dark-container dark:border': color === 'warning',
         'bg-success-light text-success dark:bg-dark-container dark:border': color === 'success',

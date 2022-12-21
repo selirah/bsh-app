@@ -1,4 +1,5 @@
-import { Field, ErrorMessage } from 'formik'
+import { Fragment } from 'react'
+import { Field, ErrorMessage, useField } from 'formik'
 import { Select } from 'components/index'
 import InputError from './InputError'
 
@@ -7,10 +8,11 @@ type Props = Select.SelectProps & {
 }
 
 export const SelectInput: React.FC<Props> = (props) => {
-  const { name, label, options, size, success, placeholder, isMulti, ...rest } = props
+  const { name, label, options, size, success, placeholder, isMulti, disabled, ...rest } = props
+  const [value] = useField(name)
 
   return (
-    <div className="">
+    <Fragment>
       {!isMulti ? (
         <Field name={name} {...rest}>
           {({ form }) => {
@@ -24,7 +26,8 @@ export const SelectInput: React.FC<Props> = (props) => {
                 size={size}
                 success={success}
                 placeholder={placeholder}
-                error={form.errors[name]}
+                disabled={disabled}
+                value={value.value ?? ''}
                 {...rest}
               />
             )
@@ -43,7 +46,8 @@ export const SelectInput: React.FC<Props> = (props) => {
                 size={size}
                 success={success}
                 placeholder={placeholder}
-                error={form.errors[name]}
+                disabled={disabled}
+                value={value.value ?? ''}
                 {...rest}
               />
             )
@@ -52,6 +56,6 @@ export const SelectInput: React.FC<Props> = (props) => {
       )}
 
       <ErrorMessage name={name}>{(msg) => <InputError size={size}>{msg}</InputError>}</ErrorMessage>
-    </div>
+    </Fragment>
   )
 }

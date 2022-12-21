@@ -8,31 +8,31 @@ import { FaUsers } from 'react-icons/fa'
 export const routes = (intl: IntlShape) => {
   return [
     {
-      link: 'agency-banking/agents-list',
+      link: '/admin/agency-banking/agents-list',
       title: intl.formatMessage({ defaultMessage: 'Agents List' }),
       IconSVG: BsListCheck,
       scope: 'AgencyBanking:Manage'
     },
     {
-      link: 'agency-banking/agents-report',
+      link: '/admin/agency-banking/agents-report',
       title: intl.formatMessage({ defaultMessage: 'Agents Report' }),
       IconSVG: AiOutlineBarChart,
       scope: 'AgencyBanking:ViewReports'
     },
     {
-      link: 'agency-banking/perfomance-report',
+      link: '/admin/agency-banking/perfomance-report',
       title: intl.formatMessage({ defaultMessage: 'Performance Report' }),
       IconSVG: AiOutlineAreaChart,
       scope: 'AgencyBanking:ViewReports'
     },
     {
-      link: 'agency-banking/create-agent',
+      link: '/admin/agency-banking/create-agent',
       title: intl.formatMessage({ defaultMessage: 'Create Agent' }),
       IconSVG: MdCreate,
       scope: 'AgencyBanking:Manage'
     },
     {
-      link: 'agency-banking/manage-users',
+      link: '/admin/agency-banking/manage-users',
       title: intl.formatMessage({ defaultMessage: 'Manage Users' }),
       IconSVG: FaUsers,
       scope: 'AgencyBanking:Manage'

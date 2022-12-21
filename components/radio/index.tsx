@@ -37,10 +37,13 @@ export const Basic: React.FC<RadioProps> = (props) => {
         label ? (
           <label
             htmlFor={name}
-            className={classnames('ml-2 text-light-form-label dark:text-dark-text cursor-pointer', {
-              'text-pSmall': size === 'sm',
-              'text-pNormal': size === 'md' || !size || size === 'lg'
-            })}
+            className={classnames(
+              'ml-2 text-light-form-label dark:text-dark-text cursor-pointer font-montserrat',
+              {
+                'text-pSmall': size === 'sm',
+                'text-pNormal': size === 'md' || !size || size === 'lg'
+              }
+            )}
           >
             {label}
           </label>

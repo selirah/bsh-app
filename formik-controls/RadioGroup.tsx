@@ -5,16 +5,17 @@ import InputError from './InputError'
 import classnames from 'classnames'
 
 export type Option = {
-  key: string
+  label: string
   value: string
 }
 
 type Props = Checkbox.BasicProps & {
   options: Option[]
+  space?: boolean
 }
 
 export const RadioGroup: React.FC<Props> = (props) => {
-  const { label, name, options, size, color, disabled, ...rest } = props
+  const { label, name, options, size, color, disabled, space, direction, ...rest } = props
   return (
     <React.Fragment>
       <label
@@ -29,7 +30,27 @@ export const RadioGroup: React.FC<Props> = (props) => {
         {({ field, form }) => {
           return options.map((option) => {
             return (
-              <div className="flex items-center mb-2" key={option.key}>
+              <div
+                className={classnames('flex items-center mb-2', {
+                  'justify-start': direction === 'left' || !direction,
+                  'justify-between': direction === 'right'
+                })}
+                key={option.label}
+              >
+                {direction === 'right' ? (
+                  <label
+                    htmlFor={option.value}
+                    className={classnames(
+                      'font-regular text-light-form-label dark:text-dark-text cursor-pointer font-montserrat',
+                      {
+                        'text-pSmall': size === 'sm',
+                        'text-pNormal': size === 'md' || !size || size === 'lg'
+                      }
+                    )}
+                  >
+                    {option.label}
+                  </label>
+                ) : null}
                 <input
                   type="radio"
                   id={option.value}
@@ -51,22 +72,27 @@ export const RadioGroup: React.FC<Props> = (props) => {
                       'text-success': color === 'success',
                       'text-error': color === 'error',
                       'text-info': color === 'info',
-                      'text-warning': color === 'warning'
+                      'text-warning': color === 'warning',
+                      'mb-4': space,
+                      'border-error': form.errors[name]
                     }
                   )}
                 />
-                <label
-                  htmlFor={option.value}
-                  className={classnames(
-                    'ml-2 text-light-form-label dark:text-dark-text cursor-pointer',
-                    {
-                      'text-pSmall': size === 'sm',
-                      'text-pNormal': size === 'md' || !size || size === 'lg'
-                    }
-                  )}
-                >
-                  {option.key}
-                </label>
+                {direction === 'left' || !direction ? (
+                  <label
+                    htmlFor={option.value}
+                    className={classnames(
+                      'font-regular ml-2 text-light-form-label dark:text-dark-text cursor-pointer font-montserrat',
+                      {
+                        'text-pSmall': size === 'sm',
+                        'text-pNormal': size === 'md' || !size || size === 'lg',
+                        'mb-4': space
+                      }
+                    )}
+                  >
+                    {option.label}
+                  </label>
+                ) : null}
               </div>
             )
           })

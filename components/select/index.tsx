@@ -1,4 +1,4 @@
-import React from 'react'
+import { useContext } from 'react'
 import Select from 'react-select'
 import classnames from 'classnames'
 import { CustomStyles } from './styles'
@@ -31,16 +31,18 @@ export type SelectProps = {
 type SingleProps = SelectProps & {
   defaultValue?: SelectData | unknown
   onChange?: (value: unknown) => void
+  value?: SelectData | unknown
 }
 
 type MultipleProps = SelectProps & {
   defaultValue?: SelectData[] | unknown
   onChange?: (value: unknown) => void
+  value?: SelectData | unknown
 }
 
 export const Single: React.FC<SingleProps> = (props) => {
-  const { theme } = React.useContext(ThemeContext)
-  const { color } = React.useContext(ColorContext)
+  const { theme } = useContext(ThemeContext)
+  const { color } = useContext(ColorContext)
   const {
     name,
     label,
@@ -53,7 +55,8 @@ export const Single: React.FC<SingleProps> = (props) => {
     options,
     success,
     loading,
-    isClearable
+    isClearable,
+    value
   } = props
   return (
     <div className="">
@@ -90,17 +93,18 @@ export const Single: React.FC<SingleProps> = (props) => {
         id={name}
         styles={CustomStyles(size ?? 'md', error ?? '', success ?? false, theme, color)}
         menuPortalTarget={typeof window !== 'undefined' ? document.body : null}
+        value={value}
       />
       {error ? (
         <div className="mt-[8px] items-center flex">
           <FiAlertCircle
-            className={classnames('flex-shrink-0 inline mr-[4px] text-error-text', {
+            className={classnames('flex-shrink-0 inline mr-[4px] text-error', {
               'w-4 h-4': size === 'sm',
               'w-5 h-5': size === 'md' || !size || size === 'lg'
             })}
           />
           <span
-            className={classnames('font-montserrat font-medium text-error-text', {
+            className={classnames('font-montserrat font-regular text-error', {
               'text-pSmall': size === 'sm',
               'text-pNormal': size === 'md' || !size || size === 'lg'
             })}
@@ -114,8 +118,8 @@ export const Single: React.FC<SingleProps> = (props) => {
 }
 
 export const Multiple: React.FC<MultipleProps> = (props) => {
-  const { theme } = React.useContext(ThemeContext)
-  const { color } = React.useContext(ColorContext)
+  const { theme } = useContext(ThemeContext)
+  const { color } = useContext(ColorContext)
   const {
     name,
     label,
@@ -128,7 +132,8 @@ export const Multiple: React.FC<MultipleProps> = (props) => {
     options,
     success,
     loading,
-    isClearable
+    isClearable,
+    value
   } = props
 
   return (
@@ -171,17 +176,18 @@ export const Multiple: React.FC<MultipleProps> = (props) => {
         styles={CustomStyles(size ?? 'md', error ?? '', success ?? false, theme, color)}
         components={makeAnimated()}
         menuPortalTarget={typeof window !== 'undefined' ? document.body : null}
+        value={value}
       />
       {error ? (
         <div className="mt-[8px] items-center flex">
           <FiAlertCircle
-            className={classnames('flex-shrink-0 inline mr-[4px] text-error-text', {
+            className={classnames('flex-shrink-0 inline mr-[4px] text-error', {
               'w-4 h-4': size === 'sm',
               'w-5 h-5': size === 'md' || !size || size === 'lg'
             })}
           />
           <span
-            className={classnames('font-montserrat font-medium text-error-text', {
+            className={classnames('font-montserrat font-regular text-error', {
               'text-pSmall': size === 'sm',
               'text-pNormal': size === 'md' || !size || size === 'lg'
             })}

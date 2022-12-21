@@ -2,6 +2,7 @@ import classnames from 'classnames'
 
 type Props = {
   bgGray?: boolean
+  longText?: boolean
 }
 
 type OneColumnProps = Props & {
@@ -17,11 +18,11 @@ type TwoColumnProps = Props & {
 }
 
 export const OneColumn: React.FC<OneColumnProps> = (props) => {
-  const { title, value, bgGray } = props
+  const { title, value, bgGray, longText } = props
   return (
     <div
       className={classnames(
-        'p-[16px] block md:flex justify-between items-center font-montserrat font-regular',
+        'p-[16px] block md:flex md:justify-between items-center font-montserrat font-regular',
         {
           'bg-table-cell dark:bg-dark-background': bgGray
         }
@@ -30,13 +31,20 @@ export const OneColumn: React.FC<OneColumnProps> = (props) => {
       <div className="text-pNormal text-dark-btnText dark:text-light-btnText mb-2 md:mb-0">
         {title}
       </div>
-      <div className="text-pNormal text-light-text dark:text-dark-text">{value}</div>
+      <div
+        className={classnames('text-light-text dark:text-dark-text md:text-right block', {
+          'text-pNormal': !longText,
+          'text-pSmall': longText
+        })}
+      >
+        {value}
+      </div>
     </div>
   )
 }
 
 export const TwoColumn: React.FC<TwoColumnProps> = (props) => {
-  const { title1, value1, title2, value2, bgGray } = props
+  const { title1, value1, title2, value2, bgGray, longText } = props
   return (
     <div
       className={classnames(
@@ -57,7 +65,15 @@ export const TwoColumn: React.FC<TwoColumnProps> = (props) => {
           <div className="text-pSmall text-dark-btnText dark:text-light-btnText md:text-right">
             {title2}
           </div>
-          <div className="text-pNormal text-light-text dark:text-dark-text md:text-right mb-2 md:mb-0">
+          <div
+            className={classnames(
+              'text-light-text dark:text-dark-text md:text-right mb-2 md:mb-0',
+              {
+                'text-pNormal': !longText,
+                'text-pSmall': longText
+              }
+            )}
+          >
             {value2}
           </div>
         </div>

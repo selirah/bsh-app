@@ -1,4 +1,7 @@
+import { Option } from './Common'
+
 export type CustomerAccount = {
+  name?: string
   accountClosureFlag: string
   accountId: string
   accountName: string
@@ -34,28 +37,30 @@ export type Customer = {
   companyRegsitrationNumber: unknown
   constCode: unknown
   contracts: unknown
-  customerId: string
+  customerID: string
   customerMinorFlag: unknown
   customerNreFlag: string
   dateOfBirth: string
   dateOfIncorporation: unknown
-  emailId: unknown
-  firstName: unknown
-  fullName: unknown
-  identityDocument: unknown
-  lastName: unknown
+  emailId: string
+  firstName: string
+  fullName: string
+  identityDocument: string
+  lastName: string
   legalEntityTypeId: string
   legalRepresentatives: CustomerLegalRep[]
   maritalStatus: unknown
   nationalId: unknown
-  phoneNumber: unknown
+  phoneNumber: string
   placeOfBirth: unknown
   preferredAddress: CustomerAddress
   retCorpFlg: unknown
-  sex: unknown
+  sex: string
   shortName: unknown
   titleCode: unknown
   userSubClassification: unknown
+  docDescr: string
+  memos: string[]
 }
 
 export type CustomerLegalRep = {
@@ -71,8 +76,8 @@ export type CustomerLegalRep = {
 }
 
 export type CustomerAddress = {
-  address1: unknown
-  address2: unknown
+  address1: string
+  address2: string
   address3: unknown
   addressCategory: unknown
   cityCode: unknown
@@ -106,7 +111,7 @@ export type CustomerBiometric = {
 }
 
 export type CustomerSearchPayload = {
-  searchProperty?: string
+  searchProperty?: Option
   propertyData?: string
   userId?: string
 }

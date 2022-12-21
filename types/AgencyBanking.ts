@@ -1,3 +1,5 @@
+import { FileError } from 'react-dropzone'
+import { Option } from './Common'
 import { Customer } from './Customer'
 
 export type Agent = {
@@ -52,7 +54,7 @@ export type AgentPayload = {
   agentDocuments?: Document[]
   agentTypeId?: number
   msisdn?: string
-  branchId?: number
+  branchId?: string
   idNumber?: string
   agentId?: number
   reason?: string
@@ -176,4 +178,21 @@ export enum AgentTypes {
   OUTLET = 'OUTLET',
   ORDINARYAGENT = 'ORDINARY AGENT',
   MERCHANT = 'MERCHANT'
+}
+
+export type UploadableFile = {
+  file: File
+  errors: FileError[]
+}
+
+export type MasterAgentFormValues = {
+  usdCommissionAccount: Option
+  cdfCommissionAccount: Option
+  agentName: string
+  branch: Option
+  agentLogo?: UploadableFile[]
+  businessCertificate?: UploadableFile[]
+  scannedDocuments?: UploadableFile[]
+  otherDocuments?: UploadableFile[]
+  phoneNumber: string
 }

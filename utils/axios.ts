@@ -92,10 +92,7 @@ export const adminRequestTest = async ({ ...options }: AxiosOptions) => {
   adminInstanceTest.defaults.headers.post['Content-Type'] = 'application/json'
 
   const onSuccess = (response: AxiosResponse) => response
-  const onError = (error: AxiosError) => {
-    // optionaly catch errors and add additional logging here
-    return error
-  }
+  const onError = (error: AxiosError) => error
   try {
     if (options.data && options.method === 'post') {
       delete options.data['hash']

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createRef, DragEvent, ChangeEvent } from 'react'
+import { useState, useEffect, createRef, DragEvent, ChangeEvent, Fragment } from 'react'
 import classnames from 'classnames'
 import { FiAlertCircle, FiUploadCloud } from 'react-icons/fi'
 import { useIntl } from 'react-intl'
@@ -18,13 +18,13 @@ type FileTypes =
   | '.ppt'
 type InputSizes = 'sm' | 'md' | 'lg'
 
-type FileInputProps = {
+export type FileInputProps = {
   name: string
   extensions: FileTypes[]
   size?: InputSizes
   fileSize?: number
   error?: string
-  onChange: (e: File) => void
+  onChange?: (e: File) => void
   disabled?: boolean
 }
 
@@ -83,7 +83,7 @@ export const FileInput: React.FC<FileInputProps> = (props) => {
   }
 
   return (
-    <div className="">
+    <Fragment>
       <div className="flex items-center justify-center" ref={dropRef}>
         <label
           htmlFor={name}
@@ -94,7 +94,7 @@ export const FileInput: React.FC<FileInputProps> = (props) => {
               'h-[175px]': size === 'md' || !size,
               'h-[195px] text-pNormal': size === 'lg',
               'border-light-form-inputBorder dark:border-dark-form-inputBorder': !error,
-              'border-error-text': error
+              'border-error': error
             }
           )}
         >
@@ -105,7 +105,7 @@ export const FileInput: React.FC<FileInputProps> = (props) => {
                 {
                   'p-2': size === 'md' || !size,
                   'border-light-gray': !error,
-                  'border-error-container': error
+                  'border-error': error
                 }
               )}
             >
@@ -115,7 +115,7 @@ export const FileInput: React.FC<FileInputProps> = (props) => {
                   'w-9 h-9': size === 'md' || !size,
                   'w-10 h-10': size === 'lg',
                   'text-light-gray': !error,
-                  'text-error-text': error
+                  'text-error': error
                 })}
               />
             </div>
@@ -164,6 +164,6 @@ export const FileInput: React.FC<FileInputProps> = (props) => {
           </span>
         </div>
       ) : null}
-    </div>
+    </Fragment>
   )
 }

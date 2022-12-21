@@ -87,3 +87,17 @@ export const resizeImage = (base64Str: any, maxWidth = 500, maxHeight = 500) => 
     }
   })
 }
+
+export const isFileLarge = (size: number) => {
+  return size / 1024 / 1024 > 5
+}
+
+export const isFileSizesLargerThan5MB = (files: File[]) => {
+  let size = 0
+  for (let file of files) {
+    if (file) {
+      size += file.size
+    }
+  }
+  return isFileLarge(size)
+}

@@ -1,8 +1,9 @@
-import React, { ChangeEvent, useState, LegacyRef } from 'react'
+import { ChangeEvent, useState, LegacyRef, useContext } from 'react'
 import classnames from 'classnames'
 import { FiAlertCircle, FiEye, FiEyeOff } from 'react-icons/fi'
 import { Select } from 'components'
 import PhoneInput from 'react-phone-input-2'
+import { ThemeContext } from 'contexts'
 
 export type InputSizes = 'sm' | 'md' | 'lg'
 export type IconPosition = 'leading' | 'trailing'
@@ -533,6 +534,7 @@ export const Phone: React.FC<PhoneProps> = (props) => {
     onSetPhone,
     ref
   } = props
+  const { theme } = useContext(ThemeContext)
 
   return (
     <div className="">
@@ -560,7 +562,9 @@ export const Phone: React.FC<PhoneProps> = (props) => {
         inputStyle={{
           borderRadius: '4px',
           height: size === 'sm' ? '40px' : size === 'md' ? '45px' : size === 'lg' ? '50px' : '45px',
-          border: `1px solid ${error ? '#B5241E' : success ? '#376A20' : '#DDE0E4'}`,
+          border: `1px solid ${
+            error ? '#B5241E' : success ? '#376A20' : theme === 'dark' ? '#2D2D2D' : '#DDE0E4'
+          }`,
           width: 'inherit',
           fontSize:
             size === 'sm' ? '13.2px' : size === 'md' ? '16px' : size === 'lg' ? '19.2px' : '16px'
@@ -575,8 +579,14 @@ export const Phone: React.FC<PhoneProps> = (props) => {
         }}
         countryCodeEditable={false}
         buttonStyle={{
-          border: `1px solid ${error ? '#B5241E' : success ? '#376A20' : '#DDE0E4'}`,
-          backgroundColor: '#FEFEFE'
+          border: `1px solid ${
+            error ? '#B5241E' : success ? '#376A20' : theme === 'dark' ? '#2D2D2D' : '#DDE0E4'
+          }`,
+          backgroundColor: theme === 'dark' ? '#212021' : '#FEFEFE'
+        }}
+        dropdownStyle={{
+          backgroundColor: theme === 'dark' ? '#212021' : '#FEFEFE',
+          color: theme === 'dark' ? '#FFFFFF' : '#121212'
         }}
         disabled={disabled}
       />
