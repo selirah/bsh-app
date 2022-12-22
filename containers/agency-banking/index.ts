@@ -1,7 +1,3 @@
 export { routes } from './routes'
 export { AgentsListFilter } from './AgentsListFilter'
 export { AgentDetails } from './AgentDetails'
-export { StepOne } from './master-agent/StepOne'
-export { StepTwo } from './master-agent/StepTwo'
-export { StepThree } from './master-agent/StepThree'
-export { StepFour } from './master-agent/StepFour'

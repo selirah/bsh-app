@@ -16,11 +16,11 @@ import { CustomerSearchForm, ProgressStep } from 'controllers'
 import { Alert, AppleLoader } from 'components'
 import { useValidateAgent, useOnboardAgent } from 'hooks/agency-banking'
 import { onAxiosError } from 'utils'
-import { StepOne, StepTwo, StepThree, StepFour } from 'containers/agency-banking/master-agent'
+import { StepOne, StepTwo, StepThree, StepFour } from 'containers/agency-banking/ordinary-agent'
 import { useSession } from 'next-auth/react'
 import { getBase64 } from 'utils'
 
-const MasterAgentPage = () => {
+const OrdinaryAgentPage = () => {
   const intl = useIntl()
   const [customer, setCustomer] = useState<Customer>(null)
   const [customerAccounts, setCustomerAccounts] = useState<CustomerAccount[]>(null)
@@ -118,7 +118,7 @@ const MasterAgentPage = () => {
       agentStatusId: 5,
       externalId: customer?.customerID,
       parentAgentId: null,
-      agentTypeId: 1,
+      agentTypeId: 4,
       logo: logo,
       branchId: branchObj.branchId,
       agentDocuments: documents,
@@ -254,4 +254,4 @@ const MasterAgentPage = () => {
   )
 }
 
-export default authorizationHOC('AgencyBanking:Create', MasterAgentPage, true)
+export default authorizationHOC('AgencyBanking:Create', OrdinaryAgentPage, true)
