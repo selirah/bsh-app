@@ -54,7 +54,7 @@ export type AgentPayload = {
   agentDocuments?: Document[]
   agentTypeId?: number
   msisdn?: string
-  branchId?: string
+  branchId?: number
   idNumber?: string
   agentId?: number
   reason?: string

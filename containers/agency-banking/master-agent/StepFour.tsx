@@ -3,21 +3,25 @@ import { Formik, Form } from 'formik'
 import { useIntl } from 'react-intl'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import { MasterAgentFormValues, Customer } from 'types'
-import { Button } from 'components'
-import { DescriptionHeader, DescriptionList, FileViewerList } from 'components'
+import { AppleLoader, Button } from 'components'
+import { DescriptionHeader, DescriptionList, FileViewerList, CreateSuccessError } from 'components'
 import React from 'react'
 import { DocumentViewer } from 'controllers'
+import Link from 'next/link'
 
 type Props = {
   data: MasterAgentFormValues
   handleNextStep: (values: MasterAgentFormValues, final?: boolean) => void
   handlePrevStep: (values: MasterAgentFormValues) => void
   customer: Customer
+  success: boolean
+  error: string
+  isSubmitting: boolean
 }
 
 export const StepFour: React.FC<Props> = (props) => {
   const intl = useIntl()
-  const { handleNextStep, handlePrevStep, data, customer } = props
+  const { handleNextStep, handlePrevStep, data, customer, error, isSubmitting, success } = props
   const [isOpen, setIsOpen] = useState(false)
   const [file, setFile] = useState<File>(null)
 
@@ -70,50 +74,87 @@ export const StepFour: React.FC<Props> = (props) => {
             <Form>
               <div className="h-[32rem] relative animate__animated animate__fadeIn">
                 <PerfectScrollbar>
-                  <div className="mt-8 border border-light-border dark:border-dark-border rounded">
-                    <DescriptionHeader.Basic
+                  {success ? (
+                    <CreateSuccessError.Success
+                      header={intl.formatMessage({ defaultMessage: 'Great!' })}
                       description={intl.formatMessage({
-                        defaultMessage: 'Application Summary'
+                        defaultMessage: 'Master agent has been created successfully'
                       })}
-                      title={intl.formatMessage({ defaultMessage: 'Summary of form data' })}
+                      returnButtonText={intl.formatMessage({ defaultMessage: 'Return to Agents' })}
+                      returnLink="/admin/agency-banking/agents-list"
+                      createNewBtnText={intl.formatMessage({ defaultMessage: 'Create New' })}
+                      createNewLink="/admin/agency-banking/create-agent"
                     />
-                    <DescriptionList.OneColumn
-                      title={intl.formatMessage({ defaultMessage: 'Master agent name' })}
-                      value={values.agentName}
-                      bgGray
+                  ) : error ? (
+                    <CreateSuccessError.Error
+                      header={intl.formatMessage({ defaultMessage: 'Oops!' })}
+                      returnButtonText={intl.formatMessage({ defaultMessage: 'Return to Agents' })}
+                      returnLink="/admin/agency-banking/agents-list"
+                      error={error}
                     />
-                    <DescriptionList.OneColumn
-                      title={intl.formatMessage({ defaultMessage: 'Phone number' })}
-                      value={customer.phoneNumber}
-                    />
-                    <DescriptionList.OneColumn
-                      title={intl.formatMessage({ defaultMessage: 'Branch' })}
-                      value={values.branch.label}
-                      bgGray
-                    />
-                    <DescriptionList.OneColumn
-                      title={intl.formatMessage({ defaultMessage: 'Commission account (USD)' })}
-                      value={values.usdCommissionAccount.label}
-                    />
-                    <DescriptionList.OneColumn
-                      title={intl.formatMessage({ defaultMessage: 'Commission account (UCDF)' })}
-                      value={values.cdfCommissionAccount.label}
-                      bgGray
-                    />
-                    <DescriptionList.OneColumn
-                      title={intl.formatMessage({ defaultMessage: 'Documents' })}
-                      value={renderDocuments(values)}
-                    />
-                  </div>
+                  ) : (
+                    <div className="mt-8 border border-light-border dark:border-dark-border rounded">
+                      <DescriptionHeader.Basic
+                        description={intl.formatMessage({
+                          defaultMessage: 'Application Summary'
+                        })}
+                        title={intl.formatMessage({ defaultMessage: 'Summary of form data' })}
+                      />
+                      <DescriptionList.OneColumn
+                        title={intl.formatMessage({ defaultMessage: 'Master agent name' })}
+                        value={values.agentName}
+                        bgGray
+                      />
+                      <DescriptionList.OneColumn
+                        title={intl.formatMessage({ defaultMessage: 'Phone number' })}
+                        value={customer.phoneNumber}
+                      />
+                      <DescriptionList.OneColumn
+                        title={intl.formatMessage({ defaultMessage: 'Branch' })}
+                        value={values.branch.label}
+                        bgGray
+                      />
+                      <DescriptionList.OneColumn
+                        title={intl.formatMessage({ defaultMessage: 'Commission account (USD)' })}
+                        value={values.usdCommissionAccount.label}
+                      />
+                      <DescriptionList.OneColumn
+                        title={intl.formatMessage({ defaultMessage: 'Commission account (UCDF)' })}
+                        value={values.cdfCommissionAccount.label}
+                        bgGray
+                      />
+                      <DescriptionList.OneColumn
+                        title={intl.formatMessage({ defaultMessage: 'Documents' })}
+                        value={renderDocuments(values)}
+                      />
+                    </div>
+                  )}
                 </PerfectScrollbar>
               </div>
               <div className="mt-8 py-6 flex justify-between border-t border-light-border dark:border-dark-border">
-                <Button size="sm" outline color="default" onClick={() => handlePrevStep(values)}>
-                  {intl.formatMessage({ defaultMessage: 'Back' })}
-                </Button>
-                <Button size="sm" disabled={!isValid} type="submit">
-                  {intl.formatMessage({ defaultMessage: 'Submit' })}
-                </Button>
+                {!success && (
+                  <Button size="sm" outline color="default" onClick={() => handlePrevStep(values)}>
+                    {intl.formatMessage({ defaultMessage: 'Back' })}
+                  </Button>
+                )}
+                {!success ? (
+                  <Button size="sm" disabled={!isValid || isSubmitting} type="submit">
+                    <div className="flex items-center space-x-2">
+                      {isSubmitting && <AppleLoader size="lg" />}
+                      <span>
+                        {isSubmitting
+                          ? intl.formatMessage({ defaultMessage: 'Processing...' })
+                          : intl.formatMessage({ defaultMessage: 'Submit' })}
+                      </span>
+                    </div>
+                  </Button>
+                ) : (
+                  <Link href="/admin/agency-banking/agents-list">
+                    <Button size="sm">
+                      {intl.formatMessage({ defaultMessage: 'Return to Agents' })}
+                    </Button>
+                  </Link>
+                )}
               </div>
             </Form>
           </>

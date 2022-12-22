@@ -20,7 +20,7 @@ export const DocumentViewer: React.FC<Props> = (props) => {
         {file.name}
       </ModalHeader>
       <ModalBody>
-        <FileViewer url={data} />
+        <FileViewer url={data} allowFullScreen />
       </ModalBody>
     </Modal>
   )

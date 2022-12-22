@@ -53,7 +53,7 @@ const CreateAgentPage = () => {
             {({ isValid }) => (
               <Form>
                 <div className="mb-10">
-                  <RadioGroup options={options} name="agentType" direction="right" space />
+                  <RadioGroup options={options} name="agentType" space />
                 </div>
 
                 <Button type="submit" disabled={!isValid}>

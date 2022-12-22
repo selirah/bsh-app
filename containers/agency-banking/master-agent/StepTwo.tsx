@@ -38,17 +38,17 @@ export const StepTwo: React.FC<Props> = (props) => {
       const actualData = data as Branch[]
       let arr: Option[] = []
       actualData.map((d) => {
-        return arr.push({ label: d.name, value: `${d.branchId}` })
+        return arr.push({ label: d.name, value: JSON.stringify(d) })
       })
       setBranches(arr)
       let usdArr: Option[] = []
       let cdfArr: Option[] = []
       customerAccounts.map((a) => {
         if (a.currency === 'USD') {
-          return usdArr.push({ label: a.name, value: a.accountNumber })
+          return usdArr.push({ label: a.name, value: JSON.stringify(a) })
         }
         if (a.currency === 'CDF') {
-          return cdfArr.push({ label: a.name, value: a.accountNumber })
+          return cdfArr.push({ label: a.name, value: JSON.stringify(a) })
         }
       })
       setUsdCommissionAccounts(usdArr)

@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-// import { useRouter } from 'next/router'
 import { AdminLayout, BasicContainer, authorizationHOC } from 'layouts'
 import { routes } from 'containers/agency-banking'
 import { useIntl } from 'react-intl'
@@ -9,20 +8,24 @@ import {
   AgentPayload,
   SuccessResponse,
   ErrorResponse,
-  MasterAgentFormValues
+  MasterAgentFormValues,
+  Branch,
+  Document
 } from 'types'
 import { CustomerSearchForm, ProgressStep } from 'controllers'
 import { Alert, AppleLoader } from 'components'
-import { useValidateAgent } from 'hooks/agency-banking'
+import { useValidateAgent, useOnboardAgent } from 'hooks/agency-banking'
 import { onAxiosError } from 'utils'
 import { StepOne, StepTwo, StepThree, StepFour } from 'containers/agency-banking'
+import { useSession } from 'next-auth/react'
+import { getBase64 } from 'utils'
 
 const MasterAgentPage = () => {
   const intl = useIntl()
   const [customer, setCustomer] = useState<Customer>(null)
   const [customerAccounts, setCustomerAccounts] = useState<CustomerAccount[]>(null)
   const [error, setError] = useState(null)
-  const [success /*, setSuccess*/] = useState(false)
+  const [success, setSuccess] = useState(false)
   const [currentStep, setCurrentStep] = useState(1)
   const [validateSuccess, setValidateSuccess] = useState(false)
   const [data, setData] = useState<MasterAgentFormValues>({
@@ -36,12 +39,99 @@ const MasterAgentPage = () => {
     branch: null,
     phoneNumber: ''
   })
+  const { data: session } = useSession()
 
-  const onSubmit = (formData: MasterAgentFormValues) => {
-    console.log(formData)
+  const onCreateAgentSuccess = (response: SuccessResponse) => {
+    const { status, data } = response
+    if (status === 200 && data) {
+      setSuccess(true)
+    } else {
+      const { request } = response
+      const error = request as XMLHttpRequest
+      setError(error.responseText)
+    }
+  }
+
+  const { mutate: onboardAgent, isLoading: isSubmitting } = useOnboardAgent(
+    onCreateAgentSuccess,
+    (error: ErrorResponse) => onAxiosError(error, setError)
+  )
+
+  const onSubmit = async (formData: MasterAgentFormValues) => {
+    setError(null)
+    const {
+      usdCommissionAccount,
+      cdfCommissionAccount,
+      branch,
+      agentName,
+      agentLogo,
+      businessCertificate,
+      scannedDocuments,
+      otherDocuments
+    } = formData
+    const usdCommissionAccountObj = JSON.parse(usdCommissionAccount.value) as CustomerAccount
+    const cdfCommissionAccountObj = JSON.parse(cdfCommissionAccount.value) as CustomerAccount
+    const branchObj = JSON.parse(branch.value) as Branch
+    const logo =
+      agentLogo.length && !agentLogo[0]?.errors.length
+        ? ((await getBase64(agentLogo[0]?.file)) as string)
+        : ''
+    const certificate =
+      businessCertificate.length && !businessCertificate[0]?.errors.length
+        ? ((await getBase64(businessCertificate[0]?.file)) as string)
+        : ''
+
+    let documents: Document[] = []
+    documents.push({ agentDocumentTypeId: 8, documentContent: certificate })
+    if (scannedDocuments.length) {
+      scannedDocuments.map(async (doc) => {
+        if (!doc.errors.length) {
+          const base64 = await getBase64(doc.file)
+          documents.push({ agentDocumentTypeId: 8, documentContent: base64 })
+        }
+      })
+    }
+    if (otherDocuments.length) {
+      otherDocuments.map(async (doc) => {
+        if (!doc.errors.length) {
+          const base64 = await getBase64(doc.file)
+          documents.push({ agentDocumentTypeId: 8, documentContent: base64 })
+        }
+      })
+    }
+
+    const payload: AgentPayload = {
+      agentAccounts: [
+        {
+          accountNumber: usdCommissionAccountObj.accountNumber,
+          agentAccountTypeId: 2,
+          currency: usdCommissionAccountObj.currency
+        },
+        {
+          accountNumber: cdfCommissionAccountObj.accountNumber,
+          agentAccountTypeId: 2,
+          currency: cdfCommissionAccountObj.currency
+        }
+      ],
+      agentName: agentName,
+      msisdn: customer?.phoneNumber,
+      agentStatusId: 5,
+      externalId: customer?.customerID,
+      parentAgentId: null,
+      agentTypeId: 1,
+      logo: logo,
+      branchId: branchObj.branchId,
+      agentDocuments: documents,
+      agencyRegion: customer?.preferredAddress?.address1,
+      agencyStreet: customer?.preferredAddress?.stateCode,
+      agencyBranch: branchObj.name,
+      createdBy: session?.user?.username
+    }
+    onboardAgent(payload)
   }
 
   const handleNextStep = (newData: MasterAgentFormValues, final = false) => {
+    setError(null)
     setData((prev) => ({ ...prev, ...newData }))
     if (final) {
       onSubmit(newData)
@@ -51,6 +141,7 @@ const MasterAgentPage = () => {
   }
 
   const handlePrevStep = (newData: MasterAgentFormValues) => {
+    setError(null)
     setData((prev) => ({ ...prev, ...newData }))
     setCurrentStep((prev) => prev - 1)
   }
@@ -101,6 +192,9 @@ const MasterAgentPage = () => {
       handleNextStep={handleNextStep}
       handlePrevStep={handlePrevStep}
       customer={customer}
+      success={success}
+      error={error}
+      isSubmitting={isSubmitting}
     />
   ]
 

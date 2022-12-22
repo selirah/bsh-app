@@ -13,7 +13,7 @@ import { MdPassword } from 'react-icons/md'
 import { LoginSchema, LoginResponse } from 'types/Auth'
 import { SuccessResponse, ErrorResponse } from 'types/Axios'
 import { useLogin, useRequestOtp } from 'hooks/auth'
-import { onAxiosError } from 'utils'
+import { onAxiosError, encryptPassword } from 'utils'
 
 const LoginPage = () => {
   const { layout } = useContext(LayoutContext)
@@ -59,6 +59,7 @@ const LoginPage = () => {
   )
 
   const onSubmit = (values: LoginSchema) => {
+    values.password = encryptPassword(values.password)
     loginUser(values)
   }
 

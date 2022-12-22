@@ -34,7 +34,7 @@ export const StepOne: React.FC<Props> = (props) => {
             <div className="mt-8 py-6 flex justify-end border-t border-light-border dark:border-dark-border">
               <Button
                 size="sm"
-                disabled={isAgentValidationSuccess || isValidatingAgent}
+                disabled={!isAgentValidationSuccess || isValidatingAgent}
                 type="submit"
               >
                 {intl.formatMessage({ defaultMessage: 'Next' })}

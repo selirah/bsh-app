@@ -78,18 +78,18 @@ export type CustomerLegalRep = {
 export type CustomerAddress = {
   address1: string
   address2: string
-  address3: unknown
+  address3: string
   addressCategory: unknown
-  cityCode: unknown
-  cityCodeDesc: unknown
-  countryCode: unknown
+  cityCode: string
+  cityCodeDesc: string
+  countryCode: string
   freeTextLabel: unknown
   holdMailFlag: unknown
-  pinCode: unknown
+  pinCode: string
   preferredAddress: unknown
   preferredFormat: unknown
-  startDate: unknown
-  stateCode: unknown
+  startDate: string
+  stateCode: string
 }
 
 export type CustomerBiometric = {
