@@ -4,13 +4,13 @@ import { useIntl } from 'react-intl'
 import { FileInput } from 'formik-controls'
 import { LayoutContext } from 'contexts'
 import PerfectScrollbar from 'react-perfect-scrollbar'
-import { MasterAgentFormValues } from 'types'
+import { AgentFormValues } from 'types'
 import { Button } from 'components'
 
 type Props = {
-  data: MasterAgentFormValues
-  handleNextStep: (values: MasterAgentFormValues, final?: boolean) => void
-  handlePrevStep: (values: MasterAgentFormValues) => void
+  data: AgentFormValues
+  handleNextStep: (values: AgentFormValues, final?: boolean) => void
+  handlePrevStep: (values: AgentFormValues) => void
 }
 
 export const StepThree: React.FC<Props> = (props) => {
@@ -18,7 +18,7 @@ export const StepThree: React.FC<Props> = (props) => {
   const { layout } = useContext(LayoutContext)
   const { handleNextStep, handlePrevStep, data } = props
 
-  const onSubmit = (values: MasterAgentFormValues) => {
+  const onSubmit = (values: AgentFormValues) => {
     handleNextStep(values)
   }
 

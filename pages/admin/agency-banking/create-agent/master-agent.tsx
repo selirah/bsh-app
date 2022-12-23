@@ -8,7 +8,7 @@ import {
   AgentPayload,
   SuccessResponse,
   ErrorResponse,
-  MasterAgentFormValues,
+  AgentFormValues,
   Branch,
   Document
 } from 'types'
@@ -28,7 +28,7 @@ const MasterAgentPage = () => {
   const [success, setSuccess] = useState(false)
   const [currentStep, setCurrentStep] = useState(1)
   const [validateSuccess, setValidateSuccess] = useState(false)
-  const [data, setData] = useState<MasterAgentFormValues>({
+  const [data, setData] = useState<AgentFormValues>({
     usdCommissionAccount: null,
     cdfCommissionAccount: null,
     agentName: '',
@@ -53,7 +53,7 @@ const MasterAgentPage = () => {
     (error: ErrorResponse) => onAxiosError(error, setError)
   )
 
-  const onSubmit = async (formData: MasterAgentFormValues) => {
+  const onSubmit = async (formData: AgentFormValues) => {
     setError(null)
     const {
       usdCommissionAccount,
@@ -126,7 +126,7 @@ const MasterAgentPage = () => {
     onboardAgent(payload)
   }
 
-  const handleNextStep = (newData: MasterAgentFormValues, final = false) => {
+  const handleNextStep = (newData: AgentFormValues, final = false) => {
     setError(null)
     setData((prev) => ({ ...prev, ...newData }))
     if (final) {
@@ -136,7 +136,7 @@ const MasterAgentPage = () => {
     setCurrentStep((prev) => prev + 1)
   }
 
-  const handlePrevStep = (newData: MasterAgentFormValues) => {
+  const handlePrevStep = (newData: AgentFormValues) => {
     setError(null)
     setData((prev) => ({ ...prev, ...newData }))
     setCurrentStep((prev) => prev - 1)

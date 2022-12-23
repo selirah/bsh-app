@@ -1,13 +1,13 @@
 import { useIntl } from 'react-intl'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import { Formik, Form } from 'formik'
-import { Customer, MasterAgentFormValues } from 'types'
+import { Customer, AgentFormValues } from 'types'
 import { CustomerDetails } from 'controllers'
 import { Button } from 'components'
 
 type Props = {
-  data: MasterAgentFormValues
-  handleNextStep: (data: MasterAgentFormValues, final?: boolean) => void
+  data: AgentFormValues
+  handleNextStep: (data: AgentFormValues, final?: boolean) => void
   customer: Customer
   isAgentValidationSuccess: boolean
   isValidatingAgent: boolean
@@ -17,7 +17,7 @@ export const StepOne: React.FC<Props> = (props) => {
   const intl = useIntl()
   const { customer, handleNextStep, data, isAgentValidationSuccess, isValidatingAgent } = props
 
-  const handleSubmit = (values: MasterAgentFormValues) => {
+  const handleSubmit = (values: AgentFormValues) => {
     handleNextStep(values)
   }
 
@@ -35,7 +35,7 @@ export const StepOne: React.FC<Props> = (props) => {
               <div className="mt-8 py-6 flex justify-end border-t border-light-border dark:border-dark-border">
                 <Button
                   size="sm"
-                  disabled={isAgentValidationSuccess || isValidatingAgent}
+                  disabled={!isAgentValidationSuccess || isValidatingAgent}
                   type="submit"
                 >
                   {intl.formatMessage({ defaultMessage: 'Next' })}

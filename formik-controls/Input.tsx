@@ -1,4 +1,4 @@
-import { FC, Fragment } from 'react'
+import { ChangeEvent, FC, Fragment } from 'react'
 import { Field, ErrorMessage } from 'formik'
 import classnames from 'classnames'
 import InputError from './InputError'
@@ -14,10 +14,13 @@ type InputProps = {
   IconSVG?: React.FC<React.SVGProps<SVGSVGElement>>
   placeholder?: string
   disabled?: boolean
+  onBlur?: (e: ChangeEvent<HTMLInputElement>) => void
+  success?: boolean
+  error?: boolean
 }
 
 export const Input: FC<InputProps> = (props) => {
-  const { label, name, size, IconSVG, iconPosition, ...rest } = props
+  const { label, name, size, IconSVG, iconPosition, onBlur, success, error, ...rest } = props
   return (
     <Fragment>
       {label ? (
@@ -49,13 +52,17 @@ export const Input: FC<InputProps> = (props) => {
           id={name}
           name={name}
           className={classnames(
-            'font-montserrat font-regular focus:ring-primary border-light-form-inputBorder dark:border-dark-border text-light-form-inputText dark:text-dark-form-inputText placeholder:text-light-form-placeholder dark:placeholder:text-dark-form-placeholder bg-light-container dark:bg-dark-container border rounded focus:outline-none focus:ring-1 focus:border-transparent block w-full p-[16px] common-transition focus:shadow-penumbra disabled:bg-light-form-inputDisabled dark:disabled:bg-dark-form-inputDisabled disabled:cursor-not-allowed',
+            'font-montserrat font-regular focus:ring-primary text-light-form-inputText dark:text-dark-form-inputText placeholder:text-light-form-placeholder dark:placeholder:text-dark-form-placeholder bg-light-container dark:bg-dark-container border rounded focus:outline-none focus:ring-1 focus:border-transparent block w-full p-[16px] common-transition focus:shadow-penumbra disabled:bg-light-form-inputDisabled dark:disabled:bg-dark-form-inputDisabled disabled:cursor-not-allowed',
             {
+              'border-light-form-inputBorder dark:border-dark-border': !success && !error,
+              'border-error': error,
+              'border-success': success,
               'h-[40px] text-pSmall': size === 'sm',
               'h-[45px] text-pNormal': size === 'md' || !size,
               'h-[50px] text-pNormal': size === 'lg'
             }
           )}
+          onBlur={onBlur}
           {...rest}
         />
       </div>

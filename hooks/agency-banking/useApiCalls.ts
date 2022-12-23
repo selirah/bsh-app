@@ -422,3 +422,17 @@ export const useFetchAllOutletUsers = (
     onError
   })
 }
+
+const confirmAgentExistence = (agentCode: string) => {
+  return adminRequestTest({
+    url: `${endPoints.fetchAgentByCode}?agentCode=${agentCode}`,
+    method: 'get'
+  })
+}
+
+export const useConfirmAgentExistence = (onSuccess?: onSuccess, onError?: onError) => {
+  return useMutation(confirmAgentExistence, {
+    onSuccess,
+    onError
+  })
+}

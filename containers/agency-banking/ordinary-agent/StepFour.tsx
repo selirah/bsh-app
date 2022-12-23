@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Formik, Form } from 'formik'
 import { useIntl } from 'react-intl'
 import PerfectScrollbar from 'react-perfect-scrollbar'
-import { MasterAgentFormValues, Customer } from 'types'
+import { AgentFormValues, Customer } from 'types'
 import { AppleLoader, Button } from 'components'
 import { DescriptionHeader, DescriptionList, FileViewerList, CreateSuccessError } from 'components'
 import React from 'react'
@@ -10,9 +10,9 @@ import { DocumentViewer } from 'controllers'
 import Link from 'next/link'
 
 type Props = {
-  data: MasterAgentFormValues
-  handleNextStep: (values: MasterAgentFormValues, final?: boolean) => void
-  handlePrevStep: (values: MasterAgentFormValues) => void
+  data: AgentFormValues
+  handleNextStep: (values: AgentFormValues, final?: boolean) => void
+  handlePrevStep: (values: AgentFormValues) => void
   customer: Customer
   success: boolean
   error: string
@@ -25,7 +25,7 @@ export const StepFour: React.FC<Props> = (props) => {
   const [isOpen, setIsOpen] = useState(false)
   const [file, setFile] = useState<File>(null)
 
-  const onSubmit = (values: MasterAgentFormValues) => {
+  const onSubmit = (values: AgentFormValues) => {
     handleNextStep(values, true)
   }
 
@@ -34,7 +34,7 @@ export const StepFour: React.FC<Props> = (props) => {
     setFile(file)
   }
 
-  const renderDocuments = (values: MasterAgentFormValues) => {
+  const renderDocuments = (values: AgentFormValues) => {
     let node: React.ReactNode[] = []
     let files = [] as File[]
     if (values.agentLogo.length && !values.agentLogo[0]?.errors.length) {

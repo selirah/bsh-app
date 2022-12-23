@@ -78,7 +78,7 @@ export const StepFour: React.FC<Props> = (props) => {
                     <CreateSuccessError.Success
                       header={intl.formatMessage({ defaultMessage: 'Great!' })}
                       description={intl.formatMessage({
-                        defaultMessage: 'Master agent has been created successfully'
+                        defaultMessage: 'Sub agent has been created successfully'
                       })}
                       returnButtonText={intl.formatMessage({ defaultMessage: 'Return to Agents' })}
                       returnLink="/admin/agency-banking/agents-list"

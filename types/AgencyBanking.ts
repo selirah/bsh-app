@@ -185,14 +185,15 @@ export type UploadableFile = {
   errors: FileError[]
 }
 
-export type MasterAgentFormValues = {
-  usdCommissionAccount: Option
-  cdfCommissionAccount: Option
-  agentName: string
-  branch: Option
+export type AgentFormValues = {
+  usdCommissionAccount?: Option
+  cdfCommissionAccount?: Option
+  agentName?: string
+  branch?: Option
   agentLogo?: UploadableFile[]
   businessCertificate?: UploadableFile[]
   scannedDocuments?: UploadableFile[]
   otherDocuments?: UploadableFile[]
-  phoneNumber: string
+  phoneNumber?: string
+  agentCode?: string
 }

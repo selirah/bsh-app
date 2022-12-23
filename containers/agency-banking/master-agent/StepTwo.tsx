@@ -4,23 +4,16 @@ import { LayoutContext } from 'contexts'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import { Formik, Form } from 'formik'
 import { SelectInput, Input, PhoneInput } from 'formik-controls'
-import {
-  Branch,
-  Option,
-  SuccessResponse,
-  CustomerAccount,
-  MasterAgentFormValues,
-  Customer
-} from 'types'
+import { Branch, Option, SuccessResponse, CustomerAccount, AgentFormValues, Customer } from 'types'
 import { useFetchBranches } from 'hooks/common'
 import { Button } from 'components'
 import { masterAgentStepTwoValidation } from 'validation-schema/agency-banking'
 
 type Props = {
-  data: MasterAgentFormValues
+  data: AgentFormValues
   customerAccounts: CustomerAccount[]
-  handleNextStep: (values: MasterAgentFormValues, final?: boolean) => void
-  handlePrevStep: (values: MasterAgentFormValues) => void
+  handleNextStep: (values: AgentFormValues, final?: boolean) => void
+  handlePrevStep: (values: AgentFormValues) => void
   customer: Customer
 }
 
@@ -58,7 +51,7 @@ export const StepTwo: React.FC<Props> = (props) => {
 
   const { isLoading: loadingBranches } = useFetchBranches(onFetchBranchesSuccess)
 
-  const onSubmit = (values: MasterAgentFormValues) => {
+  const onSubmit = (values: AgentFormValues) => {
     handleNextStep(values)
   }
 

@@ -19,3 +19,15 @@ export const masterAgentStepTwoValidation = (intl: IntlShape) => {
     cdfCommissionAccount: Yup.object().required('Agent commission account is required').nullable()
   })
 }
+
+export const subAgentStepTwoValidation = (intl: IntlShape) => {
+  return Yup.object().shape({
+    agentCode: Yup.string().required('Master/Sub Agent code is required'),
+    branch: Yup.object()
+      .required(intl.formatMessage({ defaultMessage: 'Branch is required' }))
+      .nullable(),
+    agentName: Yup.string().required('Agent name is required'),
+    usdCommissionAccount: Yup.object().required('Agent commission account is required').nullable(),
+    cdfCommissionAccount: Yup.object().required('Agent commission account is required').nullable()
+  })
+}
