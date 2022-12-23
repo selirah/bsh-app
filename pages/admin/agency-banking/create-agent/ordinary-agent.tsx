@@ -45,10 +45,6 @@ const OrdinaryAgentPage = () => {
     const { status, data } = response
     if (status === 200 && data) {
       setSuccess(true)
-    } else {
-      const { request } = response
-      const error = request as XMLHttpRequest
-      setError(error.responseText)
     }
   }
 
@@ -150,11 +146,6 @@ const OrdinaryAgentPage = () => {
     const { status, data } = response
     if (status === 200 && data) {
       setValidateSuccess(true)
-    } else {
-      const { request } = response
-      const error = request as XMLHttpRequest
-      setError(error.responseText)
-      setValidateSuccess(false)
     }
   }
 

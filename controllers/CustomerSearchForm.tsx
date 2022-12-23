@@ -43,8 +43,6 @@ export const CustomerSearchForm: React.FC<Props> = (props) => {
         return arr.push({ name: `${a.currency} - ${a.schemeType} - ${a.accountNumber}`, ...a })
       })
       setCustomerAccounts(arr)
-    } else {
-      setError(intl.formatMessage({ defaultMessage: 'Could not find customer!' }))
     }
   }
 

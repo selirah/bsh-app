@@ -1,4 +1,4 @@
-import axios, { AxiosInstance, AxiosResponse, AxiosError } from 'axios'
+import axios, { AxiosInstance } from 'axios'
 import { getSession } from 'next-auth/react'
 import md5 from 'md5'
 
@@ -31,58 +31,28 @@ export const adminRequest = async ({ ...options }: AxiosOptions) => {
   adminInstance.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`
   adminInstance.defaults.headers.post['Content-Type'] = 'application/json'
 
-  const onSuccess = (response: AxiosResponse) => response
-  const onError = (error: AxiosError) => {
-    // optionaly catch errors and add additional logging here
-    return error
+  if (options.data && options.method === 'post') {
+    delete options.data['hash']
+    const salt = 'PCES'
+    options.data['poweredBy'] = salt
+    const hash = md5(JSON.stringify(options.data))
+    delete options.data['poweredBy']
+    options.data['hash'] = hash
   }
-  try {
-    if (options.data && options.method === 'post') {
-      delete options.data['hash']
-      const salt = 'PCES'
-      options.data['poweredBy'] = salt
-      const hash = md5(JSON.stringify(options.data))
-      delete options.data['poweredBy']
-      options.data['hash'] = hash
-    }
-    const response = await adminInstance(options)
-    return onSuccess(response)
-  } catch (error) {
-    return onError(error)
-  }
+  return await adminInstance(options)
 }
 
 export const authRequest = async ({ ...options }: AxiosOptions) => {
   authInstance.defaults.headers.common['Authorization'] = `Bearer ${options.bearerToken}`
   authInstance.defaults.headers.post['Content-Type'] = 'application/json'
 
-  const onSuccess = (response: AxiosResponse) => response
-  const onError = (error: unknown) => {
-    // optionaly catch errors and add additional logging here
-    return error as AxiosError
-  }
-  try {
-    const response = await authInstance(options)
-    return onSuccess(response)
-  } catch (error) {
-    return onError(error)
-  }
+  return await authInstance(options)
 }
 
 export const bioDeviceRequest = async ({ ...options }: AxiosOptions) => {
   bioDeviceInstance.defaults.headers.post['Content-Type'] = 'application/json'
 
-  const onSuccess = (response: AxiosResponse) => response
-  const onError = (error: unknown) => {
-    // optionaly catch errors and add additional logging here
-    return error as AxiosError
-  }
-  try {
-    const response = await bioDeviceInstance(options)
-    return onSuccess(response)
-  } catch (error) {
-    return onError(error)
-  }
+  return await bioDeviceInstance(options)
 }
 
 export const adminRequestTest = async ({ ...options }: AxiosOptions) => {
@@ -91,20 +61,13 @@ export const adminRequestTest = async ({ ...options }: AxiosOptions) => {
   adminInstanceTest.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`
   adminInstanceTest.defaults.headers.post['Content-Type'] = 'application/json'
 
-  const onSuccess = (response: AxiosResponse) => response
-  const onError = (error: AxiosError) => error
-  try {
-    if (options.data && options.method === 'post') {
-      delete options.data['hash']
-      const salt = 'PCES'
-      options.data['poweredBy'] = salt
-      const hash = md5(JSON.stringify(options.data))
-      delete options.data['poweredBy']
-      options.data['hash'] = hash
-    }
-    const response = await adminInstanceTest(options)
-    return onSuccess(response)
-  } catch (error) {
-    return onError(error)
+  if (options.data && options.method === 'post') {
+    delete options.data['hash']
+    const salt = 'PCES'
+    options.data['poweredBy'] = salt
+    const hash = md5(JSON.stringify(options.data))
+    delete options.data['poweredBy']
+    options.data['hash'] = hash
   }
+  return await adminInstanceTest(options)
 }
