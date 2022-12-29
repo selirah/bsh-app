@@ -48,6 +48,7 @@ export const Checkbox: React.FC<CheckboxProps> = (props) => {
       <Field
         name={name}
         type="checkbox"
+        id={name}
         className={classnames(
           'checked:shadow-penumbra focus:ring-0 bg-light-container dark:bg-dark-container border rounded border-light-form-inputBorder dark:border-dark-form-inputBorder cursor-pointer common-transition disabled:cursor-not-allowed',
           {

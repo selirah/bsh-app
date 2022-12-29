@@ -119,7 +119,7 @@ export const StepFour: React.FC<Props> = (props) => {
                         value={values.usdCommissionAccount.label}
                       />
                       <DescriptionList.OneColumn
-                        title={intl.formatMessage({ defaultMessage: 'Commission account (UCDF)' })}
+                        title={intl.formatMessage({ defaultMessage: 'Commission account (CDF)' })}
                         value={values.cdfCommissionAccount.label}
                         bgGray
                       />

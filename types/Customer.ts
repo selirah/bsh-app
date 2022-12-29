@@ -41,7 +41,7 @@ export type Customer = {
   customerMinorFlag: unknown
   customerNreFlag: string
   dateOfBirth: string
-  dateOfIncorporation: unknown
+  dateOfIncorporation: string
   emailId: string
   firstName: string
   fullName: string

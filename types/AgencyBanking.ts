@@ -46,7 +46,7 @@ export type OutletUserPayload = {
 export type AgentPayload = {
   agentName?: string
   externalId?: string
-  parentAgentId?: unknown
+  parentAgentId?: number
   agentCode?: string
   agentAccounts?: AgentAccount[]
   agentStatusId?: number
@@ -196,4 +196,24 @@ export type AgentFormValues = {
   otherDocuments?: UploadableFile[]
   phoneNumber?: string
   agentCode?: string
+  usdTradingAccount?: Option
+  cdfTradingAccount?: Option
+  agencyManagerPhone?: string
+  agencyRegion?: string
+  agencyPOSMachine?: boolean
+  agencyTerritory?: string
+  agencySector?: string
+  agencyManagerName?: string
+  agencyProvince?: string
+  agencyCommune?: string
+  agencyStreet?: string
+  agencyBuilding?: string
+  latitude?: string
+}
+
+export enum SchemeCodes {
+  CA233 = 'CA233',
+  CA234 = 'CA234',
+  CA213 = 'CA213',
+  CA268 = 'CA268'
 }

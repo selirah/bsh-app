@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { AdminLayout, BasicContainer, authorizationHOC } from 'layouts'
 import { routes } from 'containers/agency-banking'
 import { useIntl } from 'react-intl'
@@ -10,24 +10,23 @@ import {
   ErrorResponse,
   AgentFormValues,
   Branch,
-  Document
+  AgentObject
 } from 'types'
-import { CustomerSearchForm, ProgressStep } from 'controllers'
-import { Alert, AppleLoader } from 'components'
-import { useValidateAgent, useOnboardAgent } from 'hooks/agency-banking'
+import { ProgressStep } from 'controllers'
+import { Alert } from 'components'
+import { useOnboardAgent } from 'hooks/agency-banking'
 import { onAxiosError } from 'utils'
-import { StepOne, StepTwo, StepThree, StepFour } from 'containers/agency-banking/sub-agent'
+import { StepOne, StepTwo, StepThree, StepFour, StepFive } from 'containers/agency-banking//outlet'
 import { useSession } from 'next-auth/react'
 import { getBase64 } from 'utils'
 
-const SubAgentPage = () => {
+const OutletPage = () => {
   const intl = useIntl()
   const [customer, setCustomer] = useState<Customer>(null)
-  const [customerAccounts, setCustomerAccounts] = useState<CustomerAccount[]>([])
   const [error, setError] = useState(null)
   const [success, setSuccess] = useState(false)
   const [currentStep, setCurrentStep] = useState(1)
-  const [validateSuccess, setValidateSuccess] = useState(false)
+  const [agent, setAgent] = useState<AgentObject>(null)
   const [data, setData] = useState<AgentFormValues>({
     usdCommissionAccount: null,
     cdfCommissionAccount: null,
@@ -38,7 +37,20 @@ const SubAgentPage = () => {
     scannedDocuments: [],
     branch: null,
     phoneNumber: '',
-    agentCode: ''
+    agentCode: '',
+    usdTradingAccount: null,
+    cdfTradingAccount: null,
+    agencyManagerName: '',
+    agencyManagerPhone: '',
+    agencyRegion: '',
+    agencyPOSMachine: false,
+    agencyBuilding: '',
+    agencyCommune: '',
+    agencyProvince: '',
+    agencySector: '',
+    agencyStreet: '',
+    agencyTerritory: '',
+    latitude: ''
   })
   const { data: session } = useSession()
 
@@ -48,7 +60,6 @@ const SubAgentPage = () => {
       setSuccess(true)
     }
   }
-
   const { mutate: onboardAgent, isLoading: isSubmitting } = useOnboardAgent(
     onCreateAgentSuccess,
     (error: ErrorResponse) => onAxiosError(error, setError)
@@ -62,44 +73,45 @@ const SubAgentPage = () => {
       branch,
       agentName,
       agentLogo,
-      businessCertificate,
-      scannedDocuments,
-      otherDocuments,
-      agentCode
+      agentCode,
+      usdTradingAccount,
+      cdfTradingAccount,
+      agencyBuilding,
+      agencyManagerName,
+      agencyManagerPhone,
+      agencyPOSMachine,
+      agencyProvince,
+      agencyCommune,
+      agencyRegion,
+      agencySector,
+      agencyStreet,
+      agencyTerritory,
+      latitude,
+      phoneNumber
     } = formData
+
     const usdCommissionAccountObj = JSON.parse(usdCommissionAccount.value) as CustomerAccount
     const cdfCommissionAccountObj = JSON.parse(cdfCommissionAccount.value) as CustomerAccount
+    const usdTradingAccountObj = JSON.parse(usdTradingAccount.value) as CustomerAccount
+    const cdfTradingAccountObj = JSON.parse(cdfTradingAccount.value) as CustomerAccount
     const branchObj = JSON.parse(branch.value) as Branch
     const logo =
       agentLogo.length && !agentLogo[0]?.errors.length
         ? ((await getBase64(agentLogo[0]?.file)) as string)
         : ''
-    const certificate =
-      businessCertificate.length && !businessCertificate[0]?.errors.length
-        ? ((await getBase64(businessCertificate[0]?.file)) as string)
-        : ''
-
-    let documents: Document[] = []
-    documents.push({ agentDocumentTypeId: 8, documentContent: certificate })
-    if (scannedDocuments.length) {
-      scannedDocuments.map(async (doc) => {
-        if (!doc.errors.length) {
-          const base64 = await getBase64(doc.file)
-          documents.push({ agentDocumentTypeId: 8, documentContent: base64 })
-        }
-      })
-    }
-    if (otherDocuments.length) {
-      otherDocuments.map(async (doc) => {
-        if (!doc.errors.length) {
-          const base64 = await getBase64(doc.file)
-          documents.push({ agentDocumentTypeId: 8, documentContent: base64 })
-        }
-      })
-    }
 
     const payload: AgentPayload = {
       agentAccounts: [
+        {
+          accountNumber: usdTradingAccountObj.accountNumber,
+          agentAccountTypeId: 1,
+          currency: usdTradingAccountObj.currency
+        },
+        {
+          accountNumber: cdfTradingAccountObj.accountNumber,
+          agentAccountTypeId: 1,
+          currency: cdfTradingAccountObj.currency
+        },
         {
           accountNumber: usdCommissionAccountObj.accountNumber,
           agentAccountTypeId: 2,
@@ -113,18 +125,28 @@ const SubAgentPage = () => {
       ],
       agentName: agentName,
       agentCode: agentCode,
-      msisdn: customer?.phoneNumber,
+      msisdn: phoneNumber,
       agentStatusId: 5,
-      externalId: customer?.customerID,
-      parentAgentId: null,
-      agentTypeId: 2,
+      externalId: agent?.externalId,
+      parentAgentId: agent?.agentId,
+      agentTypeId: 3,
       logo: logo,
       branchId: branchObj.branchId,
-      agentDocuments: documents,
-      agencyRegion: customer?.preferredAddress?.address1,
-      agencyStreet: customer?.preferredAddress?.stateCode,
+      agentDocuments: [],
+      agencyRegion: agencyRegion,
+      agencyStreet: agencyStreet,
       agencyBranch: branchObj.name,
-      createdBy: session?.user?.username
+      createdBy: session?.user?.username,
+      agencyPOSMachine: agencyPOSMachine ? 'true' : 'false',
+      agencyBuilding: agencyBuilding,
+      agencyCommune: agencyCommune,
+      agencyManagerName: agencyManagerName,
+      agencyManagerPhone: agencyManagerPhone,
+      agencyProvince: agencyProvince,
+      agencySector: agencySector,
+      agencyTerritory: agencyTerritory,
+      latitude: latitude,
+      longitude: ''
     }
     onboardAgent(payload)
   }
@@ -145,75 +167,53 @@ const SubAgentPage = () => {
     setCurrentStep((prev) => prev - 1)
   }
 
-  const onValidateAgentSuccess = (response: SuccessResponse) => {
-    const { status, data } = response
-    if (status === 200 && data) {
-      setValidateSuccess(true)
-    }
-  }
-
-  const { mutate: validateAgent, isLoading: validatingAgent } = useValidateAgent(
-    onValidateAgentSuccess,
-    (error: ErrorResponse) => onAxiosError(error, setError)
-  )
-
   const steps = [
     <StepOne
-      customer={customer}
       handleNextStep={handleNextStep}
-      isAgentValidationSuccess={validateSuccess}
       data={data}
       key={1}
-      isValidatingAgent={validatingAgent}
-    />,
-    <StepTwo
-      customerAccounts={customerAccounts}
-      data={data}
-      handleNextStep={handleNextStep}
-      handlePrevStep={handlePrevStep}
-      key={2}
-      customer={customer}
       setError={setError}
+      setCustomer={setCustomer}
+      agent={agent}
+      setAgent={setAgent}
     />,
+    <StepTwo handleNextStep={handleNextStep} data={data} key={2} handlePrevStep={handlePrevStep} />,
     <StepThree
-      data={data}
       handleNextStep={handleNextStep}
-      handlePrevStep={handlePrevStep}
+      data={data}
       key={3}
+      handlePrevStep={handlePrevStep}
     />,
     <StepFour
       key={4}
       data={data}
       handleNextStep={handleNextStep}
       handlePrevStep={handlePrevStep}
-      customer={customer}
-      success={success}
+    />,
+    <StepFive
+      key={5}
+      data={data}
       error={error}
+      handleNextStep={handleNextStep}
+      handlePrevStep={handlePrevStep}
       isSubmitting={isSubmitting}
+      success={success}
+      customer={customer}
+      agent={agent}
     />
   ]
 
-  useEffect(() => {
-    if (customer) {
-      const payload: AgentPayload = {
-        externalId: customer.customerID,
-        msisdn: customer.phoneNumber,
-        agentTypeId: 2
-      }
-      validateAgent(payload)
-    }
-  }, [customer])
-
   return (
-    <AdminLayout pageTitle="Create Sub Agent" breadcrumbActions={routes(intl)}>
+    <AdminLayout pageTitle="Create Outlet" breadcrumbActions={routes(intl)}>
       <BasicContainer>
         <div className="mt-6">
           <ProgressStep
             totalSteps={steps.length}
             active={currentStep}
             titles={[
-              intl.formatMessage({ defaultMessage: 'Customer Search' }),
-              intl.formatMessage({ defaultMessage: 'Personal Details' }),
+              intl.formatMessage({ defaultMessage: 'Master Agent Details' }),
+              intl.formatMessage({ defaultMessage: 'Outlet Details' }),
+              intl.formatMessage({ defaultMessage: 'Outlet Address' }),
               intl.formatMessage({ defaultMessage: 'Documents' }),
               intl.formatMessage({ defaultMessage: 'Preview' })
             ]}
@@ -228,25 +228,12 @@ const SubAgentPage = () => {
                 <p className="font-montserrat text-pSmall">{error}</p>
               </Alert>
             )}
+            {steps[currentStep - 1]}
           </div>
-          {validatingAgent && (
-            <div className="flex items-center space-x-4 mb-2 font-montserrat text-pSmall text-light-text dark:text-dark-text">
-              {intl.formatMessage({ defaultMessage: 'Validating agent . . .' })}
-              <AppleLoader size="md" strokeColor="primary" />
-            </div>
-          )}
-          {currentStep === 1 && (
-            <CustomerSearchForm
-              setCustomer={setCustomer}
-              setCustomerAccounts={setCustomerAccounts}
-              setError={setError}
-            />
-          )}
-          {customer && steps[currentStep - 1]}
         </div>
       </BasicContainer>
     </AdminLayout>
   )
 }
 
-export default authorizationHOC('AgencyBanking:Create', SubAgentPage, true)
+export default authorizationHOC('AgencyBanking:Create', OutletPage, true)
