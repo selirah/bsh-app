@@ -14,6 +14,12 @@ export const routes = (intl: IntlShape) => {
       scope: 'AgencyBanking:Manage'
     },
     {
+      link: '/admin/agency-banking/create-agent',
+      title: intl.formatMessage({ defaultMessage: 'Create Agent' }),
+      IconSVG: MdCreate,
+      scope: 'AgencyBanking:Manage'
+    },
+    {
       link: '/admin/agency-banking/agents-report',
       title: intl.formatMessage({ defaultMessage: 'Agents Report' }),
       IconSVG: AiOutlineBarChart,
@@ -24,12 +30,6 @@ export const routes = (intl: IntlShape) => {
       title: intl.formatMessage({ defaultMessage: 'Performance Report' }),
       IconSVG: AiOutlineAreaChart,
       scope: 'AgencyBanking:ViewReports'
-    },
-    {
-      link: '/admin/agency-banking/create-agent',
-      title: intl.formatMessage({ defaultMessage: 'Create Agent' }),
-      IconSVG: MdCreate,
-      scope: 'AgencyBanking:Manage'
     },
     {
       link: '/admin/agency-banking/manage-users',
