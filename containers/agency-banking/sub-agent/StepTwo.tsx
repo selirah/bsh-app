@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl'
 import { LayoutContext } from 'contexts'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import { Formik, Form } from 'formik'
-import { SelectInput, Input, PhoneInput } from 'formik-controls'
+import { SelectInput, Input, PhoneInput } from 'examples/formik-controls'
 import {
   Branch,
   Option,

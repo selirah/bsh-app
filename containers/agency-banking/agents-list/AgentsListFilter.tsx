@@ -4,11 +4,11 @@ import { HiOutlineFilter } from 'react-icons/hi'
 import { FiUploadCloud } from 'react-icons/fi'
 import { BsFilter } from 'react-icons/bs'
 import { Formik, Form } from 'formik'
-import { Input, SelectInput } from 'formik-controls'
-import { Option } from 'types'
+import { Input, SelectInput } from 'examples/formik-controls'
+import { Option, AgencyBankingFilterValues } from 'types'
 
 type Props = {
-  onHandleFilter: (values: FilterValues) => void
+  onHandleFilter: (values: AgencyBankingFilterValues) => void
   agentTypes: Option[]
   agentStatus: Option[]
   branches: Option[]
@@ -17,13 +17,6 @@ type Props = {
   loadingBranches: boolean
   onClick?: () => void
   btnLoading?: boolean
-}
-
-export type FilterValues = {
-  branches: Option[]
-  agentTypes: Option[]
-  agentStatus: Option[]
-  keyword: string
 }
 
 export const AgentsListFilter: React.FC<Props> = (props) => {
@@ -39,7 +32,7 @@ export const AgentsListFilter: React.FC<Props> = (props) => {
     btnLoading
   } = props
   const intl = useIntl()
-  const initialValues: FilterValues = {
+  const initialValues: AgencyBankingFilterValues = {
     agentStatus: [],
     agentTypes: [],
     branches: [],

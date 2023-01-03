@@ -113,7 +113,7 @@ export const HelpText: React.FC<HelpTextProps> = (props) => {
           <p
             id={name}
             className={classnames(
-              'ml-2 text-light-text dark:text-dark-text cursor-pointer font-montserrat text-pSmall'
+              'text-light-text dark:text-dark-text cursor-pointer font-montserrat text-pSmall'
             )}
           >
             {helpText}

@@ -6,7 +6,7 @@ export const useToast = () => {
     return toast(toastComponent, {
       transition: Slide,
       hideProgressBar: true,
-      autoClose: 10000,
+      autoClose: 5000,
       position: 'top-right'
     })
   }

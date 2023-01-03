@@ -94,7 +94,9 @@ export const outletStepTwoValidation = (intl: IntlShape) => {
 
 export const outletStepThreeValidation = (intl: IntlShape) => {
   return Yup.object().shape({
-    agencyTerritory: Yup.string().required(intl.formatMessage({ defaultMessage: 'Territory' })),
+    agencyTerritory: Yup.string().required(
+      intl.formatMessage({ defaultMessage: 'Territory is required' })
+    ),
     agencySector: Yup.string().required(
       intl.formatMessage({ defaultMessage: 'Sector is required' })
     ),
@@ -110,5 +112,65 @@ export const outletStepThreeValidation = (intl: IntlShape) => {
     latitude: Yup.string().required(
       intl.formatMessage({ defaultMessage: 'GPRS coordinates is required' })
     )
+  })
+}
+
+export const outletEditValidation = (intl: IntlShape) => {
+  return Yup.object().shape({
+    branch: Yup.object()
+      .required(intl.formatMessage({ defaultMessage: 'Branch is required' }))
+      .nullable(),
+    usdCommissionAccount: Yup.object()
+      .required(intl.formatMessage({ defaultMessage: 'Agent commission account is required' }))
+      .nullable(),
+    cdfCommissionAccount: Yup.object()
+      .required(intl.formatMessage({ defaultMessage: 'Agent commission account is required' }))
+      .nullable(),
+    usdTradingAccount: Yup.object()
+      .required(intl.formatMessage({ defaultMessage: 'Agent commission account is required' }))
+      .nullable(),
+    cdfTradingAccount: Yup.object()
+      .required(intl.formatMessage({ defaultMessage: 'Agent commission account is required' }))
+      .nullable(),
+    agentName: Yup.string().required(
+      intl.formatMessage({ defaultMessage: 'Outlet name is required' })
+    ),
+    agencyManagerName: Yup.string().required(
+      intl.formatMessage({ defaultMessage: 'Outlet manager name is required' })
+    ),
+    agencyManagerPhone: Yup.string()
+      .required(intl.formatMessage({ defaultMessage: 'Outlet manager phone is required' }))
+      .min(12, intl.formatMessage({ defaultMessage: 'Phone number must be 12 digits' }))
+      .max(12, intl.formatMessage({ defaultMessage: 'Phone number must be 12 digits' })),
+    agencyRegion: Yup.string().required(
+      intl.formatMessage({ defaultMessage: 'Region is required' })
+    ),
+    agencyProvince: Yup.string().required(
+      intl.formatMessage({ defaultMessage: 'Province is required' })
+    ),
+    agencyTerritory: Yup.string().required(
+      intl.formatMessage({ defaultMessage: 'Territory is required' })
+    ),
+    agencySector: Yup.string().required(
+      intl.formatMessage({ defaultMessage: 'Sector is required' })
+    ),
+    agencyCommune: Yup.string().required(
+      intl.formatMessage({ defaultMessage: 'Commune is required' })
+    ),
+    agencyStreet: Yup.string().required(
+      intl.formatMessage({ defaultMessage: 'Street name is required' })
+    ),
+    agencyBuilding: Yup.string().required(
+      intl.formatMessage({ defaultMessage: 'Building name is required' })
+    ),
+    latitude: Yup.string().required(
+      intl.formatMessage({ defaultMessage: 'GPRS coordinates is required' })
+    )
+  })
+}
+
+export const referSuspendAgentValidation = (intl: IntlShape) => {
+  return Yup.object().shape({
+    reason: Yup.string().required(intl.formatMessage({ defaultMessage: 'Reason is required' }))
   })
 }

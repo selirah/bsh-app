@@ -91,6 +91,7 @@ export type CheckStatusPayload = {
 export type Option = {
   label: string
   value: string
+  helpText?: string
 }
 
 export type ExportedDocument = {

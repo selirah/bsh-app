@@ -185,7 +185,7 @@ export const StepFive: React.FC<Props> = (props) => {
                       bgGray
                     />
                     <DescriptionList.OneColumn
-                      title={intl.formatMessage({ defaultMessage: 'Date if incorporation' })}
+                      title={intl.formatMessage({ defaultMessage: 'Date of incorporation' })}
                       value={moment(new Date(customer?.dateOfIncorporation)).format('DD/MM/YYYY')}
                     />
                     <DescriptionList.OneColumn

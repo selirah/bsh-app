@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect } from 'react'
 import { AdminLayout, BasicContainer, authorizationHOC } from 'layouts'
-import { routes, AgentsListFilter, FilterValues } from 'containers/agency-banking'
+import { routes, AgentsListFilter } from 'containers/agency-banking'
 import { useIntl } from 'react-intl'
 import { PaginationState } from '@tanstack/react-table'
 import {
@@ -11,7 +11,8 @@ import {
   Classifier,
   Option,
   KeyValuePair,
-  ExportedDocument
+  ExportedDocument,
+  AgencyBankingFilterValues
 } from 'types'
 import {
   useFetchAgentAccountTypes,
@@ -129,7 +130,7 @@ const AgentsListPage = () => {
     (error: ErrorResponse) => onAxiosError(error, setError)
   )
 
-  const onHandleFilter = async (values: FilterValues) => {
+  const onHandleFilter = async (values: AgencyBankingFilterValues) => {
     let filters: KeyValuePair = {}
     const agentTypes = values.agentTypes.length && values.agentTypes.map((d) => d.value)
     const agentStatus = values.agentStatus.length && values.agentStatus.map((d) => d.value)

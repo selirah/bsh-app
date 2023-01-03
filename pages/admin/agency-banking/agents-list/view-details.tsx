@@ -26,7 +26,7 @@ const ViewDetailsPage = ({ agentCode }: InferGetServerSidePropsType<typeof getSe
     }
   }
 
-  const { isLoading, isFetching } = useFetchAgentByCode(
+  const { isLoading } = useFetchAgentByCode(
     agentCode,
     onFetchAgentSuccess,
     (error: ErrorResponse) => onAxiosError(error, setError)
@@ -38,7 +38,7 @@ const ViewDetailsPage = ({ agentCode }: InferGetServerSidePropsType<typeof getSe
         <div className="mb-2">{error && <Alert color="error">{error}</Alert>}</div>
         <div className="mb-2">{info && <Alert color="info">{info}</Alert>}</div>
         <div className="mt-8">
-          {isLoading || (isFetching && <BasicLoader spinColor="primary" size="md" />)}
+          {isLoading && <BasicLoader spinColor="primary" size="md" />}
           {agent && <AgentDetails agent={agent} />}
         </div>
       </BasicContainer>

@@ -209,6 +209,8 @@ export type AgentFormValues = {
   agencyStreet?: string
   agencyBuilding?: string
   latitude?: string
+  reason?: string
+  action?: string
 }
 
 export enum SchemeCodes {
@@ -216,4 +218,11 @@ export enum SchemeCodes {
   CA234 = 'CA234',
   CA213 = 'CA213',
   CA268 = 'CA268'
+}
+
+export type AgencyBankingFilterValues = {
+  branches: Option[]
+  agentTypes: Option[]
+  agentStatus: Option[]
+  keyword: string
 }

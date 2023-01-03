@@ -132,7 +132,7 @@ export const AgentDetails: React.FC<Props> = (props) => {
       </div>
       <div className="block w-full md:flex md:space-x-2 mt-4">
         {agent.agentType !== AgentTypes.OUTLET && agent.agentStatus === StatusTypes.ACTIVE && (
-          <Link href={`agents-list/reset-pin?agentCode=${agent.agentCode}`}>
+          <Link href={`/admin/agency-banking/agents-list/reset-pin?agentCode=${agent.agentCode}`}>
             <Button size="sm" outline>
               <MdUpdate className="text-pNormal" />
               <span className="ml-1">{intl.formatMessage({ defaultMessage: 'Reset PIN' })}</span>
@@ -140,21 +140,25 @@ export const AgentDetails: React.FC<Props> = (props) => {
           </Link>
         )}
         {agent.agentType === AgentTypes.OUTLET && agent.agentStatus === StatusTypes.ACTIVE && (
-          <Link href={`agents-list/manage-users?agentCode=${agent.agentCode}`}>
+          <Link
+            href={`/admin/agency-banking/agents-list/manage-users?agentCode=${agent.agentCode}`}
+          >
             <Button size="sm" outline>
               <FaUsers className="text-pNormal" />
               <span className="ml-1">{intl.formatMessage({ defaultMessage: 'Manage Users' })}</span>
             </Button>
           </Link>
         )}
-        <Link href={`agents-list/edit?agentCode=${agent.agentCode}`}>
+        <Link href={`/admin/agency-banking/agents-list/edit?agentCode=${agent.agentCode}`}>
           <Button size="sm" outline color="secondary">
             <MdCreate className="text-pNormal" />
             <span className="ml-1">{intl.formatMessage({ defaultMessage: 'Edit' })}</span>
           </Button>
         </Link>
         {agent.agentStatus === StatusTypes.ACTIVE && (
-          <Link href={`agents-list/view-transactions?agentCode=${agent.agentCode}`}>
+          <Link
+            href={`/admin/agency-banking/agents-list/view-transactions?agentCode=${agent.agentCode}`}
+          >
             <Button size="sm" outline color="accent">
               <MdOutlineShoppingBag className="text-pNormal" />
               <span className="ml-1">{intl.formatMessage({ defaultMessage: 'Transactions' })}</span>
@@ -162,7 +166,7 @@ export const AgentDetails: React.FC<Props> = (props) => {
           </Link>
         )}
         {agent.agentStatus === StatusTypes.ACTIVE && (
-          <Link href={`agents-list/block?agentCode=${agent.agentCode}`}>
+          <Link href={`/admin/agency-banking/agents-list/block?agentCode=${agent.agentCode}`}>
             <Button size="sm" outline color="error">
               <MdClose className="text-pNormal" />
               <span className="ml-1">{intl.formatMessage({ defaultMessage: 'Block' })}</span>
@@ -170,7 +174,7 @@ export const AgentDetails: React.FC<Props> = (props) => {
           </Link>
         )}
         {agent.agentStatus === StatusTypes.BLOCKED && (
-          <Link href={`agents-list/unblock?agentCode=${agent.agentCode}`}>
+          <Link href={`/admin/agency-banking/agents-list/unblock?agentCode=${agent.agentCode}`}>
             <Button size="sm" outline color="success">
               <MdOutlineNotificationsActive className="text-pNormal" />
               <span className="ml-1">
@@ -180,7 +184,9 @@ export const AgentDetails: React.FC<Props> = (props) => {
           </Link>
         )}
         {agent.agentStatus === StatusTypes.PENDINGVERIFICATION && (
-          <Link href={`agents-list/verify-agent?agentCode=${agent.agentCode}`}>
+          <Link
+            href={`/admin/agency-banking/agents-list/verify-agent?agentCode=${agent.agentCode}`}
+          >
             <Button size="sm" outline color="success">
               <HiOutlineCheckBadge className="text-pNormal" />
               <span className="ml-1">
@@ -190,7 +196,7 @@ export const AgentDetails: React.FC<Props> = (props) => {
           </Link>
         )}
         {agent.agentStatus === StatusTypes.PENDINGEDIT && (
-          <Link href={`agents-list/verify-edit?agentCode=${agent.agentCode}`}>
+          <Link href={`/admin/agency-banking/agents-list/verify-edit?agentCode=${agent.agentCode}`}>
             <Button size="sm" outline color="success">
               <HiOutlineCheckBadge className="text-pNormal" />
               <span className="ml-1">{intl.formatMessage({ defaultMessage: 'Verify Edit' })}</span>
