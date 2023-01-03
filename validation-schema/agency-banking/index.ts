@@ -169,7 +169,7 @@ export const outletEditValidation = (intl: IntlShape) => {
   })
 }
 
-export const referSuspendAgentValidation = (intl: IntlShape) => {
+export const reasonValidation = (intl: IntlShape) => {
   return Yup.object().shape({
     reason: Yup.string().required(intl.formatMessage({ defaultMessage: 'Reason is required' }))
   })

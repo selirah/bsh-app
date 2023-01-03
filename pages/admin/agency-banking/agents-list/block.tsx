@@ -1,11 +1,12 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { Formik, Form } from 'formik'
-import { RadioGroup } from 'examples/formik-controls'
+import { LayoutContext } from 'contexts'
+import { Textarea } from 'examples/formik-controls'
 import { InferGetServerSidePropsType } from 'next'
 import { AdminLayout, BasicContainer, authorizationHOC } from 'layouts'
 import { routes } from 'containers/agency-banking'
 import { useIntl } from 'react-intl'
-import { useFetchAgentByCode, useVerifyAgent } from 'hooks/agency-banking'
+import { useFetchAgentByCode, useBlockAgent } from 'hooks/agency-banking'
 import { useSearchCustomer } from 'hooks/customer'
 import {
   AgentObject,
@@ -14,46 +15,26 @@ import {
   Customer,
   CustomerSearchPayload,
   AgentFormValues,
-  AgentPayload,
-  Option
+  AgentPayload
 } from 'types'
-import { Alert, BasicLoader, ToastBox } from 'components'
-import { VerifyAgent, ReferAgent, SuspendAgent } from 'containers/agency-banking'
+import { Alert, BasicLoader, ToastBox, Button, AppleLoader } from 'components'
 import { onAxiosError } from 'utils'
 import { useRouter } from 'next/router'
 import { useToast } from 'hooks'
 import { reasonValidation } from 'validation-schema/agency-banking'
-import { HiCheckBadge } from 'react-icons/hi2'
+import { HiCheckBadge, HiLockClosed } from 'react-icons/hi2'
 
-const VerifyAgentPage = ({ agentCode }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+const BlockAgentPage = ({ agentCode }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const intl = useIntl()
+  const { layout } = useContext(LayoutContext)
   const [agent, setAgent] = useState<AgentObject>(null)
   const [error, setError] = useState(null)
   const [customer, setCustomer] = useState<Customer>(null)
   const router = useRouter()
   const createToast = useToast()
   const initialValues: AgentFormValues = {
-    action: '',
     reason: ''
   }
-
-  const options = [
-    {
-      label: intl.formatMessage({ defaultMessage: 'Verify Account' }),
-      value: 'verify',
-      helpText: intl.formatMessage({ defaultMessage: "This agent's account would be verified" })
-    },
-    {
-      label: intl.formatMessage({ defaultMessage: 'Refer to Maker' }),
-      value: 'refer',
-      helpText: intl.formatMessage({ defaultMessage: 'Refer agent to maker by providing reason' })
-    },
-    {
-      label: intl.formatMessage({ defaultMessage: 'Suspend Account' }),
-      value: 'suspend',
-      helpText: intl.formatMessage({ defaultMessage: "Permanently suspend agent's account" })
-    }
-  ] as Option[]
 
   const onCustomerSearchSuccess = (response: SuccessResponse) => {
     const { data, status } = response
@@ -87,7 +68,7 @@ const VerifyAgentPage = ({ agentCode }: InferGetServerSidePropsType<typeof getSe
     (error: ErrorResponse) => onAxiosError(error, setError)
   )
 
-  const onVerifyAgentSuccess = (response: SuccessResponse) => {
+  const onBlockAgentSuccess = (response: SuccessResponse) => {
     const { status, data } = response
     if (status === 200 && data) {
       createToast(
@@ -96,7 +77,7 @@ const VerifyAgentPage = ({ agentCode }: InferGetServerSidePropsType<typeof getSe
           color="success"
           title={intl.formatMessage({ defaultMessage: 'Nice!!' })}
           description={intl.formatMessage({
-            defaultMessage: 'Action on agent has been performed successfully'
+            defaultMessage: 'Agent has been blocked successfully'
           })}
         />
       )
@@ -104,48 +85,15 @@ const VerifyAgentPage = ({ agentCode }: InferGetServerSidePropsType<typeof getSe
     }
   }
 
-  const { mutate: verifyAgent, isLoading: isSubmitting } = useVerifyAgent(
-    onVerifyAgentSuccess,
+  const { mutate: blockAgent, isLoading: isSubmitting } = useBlockAgent(
+    onBlockAgentSuccess,
     (error: ErrorResponse) => onAxiosError(error, setError)
   )
 
-  const onVerifyAgent = () => {
-    const payload: AgentPayload = {
-      agentStatusId: 1,
-      agentId: agent?.agentId,
-      agentAccounts: agent?.agentAccounts,
-      agentName: agent?.agentName,
-      msisdn: agent?.msisdn,
-      externalId: agent?.externalId,
-      parentAgentId: agent?.parentAgentId,
-      agentTypeId: agent?.agentTypeId,
-      logo: agent?.logo,
-      branchId: agent?.branchId,
-      agentDocuments: agent?.agentDocuments,
-      agentCode: agent?.agentCode,
-      idNumber: agent?.idNumber,
-      agencyPOSMachine: agent?.agencyPOSMachine,
-      agencyRegion: agent?.agencyRegion,
-      agencyManagerPhone: agent?.agencyManagerPhone,
-      agencyBranch: agent?.agencyBranch,
-      agencyTerritory: agent?.agencyTerritory,
-      agencySector: agent?.agencySector,
-      agencyManagerName: agent?.agencyManagerName,
-      agencyProvince: agent?.agencyProvince,
-      agencyCommune: agent?.agencyCommune,
-      agencyStreet: agent?.agencyStreet,
-      agencyBuilding: agent?.agencyBuilding,
-      latitude: agent?.latitude,
-      longitude: '',
-      clientDetails: customer
-    }
-    verifyAgent(payload)
-  }
-
   const onSubmit = (values: AgentFormValues) => {
-    const { action, reason } = values
+    const { reason } = values
     const payload: AgentPayload = {
-      agentStatusId: action === 'suspend' ? 2 : 7,
+      agentStatusId: 3,
       agentId: agent?.agentId,
       agentAccounts: agent?.agentAccounts,
       agentName: agent?.agentName,
@@ -173,15 +121,15 @@ const VerifyAgentPage = ({ agentCode }: InferGetServerSidePropsType<typeof getSe
       longitude: '',
       reason: reason
     }
-    verifyAgent(payload)
+    blockAgent(payload)
   }
 
   return (
-    <AdminLayout pageTitle="Verify Agent" breadcrumbActions={routes(intl)}>
+    <AdminLayout pageTitle="Block Agent" breadcrumbActions={routes(intl)}>
       <BasicContainer>
         <div className="py-[16px] border-b border-light-border dark:border-dark-border">
           <h4 className="text-h6 font-lato text-dark-btnText dark:text-light-btnText">
-            {intl.formatMessage({ defaultMessage: 'Verify Agent' })}
+            {intl.formatMessage({ defaultMessage: 'Block Agent' })}
           </h4>
         </div>
         <div className="mb-2">{error && <Alert color="error">{error}</Alert>}</div>
@@ -193,24 +141,32 @@ const VerifyAgentPage = ({ agentCode }: InferGetServerSidePropsType<typeof getSe
               onSubmit={onSubmit}
               validationSchema={reasonValidation(intl)}
             >
-              {({ values, isValid }) => {
-                const { action } = values
+              {({ isValid }) => {
                 return (
                   <Form>
-                    <div className="md:grid md:grid-cols-2">
-                      <div className="mb-2">
-                        <RadioGroup options={options} name="action" space direction="right" />
+                    <div className="w-1/2">
+                      <div className="mb-4">
+                        <Textarea
+                          name="reason"
+                          label={intl.formatMessage({ defaultMessage: 'Enter reason' })}
+                          size={layout === 'mobile' ? 'sm' : 'md'}
+                          placeholder={intl.formatMessage({
+                            defaultMessage: 'type reason . . .'
+                          })}
+                          rows={4}
+                        />
                       </div>
-                      <div className="block">
-                        {action === 'verify' && (
-                          <VerifyAgent isSubmitting={isSubmitting} onVerifyAgent={onVerifyAgent} />
-                        )}
-                        {action === 'refer' && (
-                          <ReferAgent isSubmitting={isSubmitting} isValid={isValid} />
-                        )}
-                        {action === 'suspend' && (
-                          <SuspendAgent isSubmitting={isSubmitting} isValid={isValid} />
-                        )}
+                      <div className="mt-4">
+                        <Button size="sm" disabled={!isValid || isSubmitting} type="submit">
+                          <div className="flex items-center space-x-2">
+                            {isSubmitting ? <AppleLoader size="md" /> : <HiLockClosed />}
+                            <span>
+                              {isSubmitting
+                                ? intl.formatMessage({ defaultMessage: 'Processing...' })
+                                : intl.formatMessage({ defaultMessage: 'Block' })}
+                            </span>
+                          </div>
+                        </Button>
                       </div>
                     </div>
                   </Form>
@@ -233,4 +189,4 @@ export async function getServerSideProps({ query }) {
   }
 }
 
-export default authorizationHOC('AgencyBanking:Verify', VerifyAgentPage, true)
+export default authorizationHOC('AgencyBanking:Block', BlockAgentPage, true)

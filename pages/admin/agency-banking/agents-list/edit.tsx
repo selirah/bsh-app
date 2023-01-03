@@ -28,7 +28,6 @@ const EditAgentPage = ({ agentCode }: InferGetServerSidePropsType<typeof getServ
   const intl = useIntl()
   const [agent, setAgent] = useState<AgentObject>(null)
   const [error, setError] = useState(null)
-  const [info, setInfo] = useState(null)
   const [customer, setCustomer] = useState<Customer>(null)
   const [customerAccounts, setCustomerAccounts] = useState<CustomerAccount[]>([])
   const { data: session } = useSession()
@@ -66,10 +65,6 @@ const EditAgentPage = ({ agentCode }: InferGetServerSidePropsType<typeof getServ
         propertyData: obj.externalId
       }
       searchCustomer(payload)
-    } else {
-      setInfo(
-        intl.formatMessage({ defaultMessage: 'No agent can be found with provided agent code' })
-      )
     }
   }
 
@@ -230,7 +225,6 @@ const EditAgentPage = ({ agentCode }: InferGetServerSidePropsType<typeof getServ
           </h4>
         </div>
         <div className="mb-2">{error && <Alert color="error">{error}</Alert>}</div>
-        <div className="mb-2">{info && <Alert color="info">{info}</Alert>}</div>
         <div className="mt-8">
           {isLoading || searchingCustomer ? <BasicLoader spinColor="primary" size="md" /> : null}
           {agent && customer ? (

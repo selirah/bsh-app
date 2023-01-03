@@ -18,14 +18,14 @@ import {
   Option
 } from 'types'
 import { Alert, BasicLoader, ToastBox } from 'components'
-import { VerifyAgent, ReferAgent, SuspendAgent } from 'containers/agency-banking'
+import { VerifyEdit, ReferAgent } from 'containers/agency-banking'
 import { onAxiosError } from 'utils'
 import { useRouter } from 'next/router'
 import { useToast } from 'hooks'
 import { reasonValidation } from 'validation-schema/agency-banking'
 import { HiCheckBadge } from 'react-icons/hi2'
 
-const VerifyAgentPage = ({ agentCode }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+const VerifyEditPage = ({ agentCode }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const intl = useIntl()
   const [agent, setAgent] = useState<AgentObject>(null)
   const [error, setError] = useState(null)
@@ -39,19 +39,14 @@ const VerifyAgentPage = ({ agentCode }: InferGetServerSidePropsType<typeof getSe
 
   const options = [
     {
-      label: intl.formatMessage({ defaultMessage: 'Verify Account' }),
-      value: 'verify',
-      helpText: intl.formatMessage({ defaultMessage: "This agent's account would be verified" })
+      label: intl.formatMessage({ defaultMessage: 'Approve Changes' }),
+      value: 'approve',
+      helpText: intl.formatMessage({ defaultMessage: 'Click on the button to approve changes' })
     },
     {
       label: intl.formatMessage({ defaultMessage: 'Refer to Maker' }),
       value: 'refer',
       helpText: intl.formatMessage({ defaultMessage: 'Refer agent to maker by providing reason' })
-    },
-    {
-      label: intl.formatMessage({ defaultMessage: 'Suspend Account' }),
-      value: 'suspend',
-      helpText: intl.formatMessage({ defaultMessage: "Permanently suspend agent's account" })
     }
   ] as Option[]
 
@@ -87,7 +82,7 @@ const VerifyAgentPage = ({ agentCode }: InferGetServerSidePropsType<typeof getSe
     (error: ErrorResponse) => onAxiosError(error, setError)
   )
 
-  const onVerifyAgentSuccess = (response: SuccessResponse) => {
+  const onApproveEditSuccess = (response: SuccessResponse) => {
     const { status, data } = response
     if (status === 200 && data) {
       createToast(
@@ -105,11 +100,11 @@ const VerifyAgentPage = ({ agentCode }: InferGetServerSidePropsType<typeof getSe
   }
 
   const { mutate: verifyAgent, isLoading: isSubmitting } = useVerifyAgent(
-    onVerifyAgentSuccess,
+    onApproveEditSuccess,
     (error: ErrorResponse) => onAxiosError(error, setError)
   )
 
-  const onVerifyAgent = () => {
+  const onVerifyEdit = () => {
     const payload: AgentPayload = {
       agentStatusId: 1,
       agentId: agent?.agentId,
@@ -143,9 +138,9 @@ const VerifyAgentPage = ({ agentCode }: InferGetServerSidePropsType<typeof getSe
   }
 
   const onSubmit = (values: AgentFormValues) => {
-    const { action, reason } = values
+    const { reason } = values
     const payload: AgentPayload = {
-      agentStatusId: action === 'suspend' ? 2 : 7,
+      agentStatusId: 6,
       agentId: agent?.agentId,
       agentAccounts: agent?.agentAccounts,
       agentName: agent?.agentName,
@@ -177,11 +172,11 @@ const VerifyAgentPage = ({ agentCode }: InferGetServerSidePropsType<typeof getSe
   }
 
   return (
-    <AdminLayout pageTitle="Verify Agent" breadcrumbActions={routes(intl)}>
+    <AdminLayout pageTitle="Verify Edit" breadcrumbActions={routes(intl)}>
       <BasicContainer>
         <div className="py-[16px] border-b border-light-border dark:border-dark-border">
           <h4 className="text-h6 font-lato text-dark-btnText dark:text-light-btnText">
-            {intl.formatMessage({ defaultMessage: 'Verify Agent' })}
+            {intl.formatMessage({ defaultMessage: 'Verify Edit' })}
           </h4>
         </div>
         <div className="mb-2">{error && <Alert color="error">{error}</Alert>}</div>
@@ -202,14 +197,11 @@ const VerifyAgentPage = ({ agentCode }: InferGetServerSidePropsType<typeof getSe
                         <RadioGroup options={options} name="action" space direction="right" />
                       </div>
                       <div className="block">
-                        {action === 'verify' && (
-                          <VerifyAgent isSubmitting={isSubmitting} onVerifyAgent={onVerifyAgent} />
+                        {action === 'approve' && (
+                          <VerifyEdit isSubmitting={isSubmitting} onVerifyEdit={onVerifyEdit} />
                         )}
                         {action === 'refer' && (
                           <ReferAgent isSubmitting={isSubmitting} isValid={isValid} />
-                        )}
-                        {action === 'suspend' && (
-                          <SuspendAgent isSubmitting={isSubmitting} isValid={isValid} />
                         )}
                       </div>
                     </div>
@@ -233,4 +225,4 @@ export async function getServerSideProps({ query }) {
   }
 }
 
-export default authorizationHOC('AgencyBanking:Verify', VerifyAgentPage, true)
+export default authorizationHOC('AgencyBanking:Verify', VerifyEditPage, true)
