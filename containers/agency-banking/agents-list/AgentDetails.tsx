@@ -148,7 +148,7 @@ export const AgentDetails: React.FC<Props> = (props) => {
         )}
         {agent.agentType === AgentTypes.OUTLET && agent.agentStatus === StatusTypes.ACTIVE && (
           <Link
-            href={`/admin/agency-banking/agents-list/mmanage-outlet-users?agentCode=${agent.agentCode}`}
+            href={`/admin/agency-banking/agents-list/manage-users?agentId=${agent.agentId}&agentCode=${agent.agentCode}`}
           >
             <Button size="sm" outline>
               <FaUsers className="text-pNormal" />

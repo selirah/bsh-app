@@ -174,3 +174,19 @@ export const reasonValidation = (intl: IntlShape) => {
     reason: Yup.string().required(intl.formatMessage({ defaultMessage: 'Reason is required' }))
   })
 }
+
+export const outletUserValidation = (intl: IntlShape) => {
+  return Yup.object().shape({
+    outletCode: Yup.string().required(
+      intl.formatMessage({ defaultMessage: 'Outlet code is required' })
+    ),
+    name: Yup.string().required(intl.formatMessage({ defaultMessage: 'User name is required' })),
+    idNumber: Yup.string().required(
+      intl.formatMessage({ defaultMessage: 'ID number is required' })
+    ),
+    msisdn: Yup.string()
+      .required(intl.formatMessage({ defaultMessage: 'User phone number is required' }))
+      .min(12, intl.formatMessage({ defaultMessage: 'Phone number must be 12 digits' }))
+      .max(12, intl.formatMessage({ defaultMessage: 'Phone number must be 12 digits' }))
+  })
+}

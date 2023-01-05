@@ -356,18 +356,18 @@ export const EditOutletForm: React.FC<Props> = (props) => {
                 />
               </div>
             </div>
-          </div>
-          <div className="mt-8 py-6">
-            <Button size="md" disabled={!isValid || loadingBranches} type="submit">
-              <div className="flex items-center space-x-2">
-                {isSubmitting ? <AppleLoader size="lg" /> : <MdEdit />}
-                <span>
-                  {isSubmitting
-                    ? intl.formatMessage({ defaultMessage: 'Processing...' })
-                    : intl.formatMessage({ defaultMessage: 'Submit' })}
-                </span>
-              </div>
-            </Button>
+            <div className="mt-8 py-6">
+              <Button size="md" disabled={!isValid || loadingBranches} type="submit">
+                <div className="flex items-center space-x-2">
+                  {isSubmitting ? <AppleLoader size="lg" /> : <MdEdit />}
+                  <span>
+                    {isSubmitting
+                      ? intl.formatMessage({ defaultMessage: 'Processing...' })
+                      : intl.formatMessage({ defaultMessage: 'Submit' })}
+                  </span>
+                </div>
+              </Button>
+            </div>
           </div>
         </Form>
       )}

@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import { ColumnDef } from '@tanstack/react-table'
 import { useIntl } from 'react-intl'
-import { AgentObject, StatusTypes, AgentTypes } from 'types'
+import { AgentObject, StatusTypes, AgentTypes, OutletUser, UserStatusTypes } from 'types'
 import moment from 'moment'
 import { Dropdown } from 'components'
 import { transformStatus } from 'utils/transform-status'
@@ -39,7 +39,7 @@ export const useAgentListTableColumns = () => {
       {
         title: intl.formatMessage({ defaultMessage: 'Manage users' }),
         inaccessible: row.agentType !== AgentTypes.OUTLET || row.agentStatus !== StatusTypes.ACTIVE,
-        link: `agents-list/manage-outlet-users?agentCode=${row.agentCode}`
+        link: `agents-list/manage-users?agentId=${row.agentId}&agentCode=${row.agentCode}`
       },
       {
         title: intl.formatMessage({ defaultMessage: 'Create additional outlet' }),
@@ -143,6 +143,90 @@ export const useAgentListTableColumns = () => {
       }
     ],
     [transformStatus, callDropdownActions, transformAgentType]
+  )
+
+  return [columns]
+}
+
+export const useOutletUsersTableColumns = () => {
+  const intl = useIntl()
+
+  const callDropdownActions = (row: OutletUser) => {
+    const links = [
+      {
+        title: intl.formatMessage({ defaultMessage: 'Block/Deactivate' }),
+        inaccessible:
+          row.status !== UserStatusTypes.ACTIVE &&
+          row.status !== UserStatusTypes.RESET &&
+          row.status !== UserStatusTypes.PENDINGRESET &&
+          row.status !== UserStatusTypes.NEW,
+        link: `agents-list/block-user?msisdn=${row?.msisdn}&contractId=${row?.contractId}&outletCode=${row?.outletCode}`
+      },
+      {
+        title: intl.formatMessage({ defaultMessage: 'Reset PIN' }),
+        inaccessible:
+          row.status !== UserStatusTypes.ACTIVE &&
+          row.status !== UserStatusTypes.RESET &&
+          row.status !== UserStatusTypes.PENDINGRESET &&
+          row.status !== UserStatusTypes.NEW,
+        link: `agents-list/reset-pin?msisdn=${row?.msisdn}&contractId=${row?.contractId}&outletCode=${row?.outletCode}`
+      },
+      {
+        title: intl.formatMessage({ defaultMessage: 'Unblock/Activate' }),
+        inaccessible: row.status !== UserStatusTypes.BLOCKED,
+        link: `agents-list/unblock-user?msisdn=${row?.msisdn}&contractId=${row?.contractId}&outletCode=${row?.outletCode}`
+      },
+      {
+        title: intl.formatMessage({ defaultMessage: 'Verify User' }),
+        inaccessible:
+          row.status !== UserStatusTypes.PENDINGACTIVATION &&
+          row.status !== UserStatusTypes.PENDINGUNBLOCK,
+        link: `agents-list/verify-user?msisdn=${row?.msisdn}&contractId=${row?.contractId}&outletCode=${row?.outletCode}`
+      }
+    ] as Dropdown.DropdownList[]
+
+    return <Dropdown.Khebab actions={links} />
+  }
+
+  const columns = useMemo<ColumnDef<OutletUser>[]>(
+    () => [
+      {
+        accessorFn: (row) => row.name,
+        accessorKey: 'name',
+        cell: (info) => info.getValue(),
+        header: () => <span>{intl.formatMessage({ defaultMessage: 'Name' })}</span>,
+        footer: (props) => props.column.id
+      },
+      {
+        accessorFn: (row) => row.idNumber,
+        accessorKey: 'idNumber',
+        cell: (info) => info.getValue(),
+        header: () => <span>{intl.formatMessage({ defaultMessage: 'ID' })}</span>,
+        footer: (props) => props.column.id
+      },
+      {
+        accessorFn: (row) => row.msisdn,
+        accessorKey: 'msisdn',
+        cell: (info) => info.getValue(),
+        header: () => <span>{intl.formatMessage({ defaultMessage: 'Mobile Number' })}</span>,
+        footer: (props) => props.column.id
+      },
+      {
+        accessorFn: (row) => row.status,
+        accessorKey: 'status',
+        cell: (info) => transformStatus(info.row.original.status),
+        header: () => <span>{intl.formatMessage({ defaultMessage: 'Status' })}</span>,
+        footer: (props) => props.column.id,
+        meta: {
+          textAlign: 'center'
+        }
+      },
+      {
+        accessorKey: ' ',
+        cell: (info) => callDropdownActions(info.row.original)
+      }
+    ],
+    [transformStatus, callDropdownActions]
   )
 
   return [columns]

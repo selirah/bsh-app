@@ -42,6 +42,7 @@ export const AdminLayout: React.FC<Props> = (props) => {
 
   useEffect(() => {
     const pathWithoutQuery = router.asPath.split('?')[0]
+    const pathWithQuery = router.asPath.split('?')[1]
     let pathArray = pathWithoutQuery.split('/')
     pathArray.shift()
     pathArray = pathArray.filter((path) => path !== '')
@@ -51,7 +52,7 @@ export const AdminLayout: React.FC<Props> = (props) => {
       if (path === 'admin') {
         href = '/'
       } else {
-        href = '/' + pathArray.slice(0, index + 1).join('/')
+        href = '/' + pathArray.slice(0, index + 1).join('/') + `?${pathWithQuery}`
       }
       return {
         href,

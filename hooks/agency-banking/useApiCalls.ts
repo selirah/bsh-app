@@ -4,7 +4,7 @@ import {
   onError,
   onSuccess,
   FilterPayload,
-  OutletUserPayload,
+  OutletUser,
   AgentPayload,
   VerifyOutletUserPayload,
   AgentObject
@@ -128,7 +128,7 @@ export const useFetchAllAgents = (
 const fetchOutletUsers = ({ queryKey }: QueryFunctionContext<[string, FilterPayload]>) => {
   const payload = queryKey[1]
   return adminRequestTest({
-    url: endPoints.fetchAllAgents,
+    url: endPoints.fetchOutletUsers,
     method: 'post',
     data: payload
   })
@@ -142,7 +142,7 @@ export const useFetchOutletUsers = (
   return useQuery(['outlet-users', payload], fetchOutletUsers, { onSuccess, onError })
 }
 
-const blockOutletUser = (payload: OutletUserPayload) => {
+const blockOutletUser = (payload: OutletUser) => {
   return adminRequestTest({ url: endPoints.blockOutletUser, method: 'post', data: payload })
 }
 
@@ -153,7 +153,7 @@ export const useBlockOutletUser = (onSuccess: onSuccess, onError: onError) => {
   })
 }
 
-const unblockOutletUser = (payload: OutletUserPayload) => {
+const unblockOutletUser = (payload: OutletUser) => {
   return adminRequestTest({ url: endPoints.unblockOutletUser, method: 'post', data: payload })
 }
 
@@ -164,7 +164,7 @@ export const useUnblockOutletUser = (onSuccess: onSuccess, onError: onError) => 
   })
 }
 
-const resetOutletUserPin = (payload: OutletUserPayload) => {
+const resetOutletUserPin = (payload: OutletUser) => {
   return adminRequestTest({ url: endPoints.resetOutletUserPin, method: 'post', data: payload })
 }
 

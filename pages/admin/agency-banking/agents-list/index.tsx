@@ -1,4 +1,5 @@
 import { useState, useMemo, useEffect } from 'react'
+import { useRouter } from 'next/router'
 import { AdminLayout, BasicContainer, authorizationHOC } from 'layouts'
 import { routes, AgentsListFilter } from 'containers/agency-banking'
 import { useIntl } from 'react-intl'
@@ -12,7 +13,9 @@ import {
   Option,
   KeyValuePair,
   ExportedDocument,
-  AgencyBankingFilterValues
+  AgencyBankingFilterValues,
+  AgentObject,
+  AgentResponse
 } from 'types'
 import {
   useFetchAgentAccountTypes,
@@ -25,7 +28,6 @@ import { useFetchBranches } from 'hooks/common'
 import { onAxiosError } from 'utils'
 import { Alert, Empty } from 'components'
 import { Table } from 'controllers'
-import { AgentObject, AgentResponse } from 'types'
 import { MdCreate } from 'react-icons/md'
 
 const AgentsListPage = () => {
@@ -60,6 +62,7 @@ const AgentsListPage = () => {
     }),
     [pageIndex, pageSize]
   )
+  const router = useRouter()
 
   const onFetchAgentTypeSuccess = (response: SuccessResponse) => {
     const { status, data } = response
@@ -170,7 +173,8 @@ const AgentsListPage = () => {
               btnText={intl.formatMessage({ defaultMessage: 'Create agent' })}
               IconSVG={MdCreate}
               title={intl.formatMessage({ defaultMessage: 'No Records Found' })}
-              onClick={() => null}
+              onClick={() => router.push(`/admin/agency-banking/create-agent`)}
+              border
             >
               {intl.formatMessage({ defaultMessage: 'Get started by creating a new agent' })}
             </Empty.ActionButton>

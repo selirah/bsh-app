@@ -32,17 +32,6 @@ export type MerchantAcount = {
   accountNumber: string
 }
 
-export type OutletUserPayload = {
-  contractId: number
-  outletCode: string
-  name: string
-  idNumber: string
-  msisdn: string
-  outletStatusId: number
-  status: string
-  reason: string
-}
-
 export type AgentPayload = {
   agentName?: string
   externalId?: string
@@ -84,17 +73,18 @@ export type AgentAccount = {
 }
 
 export type OutletUser = {
-  contractId: number
-  outletCode: string
-  name: string
-  idNumber: string
-  msisdn: string
-  outletStatusId: number
-  status: string
+  contractId?: number
+  outletCode?: string
+  name?: string
+  idNumber?: string
+  msisdn?: string
+  outletStatusId?: number
+  status?: string
   userId?: string
   txUSD?: string
   txCDF?: string
   createdWhen?: string
+  reason?: string
 }
 
 export type AgentAgreement = {
@@ -221,8 +211,34 @@ export enum SchemeCodes {
 }
 
 export type AgencyBankingFilterValues = {
-  branches: Option[]
-  agentTypes: Option[]
-  agentStatus: Option[]
-  keyword: string
+  branches?: Option[]
+  agentTypes?: Option[]
+  agentStatus?: Option[]
+  keyword?: string
+  agentId?: number
+}
+
+export type OutletUserResponse = {
+  data: OutletUser[]
+  totalRecords: number
+  sorted: {
+    by: string
+    order: string
+  }
+  page: {
+    number: number
+    size: number
+  }
+}
+
+export enum UserStatusTypes {
+  NEW = 'NEW',
+  BLOCKED = 'BLOCKED',
+  RESET = 'RESET',
+  ACTIVE = 'ACTIVE',
+  PENDINGBLOCK = 'PENDINGBLOCK',
+  PENDINGACTIVATION = 'PENDINGACTIVATION',
+  PENDINGRESET = 'PENDINGRESET',
+  PENDINGUNBLOCK = 'PENDINGUNBLOCK',
+  RESTRICTEDAGENT = 'RESTRICTEDAGENT'
 }

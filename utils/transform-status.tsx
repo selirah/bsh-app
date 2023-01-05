@@ -1,4 +1,4 @@
-import { StatusTypes } from 'types'
+import { StatusTypes, UserStatusTypes } from 'types'
 import { Badge } from 'components'
 
 export const transformStatus = (status: string) => {
@@ -22,6 +22,7 @@ export const transformStatus = (status: string) => {
         </Badge>
       )
     case StatusTypes.REJECTED:
+    case UserStatusTypes.PENDINGUNBLOCK:
       return (
         <Badge color="info" pill size="sm" state>
           {status}
@@ -34,8 +35,16 @@ export const transformStatus = (status: string) => {
         </Badge>
       )
     case StatusTypes.PENDINGVERIFICATION:
+    case UserStatusTypes.PENDINGACTIVATION:
       return (
         <Badge color="warning" pill size="sm" state>
+          {status}
+        </Badge>
+      )
+    case UserStatusTypes.RESET:
+    case UserStatusTypes.PENDINGRESET:
+      return (
+        <Badge color="default" pill size="sm" state>
           {status}
         </Badge>
       )
