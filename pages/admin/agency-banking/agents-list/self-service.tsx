@@ -1,40 +1,31 @@
-import { useState, useContext } from 'react'
-import { Formik, Form } from 'formik'
-import { LayoutContext } from 'contexts'
-import { Textarea } from 'examples/formik-controls'
+import { useState } from 'react'
 import { InferGetServerSidePropsType } from 'next'
 import { AdminLayout, BasicContainer, authorizationHOC } from 'layouts'
 import { routes } from 'containers/agency-banking'
 import { useIntl } from 'react-intl'
-import { useFetchAgentByCode, useBlockAgent } from 'hooks/agency-banking'
+import { useFetchAgentByCode, useSelfServiceOnboarding } from 'hooks/agency-banking'
 import { useSearchCustomer } from 'hooks/customer'
 import {
-  AgentObject,
+  AgentPayload,
   ErrorResponse,
   SuccessResponse,
   Customer,
   CustomerSearchPayload,
-  AgentFormValues,
-  AgentPayload
+  AgentObject
 } from 'types'
 import { Alert, BasicLoader, ToastBox, Button, AppleLoader } from 'components'
 import { onAxiosError } from 'utils'
 import { useRouter } from 'next/router'
 import { useToast } from 'hooks'
-import { reasonValidation } from 'validation-schema/agency-banking'
-import { HiCheckBadge, HiLockClosed } from 'react-icons/hi2'
+import { HiCheckBadge, HiCheck } from 'react-icons/hi2'
 
-const BlockAgentPage = ({ agentCode }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+const SelfServicePage = ({ agentCode }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const intl = useIntl()
-  const { layout } = useContext(LayoutContext)
   const [agent, setAgent] = useState<AgentObject>(null)
   const [error, setError] = useState(null)
   const [customer, setCustomer] = useState<Customer>(null)
   const router = useRouter()
   const createToast = useToast()
-  const initialValues: AgentFormValues = {
-    reason: ''
-  }
 
   const onCustomerSearchSuccess = (response: SuccessResponse) => {
     const { data, status } = response
@@ -68,7 +59,7 @@ const BlockAgentPage = ({ agentCode }: InferGetServerSidePropsType<typeof getSer
     (error: ErrorResponse) => onAxiosError(error, setError)
   )
 
-  const onBlockAgentSuccess = (response: SuccessResponse) => {
+  const onSelfServiceOnboardingSuccess = (response: SuccessResponse) => {
     const { status, data } = response
     if (status === 200 && data) {
       createToast(
@@ -85,15 +76,15 @@ const BlockAgentPage = ({ agentCode }: InferGetServerSidePropsType<typeof getSer
     }
   }
 
-  const { mutate: blockAgent, isLoading: isSubmitting } = useBlockAgent(
-    onBlockAgentSuccess,
+  const { mutate: selfServiceOnboarding, isLoading: isSubmitting } = useSelfServiceOnboarding(
+    onSelfServiceOnboardingSuccess,
     (error: ErrorResponse) => onAxiosError(error, setError)
   )
 
-  const onSubmit = (values: AgentFormValues) => {
-    const { reason } = values
+  const onSubmit = () => {
+    setError(null)
     const payload: AgentPayload = {
-      agentStatusId: 4,
+      agentStatusId: agent?.agentStatusId,
       agentId: agent?.agentId,
       agentAccounts: agent?.agentAccounts,
       agentName: agent?.agentName,
@@ -118,10 +109,9 @@ const BlockAgentPage = ({ agentCode }: InferGetServerSidePropsType<typeof getSer
       agencyStreet: agent?.agencyStreet,
       agencyBuilding: agent?.agencyBuilding,
       latitude: agent?.latitude,
-      longitude: '',
-      reason: reason
+      longitude: ''
     }
-    blockAgent(payload)
+    selfServiceOnboarding(payload)
   }
 
   return (
@@ -129,50 +119,31 @@ const BlockAgentPage = ({ agentCode }: InferGetServerSidePropsType<typeof getSer
       <BasicContainer>
         <div className="py-[16px] border-b border-light-border dark:border-dark-border">
           <h4 className="text-h6 font-lato text-dark-btnText dark:text-light-btnText">
-            {intl.formatMessage({ defaultMessage: 'Block Agent' })}
+            {intl.formatMessage({ defaultMessage: 'Confirm on Sending Agent Details' })}
           </h4>
         </div>
         <div className="mb-2">{error && <Alert color="error">{error}</Alert>}</div>
         <div className="mt-8">
           {isLoading || searchingCustomer ? <BasicLoader spinColor="primary" size="md" /> : null}
           {agent && customer && (
-            <Formik
-              initialValues={initialValues}
-              onSubmit={onSubmit}
-              validationSchema={reasonValidation(intl)}
-            >
-              {({ isValid }) => {
-                return (
-                  <Form>
-                    <div className="w-1/2">
-                      <div className="mb-4">
-                        <Textarea
-                          name="reason"
-                          label={intl.formatMessage({ defaultMessage: 'Enter reason' })}
-                          size={layout === 'mobile' ? 'sm' : 'md'}
-                          placeholder={intl.formatMessage({
-                            defaultMessage: 'type reason . . .'
-                          })}
-                          rows={4}
-                        />
-                      </div>
-                      <div className="mt-4">
-                        <Button size="sm" disabled={!isValid || isSubmitting} type="submit">
-                          <div className="flex items-center space-x-2">
-                            {isSubmitting ? <AppleLoader size="md" /> : <HiLockClosed />}
-                            <span>
-                              {isSubmitting
-                                ? intl.formatMessage({ defaultMessage: 'Processing...' })
-                                : intl.formatMessage({ defaultMessage: 'Block' })}
-                            </span>
-                          </div>
-                        </Button>
-                      </div>
-                    </div>
-                  </Form>
-                )
-              }}
-            </Formik>
+            <div className="mt-10">
+              <h4 className="font-lato text-pLarge text-dark-btnText dark:text-light-btnText mb-6">
+                {intl.formatMessage(
+                  { defaultMessage: 'Confirm self service for {agentName}' },
+                  { agentName: agent?.agentName }
+                )}
+              </h4>
+              <Button size="md" disabled={isSubmitting} onClick={onSubmit}>
+                <div className="flex items-center space-x-2">
+                  {isSubmitting ? <AppleLoader size="md" /> : <HiCheck />}
+                  <span>
+                    {isSubmitting
+                      ? intl.formatMessage({ defaultMessage: 'Processing...' })
+                      : intl.formatMessage({ defaultMessage: 'Confirm' })}
+                  </span>
+                </div>
+              </Button>
+            </div>
           )}
         </div>
       </BasicContainer>
@@ -189,4 +160,5 @@ export async function getServerSideProps({ query }) {
   }
 }
 
-export default authorizationHOC('AgencyBanking:Block', BlockAgentPage, true)
+// export default authorizationHOC('AgencyBanking:SendAuthDetails', SelfServicePage, true)
+export default authorizationHOC('AgencyBanking:Manage', SelfServicePage, true)

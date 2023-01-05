@@ -6,7 +6,8 @@ import {
   FilterPayload,
   OutletUserPayload,
   AgentPayload,
-  VerifyOutletUserPayload
+  VerifyOutletUserPayload,
+  AgentObject
 } from 'types'
 
 const endPoints = {
@@ -301,7 +302,7 @@ export const useFetchOfferLetter = (
   })
 }
 
-const resetAgentPin = (payload: AgentPayload) => {
+const resetAgentPin = (payload: AgentObject) => {
   return adminRequestTest({ url: endPoints.resetAgentPin, method: 'post', data: payload })
 }
 

@@ -39,7 +39,7 @@ export const useAgentListTableColumns = () => {
       {
         title: intl.formatMessage({ defaultMessage: 'Manage users' }),
         inaccessible: row.agentType !== AgentTypes.OUTLET || row.agentStatus !== StatusTypes.ACTIVE,
-        link: `agents-list/manage-users?agentCode=${row.agentCode}`
+        link: `agents-list/manage-outlet-users?agentCode=${row.agentCode}`
       },
       {
         title: intl.formatMessage({ defaultMessage: 'Create additional outlet' }),

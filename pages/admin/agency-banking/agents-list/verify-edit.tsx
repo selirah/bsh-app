@@ -99,12 +99,13 @@ const VerifyEditPage = ({ agentCode }: InferGetServerSidePropsType<typeof getSer
     }
   }
 
-  const { mutate: verifyAgent, isLoading: isSubmitting } = useVerifyAgent(
+  const { mutate: verifyEdit, isLoading: isSubmitting } = useVerifyAgent(
     onApproveEditSuccess,
     (error: ErrorResponse) => onAxiosError(error, setError)
   )
 
   const onVerifyEdit = () => {
+    setError(null)
     const payload: AgentPayload = {
       agentStatusId: 1,
       agentId: agent?.agentId,
@@ -134,10 +135,11 @@ const VerifyEditPage = ({ agentCode }: InferGetServerSidePropsType<typeof getSer
       longitude: '',
       clientDetails: customer
     }
-    verifyAgent(payload)
+    verifyEdit(payload)
   }
 
   const onSubmit = (values: AgentFormValues) => {
+    setError(null)
     const { reason } = values
     const payload: AgentPayload = {
       agentStatusId: 6,
@@ -168,7 +170,7 @@ const VerifyEditPage = ({ agentCode }: InferGetServerSidePropsType<typeof getSer
       longitude: '',
       reason: reason
     }
-    verifyAgent(payload)
+    verifyEdit(payload)
   }
 
   return (

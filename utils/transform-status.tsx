@@ -17,7 +17,7 @@ export const transformStatus = (status: string) => {
       )
     case StatusTypes.PENDINGBLOCK:
       return (
-        <Badge color="warning" pill size="sm" state>
+        <Badge color="error" pill size="sm" state>
           {status}
         </Badge>
       )

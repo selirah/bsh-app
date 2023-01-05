@@ -1,40 +1,25 @@
-import { useState, useContext } from 'react'
-import { Formik, Form } from 'formik'
-import { LayoutContext } from 'contexts'
-import { Textarea } from 'examples/formik-controls'
+import { useState } from 'react'
 import { InferGetServerSidePropsType } from 'next'
 import { AdminLayout, BasicContainer, authorizationHOC } from 'layouts'
 import { routes } from 'containers/agency-banking'
 import { useIntl } from 'react-intl'
-import { useFetchAgentByCode, useBlockAgent } from 'hooks/agency-banking'
+import { useFetchAgentByCode, useResetAgentPin } from 'hooks/agency-banking'
 import { useSearchCustomer } from 'hooks/customer'
-import {
-  AgentObject,
-  ErrorResponse,
-  SuccessResponse,
-  Customer,
-  CustomerSearchPayload,
-  AgentFormValues,
-  AgentPayload
-} from 'types'
+import { AgentObject, ErrorResponse, SuccessResponse, Customer, CustomerSearchPayload } from 'types'
 import { Alert, BasicLoader, ToastBox, Button, AppleLoader } from 'components'
 import { onAxiosError } from 'utils'
 import { useRouter } from 'next/router'
 import { useToast } from 'hooks'
-import { reasonValidation } from 'validation-schema/agency-banking'
-import { HiCheckBadge, HiLockClosed } from 'react-icons/hi2'
+import { MdUpdate } from 'react-icons/md'
+import { HiCheckBadge } from 'react-icons/hi2'
 
-const BlockAgentPage = ({ agentCode }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+const ResetPinPage = ({ agentCode }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const intl = useIntl()
-  const { layout } = useContext(LayoutContext)
   const [agent, setAgent] = useState<AgentObject>(null)
   const [error, setError] = useState(null)
   const [customer, setCustomer] = useState<Customer>(null)
   const router = useRouter()
   const createToast = useToast()
-  const initialValues: AgentFormValues = {
-    reason: ''
-  }
 
   const onCustomerSearchSuccess = (response: SuccessResponse) => {
     const { data, status } = response
@@ -68,7 +53,7 @@ const BlockAgentPage = ({ agentCode }: InferGetServerSidePropsType<typeof getSer
     (error: ErrorResponse) => onAxiosError(error, setError)
   )
 
-  const onBlockAgentSuccess = (response: SuccessResponse) => {
+  const onResetAgentPinSuccess = (response: SuccessResponse) => {
     const { status, data } = response
     if (status === 200 && data) {
       createToast(
@@ -85,15 +70,15 @@ const BlockAgentPage = ({ agentCode }: InferGetServerSidePropsType<typeof getSer
     }
   }
 
-  const { mutate: blockAgent, isLoading: isSubmitting } = useBlockAgent(
-    onBlockAgentSuccess,
+  const { mutate: resetAgentPin, isLoading: isSubmitting } = useResetAgentPin(
+    onResetAgentPinSuccess,
     (error: ErrorResponse) => onAxiosError(error, setError)
   )
 
-  const onSubmit = (values: AgentFormValues) => {
-    const { reason } = values
-    const payload: AgentPayload = {
-      agentStatusId: 4,
+  const onSubmit = () => {
+    setError(null)
+    const payload: AgentObject = {
+      agentStatusId: agent?.agentStatusId,
       agentId: agent?.agentId,
       agentAccounts: agent?.agentAccounts,
       agentName: agent?.agentName,
@@ -119,9 +104,15 @@ const BlockAgentPage = ({ agentCode }: InferGetServerSidePropsType<typeof getSer
       agencyBuilding: agent?.agencyBuilding,
       latitude: agent?.latitude,
       longitude: '',
-      reason: reason
+      reason: agent?.reason,
+      createdWhen: agent?.createdWhen,
+      parentAgentType: agent?.parentAgentType,
+      outletUser: agent.outletUser,
+      agentStatus: agent?.agentStatus,
+      agentType: agent?.agentType,
+      lastModifiedWhen: agent?.lastModifiedWhen
     }
-    blockAgent(payload)
+    resetAgentPin(payload)
   }
 
   return (
@@ -129,50 +120,25 @@ const BlockAgentPage = ({ agentCode }: InferGetServerSidePropsType<typeof getSer
       <BasicContainer>
         <div className="py-[16px] border-b border-light-border dark:border-dark-border">
           <h4 className="text-h6 font-lato text-dark-btnText dark:text-light-btnText">
-            {intl.formatMessage({ defaultMessage: 'Block Agent' })}
+            {intl.formatMessage({ defaultMessage: 'Reset Agent PIN' })}
           </h4>
         </div>
         <div className="mb-2">{error && <Alert color="error">{error}</Alert>}</div>
         <div className="mt-8">
           {isLoading || searchingCustomer ? <BasicLoader spinColor="primary" size="md" /> : null}
           {agent && customer && (
-            <Formik
-              initialValues={initialValues}
-              onSubmit={onSubmit}
-              validationSchema={reasonValidation(intl)}
-            >
-              {({ isValid }) => {
-                return (
-                  <Form>
-                    <div className="w-1/2">
-                      <div className="mb-4">
-                        <Textarea
-                          name="reason"
-                          label={intl.formatMessage({ defaultMessage: 'Enter reason' })}
-                          size={layout === 'mobile' ? 'sm' : 'md'}
-                          placeholder={intl.formatMessage({
-                            defaultMessage: 'type reason . . .'
-                          })}
-                          rows={4}
-                        />
-                      </div>
-                      <div className="mt-4">
-                        <Button size="sm" disabled={!isValid || isSubmitting} type="submit">
-                          <div className="flex items-center space-x-2">
-                            {isSubmitting ? <AppleLoader size="md" /> : <HiLockClosed />}
-                            <span>
-                              {isSubmitting
-                                ? intl.formatMessage({ defaultMessage: 'Processing...' })
-                                : intl.formatMessage({ defaultMessage: 'Block' })}
-                            </span>
-                          </div>
-                        </Button>
-                      </div>
-                    </div>
-                  </Form>
-                )
-              }}
-            </Formik>
+            <div className="mt-4">
+              <Button size="md" disabled={isSubmitting} onClick={onSubmit}>
+                <div className="flex items-center space-x-2">
+                  {isSubmitting ? <AppleLoader size="md" /> : <MdUpdate />}
+                  <span>
+                    {isSubmitting
+                      ? intl.formatMessage({ defaultMessage: 'Processing...' })
+                      : intl.formatMessage({ defaultMessage: 'Reset PIN' })}
+                  </span>
+                </div>
+              </Button>
+            </div>
           )}
         </div>
       </BasicContainer>
@@ -189,4 +155,4 @@ export async function getServerSideProps({ query }) {
   }
 }
 
-export default authorizationHOC('AgencyBanking:Block', BlockAgentPage, true)
+export default authorizationHOC('AgencyBanking:Manage', ResetPinPage, true)
