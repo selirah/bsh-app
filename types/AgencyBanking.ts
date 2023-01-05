@@ -97,7 +97,7 @@ export type AgentAgreement = {
 }
 
 export type VerifyOutletUserPayload = {
-  agentId?: string
+  agentId?: number
   approvalStatus: number
   outletUser: OutletUser
 }

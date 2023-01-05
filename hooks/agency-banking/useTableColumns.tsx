@@ -14,42 +14,42 @@ export const useAgentListTableColumns = () => {
       {
         title: intl.formatMessage({ defaultMessage: 'View details' }),
         inaccessible: false,
-        link: `agents-list/view-details?agentCode=${row.agentCode}`
+        link: `/admin/agency-banking/agents-list/view-details?agentCode=${row.agentCode}`
       },
       {
         title: intl.formatMessage({ defaultMessage: 'Edit' }),
         inaccessible: false,
-        link: `agents-list/edit?agentCode=${row.agentCode}`
+        link: `/admin/agency-banking/agents-list/edit?agentCode=${row.agentCode}`
       },
       {
         title: intl.formatMessage({ defaultMessage: 'View transactions' }),
         inaccessible: row.agentStatus !== StatusTypes.ACTIVE,
-        link: `agents-list/view-transactions?agentCode=${row.agentCode}`
+        link: `/admin/agency-banking/agents-list/view-transactions?agentCode=${row.agentCode}`
       },
       {
         title: intl.formatMessage({ defaultMessage: 'Block/Deactivate' }),
         inaccessible: row.agentStatus !== StatusTypes.ACTIVE,
-        link: `agents-list/block?agentCode=${row.agentCode}`
+        link: `/admin/agency-banking/agents-list/block?agentCode=${row.agentCode}`
       },
       {
         title: intl.formatMessage({ defaultMessage: 'Unblock/Activate' }),
         inaccessible: row.agentStatus !== StatusTypes.BLOCKED,
-        link: `agents-list/unblock?agentCode=${row.agentCode}`
+        link: `/admin/agency-banking/agents-list/unblock?agentCode=${row.agentCode}`
       },
       {
         title: intl.formatMessage({ defaultMessage: 'Manage users' }),
         inaccessible: row.agentType !== AgentTypes.OUTLET || row.agentStatus !== StatusTypes.ACTIVE,
-        link: `agents-list/manage-users?agentId=${row.agentId}&agentCode=${row.agentCode}`
+        link: `/admin/agency-banking/agents-list/manage-users?agentId=${row.agentId}&agentCode=${row.agentCode}`
       },
       {
         title: intl.formatMessage({ defaultMessage: 'Create additional outlet' }),
         inaccessible: row.agentType === AgentTypes.OUTLET || row.agentStatus !== StatusTypes.ACTIVE,
-        link: `agents-list/create-outlet?agentCode=${row.agentCode}`
+        link: `/admin/agency-banking/agents-list/create-outlet?agentCode=${row.agentCode}`
       },
       {
         title: intl.formatMessage({ defaultMessage: 'Verify account' }),
         inaccessible: row.agentStatus !== StatusTypes.PENDINGVERIFICATION,
-        link: `agents-list/verify-agent?agentCode=${row.agentCode}`
+        link: `/admin/agency-banking/agents-list/verify-agent?agentCode=${row.agentCode}`
       },
       {
         title: intl.formatMessage({ defaultMessage: 'Verify edit' }),
@@ -59,17 +59,17 @@ export const useAgentListTableColumns = () => {
       {
         title: intl.formatMessage({ defaultMessage: 'Reset PIN' }),
         inaccessible: row.agentType === AgentTypes.OUTLET || row.agentStatus !== StatusTypes.ACTIVE,
-        link: `agents-list/reset-pin?agentCode=${row.agentCode}`
+        link: `/admin/agency-banking/agents-list/reset-pin?agentCode=${row.agentCode}`
       },
       {
         title: intl.formatMessage({ defaultMessage: 'Self service onboarding' }),
         inaccessible: row.agentType === AgentTypes.OUTLET || row.agentStatus !== StatusTypes.ACTIVE,
-        link: `agents-list/self-service?agentCode=${row.agentCode}`
+        link: `/admin/agency-banking/agents-list/self-service?agentCode=${row.agentCode}`
       },
       {
         title: intl.formatMessage({ defaultMessage: 'Verify block' }),
         inaccessible: row.agentStatus !== StatusTypes.PENDINGBLOCK,
-        link: `agents-list/verify-block?agentCode=${row.agentCode}`
+        link: `/admin/agency-banking/agents-list/verify-block?agentCode=${row.agentCode}`
       }
     ] as Dropdown.DropdownList[]
 
@@ -160,7 +160,7 @@ export const useOutletUsersTableColumns = () => {
           row.status !== UserStatusTypes.RESET &&
           row.status !== UserStatusTypes.PENDINGRESET &&
           row.status !== UserStatusTypes.NEW,
-        link: `agents-list/block-user?msisdn=${row?.msisdn}&contractId=${row?.contractId}&outletCode=${row?.outletCode}`
+        link: `/admin/agency-banking/agents-list/manage-users/block-user?contractId=${row?.contractId}&agentCode=${row.outletCode}`
       },
       {
         title: intl.formatMessage({ defaultMessage: 'Reset PIN' }),
@@ -169,19 +169,19 @@ export const useOutletUsersTableColumns = () => {
           row.status !== UserStatusTypes.RESET &&
           row.status !== UserStatusTypes.PENDINGRESET &&
           row.status !== UserStatusTypes.NEW,
-        link: `agents-list/reset-pin?msisdn=${row?.msisdn}&contractId=${row?.contractId}&outletCode=${row?.outletCode}`
+        link: `/admin/agency-banking/agents-list/manage-users/reset-pin?contractId=${row?.contractId}&agentCode=${row.outletCode}`
       },
       {
         title: intl.formatMessage({ defaultMessage: 'Unblock/Activate' }),
         inaccessible: row.status !== UserStatusTypes.BLOCKED,
-        link: `agents-list/unblock-user?msisdn=${row?.msisdn}&contractId=${row?.contractId}&outletCode=${row?.outletCode}`
+        link: `/admin/agency-banking/agents-list/manage-users/unblock-user?contractId=${row?.contractId}&agentCode=${row.outletCode}`
       },
       {
         title: intl.formatMessage({ defaultMessage: 'Verify User' }),
         inaccessible:
           row.status !== UserStatusTypes.PENDINGACTIVATION &&
           row.status !== UserStatusTypes.PENDINGUNBLOCK,
-        link: `agents-list/verify-user?msisdn=${row?.msisdn}&contractId=${row?.contractId}&outletCode=${row?.outletCode}`
+        link: `/admin/agency-banking/agents-list/manage-users/verify-user?contractId=${row?.contractId}&agentCode=${row?.outletCode}&name=${row?.name}`
       }
     ] as Dropdown.DropdownList[]
 

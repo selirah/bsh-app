@@ -378,7 +378,7 @@ const verifyOutletUserStatus = (payload: VerifyOutletUserPayload) => {
   return adminRequestTest({
     url: `${endPoints.verifyOutletUserStatus}?approvalStatus=${payload.approvalStatus}&agentId=${payload.agentId}`,
     method: 'post',
-    data: payload
+    data: payload.outletUser
   })
 }
 
@@ -393,7 +393,7 @@ const rejectOutletUserStatus = (payload: VerifyOutletUserPayload) => {
   return adminRequestTest({
     url: `${endPoints.rejectOutletUserStatus}?approvalStatus=${payload.approvalStatus}&agentId=${payload.agentId}`,
     method: 'post',
-    data: payload
+    data: payload.outletUser
   })
 }
 
