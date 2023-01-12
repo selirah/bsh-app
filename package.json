@@ -89,15 +89,15 @@
     "react-dom": "18.2.0",
     "next": "13.0.3",
     "husky": "4",
-    "@tanstack/react-table": "^8.7.0",
-    "react-auth-code-input": "^3.2.1",
-    "react-countup": "^6.4.0",
-    "recharts": "^2.1.16",
-    "react-transition-group": "^4.4.5",
-    "react-select": "^5.6.1",
-    "react-query": "^3.39.2",
+    "@tanstack/react-table": "8.7.0",
+    "react-auth-code-input": "3.2.1",
+    "react-countup": "6.4.0",
+    "recharts": "2.1.16",
+    "react-transition-group": "4.4.5",
+    "react-select": "5.6.1",
+    "react-query": "3.39.2",
     "formik": "^2.2.9",
-    "@headlessui-float/react": "^0.10.1"
+    "@headlessui-float/react": "0.10.1"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json}": [
