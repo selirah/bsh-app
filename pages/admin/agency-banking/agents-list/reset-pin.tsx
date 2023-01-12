@@ -62,7 +62,7 @@ const ResetPinPage = ({ agentCode }: InferGetServerSidePropsType<typeof getServe
           color="success"
           title={intl.formatMessage({ defaultMessage: 'Nice!!' })}
           description={intl.formatMessage({
-            defaultMessage: 'Agent has been blocked successfully'
+            defaultMessage: 'Agent PIN has been reset successfully'
           })}
         />
       )
@@ -116,7 +116,7 @@ const ResetPinPage = ({ agentCode }: InferGetServerSidePropsType<typeof getServe
   }
 
   return (
-    <AdminLayout pageTitle="Block Agent" breadcrumbActions={routes(intl)}>
+    <AdminLayout pageTitle="Reset Agent PIN" breadcrumbActions={routes(intl)}>
       <BasicContainer>
         <div className="py-[16px] border-b border-light-border dark:border-dark-border">
           <h4 className="text-h6 font-lato text-dark-btnText dark:text-light-btnText">

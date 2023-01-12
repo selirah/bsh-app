@@ -41,9 +41,9 @@ export const AdminLayout: React.FC<Props> = (props) => {
   let logoutTimeOut: any
 
   useEffect(() => {
-    const pathWithoutQuery = router.asPath.split('?')[0]
-    const pathWithQuery = router.asPath.split('?')[1]
-    let pathArray = pathWithoutQuery.split('/')
+    const pathWithQuery = router.asPath.split('?')[0]
+    const pathWithoutQuery = router.asPath.split('?')[1]
+    let pathArray = pathWithQuery.split('/')
     pathArray.shift()
     pathArray = pathArray.filter((path) => path !== '')
     const breadcrumbs = pathArray.map((path, index) => {
@@ -52,7 +52,7 @@ export const AdminLayout: React.FC<Props> = (props) => {
       if (path === 'admin') {
         href = '/'
       } else {
-        href = '/' + pathArray.slice(0, index + 1).join('/') + `?${pathWithQuery}`
+        href = '/' + pathArray.slice(0, index + 1).join('/') + `?${pathWithoutQuery}`
       }
       return {
         href,

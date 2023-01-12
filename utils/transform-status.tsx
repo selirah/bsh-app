@@ -22,13 +22,14 @@ export const transformStatus = (status: string) => {
         </Badge>
       )
     case StatusTypes.REJECTED:
-    case UserStatusTypes.PENDINGUNBLOCK:
+    case UserStatusTypes.NEW:
       return (
         <Badge color="info" pill size="sm" state>
           {status}
         </Badge>
       )
     case StatusTypes.PENDINGEDIT:
+    case UserStatusTypes.PENDINGUNBLOCK:
       return (
         <Badge color="warning" pill size="sm" state>
           {status}

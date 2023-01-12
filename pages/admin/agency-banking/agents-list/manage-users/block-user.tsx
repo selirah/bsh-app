@@ -70,7 +70,7 @@ const BlockUserPage = ({
   const onSubmit = (values: OutletUser) => {
     const { reason } = values
     const payload: OutletUser = {
-      contractId: parseInt(contractId),
+      contractId: contractId,
       outletCode: agentCode,
       reason: reason
     }
@@ -134,7 +134,7 @@ const BlockUserPage = ({
 }
 
 export async function getServerSideProps({ query }) {
-  const contractId = query.contractId as string
+  const contractId = query.contractId as number
   const agentCode = query.agentCode as string
   return {
     props: {
