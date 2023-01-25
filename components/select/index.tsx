@@ -153,7 +153,7 @@ export const Multiple: React.FC<MultipleProps> = (props) => {
         </label>
       ) : null}
       <Select
-        className={classnames('font-montserrat font-regular z-20', {
+        className={classnames('font-montserrat font-regular', {
           'text-pSmall': size === 'sm',
           'text-pNormal': size === 'md' || !size || size === 'lg',
           'h-[40px] text-pSmall': size === 'sm',

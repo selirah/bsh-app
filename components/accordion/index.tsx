@@ -84,7 +84,7 @@ export const ActionButton: React.FC<ActionButtonProps> = (props) => {
   const nodeRef = useRef(null)
 
   return (
-    <div className="relative w-full z-10">
+    <div className="relative w-full">
       <div className={classnames('h-12 w-full pl-[16px] flex items-center justify-end ')}>
         <div className="flex space-x-2">
           {extraBtnText ? (

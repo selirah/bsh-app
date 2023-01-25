@@ -57,7 +57,7 @@ const CreateAgentPage = () => {
                 </div>
 
                 <Button type="submit" disabled={!isValid}>
-                  {intl.formatMessage({ defaultMessage: 'Go' })}
+                  {intl.formatMessage({ defaultMessage: 'Next' })}
                 </Button>
               </Form>
             )}

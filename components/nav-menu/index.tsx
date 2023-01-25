@@ -111,7 +111,7 @@ export const SubLink: React.FC<SubLinksProps> = (props) => {
       </div>
       <Transition.Dropdown isEnter={isEnter} nodeRef={nodeRef}>
         <ul
-          className="w-64 absolute origin-top-right -right-[255px] top-0 rounded border border-light-border dark:border-dark-border shadow-penumbra bg-light-container dark:bg-dark-container font-montserrat text-pSmall z-10"
+          className="w-64 absolute origin-top-right -right-[255px] top-0 rounded border border-light-border dark:border-dark-border shadow-penumbra bg-light-container dark:bg-dark-container font-montserrat text-pSmall z-50"
           ref={nodeRef}
         >
           {subLinks.map((link) => (
