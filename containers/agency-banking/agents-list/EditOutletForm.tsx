@@ -2,7 +2,7 @@ import { useState, useContext } from 'react'
 import { useIntl } from 'react-intl'
 import { LayoutContext } from 'contexts'
 import { Formik, Form } from 'formik'
-import { SelectInput, Input, PhoneInput, Checkbox } from 'examples/formik-controls'
+import { SelectInput, Input, PhoneInput, Checkbox } from 'formik-controls'
 import {
   AgentObject,
   AgentFormValues,

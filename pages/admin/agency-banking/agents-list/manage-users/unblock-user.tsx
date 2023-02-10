@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react'
 import { Formik, Form } from 'formik'
 import { LayoutContext } from 'contexts'
-import { Textarea } from 'examples/formik-controls'
+import { Textarea } from 'formik-controls'
 import { InferGetServerSidePropsType } from 'next'
 import { AdminLayout, BasicContainer, authorizationHOC } from 'layouts'
 import { routes } from 'containers/agency-banking'

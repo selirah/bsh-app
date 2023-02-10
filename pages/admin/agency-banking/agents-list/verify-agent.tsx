@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Formik, Form } from 'formik'
-import { RadioGroup } from 'examples/formik-controls'
+import { RadioGroup } from 'formik-controls'
 import { InferGetServerSidePropsType } from 'next'
 import { AdminLayout, BasicContainer, authorizationHOC } from 'layouts'
 import { routes } from 'containers/agency-banking'

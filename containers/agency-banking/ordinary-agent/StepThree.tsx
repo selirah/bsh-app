@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { Formik, Form } from 'formik'
 import { useIntl } from 'react-intl'
-import { FileInput } from 'examples/formik-controls'
+import { FileInput } from 'formik-controls'
 import { LayoutContext } from 'contexts'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import { AgentFormValues } from 'types'

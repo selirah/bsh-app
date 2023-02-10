@@ -4,7 +4,7 @@ import { HiOutlineFilter } from 'react-icons/hi'
 import { MdCreate } from 'react-icons/md'
 import { BsFilter } from 'react-icons/bs'
 import { Formik, Form } from 'formik'
-import { Input } from 'examples/formik-controls'
+import { Input } from 'formik-controls'
 import { AgencyBankingFilterValues } from 'types'
 
 type Props = {

@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { Formik, Form } from 'formik'
-import { Input, SelectInput } from 'examples/formik-controls'
+import { Input, SelectInput } from 'formik-controls'
 import { LanguageContext, LayoutContext } from 'contexts'
 import { Button, AppleLoader } from 'components'
 import {

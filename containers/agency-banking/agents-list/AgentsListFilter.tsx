@@ -4,7 +4,7 @@ import { HiOutlineFilter } from 'react-icons/hi'
 import { FiUploadCloud } from 'react-icons/fi'
 import { BsFilter } from 'react-icons/bs'
 import { Formik, Form } from 'formik'
-import { Input, SelectInput } from 'examples/formik-controls'
+import { Input, SelectInput } from 'formik-controls'
 import { Option, AgencyBankingFilterValues } from 'types'
 
 type Props = {

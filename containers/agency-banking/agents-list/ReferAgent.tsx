@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { useIntl } from 'react-intl'
 import { LayoutContext } from 'contexts'
-import { Textarea } from 'examples/formik-controls'
+import { Textarea } from 'formik-controls'
 import { Button, AppleLoader } from 'components'
 
 type Props = {
